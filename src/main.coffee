@@ -22,7 +22,7 @@ module.exports = class Main
 
 		else if typeof config is "object" and config.key?
 			@config = {
-				endpoint : if config.endpoint? then config.endoint else "https://api.lob.com/v1/"
+				endpoint : if config.endpoint? then config.endpoint else "https://api.lob.com/v1/"
 				key : if config.key? then config.key else null
 			}
 		else
@@ -47,8 +47,8 @@ module.exports = class Main
 			method : method.split("_")[0],
 			uri : "#{ @config.endpoint }#{ path }",
 			headers : {
-				"Accept" : "application/json", 
-				"Connection" : "close", 
+				"Accept" : "application/json",
+				"Connection" : "close",
 				"User-Agent" : USER_AGENT
 			},
 			auth : {
