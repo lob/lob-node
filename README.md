@@ -353,6 +353,24 @@ LOB.postcards.create({
 });
 ```
 
+Creating an PostCard with a buffer of a generated pdf
+
+```javascript
+// Using something like PDFKit...
+doc = new PDFDocument({size: [432, 288]});
+doc.fontSize(30).text('hello!');
+doc.output(function(buffer) {
+  LOB.postcards.create({
+      name: "TEST_POSTCARD",
+      to: "adr_3b5fe0b76713a6e8",
+      front: "@/home/sankaran/Downloads/postcardfront.pdf",
+      back: buffer
+  }, function(err, res) {
+    console.log(err, res);
+  });
+});
+```
+
 ### Simple Check Service
 ---
 
