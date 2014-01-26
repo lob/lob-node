@@ -76,5 +76,10 @@ module.exports = class Main
 		if method is "POST_FORM"
 			form = r.form()
 			Object.keys(data).forEach (_k) ->
-				form.append _k, data[_k]
+        options = {}
+
+        # if a buffer is supplied, assume it's a pdf that was generated in memory
+        options.filename = "#{_k}.pdf" if data[_k] instanceof Buffer
+
+        form.append _k, data[_k], options
 			this
