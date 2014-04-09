@@ -191,8 +191,7 @@ describe('Jobs', function() {
       });
     });
     it('should succeed using an object local file', function(done) {
-      var filePath = '@' + __dirname + '/assets/8.5x11.pdf';
-      console.log(filePath);
+      var filePath = '@' + __dirname + '/assets/4x6.pdf';
       Lob.jobs.create({
         name: 'Test Job',
         from: {
@@ -219,7 +218,7 @@ describe('Jobs', function() {
           {
             name: 'GO BLUE',
             file: filePath,
-            setting_id: 100
+            setting_id: 201
           }
         ]
       }, function(err, res) {
@@ -229,4 +228,4 @@ describe('Jobs', function() {
     });
   });
 });
-/* jshint: camelcase: true */
+/* jshint camelcase: true */
