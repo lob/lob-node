@@ -14,7 +14,7 @@
   "homepage": "https://github.com/lob/lob-node",
   "author": "Lob <support@lob.com> (https://www.lob.com/)",
   "contributors": [
-    "Leore AVidar <leore@lob.com>",
+    "Leore Avidar <leore@lob.com>",
     "Peter Nagel <peter@lob.com>"
   ],
   "dependencies": {
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hisankaran/lob-node.git"
+    "url": "https://github.com/lob/lob-node.git"
   },
   "bugs:": "https://github.com/lob/lob-node/issues",
   "main": "./lib/lob",
