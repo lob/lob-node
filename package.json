@@ -18,7 +18,7 @@
     "Peter Nagel <peter@lob.com>"
   ],
   "dependencies": {
-    "request": "~2.27.0"
+    "request": "^2.34.0"
   },
   "devDependencies": {
     "gulp": "~3.5.6",
