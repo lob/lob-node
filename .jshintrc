@@ -1,0 +1,29 @@
+{
+  "camelcase": true,
+  "curly": true,
+  "node" : true,
+  "debug": false,
+  "devel": false,
+  "eqeqeq": true,
+  "forin": false,
+  "immed": false,
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonew": true,
+  "nonbsp": true,
+  "plusplus": true,
+  "undef": true,
+  "unused": true,
+  "freeze": true,
+  "immed": true,
+  "latedef": true,
+  "indent": 2,
+  "trailing": true,
+  "quotmark": "single",
+  "maxlen": 80,
+  "globals": {
+    "describe": false,
+    "it": false
+  }
+}
