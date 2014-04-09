@@ -1,5 +1,9 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 notifications:
-  hipchat: 6d94f492766ddb84ea19b56f4a490f@Lob
+  hipchat:
+    matrix:
+    - 6d94f492766ddb84ea19b56f4a490f@Lob
+    rooms:
+      secure: Hfao06qDVk8r/hW8ReewmvxUWPduhepgO4FXJDo6QCmboEgIte7f+HYoSALiBZzHpPkyYdKW7korQ4eZYrDr8a2z5cUkkA5PZkc0gznQtoF+2uRYKKC+G6OXDe0t1FPSAoGtHh0b6+h/AmpuHCndbDnj0rInxweZDbXMTxpC6b0=
