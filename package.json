@@ -22,14 +22,12 @@
   },
   "devDependencies": {
     "gulp": "~3.5.6",
-    "gulp-util": "~2.2.14",
     "gulp-jshint": "~1.5.1",
     "jshint-stylish": "~0.1.5",
     "mocha": "~1.18.2",
     "gulp-mocha": "~0.4.1",
     "gulp-istanbul": "~0.1.1",
     "istanbul": "~0.2.7",
-    "gulp-exec": "~1.0.4",
     "should": "~3.1.2"
   },
   "repository": {
