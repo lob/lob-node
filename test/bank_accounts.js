@@ -4,7 +4,6 @@ var Should;
 Should = require('should');
 /* jshint camelcase: false */
 describe('Bank Accounts', function() {
-  var id;
   describe('create', function() {
     it('should succeed with inline addresses', function(done) {
       Lob.bankAccounts.create({
@@ -55,7 +54,6 @@ describe('Bank Accounts', function() {
         bank_address: bankAddressId,
         account_address:accountAddressId
       }, function(err, res) {
-        id = res.id;
         res.should.have.property('id');
         res.should.have.property('bank_code');
         res.should.have.property('routing_number');
@@ -71,17 +69,30 @@ describe('Bank Accounts', function() {
   });
   describe('get', function() {
     it('should succeed on get', function(done) {
-      Lob.bankAccounts.get(id,function(err, res) {
-        res.should.have.property('id');
-        res.should.have.property('bank_code');
-        res.should.have.property('routing_number');
-        res.should.have.property('bank_address');
-        res.should.have.property('account_address');
-        res.routing_number.should.eql('123456789');
-        res.should.have.property('account_number');
-        res.account_number.should.eql('123456788');
-        res.object.should.eql('bank_account');
-        return done();
+      var routingNumber = '123456789';
+      var accountNumber = '123456788';
+      var bankAddressId =  'adr_a11a87b8240b1540';
+      var accountAddressId = 'adr_a11a87b8240b1540';
+
+      Lob.bankAccounts.create({
+        routing_number: routingNumber,
+        account_number: accountNumber,
+        bank_address: bankAddressId,
+        account_address:accountAddressId
+      }, function(err, res) {
+        var id = res.id;
+        Lob.bankAccounts.get(id,function(err, res) {
+          res.should.have.property('id');
+          res.should.have.property('bank_code');
+          res.should.have.property('routing_number');
+          res.should.have.property('bank_address');
+          res.should.have.property('account_address');
+          res.routing_number.should.eql('123456789');
+          res.should.have.property('account_number');
+          res.account_number.should.eql('123456788');
+          res.object.should.eql('bank_account');
+          return done();
+        });
       });
     });
   });
