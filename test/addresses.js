@@ -256,6 +256,12 @@ describe('Addresses', function() {
         });
       });
     });
+    it('should throw an error with an invalid id', function(done) {
+      Lob.addresses.get('badId', function(err, res) {
+        err.should.be.ok;
+        return done();
+      });
+    });
   });
   describe('verify', function() {
     it('should have correct defaults', function(done) {
