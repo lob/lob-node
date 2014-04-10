@@ -97,7 +97,7 @@ describe('Bank Accounts', function() {
     });
   });
   describe('list', function() {
-    it('should have correct deafults', function(done) {
+    it('should have correct defaults', function(done) {
       Lob.bankAccounts.list(function(err, res) {
         res.should.have.property('object');
         res.should.have.property('data');

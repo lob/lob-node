@@ -5,7 +5,7 @@ Should = require('should');
 /* jshint camelcase: false */
 describe('Settings', function() {
   describe('list', function() {
-    it('should have correct deafults', function(done) {
+    it('should have correct defaults', function(done) {
       Lob.settings.list(function(err, res) {
         res.should.have.property('object');
         res.should.have.property('data');
