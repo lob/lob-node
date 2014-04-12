@@ -108,7 +108,6 @@ describe('Objects', function() {
         file: file,
         setting_id: settingId
       }, function(err, res) {
-        console.log(err, res);
         res.should.have.property('id');
         res.should.have.property('name');
         res.name.should.eql(name);
@@ -140,7 +139,6 @@ describe('Objects', function() {
         double_sided: doubleSided,
         full_bleed: fullBleed
       }, function(err, res) {
-        console.log(err, res);
         err.should.be.instanceof(Array);
         return done();
       });
