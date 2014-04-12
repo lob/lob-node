@@ -46,7 +46,7 @@ describe('Objects', function() {
       Lob.objects.create({
         name: name,
         file: file,
-        setting_id: settingId,
+        setting_id: settingId
       }, function(err, res) {
         res.should.have.property('id');
         res.should.have.property('name');
@@ -106,8 +106,9 @@ describe('Objects', function() {
       Lob.objects.create({
         name: name,
         file: file,
-        setting_id: settingId,
+        setting_id: settingId
       }, function(err, res) {
+        console.log(err, res);
         res.should.have.property('id');
         res.should.have.property('name');
         res.name.should.eql(name);
@@ -139,6 +140,7 @@ describe('Objects', function() {
         double_sided: doubleSided,
         full_bleed: fullBleed
       }, function(err, res) {
+        console.log(err, res);
         err.should.be.instanceof(Array);
         return done();
       });
@@ -168,7 +170,7 @@ describe('Objects', function() {
         Lob.objects.create({
           name: name,
           file: file,
-          setting_id: settingId,
+          setting_id: settingId
         }, function(err, res) {
           Lob.objects.get(res.id, function(err2, res2) {
             res.should.eql(res2);
