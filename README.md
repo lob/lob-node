@@ -1,4 +1,4 @@
-# lob-node <img src="https://david-dm.org/lob/lob-node.png">
+# lob-node [![Dependency Status][depstat-image]][depstat-url]
 
 Node.js wrapper for the [Lob.com](http://lob.com) API.
 
@@ -455,6 +455,9 @@ LOB.utils.verify({
 ### List of Countries
 
 Get list of Countries
+
+[depstat-url]: https://david-dm.org/lob/lob-node
+[depstat-image]: https://david-dm.org/lob/lob-node.svg
 
 ```javascript
 LOB.utils.countries(function(err, res) {
