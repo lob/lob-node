@@ -1,4 +1,5 @@
-# lob-node [![Dependency Status][depstat-image]][depstat-url]
+# lob-node [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
+
 
 Node.js wrapper for the [Lob.com](http://lob.com) API.
 
@@ -455,7 +456,10 @@ LOB.utils.verify({
 ### List of Countries
 
 Get list of Countries
-
+[npm-url]: https://npmjs.org/package/lob
+[npm-image]: https://badge.fury.io/js/lob.svg
+[travis-url]: https://travis-ci.org/lob/lob-node
+[travis-image]: https://travis-ci.org/lob/lob-node.svg?branch=master
 [depstat-url]: https://david-dm.org/lob/lob-node
 [depstat-image]: https://david-dm.org/lob/lob-node.svg
 
