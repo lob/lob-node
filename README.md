@@ -1,10 +1,10 @@
-# lob-node
+# lob-node <img src="https://david-dm.org/lob/lob-node.png">
 
 Node.js wrapper for the [Lob.com](http://lob.com) API.
 
 ## Installation
 
-semantics3-node can be installed through the npm:
+lob-node can be installed through the npm:
 
 ```
 $ npm install lob
