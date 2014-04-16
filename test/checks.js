@@ -71,7 +71,7 @@ describe('Checks', function() {
         memo: 'test check'
       }, function(err, res) {
         var id = res.id;
-        Lob.checks.get(id,function(err, res) {
+        Lob.checks.retrieve(id,function(err, res) {
           res.should.have.property('id');
           res.should.have.property('name');
           res.should.have.property('bank_account');
