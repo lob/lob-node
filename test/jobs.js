@@ -1,8 +1,8 @@
 var Lob = require('../lib/lob');
 Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 var Should;
-Should = require('should');
 /* jshint camelcase: false */
+Should = require('should');
 describe('Jobs', function() {
   it('should handle an error with an invalid count or offset', function(done){
     Lob.jobs.list({offset: 0, count: 10000}, function(err, res) {
