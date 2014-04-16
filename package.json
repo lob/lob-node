@@ -1,25 +1,27 @@
 {
-  "name": "lob",
+  "name": "Lob",
   "description": "Lob API wrapper",
   "keywords": [
-    "lob",
-    "lob-node",
+    "Lob",
+    "Lob-node",
     "rest",
     "api",
     "wrapper",
-    "lob.com",
+    "Lob.com",
     "printing"
   ],
   "version": "1.0.0",
-  "homepage": "https://github.com/lob/lob-node",
-  "author": "Lob <support@lob.com> (https://www.lob.com/)",
+  "homepage": "https://github.com/Lob/Lob-node",
+  "author": "Lob <support@Lob.com> (https://www.Lob.com/)",
   "contributors": [
-    "Harry Zhang <harry@lob.com>",
-    "Leore Avidar <leore@lob.com>",
-    "Peter Nagel <peter@lob.com>"
+    "Harry Zhang <harry@Lob.com>",
+    "Leore Avidar <leore@Lob.com>",
+    "Peter Nagel <peter@Lob.com>"
   ],
   "dependencies": {
-    "request": "^2.34.0"
+    "request": "^2.34.0",
+    "coveralls": "^2.10.0",
+    "mocha-lcov-reporter": "0.0.1"
   },
   "devDependencies": {
     "gulp": "~3.5.6",
@@ -28,19 +30,19 @@
     "mocha": "~1.18.2",
     "gulp-mocha": "~0.4.1",
     "gulp-istanbul": "~0.1.1",
-    "istanbul": "~0.2.7",
+    "istanbul": "^0.2.7",
     "should": "~3.1.2"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lob/lob-node.git"
+    "url": "https://github.com/Lob/Lob-node.git"
   },
-  "bugs:": "https://github.com/lob/lob-node/issues",
-  "main": "./lib/lob",
+  "bugs:": "https://github.com/Lob/Lob-node/issues",
+  "main": "./lib/Lob",
   "engines": {
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "mocha -R spec -t 5000"
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha -t 10000 --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   }
 }
