@@ -84,10 +84,10 @@ describe('Jobs', function() {
       function(done) {
       var object;
       var address;
-      Lob.addresses.list(1,0, function(err, res) {
+      Lob.addresses.list({count: 1, offset:0 }, function(err, res) {
         address = res.data[0].id;
-        Lob.objects.list(1,0, function(err, res) {
-          console.log(object);
+        Lob.objects.list({count: 1, offset: 0 }, function(err, res) {
+          object = res.data[0].id;
           Lob.jobs.create({
             name: 'Test',
             to: address,
@@ -173,7 +173,7 @@ describe('Jobs', function() {
           }
         ]
       }, function(err, res) {
-        Lob.jobs.get(res.id, function(err2, res2) {
+        Lob.jobs.retrieve(res.id, function(err2, res2) {
           res.objects.length.should.eql(2);
           res.should.eql(res2);
           done();
