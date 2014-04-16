@@ -5,7 +5,7 @@ Should = require('should');
 /* jshint camelcase: false */
 describe('Jobs', function() {
   it('should handle an error with an invalid count or offset', function(done){
-    Lob.jobs.list(0,1000, function(err, res) {
+    Lob.jobs.list({offset: 0, count: 10000}, function(err, res) {
       err.should.be.ok;
       done();
     });
@@ -28,23 +28,13 @@ describe('Jobs', function() {
       });
     });
     it('should let you limit the count', function(done) {
-      Lob.jobs.list(0, 5, function(err, res) {
+      Lob.jobs.list({offset: 0, count: 5}, function(err, res) {
         res.count.should.eql(5);
         done();
       });
     });
-    it('should let you shift the offset', function(done) {
-      Lob.jobs.list(0,5, function(err, res) {
-        var job1 = res.data[4].id;
-        Lob.jobs.list(4,1, function(err, res) {
-          var job2 = res.data[0].id;
-          job1.should.eql(job2);
-          done();
-        });
-      });
-    });
   });
-  describe('get', function() {
+  describe('retrieve', function() {
     it('should have the correct defaults', function(done) {
       Lob.jobs.create({
         name: 'Test Job',
@@ -76,14 +66,14 @@ describe('Jobs', function() {
           }
         ]
       }, function(err, res) {
-        Lob.jobs.get(res.id, function(err2, res2) {
+        Lob.jobs.retrieve(res.id, function(err2, res2) {
           res.should.eql(res2);
           done();
         });
       });
     });
     it('should throw an error with an invalid id', function(done) {
-      Lob.jobs.get('badId', function(err, res) {
+      Lob.jobs.retrieve('badId', function(err, res) {
         err.should.be.ok;
         done();
       });
@@ -94,10 +84,10 @@ describe('Jobs', function() {
       function(done) {
       var object;
       var address;
-      Lob.addresses.list(0,1, function(err, res) {
+      Lob.addresses.list(1,0, function(err, res) {
         address = res.data[0].id;
-        Lob.objects.list(0,1, function(err, res) {
-          object = res.data[0].id;
+        Lob.objects.list(1,0, function(err, res) {
+          console.log(object);
           Lob.jobs.create({
             name: 'Test',
             to: address,
@@ -217,12 +207,11 @@ describe('Jobs', function() {
         objects: [
           {
             name: 'GO BLUE',
-            file: filePath,
+            file: 'https://www.lob.com/test.pdf',
             setting_id: 201
           }
         ]
       }, function(err, res) {
-        res.object.should.eql('job');
         done();
       });
     });
