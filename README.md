@@ -1,4 +1,4 @@
-# Lob-node [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url] [![Coverage Status](https://coveralls.io/repos/lob/lob-node/badge.png)](https://coveralls.io/r/lob/lob-node)
+# Lob-node [![NPM version][npm-image]][npm-url] [![Build Status](https://travis-ci.org/lob/lob-node.svg?branch=master)](https://travis-ci.org/lob/lob-node) [![Dependency Status][depstat-image]][depstat-url] [![Coverage Status](https://coveralls.io/repos/lob/lob-node/badge.png)](https://coveralls.io/r/lob/lob-node)
 
 
 Node.js wrapper for the [Lob.com](http://Lob.com) API.
