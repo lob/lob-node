@@ -23,17 +23,15 @@ In order to use the client, you must have an API key. To obtain your key, you ne
 
 You can access your API access credentials from the [Accounts Page](https://www.Lob.com/account)
 
-## Usage
-
-### Examples
-Please Check out the Examples Folder for working examples.
----
-
+##Usage
 ```javascript
 var Lob = require('Lob');
 Lob = new Lob('YOUR API KEY');
 ```
 
+## Examples
+
+Please Check out the Examples Folder for working examples.
 
 [npm-url]: https://npmjs.org/package/Lob
 [npm-image]: https://badge.fury.io/js/Lob.svg
