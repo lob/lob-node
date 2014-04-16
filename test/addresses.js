@@ -6,7 +6,7 @@ Should = require('should');
 describe('Addresses', function() {
   describe('list', function() {
     it('should have correct defaults', function(done) {
-      Lob.addresses.list(function(err, res) {
+      Lob.addresses.list(10, 0, function(err, res) {
         res.should.have.property('object');
         res.should.have.property('data');
         res.data.should.be.instanceof(Array);
@@ -22,7 +22,7 @@ describe('Addresses', function() {
       });
     });
     it('should let you limit the count', function(done) {
-       Lob.addresses.list(0, 5, function(err, res) {
+       Lob.addresses.list(5, 0, function(err, res) {
          res.count.should.eql(5);
          return done();
        });
@@ -62,21 +62,21 @@ describe('Addresses', function() {
       }, function(err, res) {
         res.should.have.property('id');
         res.should.have.property('name');
-        res.name.should.eql(name.toUpperCase());
+        res.name.should.eql(name);
         res.should.have.property('email');
         res.email.should.eql(email);
         res.should.have.property('phone');
         res.phone.should.eql(phone);
         res.should.have.property('address_line1');
-        res.address_line1.should.eql(addressLine1.toUpperCase());
+        res.address_line1.should.eql(addressLine1);
         res.should.have.property('address_line2');
-        res.address_line2.should.eql(addressLine2.toUpperCase());
+        res.address_line2.should.eql(addressLine2);
         res.should.have.property('address_city');
-        res.address_city.should.eql(addressCity.toUpperCase());
+        res.address_city.should.eql(addressCity);
         res.should.have.property('address_state');
-        res.address_state.should.eql(addressState.toUpperCase());
+        res.address_state.should.eql(addressState);
         res.should.have.property('address_zip');
-        res.address_zip.should.eql(addressZip.toUpperCase());
+        res.address_zip.should.eql(addressZip);
         res.should.have.property('address_country');
         res.address_country.should.eql('UNITED STATES');
         res.should.have.property('date_created');
@@ -109,21 +109,21 @@ describe('Addresses', function() {
       }, function(err, res) {
         res.should.have.property('id');
         res.should.have.property('name');
-        res.name.should.eql(name.toUpperCase());
+        res.name.should.eql(name);
         res.should.have.property('email');
         res.email.should.eql(email);
         res.should.have.property('phone');
         res.phone.should.eql(phone);
         res.should.have.property('address_line1');
-        res.address_line1.should.eql(addressLine1.toUpperCase());
+        res.address_line1.should.eql(addressLine1);
         res.should.have.property('address_line2');
-        res.address_line2.should.eql(addressLine2.toUpperCase());
+        res.address_line2.should.eql(addressLine2);
         res.should.have.property('address_city');
-        res.address_city.should.eql(addressCity.toUpperCase());
+        res.address_city.should.eql(addressCity);
         res.should.have.property('address_state');
-        res.address_state.should.eql(addressState.toUpperCase());
+        res.address_state.should.eql(addressState);
         res.should.have.property('address_zip');
-        res.address_zip.should.eql(addressZip.toUpperCase());
+        res.address_zip.should.eql(addressZip);
         res.should.have.property('address_country');
         res.address_country.should.eql('CANADA');
         res.should.have.property('date_created');
@@ -250,7 +250,7 @@ describe('Addresses', function() {
         address_zip: addressZip,
         address_country: addressCountry
       }, function(err, res) {
-        Lob.addresses.get(res.id, function(err2, res2) {
+        Lob.addresses.retrieve(res.id, function(err2, res2) {
           res.should.eql(res2);
           return done();
         });
