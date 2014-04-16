@@ -152,7 +152,7 @@ describe('Addresses', function() {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function(err, res) {
+      }, function(err) {
         err.should.be.instanceof(Array);
         return done();
       });
@@ -175,7 +175,7 @@ describe('Addresses', function() {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function(err, res) {
+      }, function(err) {
         err.should.be.instanceof(Array);
         return done();
       });
@@ -198,7 +198,7 @@ describe('Addresses', function() {
         address_city: addressCity,
         address_state: addressState,
         address_country: addressCountry
-      }, function(err, res) {
+      }, function(err) {
         err.should.be.instanceof(Array);
         return done();
       });
@@ -223,7 +223,7 @@ describe('Addresses', function() {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function(err, res) {
+      }, function(err) {
         err.should.be.instanceof(Array);
         return done();
       });

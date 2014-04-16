@@ -5,8 +5,8 @@ Should = require('should');
 /* jshint camelcase: false */
 describe('Objects', function() {
   it('should handle an error with an invalid count or offset', function (done) {
-    Lob.objects.list({offset: 0, count: 10000}, function (err, res) {
-      err.should.be.ok;
+    Lob.objects.list({offset: 0, count: 10000}, function (err) {
+      err.should.be.type('object');
       done();
     });
   });

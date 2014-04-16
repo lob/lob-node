@@ -44,7 +44,7 @@ describe('Verification', function() {
       address_city: addressCity,
       address_state: addressState,
       address_zip: addressZip
-    }, function(err, res) {
+    }, function(err) {
       err.should.be.instanceof(Array);
       return done();
     });

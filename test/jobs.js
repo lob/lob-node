@@ -5,8 +5,8 @@ var Should;
 Should = require('should');
 describe('Jobs', function() {
   it('should handle an error with an invalid count or offset', function(done){
-    Lob.jobs.list({offset: 0, count: 10000}, function(err, res) {
-      err.should.be.ok;
+    Lob.jobs.list({offset: 0, count: 10000}, function(err) {
+      err.should.be.type('object');
       done();
     });
   });
@@ -73,8 +73,8 @@ describe('Jobs', function() {
       });
     });
     it('should throw an error with an invalid id', function(done) {
-      Lob.jobs.retrieve('badId', function(err, res) {
-        err.should.be.ok;
+      Lob.jobs.retrieve('badId', function(err) {
+        err.should.be.type('object');
         done();
       });
     });
@@ -99,7 +99,7 @@ describe('Jobs', function() {
             res.object.should.eql('job');
             done();
           });
-        })
+        });
       });
     });
     it('should succeed using inline address and object', function(done) {
@@ -207,11 +207,47 @@ describe('Jobs', function() {
         objects: [
           {
             name: 'GO BLUE',
+            file: filePath,
+            setting_id: 201
+          }
+        ]
+      }, function(err, res) {
+        res.object.should.eql('job');
+        done();
+      });
+    });
+    it('should succeed using a remote file', function(done) {
+      Lob.jobs.create({
+        name: 'Test Job',
+        from: {
+          name: 'Lob',
+          email: 'support@lob.com',
+          address_line1: '123 Main Street',
+          address_line2: 'Apartment A',
+          address_city: 'San Francisco',
+          address_state: 'CA',
+          address_zip: '94158',
+          address_country: 'US'
+        },
+        to: {
+          name: 'Lob',
+          email: 'support@lob.com',
+          address_line1: '123 Main Street',
+          address_line2: 'Apartment A',
+          address_city: 'San Francisco',
+          address_state: 'CA',
+          address_zip: '94158',
+          address_country: 'US'
+        },
+        objects: [
+          {
+            name: 'GO BLUE',
             file: 'https://www.lob.com/test.pdf',
             setting_id: 201
           }
         ]
       }, function(err, res) {
+        res.object.should.eql('job');
         done();
       });
     });
