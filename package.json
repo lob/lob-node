@@ -41,6 +41,6 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "mocha -R spec -t 5000"
+    "test": "mocha -R spec -t 10000"
   }
 }
