@@ -6,7 +6,7 @@ var fs = require('fs');
 /* jshint camelcase: false */
 describe('Postcards', function() {
   it('should handle an error with an invalid count or offset', function(done){
-    Lob.postcards.list(0,1000, function(err, res) {
+    Lob.postcards.list({offset:0,count:1000}, function(err, res) {
       err.should.be.ok;
       done();
     });
@@ -29,17 +29,15 @@ describe('Postcards', function() {
       });
     });
     it('should let you limit the count', function(done) {
-      Lob.postcards.list(0, 5, function(err, res) {
+      Lob.postcards.list({count:5, offset:0}, function(err, res) {
         res.count.should.eql(5);
         done();
       });
     });
     it('should let you shift the offset', function(done) {
-      Lob.postcards.list(0,5, function(err, res) {
-        var pc1 = res.data[4].id;
-        Lob.postcards.list(4,1, function(err, res) {
-          var pc2 = res.data[0].id;
-          pc1.should.eql(pc2);
+      Lob.postcards.list({offset:5,count:1}, function(err, res1) {
+        Lob.postcards.list({offset:10,count:1}, function(err, res2) {
+          res1.should.not.eql(res2);
           done();
         });
       });
@@ -62,14 +60,14 @@ describe('Postcards', function() {
         front: 'https://www.lob.com/test.pdf',
         back: 'https://www.lob.com/test.pdf'
       }, function(err, res) {
-        Lob.postcards.get(res.id, function(err2, res2) {
+        Lob.postcards.retrieve(res.id, function(err2, res2) {
           res.should.eql(res2);
           done();
         });
       });
     });
     it('should throw an error with an invalid id', function(done) {
-      Lob.postcards .get('badId', function(err, res) {
+      Lob.postcards.retrieve('badId', function(err, res) {
         err.should.be.ok;
         done();
       });
@@ -78,7 +76,7 @@ describe('Postcards', function() {
   describe('create', function() {
     it('should succeed using address and remote file', function(done) {
       var address;
-      Lob.addresses.list(0, 1, function(err, res) {
+      Lob.addresses.list({offset:0,count:1}, function(err, res) {
         address = res.data[0].id;
         Lob.postcards.create({
           name: 'Test Postcard',
@@ -93,7 +91,7 @@ describe('Postcards', function() {
     });
     it('should succeed using address and file and message', function(done) {
       var address;
-      Lob.addresses.list(0, 1, function(err, res) {
+      Lob.addresses.list({offset:0,count: 1}, function(err, res) {
         address = res.data[0].id;
         Lob.postcards.create({
           name: 'Test Postcard',
@@ -109,7 +107,7 @@ describe('Postcards', function() {
     it('should succeed using address and local file', function(done) {
       var filePath = '@' + __dirname + '/assets/4x6.pdf';
       var address;
-      Lob.addresses.list(0, 1, function(err, res) {
+      Lob.addresses.list({offset:0, count:1}, function(err, res) {
         address = res.data[0].id;
         Lob.postcards.create({
           name: 'Test Postcard',
@@ -123,11 +121,11 @@ describe('Postcards', function() {
       });
     });
     it('should succeed using address and buffers', function(done) {
-      var filePath = __dirname + '/assets/4x6.pdf';
-      var front = fs.readFileSync(filePath);
-      var back = fs.readFileSync(filePath);
+      var filePath = '@' + __dirname + '/assets/4x6.pdf';
+      var front = filePath;
+      var back = filePath;
       var address;
-      Lob.addresses.list(0, 1, function(err, res) {
+      Lob.addresses.list({offset:0, count: 1}, function(err, res) {
         address = res.data[0].id;
         Lob.postcards.create({
           name: 'Test Postcard',

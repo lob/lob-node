@@ -1,21 +1,20 @@
-var LOB_API_KEY = NODE_ENV.LOB_API_KEY || 'YOUR_LOB_API_KEY';
-
-var LOB = new (require('../lib/main')) (LOB_API_KEY);
+var Lob = require('../lib/lob');
+Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
 /*
  * Services Endpoint
  */
 
 // List All services
-/**
-LOB.services.list(function(err, res) {
+//
+Lob.services.list(function(err, res) {
 	console.log(err, res);
 });
 /**/
 
-// Retrieve a particular service by SERVICE_ID (required)
-/**
-LOB.services.get("2", function(err, res) {
+// Retrieve a particular service object
+//
+Lob.services.get('2', function(err, res) {
 	console.log(err, res);
 });
 /**/
