@@ -1,28 +1,27 @@
-var LOB_API_KEY = NODE_ENV.LOB_API_KEY || 'YOUR_LOB_API_KEY';
-
-var LOB = new (require('../lib/main')) (LOB_API_KEY);
+var Lob = require('../lib/Lob');
+Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
 /*
- * Postcards Endpoint 
+ * Postcards Endpoint
  */
 
 // List All Postcards with default offset:0, count:0
 /**/
-LOB.postcards.list(function(err, res) {
+Lob.postcards.list(function(err, res) {
 	console.log(err, res);
 });
 /**/
 
 // Retrieve a particular postcard by POSTCARD_ID = "psc_*" (required)
 /**
-LOB.postcards.get("psc_056fdd2b4a11a169", function(err, res) {
+Lob.postcards.get("psc_056fdd2b4a11a169", function(err, res) {
 	console.log(err, res);
 });
 /**/
 
 // Creating PostCard with local file
 /**
-LOB.postcards.create({
+Lob.postcards.create({
     name: "TEST_POSTCARD",
     to: "adr_3b5fe0b76713a6e8",
     front: "@/home/sankaran/Downloads/postcardfront.pdf",
@@ -34,11 +33,11 @@ LOB.postcards.create({
 
 // Creating an PostCard with remote file
 /**
-LOB.postcards.create({
+Lob.postcards.create({
     name: "TEST_POSTCARD",
     to: "adr_3b5fe0b76713a6e8",
-    front: "https://www.lob.com/postcardfront.pdf",
-    back: "https://www.lob.com/postcardback.pdf"
+    front: "https://www.Lob.com/postcardfront.pdf",
+    back: "https://www.Lob.com/postcardback.pdf"
 }, function(err, res) {
 	console.log(err, res);
 });
@@ -46,11 +45,11 @@ LOB.postcards.create({
 
 // Creating an PostCard with local, remote file
 /**
-LOB.postcards.create({
+Lob.postcards.create({
     name: "TEST_POSTCARD",
     to: "adr_3b5fe0b76713a6e8",
     front: "@/home/sankaran/Downloads/postcardfront.pdf",
-    back: "https://www.lob.com/postcardback.pdf"
+    back: "https://www.Lob.com/postcardback.pdf"
 }, function(err, res) {
 	console.log(err, res);
 });

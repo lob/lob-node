@@ -1,27 +1,27 @@
-# lob-node [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
+# Lob-node [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
 
 
-Node.js wrapper for the [Lob.com](http://lob.com) API.
+Node.js wrapper for the [Lob.com](http://Lob.com) API.
 
 ## Installation
 
-lob-node can be installed through the npm:
+Lob-node can be installed through the npm:
 
 ```
-$ npm install lob
+$ npm install Lob
 ```
 To build and install from the latest source:
 
 ```
-$ git clone git@github.com:hisankaran/lob-node.git
-$ npm install lob-node/
+$ git clone git@github.com:hisankaran/Lob-node.git
+$ npm install Lob-node/
 ```
 
 ## Getting Started
 
 In order to use the client, you must have an API key. To obtain your key, you need to first create an account at [Lob.com](https://www.semantics3.com/)
 
-You can access your API access credentials from the [Accounts Page](https://www.lob.com/account)
+You can access your API access credentials from the [Accounts Page](https://www.Lob.com/account)
 
 ## Usage
 
@@ -29,20 +29,20 @@ You can access your API access credentials from the [Accounts Page](https://www.
 ---
 
 ```javascript
-var LOB = new (require('lob')) (LOB_API_KEY);
+var Lob = new (require('Lob')) (Lob_API_KEY);
 ```
 or
 
 ```javascript
-var LOB = require('lob');
-LOB = new LOB(LOB_API_KEY);
+var Lob = require('Lob');
+Lob = new Lob(Lob_API_KEY);
 ```
 
 or you can even pass as a config object
 
 ```javascript
-LOB = new LOB({key: LOB_API_KEY});
-LOB = new LOB({endpoint: 'https://api.lob.com/v1/', key: LOB_API_KEY});
+Lob = new Lob({key: Lob_API_KEY});
+Lob = new Lob({endpoint: 'https://api.lob.com/v1/', key: Lob_API_KEY});
 ```
 
 ### Single Print Service
@@ -53,7 +53,7 @@ LOB = new LOB({endpoint: 'https://api.lob.com/v1/', key: LOB_API_KEY});
 List All Jobs with default offset:0, count:0
 
 ```javascript
-LOB.jobs.list(function(err, data) {
+Lob.jobs.list(function(err, data) {
   console.log(err, data);
 });
 ```
@@ -61,7 +61,7 @@ LOB.jobs.list(function(err, data) {
 List Jobs with offset:10, count:5
 
 ```javascript
-LOB.jobs.list(10, 5, function(err, res) {
+Lob.jobs.list(10, 5, function(err, res) {
   console.log(err, res);
 });
 ```
@@ -69,7 +69,7 @@ LOB.jobs.list(10, 5, function(err, res) {
 Retrieve a particular job JOB_ID = "job_*" (required)
 
 ```javascript
-LOB.jobs.get("job_f6f4c0c3f6338136", function(err, res) {
+Lob.jobs.get("job_f6f4c0c3f6338136", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -77,12 +77,12 @@ LOB.jobs.get("job_f6f4c0c3f6338136", function(err, res) {
 Creating a job with objects
 
 ```javascript
-LOB.jobs.create({
+Lob.jobs.create({
   name: "Testing",
   from: "adr_71d64099e6729996",
   to:{
     name: "Harry Zhang",
-      email: "harry@lob.com",
+      email: "harry@Lob.com",
       phone: "5555555555",
       address_line1: "123 Test Street",
       address_line2: "Unit 199",
@@ -94,7 +94,7 @@ LOB.jobs.create({
   objects: [
     {
       name: "GO BLUE",
-      file: "https://www.lob.com/goblue.pdf",
+      file: "https://www.Lob.com/goblue.pdf",
       setting_id: 100
     },
     "obj_fe40799250bac8f6"
@@ -109,7 +109,7 @@ LOB.jobs.create({
 List All Addresses with default offset:0, count:0
 
 ```javascript
-LOB.addresses.list(function(err, res) {
+Lob.addresses.list(function(err, res) {
   console.log(err, res);
 });
 ```
@@ -117,7 +117,7 @@ LOB.addresses.list(function(err, res) {
 List Addreses with offset:10, count:5
 
 ```javascript
-LOB.addresses.list(10, 5, function(err, res) {
+Lob.addresses.list(10, 5, function(err, res) {
   console.log(err, res);
 });
 ```
@@ -125,7 +125,7 @@ LOB.addresses.list(10, 5, function(err, res) {
 Retrieve a particular address ADDRESS_ID = "adr_*" (required)
 
 ```javascript
-LOB.addresses.get("adr_cda562558b71ff93", function(err, res) {
+Lob.addresses.get("adr_cda562558b71ff93", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -133,7 +133,7 @@ LOB.addresses.get("adr_cda562558b71ff93", function(err, res) {
 Creating an Address Object
 
 ```javascript
-LOB.addresses.create({
+Lob.addresses.create({
   name: "Sankaran K",
     email: "mail@sankarank.in",
     phone: "+919731115163",
@@ -151,7 +151,7 @@ LOB.addresses.create({
 Update an Address Object
 
 ```javascript
-LOB.addresses.update("adr_3b5fe0b76713a6e8", {
+Lob.addresses.update("adr_3b5fe0b76713a6e8", {
   name: "Sankaran Kaliappan",
     email: "mail@sankarank.in",
     phone: "+91 (973)-111 5163",
@@ -165,7 +165,7 @@ LOB.addresses.update("adr_3b5fe0b76713a6e8", {
 Delete an Address Object
 
 ```javascript
-LOB.addresses.delete("adr_71d64099e6729996", function(err, res) {
+Lob.addresses.delete("adr_71d64099e6729996", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -173,7 +173,7 @@ LOB.addresses.delete("adr_71d64099e6729996", function(err, res) {
 Verify an Address
 
 ```javascript
-LOB.addresses.verify({
+Lob.addresses.verify({
   address_line1: "220 William T Morrissey Boulevard",
     address_city: "Boston",
     address_state: "MA",
@@ -187,7 +187,7 @@ LOB.addresses.verify({
 List All Objects with default offset:0, count:0
 
 ```javascript
-LOB.objects.list(function(err, res) {
+Lob.objects.list(function(err, res) {
   console.log(err, res);
 });
 ```
@@ -195,7 +195,7 @@ LOB.objects.list(function(err, res) {
 List Objects with offset:10, count:5
 
 ```javascript
-LOB.objects.list(10, 5, function(err, res) {
+Lob.objects.list(10, 5, function(err, res) {
   console.log(err, res);
 });
 ```
@@ -203,7 +203,7 @@ LOB.objects.list(10, 5, function(err, res) {
 Retrieve a particular object OBJECT_ID = "obj_*" (required)
 
 ```javascript
-LOB.objects.get("obj_1d1188df1e8d6427", function(err, res) {
+Lob.objects.get("obj_1d1188df1e8d6427", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -211,7 +211,7 @@ LOB.objects.get("obj_1d1188df1e8d6427", function(err, res) {
 Creating an Object with local file
 
 ```javascript
-LOB.objects.create({
+Lob.objects.create({
     name: "TEST_OBJECT",
     file: "@/home/sankaran/Downloads/goblue.pdf",
     setting_id: 100
@@ -224,9 +224,9 @@ LOB.objects.create({
 Creating an Object with remote file
 
 ```javascript
-LOB.objects.create({
+Lob.objects.create({
     name: "TEST_OBJECT",
-    file: "https://www.lob.com/goblue.pdf",
+    file: "https://www.Lob.com/goblue.pdf",
     setting_id: 100
 }, function(err, res) {
   console.log(err, res);
@@ -236,7 +236,7 @@ LOB.objects.create({
 Delete an Object
 
 ```javascript
-LOB.objects.delete("obj_1d1188df1e8d6427", function(err, res) {
+Lob.objects.delete("obj_1d1188df1e8d6427", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -246,7 +246,7 @@ LOB.objects.delete("obj_1d1188df1e8d6427", function(err, res) {
 List All settings
 
 ```javascript
-LOB.settings.list(function(err, res) {
+Lob.settings.list(function(err, res) {
   console.log(err, res);
 });
 ```
@@ -254,7 +254,7 @@ LOB.settings.list(function(err, res) {
 Retrieve a particular setting by SETTING_ID (required)
 
 ```javascript
-LOB.settings.get("100", function(err, res) {
+Lob.settings.get("100", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -264,7 +264,7 @@ LOB.settings.get("100", function(err, res) {
 List All packagings
 
 ```javascript
-LOB.packagings.list(function(err, res) {
+Lob.packagings.list(function(err, res) {
   console.log(err, res);
 });
 ```
@@ -272,7 +272,7 @@ LOB.packagings.list(function(err, res) {
 Retrieve a particular packaging by PACKAGING_ID (required)
 
 ```javascript
-LOB.packagings.get("2", function(err, res) {
+Lob.packagings.get("2", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -282,7 +282,7 @@ LOB.packagings.get("2", function(err, res) {
 List All services
 
 ```javascript
-LOB.services.list(function(err, res) {
+Lob.services.list(function(err, res) {
   console.log(err, res);
 });
 ```
@@ -290,7 +290,7 @@ LOB.services.list(function(err, res) {
 Retrieve a particular service by SERVICE_ID (required)
 
 ```javascript
-LOB.services.get("2", function(err, res) {
+Lob.services.get("2", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -302,7 +302,7 @@ LOB.services.get("2", function(err, res) {
 List All Postcards with default offset:0, count:0
 
 ```javascript
-LOB.postcards.list(function(err, res) {
+Lob.postcards.list(function(err, res) {
   console.log(err, res);
 });
 ```
@@ -310,7 +310,7 @@ LOB.postcards.list(function(err, res) {
 Retrieve a particular postcard by POSTCARD_ID = "psc_*" (required)
 
 ```javascript
-LOB.postcards.get("psc_056fdd2b4a11a169", function(err, res) {
+Lob.postcards.get("psc_056fdd2b4a11a169", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -318,7 +318,7 @@ LOB.postcards.get("psc_056fdd2b4a11a169", function(err, res) {
 Creating PostCard with local file
 
 ```javascript
-LOB.postcards.create({
+Lob.postcards.create({
     name: "TEST_POSTCARD",
     to: "adr_3b5fe0b76713a6e8",
     front: "@/home/sankaran/Downloads/postcardfront.pdf",
@@ -331,11 +331,11 @@ LOB.postcards.create({
 Creating an PostCard with remote file
 
 ```javascript
-LOB.postcards.create({
+Lob.postcards.create({
     name: "TEST_POSTCARD",
     to: "adr_3b5fe0b76713a6e8",
-    front: "https://www.lob.com/postcardfront.pdf",
-    back: "https://www.lob.com/postcardback.pdf"
+    front: "https://www.Lob.com/postcardfront.pdf",
+    back: "https://www.Lob.com/postcardback.pdf"
 }, function(err, res) {
   console.log(err, res);
 });
@@ -344,11 +344,11 @@ LOB.postcards.create({
 Creating an PostCard with local, remote file
 
 ```javascript
-LOB.postcards.create({
+Lob.postcards.create({
     name: "TEST_POSTCARD",
     to: "adr_3b5fe0b76713a6e8",
     front: "@/home/sankaran/Downloads/postcardfront.pdf",
-    back: "https://www.lob.com/postcardback.pdf"
+    back: "https://www.Lob.com/postcardback.pdf"
 }, function(err, res) {
   console.log(err, res);
 });
@@ -362,7 +362,7 @@ LOB.postcards.create({
 List All Checks with default offset:0, count:0
 
 ```javascript
-LOB.checks.list(function(err, res) {
+Lob.checks.list(function(err, res) {
   console.log(err, res);
 });
 ```
@@ -370,7 +370,7 @@ LOB.checks.list(function(err, res) {
 Retrieve a particular check by CHECK_ID = "chk_*" (required)
 
 ```javascript
-LOB.checks.get("psc_056fdd2b4a11a169", function(err, res) {
+Lob.checks.get("psc_056fdd2b4a11a169", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -378,7 +378,7 @@ LOB.checks.get("psc_056fdd2b4a11a169", function(err, res) {
 Creating Check
 
 ```javascript
-LOB.checks.create({
+Lob.checks.create({
     name: "TEST_CHECK",
     check_number: "000000",
     bank_account: "bank_7a88fa3abe5e2da",
@@ -395,7 +395,7 @@ LOB.checks.create({
 List All Accounts with default offset:0, count:0
 
 ```javascript
-LOB.bankAccounts.list(function(err, res) {
+Lob.bankAccounts.list(function(err, res) {
   console.log(err, res);
 });
 ```
@@ -403,7 +403,7 @@ LOB.bankAccounts.list(function(err, res) {
 Retrieve a particular Account by ACCOUNT_ID = "bank_*" (required)
 
 ```javascript
-LOB.bankAccounts.get("bank_7a88fa3abe5e2da", function(err, res) {
+Lob.bankAccounts.get("bank_7a88fa3abe5e2da", function(err, res) {
   console.log(err, res);
 });
 ```
@@ -411,7 +411,7 @@ LOB.bankAccounts.get("bank_7a88fa3abe5e2da", function(err, res) {
 Creating a Bank Account
 
 ```javascript
-LOB.bankAccounts.create({
+Lob.bankAccounts.create({
     routing_number: 123456789,
     account_number: 123456789,
     bank_code: 123456789,
@@ -444,7 +444,7 @@ LOB.bankAccounts.create({
 Verify an Address
 
 ```javascript
-LOB.utils.verify({
+Lob.utils.verify({
   address_line1: "220 William T Morrissey Boulevard",
     address_city: "Boston",
     address_state: "MA",
@@ -456,15 +456,15 @@ LOB.utils.verify({
 ### List of Countries
 
 Get list of Countries
-[npm-url]: https://npmjs.org/package/lob
-[npm-image]: https://badge.fury.io/js/lob.svg
-[travis-url]: https://travis-ci.org/lob/lob-node
-[travis-image]: https://travis-ci.org/lob/lob-node.svg?branch=master
-[depstat-url]: https://david-dm.org/lob/lob-node
-[depstat-image]: https://david-dm.org/lob/lob-node.svg
+[npm-url]: https://npmjs.org/package/Lob
+[npm-image]: https://badge.fury.io/js/Lob.svg
+[travis-url]: https://travis-ci.org/Lob/Lob-node
+[travis-image]: https://travis-ci.org/Lob/Lob-node.svg?branch=master
+[depstat-url]: https://david-dm.org/Lob/Lob-node
+[depstat-image]: https://david-dm.org/Lob/Lob-node.svg
 
 ```javascript
-LOB.utils.countries(function(err, res) {
+Lob.utils.countries(function(err, res) {
   console.log(err, res);
 });
 ```

@@ -1,4 +1,4 @@
-var Lob = require('../lib/lob');
+var Lob = require('../lib/Lob');
 Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 var Should;
 Should = require('should');
@@ -50,7 +50,7 @@ describe('Jobs', function() {
         name: 'Test Job',
         from: {
           name: 'Lob',
-          email: 'support@lob.com',
+          email: 'support@Lob.com',
           address_line1: '123 Main Street',
           address_line2: 'Apartment A',
           address_city: 'San Francisco',
@@ -60,7 +60,7 @@ describe('Jobs', function() {
         },
         to: {
           name: 'Lob',
-          email: 'support@lob.com',
+          email: 'support@Lob.com',
           address_line1: '123 Main Street',
           address_line2: 'Apartment A',
           address_city: 'San Francisco',
@@ -71,7 +71,7 @@ describe('Jobs', function() {
         objects: [
           {
             name: 'GO BLUE',
-            file: 'https://www.lob.com/goblue.pdf',
+            file: 'https://www.Lob.com/goblue.pdf',
             setting_id: 100
           }
         ]
@@ -117,7 +117,7 @@ describe('Jobs', function() {
         name: 'Test Job',
         from: {
           name: 'Lob',
-          email: 'support@lob.com',
+          email: 'support@Lob.com',
           address_line1: '123 Main Street',
           address_line2: 'Apartment A',
           address_city: 'San Francisco',
@@ -127,7 +127,7 @@ describe('Jobs', function() {
         },
         to: {
           name: 'Lob',
-          email: 'support@lob.com',
+          email: 'support@Lob.com',
           address_line1: '123 Main Street',
           address_line2: 'Apartment A',
           address_city: 'San Francisco',
@@ -138,7 +138,7 @@ describe('Jobs', function() {
         objects: [
           {
             name: 'GO BLUE',
-            file: 'https://www.lob.com/goblue.pdf',
+            file: 'https://www.Lob.com/goblue.pdf',
             setting_id: 100
           }
         ]
@@ -152,7 +152,7 @@ describe('Jobs', function() {
         name: 'Test Job',
         from: {
           name: 'Lob',
-          email: 'support@lob.com',
+          email: 'support@Lob.com',
           address_line1: '123 Main Street',
           address_line2: 'Apartment A',
           address_city: 'San Francisco',
@@ -162,7 +162,7 @@ describe('Jobs', function() {
         },
         to: {
           name: 'Lob',
-          email: 'support@lob.com',
+          email: 'support@Lob.com',
           address_line1: '123 Main Street',
           address_line2: 'Apartment A',
           address_city: 'San Francisco',
@@ -173,12 +173,12 @@ describe('Jobs', function() {
         objects: [
           {
             name: 'GO BLUE',
-            file: 'https://www.lob.com/goblue.pdf',
+            file: 'https://www.Lob.com/goblue.pdf',
             setting_id: 100
           },
           {
             name: 'TEST',
-            file: 'https://www.lob.com/goblue.pdf',
+            file: 'https://www.Lob.com/goblue.pdf',
             setting_id: 100
           }
         ]
@@ -196,7 +196,7 @@ describe('Jobs', function() {
         name: 'Test Job',
         from: {
           name: 'Lob',
-          email: 'support@lob.com',
+          email: 'support@Lob.com',
           address_line1: '123 Main Street',
           address_line2: 'Apartment A',
           address_city: 'San Francisco',
@@ -206,7 +206,7 @@ describe('Jobs', function() {
         },
         to: {
           name: 'Lob',
-          email: 'support@lob.com',
+          email: 'support@Lob.com',
           address_line1: '123 Main Street',
           address_line2: 'Apartment A',
           address_city: 'San Francisco',

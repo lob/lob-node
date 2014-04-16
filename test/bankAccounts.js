@@ -1,4 +1,4 @@
-var Lob = require('../lib/lob');
+var Lob = require('../lib/Lob');
 Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 var Should;
 Should = require('should');
@@ -81,7 +81,7 @@ describe('Bank Accounts', function() {
         account_address:accountAddressId
       }, function(err, res) {
         var id = res.id;
-        Lob.bankAccounts.get(id,function(err, res) {
+        Lob.bankAccounts.retrieve(id,function(err, res) {
           res.should.have.property('id');
           res.should.have.property('bank_code');
           res.should.have.property('routing_number');

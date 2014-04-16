@@ -1,4 +1,4 @@
-var Lob = require('../lib/lob');
+var Lob = require('../lib/Lob');
 Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 var Should;
 Should = require('should');
@@ -51,7 +51,7 @@ describe('Postcards', function() {
         name: 'Test Postcard',
         to: {
           name: 'Lob',
-          email: 'support@lob.com',
+          email: 'support@Lob.com',
           address_line1: '123 Main Street',
           address_line2: 'Apartment A',
           address_city: 'San Francisco',
@@ -59,8 +59,8 @@ describe('Postcards', function() {
           address_zip: '94158',
           address_country: 'US'
         },
-        front: 'https://www.lob.com/test.pdf',
-        back: 'https://www.lob.com/test.pdf'
+        front: 'https://www.Lob.com/test.pdf',
+        back: 'https://www.Lob.com/test.pdf'
       }, function(err, res) {
         Lob.postcards.get(res.id, function(err2, res2) {
           res.should.eql(res2);
@@ -83,8 +83,8 @@ describe('Postcards', function() {
         Lob.postcards.create({
           name: 'Test Postcard',
           to: address,
-          front: 'https://www.lob.com/test.pdf',
-          back: 'https://www.lob.com/test.pdf'
+          front: 'https://www.Lob.com/test.pdf',
+          back: 'https://www.Lob.com/test.pdf'
         }, function(err, res) {
           res.object.should.eql('postcard');
           done();
@@ -98,7 +98,7 @@ describe('Postcards', function() {
         Lob.postcards.create({
           name: 'Test Postcard',
           to: address,
-          front: 'https://www.lob.com/test.pdf',
+          front: 'https://www.Lob.com/test.pdf',
           message: 'This is the message'
         }, function(err, res) {
           res.object.should.eql('postcard');

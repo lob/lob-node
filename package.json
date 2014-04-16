@@ -1,22 +1,22 @@
 {
-  "name": "lob",
+  "name": "Lob",
   "description": "Lob API wrapper",
   "keywords": [
-    "lob",
-    "lob-node",
+    "Lob",
+    "Lob-node",
     "rest",
     "api",
     "wrapper",
-    "lob.com",
+    "Lob.com",
     "printing"
   ],
   "version": "1.0.0",
-  "homepage": "https://github.com/lob/lob-node",
-  "author": "Lob <support@lob.com> (https://www.lob.com/)",
+  "homepage": "https://github.com/Lob/Lob-node",
+  "author": "Lob <support@Lob.com> (https://www.Lob.com/)",
   "contributors": [
-    "Harry Zhang <harry@lob.com>",
-    "Leore Avidar <leore@lob.com>",
-    "Peter Nagel <peter@lob.com>"
+    "Harry Zhang <harry@Lob.com>",
+    "Leore Avidar <leore@Lob.com>",
+    "Peter Nagel <peter@Lob.com>"
   ],
   "dependencies": {
     "request": "^2.34.0"
@@ -33,10 +33,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lob/lob-node.git"
+    "url": "https://github.com/Lob/Lob-node.git"
   },
-  "bugs:": "https://github.com/lob/lob-node/issues",
-  "main": "./lib/lob",
+  "bugs:": "https://github.com/Lob/Lob-node/issues",
+  "main": "./lib/Lob",
   "engines": {
     "node": ">= 0.8.0"
   },
