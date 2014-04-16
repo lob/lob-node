@@ -34,7 +34,7 @@ Lob = new Lob('YOUR API KEY');
 Please Check out the Examples Folder for working examples.
 
 [npm-url]: https://npmjs.org/package/Lob
-[npm-image]: https://badge.fury.io/js/Lob.svg
+[npm-image]: https://badge.fury.io/js/lob.svg
 [travis-url]: https://travis-ci.org/Lob/Lob-node
 [travis-image]: https://travis-ci.org/Lob/Lob-node.svg?branch=master
 [depstat-url]: https://david-dm.org/Lob/Lob-node
