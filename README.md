@@ -13,8 +13,8 @@ $ npm install Lob
 To build and install from the latest source:
 
 ```
-$ git clone git@github.com:hisankaran/Lob-node.git
-$ npm install Lob-node/
+$ git clone git@github.com:Lob/Lob-node.git
+$ npm install
 ```
 
 ## Getting Started
