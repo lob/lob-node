@@ -121,9 +121,9 @@ describe('Postcards', function() {
       });
     });
     it('should succeed using address and buffers', function(done) {
-      var filePath = '@' + __dirname + '/assets/4x6.pdf';
-      var front = filePath;
-      var back = filePath;
+      var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
+      var front = file;
+      var back = file;
       var address;
       Lob.addresses.list({offset:0, count: 1}, function(err, res) {
         address = res.data[0].id;

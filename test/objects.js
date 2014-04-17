@@ -2,6 +2,7 @@ var Lob = require('../lib/lob');
 Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 var Should;
 Should = require('should');
+var fs = require('fs');
 /* jshint camelcase: false */
 describe('Objects', function() {
   it('should handle an error with an invalid count or offset', function (done) {
@@ -70,6 +71,18 @@ describe('Objects', function() {
       Lob.objects.create({
         name: 'Test Job',
         file: 'https://www.lob.com/test.pdf',
+        setting_id: 201
+      }, function(err, res) {
+        res.object.should.eql('object');
+        done();
+      });
+    });
+    it('should succeed using a buffer', function(done) {
+      var filePath = '@' + __dirname + '/assets/4x6.pdf';
+      var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
+      Lob.objects.create({
+        name: 'Test Job',
+        file: file,
         setting_id: 201
       }, function(err, res) {
         res.object.should.eql('object');
