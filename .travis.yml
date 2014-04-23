@@ -6,6 +6,7 @@ install:
     - npm install jshint -g
     - npm install jscs -g
     - npm install mocha -g
+    - npm install
 
 before_script:
   - jshint lib/**/*.js
