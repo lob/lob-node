@@ -1,8 +1,9 @@
 var Lob = require('../lib/lob');
 Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 var Should;
-/* jshint camelcase: false */
 Should = require('should');
+var fs = require('fs');
+/* jshint camelcase: false */
 describe('Jobs', function() {
   it('should handle an error with an invalid count or offset', function(done){
     Lob.jobs.list({offset: 0, count: 10000}, function(err) {
@@ -243,6 +244,42 @@ describe('Jobs', function() {
           {
             name: 'GO BLUE',
             file: 'https://www.lob.com/test.pdf',
+            setting_id: 201
+          }
+        ]
+      }, function(err, res) {
+        res.object.should.eql('job');
+        done();
+      });
+    });
+    it('should succeed using a buffer', function(done) {
+      var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
+      Lob.jobs.create({
+        name: 'Test Job',
+        from: {
+          name: 'Lob',
+          email: 'support@lob.com',
+          address_line1: '123 Main Street',
+          address_line2: 'Apartment A',
+          address_city: 'San Francisco',
+          address_state: 'CA',
+          address_zip: '94158',
+          address_country: 'US'
+        },
+        to: {
+          name: 'Lob',
+          email: 'support@lob.com',
+          address_line1: '123 Main Street',
+          address_line2: 'Apartment A',
+          address_city: 'San Francisco',
+          address_state: 'CA',
+          address_zip: '94158',
+          address_country: 'US'
+        },
+        objects: [
+          {
+            name: 'GO BLUE',
+            file: file,
             setting_id: 201
           }
         ]
