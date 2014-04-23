@@ -5,6 +5,7 @@ install:
     - npm install istanbul -g
     - npm install jshint -g
     - npm install jscs -g
+    - npm install mocha -g
 
 before_script:
   - jshint lib/**/*.js
