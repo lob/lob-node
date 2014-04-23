@@ -34,10 +34,10 @@ gulp.task('style', function () {
 gulp.task('cover', ['lint', 'style'], function (cb) {
   var options = {
     thresholds: {
-      statements: 80,
-      branches: 70,
-      functions: 84,
-      lines: 88
+      statements: 100,
+      branches: 99,
+      functions: 100,
+      lines: 100
     },
     coverageDirectory: './coverage',
     rootDirectory: ''
