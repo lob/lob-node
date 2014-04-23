@@ -8,7 +8,7 @@ describe('Objects', function () {
   describe('list', function () {
     it('should error with an invalid count or offset', function (done) {
       Lob.objects.list({offset: 0, count: 10000}, function (err) {
-        err.should.be.type('object');
+        Should.exist(err);
         done();
       });
     });
@@ -34,6 +34,12 @@ describe('Objects', function () {
         done();
       });
     });
+    it('should let you limit offset', function (done) {
+      Lob.objects.list({offset: 0}, function (err, res) {
+        res.count.should.eql(10);
+        done();
+      });
+    });
   });
   describe('retrieve', function () {
     it('should have the correct defaults', function (done) {
@@ -49,8 +55,8 @@ describe('Objects', function () {
       });
     });
     it('should throw an error with an invalid id', function (done) {
-      Lob.objects.retrieve('badId', function (err) {
-        err.should.be.type('object');
+      Lob.objects.retrieve('object_badId', function (err) {
+        Should.exist(err);
         done();
       });
     });
@@ -64,6 +70,16 @@ describe('Objects', function () {
         setting_id: 201
       }, function (err, res) {
         res.object.should.eql('object');
+        done();
+      });
+    });
+    it('fail on bad parameter', function (done) {
+      var filePath = '@' + __dirname + '/assets/4x6.pdf';
+      Lob.objects.create({
+        name: 'Test Job',
+        file: filePath
+      }, function (err) {
+        Should.exist(err);
         done();
       });
     });

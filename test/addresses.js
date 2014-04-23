@@ -21,9 +21,31 @@ describe('Addresses', function () {
         return done();
       });
     });
+    it('should have correct defaults', function (done) {
+      Lob.addresses.list({offset: 0}, function (err, res) {
+        res.should.have.property('object');
+        res.should.have.property('data');
+        res.data.should.be.instanceof(Array);
+        res.data.length.should.eql(10);
+        res.should.have.property('count');
+        res.should.have.property('next_url');
+        res.next_url.should.eql('https://api.lob.com/' +
+        'v1/addresses?count=10&offset=10');
+        res.should.have.property('previous_url');
+        res.object.should.eql('list');
+        res.count.should.eql(10);
+        return done();
+      });
+    });
     it('should let you limit the count', function (done) {
       Lob.addresses.list({count: 5}, function (err, res) {
         res.count.should.eql(5);
+        return done();
+      });
+    });
+    it('should error on high count', function (done) {
+      Lob.addresses.list({count: 589}, function (err) {
+        err[0].status_code.should.eql(422);
         return done();
       });
     });
@@ -255,6 +277,47 @@ describe('Addresses', function () {
           res.should.eql(res2);
           return done();
         });
+      });
+    });
+    it('should error on bad address', function (done) {
+      Lob.addresses.retrieve('38472', function (err) {
+        err[0].status_code.should.eql(404);
+        return done();
+      });
+    });
+  });
+  describe('delete', function () {
+    it('should delete correctly', function (done) {
+      var name = 'Harry Zhang';
+      var email = 'harry@Lob.com';
+      var phone = '5555555555';
+      var addressLine1 = '123 Test Street';
+      var addressLine2 = 'Unit 123';
+      var addressCity = 'San Francisco';
+      var addressState = 'CA';
+      var addressZip = '94158';
+      var addressCountry = 'US';
+      Lob.addresses.create({
+        name: name,
+        email: email,
+        phone: phone,
+        address_line1: addressLine1,
+        address_line2: addressLine2,
+        address_city: addressCity,
+        address_state: addressState,
+        address_zip: addressZip,
+        address_country: addressCountry
+      }, function (err, res) {
+        Lob.addresses.delete(res.id, function (err2, res2) {
+          res2.deleted.should.eql(1);
+          return done();
+        });
+      });
+    });
+    it('should error on bad delete', function (done) {
+      Lob.addresses.delete('38472', function (err) {
+        err[0].status_code.should.eql(404);
+        return done();
       });
     });
   });

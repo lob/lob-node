@@ -14,7 +14,7 @@ Lob.services.list(function (err, res) {
 
 // Retrieve a particular service object
 //
-Lob.services.get('2', function (err, res) {
+Lob.services.retrieve('2', function (err, res) {
   console.log(err, res);
 });
 /**/

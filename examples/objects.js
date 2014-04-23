@@ -21,7 +21,7 @@ Lob.objects.list({count: 10, offset: 5}, function (err, res) {
 
 // Retrieve a particular object OBJECT_ID = "obj_*" (required)
 //
-Lob.objects.get('obj_1d1188df1e8d6427', function (err, res) {
+Lob.objects.retrieve('obj_1d1188df1e8d6427', function (err, res) {
   console.log(err, res);
 });
 /**/
