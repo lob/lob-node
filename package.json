@@ -31,7 +31,12 @@
     "gulp-mocha": "~0.4.1",
     "gulp-istanbul": "~0.1.1",
     "istanbul": "^0.2.7",
-    "should": "~3.1.2"
+    "gulp-jscs": "^0.4.2",
+    "gulp-istanbul-enforcer": "^1.0.2",
+    "gulp-exit": "0.0.2",
+    "gulp-clean": "^0.2.4",
+    "gulp-util": "^2.2.14",
+    "should": "^3.3.1"
   },
   "repository": {
     "type": "git",

@@ -15,21 +15,21 @@ Lob.checks.create({
   amount: 100,
   memo: 'THis is my first Check',
   message: 'this check is for laundry'
-}, function(err, res) {
+}, function (err, res) {
   console.log(err, res);
 });
 /**/
 // List All Checks with default offset:0, count:0
 //
-Lob.checks.list(function(err, res) {
-	console.log(err, res);
+Lob.checks.list(function (err, res) {
+  console.log(err, res);
 });
 /**/
 
 // Retrieve a particular check object
 //
-Lob.checks.get('psc_056fdd2b4a11a169', function(err, res) {
-	console.log(err, res);
+Lob.checks.get('psc_056fdd2b4a11a169', function (err, res) {
+  console.log(err, res);
 });
 /**/
 /* jshint camelcase: true */

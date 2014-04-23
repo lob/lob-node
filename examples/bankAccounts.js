@@ -8,15 +8,15 @@ Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
 // List All Accounts with default offset:0, count:10
 //
-Lob.bankAccounts.list(function(err, res) {
-	console.log(err, res);
+Lob.bankAccounts.list(function (err, res) {
+  console.log(err, res);
 });
 /**/
 
 // Retrieve a particular Bank Account Object
 //
-Lob.bankAccounts.get('bank_7a88fa3abe5e2da', function(err, res) {
-	console.log(err, res);
+Lob.bankAccounts.get('bank_7a88fa3abe5e2da', function (err, res) {
+  console.log(err, res);
 });
 /**/
 
@@ -42,7 +42,7 @@ Lob.bankAccounts.create({
     address_zip: '94085',
     address_country: 'US'
   }
-}, function(err, res) {
+}, function (err, res) {
   console.log(err, res);
 });
 /**/

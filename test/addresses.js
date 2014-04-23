@@ -3,10 +3,10 @@ Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 var Should;
 Should = require('should');
 /* jshint camelcase: false */
-describe('Addresses', function() {
-  describe('list', function() {
-    it('should have correct defaults', function(done) {
-      Lob.addresses.list(function(err, res) {
+describe('Addresses', function () {
+  describe('list', function () {
+    it('should have correct defaults', function (done) {
+      Lob.addresses.list(function (err, res) {
         res.should.have.property('object');
         res.should.have.property('data');
         res.data.should.be.instanceof(Array);
@@ -21,16 +21,16 @@ describe('Addresses', function() {
         return done();
       });
     });
-    it('should let you limit the count', function(done) {
-      Lob.addresses.list({count:5}, function(err, res) {
+    it('should let you limit the count', function (done) {
+      Lob.addresses.list({count: 5}, function (err, res) {
         res.count.should.eql(5);
         return done();
       });
     });
-    it('should let you shift the offset', function(done) {
-      Lob.addresses.list({offset:10}, function(err, res) {
+    it('should let you shift the offset', function (done) {
+      Lob.addresses.list({offset: 10}, function (err, res) {
         var address1 = res.data[9].id;
-        Lob.addresses.list({offset:9, count:1}, function(err, res) {
+        Lob.addresses.list({offset: 9, count: 1}, function (err, res) {
           var address2 = res.data[0].id;
           address1.should.not.eql(address2);
           return done();
@@ -38,8 +38,8 @@ describe('Addresses', function() {
       });
     });
   });
-  describe('create', function() {
-    it('should succeed with default POST request', function(done) {
+  describe('create', function () {
+    it('should succeed with default POST request', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -59,7 +59,7 @@ describe('Addresses', function() {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function(err, res) {
+      }, function (err, res) {
         res.should.have.property('id');
         res.should.have.property('name');
         res.name.should.eql(name);
@@ -87,7 +87,7 @@ describe('Addresses', function() {
       });
     });
 
-    it('should succeed with foreign state and country', function(done) {
+    it('should succeed with foreign state and country', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -107,7 +107,7 @@ describe('Addresses', function() {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function(err, res) {
+      }, function (err, res) {
         res.should.have.property('id');
         res.should.have.property('name');
         res.name.should.eql(name);
@@ -134,7 +134,7 @@ describe('Addresses', function() {
         return done();
       });
     });
-    it('should error when no name is provided', function(done) {
+    it('should error when no name is provided', function (done) {
       var email = 'harry@Lob.com';
       var phone = '5555555555';
       var addressLine1 = '123 Test Street';
@@ -152,12 +152,12 @@ describe('Addresses', function() {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function(err) {
+      }, function (err) {
         err.should.be.instanceof(Array);
         return done();
       });
     });
-    it('should error when no address_line1 is provided', function(done) {
+    it('should error when no address_line1 is provided', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -175,12 +175,12 @@ describe('Addresses', function() {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function(err) {
+      }, function (err) {
         err.should.be.instanceof(Array);
         return done();
       });
     });
-    it('should error when no address_zip is provided', function(done) {
+    it('should error when no address_zip is provided', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -198,12 +198,12 @@ describe('Addresses', function() {
         address_city: addressCity,
         address_state: addressState,
         address_country: addressCountry
-      }, function(err) {
+      }, function (err) {
         err.should.be.instanceof(Array);
         return done();
       });
     });
-    it('should error when an invalid state is provided', function(done) {
+    it('should error when an invalid state is provided', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -223,14 +223,14 @@ describe('Addresses', function() {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function(err) {
+      }, function (err) {
         err.should.be.instanceof(Array);
         return done();
       });
     });
   });
-  describe('get', function() {
-    it('should have correct defaults', function(done) {
+  describe('get', function () {
+    it('should have correct defaults', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -250,8 +250,8 @@ describe('Addresses', function() {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function(err, res) {
-        Lob.addresses.retrieve(res.id, function(err2, res2) {
+      }, function (err, res) {
+        Lob.addresses.retrieve(res.id, function (err2, res2) {
           res.should.eql(res2);
           return done();
         });

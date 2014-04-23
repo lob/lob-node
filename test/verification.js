@@ -4,8 +4,8 @@ var Should;
 Should = require('should');
 /* jshint camelcase: false */
 
-describe('Verification', function() {
-  it('should have correct defaults', function(done) {
+describe('Verification', function () {
+  it('should have correct defaults', function (done) {
     var addressLine1 = '220 William T Morrissey Boulevard';
     var addressCity = 'Boston';
     var addressState = 'MA';
@@ -15,7 +15,7 @@ describe('Verification', function() {
       address_city: addressCity,
       address_state: addressState,
       address_zip: addressZip
-    }, function(err, res) {
+    }, function (err, res) {
       res.should.have.property('address');
       res.address.should.have.property('address_line1');
       res.address.address_line1.should.eql('220 William T Morrissey Blvd');
@@ -34,7 +34,7 @@ describe('Verification', function() {
       return done();
     });
   });
-  it('should error when invalid address is provided', function(done) {
+  it('should error when invalid address is provided', function (done) {
     var addressLine1 = '123 Test Street';
     var addressCity = 'Boston';
     var addressState = 'MA';
@@ -44,12 +44,12 @@ describe('Verification', function() {
       address_city: addressCity,
       address_state: addressState,
       address_zip: addressZip
-    }, function(err) {
+    }, function (err) {
       err.should.be.instanceof(Array);
       return done();
     });
   });
-  it('should warn when semi-valid address is provided', function(done) {
+  it('should warn when semi-valid address is provided', function (done) {
     var addressLine1 = '325 Berry St';
     var addressCity = 'San Francisco';
     var addressState = 'CA';
@@ -59,7 +59,7 @@ describe('Verification', function() {
       address_city: addressCity,
       address_state: addressState,
       address_zip: addressZip
-    }, function(err, res) {
+    }, function (err, res) {
       res.should.have.property('address');
       res.address.should.have.property('address_line1');
       res.address.address_line1.should.eql('325 Berry St');

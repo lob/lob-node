@@ -7,15 +7,15 @@ Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
 // List All Postcards with default offset:0, count:0
 /**/
-Lob.postcards.list(function(err, res) {
-	console.log(err, res);
+Lob.postcards.list(function (err, res) {
+  console.log(err, res);
 });
 /**/
 
 // Retrieve a particular postcard object
 //
-Lob.postcards.get('psc_056fdd2b4a11a169', function(err, res) {
-	console.log(err, res);
+Lob.postcards.get('psc_056fdd2b4a11a169', function (err, res) {
+  console.log(err, res);
 });
 /**/
 
@@ -26,7 +26,7 @@ Lob.postcards.create({
   to: 'adr_3b5fe0b76713a6e8',
   front: '@/home/Downloads/postcardfront.pdf',
   back: '@/home/Downloads/postcardback.pdf'
-}, function(err, res) {
+}, function (err, res) {
   console.log(err, res);
 });
 /**/
@@ -38,8 +38,8 @@ Lob.postcards.create({
   to: 'adr_3b5fe0b76713a6e8',
   front: 'https://www.Lob.com/postcardfront.pdf',
   back: 'https://www.Lob.com/postcardback.pdf'
-}, function(err, res) {
-	console.log(err, res);
+}, function (err, res) {
+  console.log(err, res);
 });
 /**/
 
@@ -50,7 +50,7 @@ Lob.postcards.create({
   to: 'adr_3b5fe0b76713a6e8',
   front: 'https://www.Lob.com/postcardback.pdf',
   back: 'https://www.Lob.com/postcardback.pdf'
-}, function(err, res) {
-	console.log(err, res);
+}, function (err, res) {
+  console.log(err, res);
 });
 /**/

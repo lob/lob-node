@@ -4,14 +4,14 @@ var Should;
 Should = require('should');
 var fs = require('fs');
 /* jshint camelcase: false */
-describe('Objects', function() {
-  it('should handle an error with an invalid count or offset', function (done) {
-    Lob.objects.list({offset: 0, count: 10000}, function (err) {
-      err.should.be.type('object');
-      done();
-    });
-  });
+describe('Objects', function () {
   describe('list', function () {
+    it('should error with an invalid count or offset', function (done) {
+      Lob.objects.list({offset: 0, count: 10000}, function (err) {
+        err.should.be.type('object');
+        done();
+      });
+    });
     it('should have the correct defaults', function (done) {
       Lob.objects.list(function (err, res) {
         res.should.have.property('object');
@@ -35,60 +35,60 @@ describe('Objects', function() {
       });
     });
   });
-  describe('retrieve', function() {
-    it('should have the correct defaults', function(done) {
+  describe('retrieve', function () {
+    it('should have the correct defaults', function (done) {
       Lob.objects.create({
         name: 'Test Object',
         file: 'https://www.lob.com/goblue.pdf',
         setting_id: 100
-      }, function(err, res) {
-        Lob.objects.retrieve(res.id, function(err2, res2) {
+      }, function (err, res) {
+        Lob.objects.retrieve(res.id, function (err2, res2) {
           res.should.eql(res2);
           done();
         });
       });
     });
-    it('should throw an error with an invalid id', function(done) {
-      Lob.objects.retrieve('badId', function(err) {
+    it('should throw an error with an invalid id', function (done) {
+      Lob.objects.retrieve('badId', function (err) {
         err.should.be.type('object');
         done();
       });
     });
   });
-  describe('create', function() {
-    it('should succeed using an object local file', function(done) {
+  describe('create', function () {
+    it('should succeed using an object local file', function (done) {
       var filePath = '@' + __dirname + '/assets/4x6.pdf';
       Lob.objects.create({
         name: 'Test Job',
         file: filePath,
         setting_id: 201
-      }, function(err, res) {
+      }, function (err, res) {
         res.object.should.eql('object');
         done();
       });
     });
-    it('should succeed using a remote file', function(done) {
+    it('should succeed using a remote file', function (done) {
       Lob.objects.create({
         name: 'Test Job',
         file: 'https://www.lob.com/test.pdf',
         setting_id: 201
-      }, function(err, res) {
+      }, function (err, res) {
         res.object.should.eql('object');
         done();
       });
     });
-    it('should succeed using a buffer', function(done) {
-      var filePath = '@' + __dirname + '/assets/4x6.pdf';
+    it('should succeed using a buffer', function (done) {
       var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
       Lob.objects.create({
         name: 'Test Job',
         file: file,
         setting_id: 201
-      }, function(err, res) {
+      }, function (err, res) {
         res.object.should.eql('object');
         done();
       });
     });
   });
 });
+
 /* jshint camelcase: true */
