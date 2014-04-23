@@ -37,6 +37,13 @@ describe('Jobs', function () {
       });
     });
 
+    it('should let you limit the count', function (done) {
+      Lob.jobs.list({offset: 10}, function (err, res) {
+        res.count.should.eql(10);
+        done();
+      });
+    });
+
   });
 
   describe('retrieve', function () {
@@ -73,7 +80,7 @@ describe('Jobs', function () {
         ]
       }, function (err, res) {
         Lob.jobs.retrieve(res.id, function (err2, res2) {
-          res.should.eql(res2);
+          res2.name.should.eql('Test Job');
           done();
         });
       });
@@ -187,6 +194,26 @@ describe('Jobs', function () {
         });
       });
     });
+    it('should fail on bad parameter', function (done) {
+      Lob.jobs.create({
+        name: 'Test Job',
+        objects: [
+          {
+            name: 'GO BLUE',
+            file: 'https://www.lob.com/goblue.pdf',
+            setting_id: 100
+          },
+          {
+            name: 'TEST',
+            file: 'https://www.lob.com/goblue.pdf',
+            setting_id: 100
+          }
+        ]
+      }, function (err) {
+        Should.exist(err);
+        done();
+      });
+    });
     it('should succeed using an object local file', function (done) {
       var filePath = '@' + __dirname + '/assets/4x6.pdf';
       Lob.jobs.create({
@@ -283,6 +310,47 @@ describe('Jobs', function () {
           address_country: 'US'
         },
         objects: [
+          {
+            name: 'GO BLUE',
+            file: file,
+            setting_id: 201
+          }
+        ]
+      }, function (err, res) {
+        res.object.should.eql('job');
+        done();
+      });
+    });
+    it('should succeed with multi object', function (done) {
+      var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
+      Lob.jobs.create({
+        name: 'Test Job',
+        from: {
+          name: 'Lob',
+          email: 'support@lob.com',
+          address_line1: '123 Main Street',
+          address_line2: 'Apartment A',
+          address_city: 'San Francisco',
+          address_state: 'CA',
+          address_zip: '94158',
+          address_country: 'US'
+        },
+        to: {
+          name: 'Lob',
+          email: 'support@lob.com',
+          address_line1: '123 Main Street',
+          address_line2: 'Apartment A',
+          address_city: 'San Francisco',
+          address_state: 'CA',
+          address_zip: '94158',
+          address_country: 'US'
+        },
+        objects: [
+          {
+            name: 'GO BLUE',
+            file: file,
+            setting_id: 201
+          },
           {
             name: 'GO BLUE',
             file: file,

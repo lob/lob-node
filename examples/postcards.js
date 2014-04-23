@@ -14,7 +14,7 @@ Lob.postcards.list(function (err, res) {
 
 // Retrieve a particular postcard object
 //
-Lob.postcards.get('psc_056fdd2b4a11a169', function (err, res) {
+Lob.postcards.retrieve('psc_056fdd2b4a11a169', function (err, res) {
   console.log(err, res);
 });
 /**/

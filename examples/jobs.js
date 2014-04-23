@@ -71,7 +71,7 @@ Lob.jobs.list(5, 10, function (err, res) {
 
 // Retrieve a particular job JOB_ID = "job_*" (required)
 //
-Lob.jobs.get('job_f6f4c0c3f6338136', function (err, res) {
+Lob.jobs.retrieve('job_f6f4c0c3f6338136', function (err, res) {
   console.log(err, res);
 });
 /**/

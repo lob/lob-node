@@ -15,7 +15,7 @@ Lob.bankAccounts.list(function (err, res) {
 
 // Retrieve a particular Bank Account Object
 //
-Lob.bankAccounts.get('bank_7a88fa3abe5e2da', function (err, res) {
+Lob.bankAccounts.retrieve('bank_7a88fa3abe5e2da', function (err, res) {
   console.log(err, res);
 });
 /**/

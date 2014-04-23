@@ -36,7 +36,7 @@ Lob.addresses.list({count: 10, offset: 5}, function (err, res) {
 
 // Retrieve a particular address address object
 //
-Lob.addresses.get('adr_cda562558b71ff93', function (err, res) {
+Lob.addresses.retrieve('adr_cda562558b71ff93', function (err, res) {
   console.log(err, res);
 });
 

@@ -14,7 +14,7 @@ Lob.settings.list(function (err, res) {
 
 // Retrieve a particular setting object
 //
-Lob.settings.get('100', function (err, res) {
+Lob.settings.retrieve('100', function (err, res) {
   console.log(err, res);
 });
 /**/

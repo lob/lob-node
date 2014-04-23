@@ -28,7 +28,7 @@ Lob.checks.list(function (err, res) {
 
 // Retrieve a particular check object
 //
-Lob.checks.get('psc_056fdd2b4a11a169', function (err, res) {
+Lob.checks.retrieve('psc_056fdd2b4a11a169', function (err, res) {
   console.log(err, res);
 });
 /**/

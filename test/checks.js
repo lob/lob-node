@@ -102,6 +102,38 @@ describe('Checks', function () {
         return done();
       });
     });
+    it('should override count', function (done) {
+      Lob.checks.list({count: 5, offset: 0}, function (err, res) {
+        res.should.have.property('object');
+        res.should.have.property('data');
+        res.data.should.be.instanceof(Array);
+        res.data.length.should.eql(5);
+        res.should.have.property('count');
+        res.should.have.property('next_url');
+        res.next_url.should.eql('https://api.lob.com/' +
+        'v1/checks?count=5&offset=5');
+        res.should.have.property('previous_url');
+        res.object.should.eql('list');
+        res.count.should.eql(5);
+        done();
+      });
+    });
+    it('should override count', function (done) {
+      Lob.checks.list({offset: 0}, function (err, res) {
+        res.should.have.property('object');
+        res.should.have.property('data');
+        res.data.should.be.instanceof(Array);
+        res.data.length.should.eql(10);
+        res.should.have.property('count');
+        res.should.have.property('next_url');
+        res.next_url.should.eql('https://api.lob.com/' +
+        'v1/checks?count=10&offset=10');
+        res.should.have.property('previous_url');
+        res.object.should.eql('list');
+        res.count.should.eql(10);
+        done();
+      });
+    });
   });
 });
 /* jshint camelcase: true */

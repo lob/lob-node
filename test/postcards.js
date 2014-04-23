@@ -4,13 +4,13 @@ var should = require('should');
 var fs = require('fs');
 /* jshint camelcase: false */
 describe('Postcards', function () {
-  it('should handle an error with an invalid count or offset', function (done) {
-    Lob.postcards.list({offset: 0,count: 1000}, function (err) {
-      should.exist(err);
-      done();
-    });
-  });
   describe('list', function () {
+    it('should error with an invalid count or offset', function (done) {
+      Lob.postcards.list({offset: 0,count: 1000}, function (err) {
+        should.exist(err);
+        done();
+      });
+    });
     it('should have the correct defaults', function (done) {
       Lob.postcards.list(function (err, res) {
         res.should.have.property('object');
@@ -23,6 +23,12 @@ describe('Postcards', function () {
           'v1/postcards?count=10&offset=10');
         res.should.have.property('previous_url');
         res.object.should.eql('list');
+        res.count.should.eql(10);
+        done();
+      });
+    });
+    it('should let you limit the count', function (done) {
+      Lob.postcards.list({offset: 0}, function (err, res) {
         res.count.should.eql(10);
         done();
       });
@@ -101,6 +107,19 @@ describe('Postcards', function () {
           res.object.should.eql('postcard');
           done();
         });
+      });
+    });
+    it('should error with bad address', function (done) {
+      var address = 'kjkjk';
+      Lob.postcards.create({
+        name: 'Test Postcard',
+        to: address,
+        front: 'https://www.lob.com/test.pdf',
+        message: 'This is the message'
+      }, function (err) {
+        err[0].message.should.eql('To address entered could not be found or ' +
+        'is invalid');
+        done();
       });
     });
     it('should succeed using address and local file', function (done) {

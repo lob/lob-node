@@ -15,5 +15,19 @@ describe('Services', function () {
       });
     });
   });
+  describe('retrieve', function () {
+    it('should have correct defaults', function (done) {
+      Lob.services.retrieve('2', function (err, res) {
+        res.object.should.eql('service');
+        done();
+      });
+    });
+    it('should fail with bad id', function (done) {
+      Lob.services.retrieve('9800', function (err) {
+        err[0].status_code.should.eql(404);
+        done();
+      });
+    });
+  });
 });
 /* jshint camelcase: true */

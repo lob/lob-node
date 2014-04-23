@@ -42,7 +42,6 @@ describe('Bank Accounts', function () {
     });
 
     it('should succeed with address ids', function (done) {
-
       var routingNumber = '123456789';
       var accountNumber = '123456788';
       var bankAddressId =  'adr_a11a87b8240b1540';
@@ -63,6 +62,22 @@ describe('Bank Accounts', function () {
         res.should.have.property('account_number');
         res.account_number.should.eql(accountNumber);
         res.object.should.eql('bank_account');
+        return done();
+      });
+    });
+    it('should error with bad address', function (done) {
+      var routingNumber = '123456789';
+      var accountNumber = '123456788';
+      var bankAddressId =  'adr_bad';
+      var accountAddressId = 'adr_a11a87b8240b1540';
+
+      Lob.bankAccounts.create({
+        routing_number: routingNumber,
+        account_number: accountNumber,
+        bank_address: bankAddressId,
+        account_address: accountAddressId
+      }, function (err) {
+        Should.exist(err);
         return done();
       });
     });
@@ -95,6 +110,39 @@ describe('Bank Accounts', function () {
         });
       });
     });
+    it('should error on bad bank_account', function (done) {
+      Lob.bankAccounts.retrieve('38472', function (err) {
+        Should.exist(err[0]);
+        return done();
+      });
+    });
+  });
+  describe('delete', function () {
+    it('should succeed on delete', function (done) {
+      var routingNumber = '123456789';
+      var accountNumber = '123456788';
+      var bankAddressId =  'adr_a11a87b8240b1540';
+      var accountAddressId = 'adr_a11a87b8240b1540';
+
+      Lob.bankAccounts.create({
+        routing_number: routingNumber,
+        account_number: accountNumber,
+        bank_address: bankAddressId,
+        account_address: accountAddressId
+      }, function (err, res) {
+        var id = res.id;
+        Lob.bankAccounts.delete(id,function (err, res) {
+          Should.exist(res);
+          return done();
+        });
+      });
+    });
+    it('should error on bad bank_account', function (done) {
+      Lob.bankAccounts.delete('38472', function (err) {
+        Should.exist(err[0]);
+        return done();
+      });
+    });
   });
   describe('list', function () {
     it('should have correct defaults', function (done) {
@@ -110,6 +158,44 @@ describe('Bank Accounts', function () {
         res.should.have.property('previous_url');
         res.object.should.eql('list');
         res.count.should.eql(10);
+        return done();
+      });
+    });
+    it('should have correct defaults', function (done) {
+      Lob.bankAccounts.list({offset: 0}, function (err, res) {
+        res.should.have.property('object');
+        res.should.have.property('data');
+        res.data.should.be.instanceof(Array);
+        res.data.length.should.eql(10);
+        res.should.have.property('count');
+        res.should.have.property('next_url');
+        res.next_url.should.eql('https://api.lob.com/' +
+        'v1/bank_accounts?count=10&offset=10');
+        res.should.have.property('previous_url');
+        res.object.should.eql('list');
+        res.count.should.eql(10);
+        return done();
+      });
+    });
+    it('should get exact count', function (done) {
+      Lob.bankAccounts.list({count: 5, offset: 0}, function (err, res) {
+        res.should.have.property('object');
+        res.should.have.property('data');
+        res.data.should.be.instanceof(Array);
+        res.data.length.should.eql(5);
+        res.should.have.property('count');
+        res.should.have.property('next_url');
+        res.next_url.should.eql('https://api.lob.com/' +
+        'v1/bank_accounts?count=5&offset=5');
+        res.should.have.property('previous_url');
+        res.object.should.eql('list');
+        res.count.should.eql(5);
+        return done();
+      });
+    });
+    it('should get error on high count', function (done) {
+      Lob.bankAccounts.list({count: 56565, offset: 0}, function (err) {
+        Should.exist(err);
         return done();
       });
     });
