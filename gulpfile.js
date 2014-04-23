@@ -8,7 +8,6 @@ var exit = require('gulp-exit');
 var coverageEnforcer = require('gulp-istanbul-enforcer');
 var jscs = require('gulp-jscs');
 var gutil = require('gulp-util');
-var notify = require('gulp-notify');
 
 //
 var paths = {
@@ -66,20 +65,5 @@ gulp.task('cover', ['lint', 'style'], function (cb) {
 
 gulp.task('lint', function () {
   gulp.src([paths.sourceFiles, paths.testFiles, paths.gulpFile])
-    .pipe(jshint('.jshintrc'))
-      .pipe(notify(function (file) {
-        if (file.jshint.success) {
-          // Don't show something if success
-          return false;
-        }
-
-        var errors = file.jshint.results.map(function (data) {
-          if (data.error) {
-            return '(' + data.error.line + ':' + data.error.character + ') ' +
-             data.error.reason;
-          }
-        }).join('\n');
-        return file.relative + ' (' + file.jshint.results.length +
-        ' errors)\n' + errors;
-      }));
+    .pipe(jshint('.jshintrc'));
 });
