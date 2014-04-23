@@ -1,7 +1,17 @@
 language: node_js
 node_js:
 - '0.10'
+install:
+    - npm install istanbul -g
+    - npm install jshint -g
+    - npm install jscs -g
+
+before_script:
+  - jshint src/**/*.js
+  - jscs src/**/*.js
+
 after_script:
+  - istanbul check-coverage --statements 80 --branches 70 --functions 84 --lines 88
   - npm run coveralls
 notifications:
   hipchat:

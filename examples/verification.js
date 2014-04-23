@@ -14,7 +14,7 @@ Lob.verification.verify({
   address_state: 'CA',
   address_zip: '94158',
   address_country: 'US',
-}, function(err, res) {
-  console.log(err, res);
+}, function (err, res) {
+  console.log (err, res);
 });
 /**/

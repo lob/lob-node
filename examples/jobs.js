@@ -11,9 +11,9 @@ Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 Lob.jobs.create({
   name: 'Lob Test Job',
   from: 'adr_71d64099e6729996', //Can pass an ID
-  to:'adr_71d64099e6729996',
+  to: 'adr_71d64099e6729996',
   objects: ['obj_fe40799250bac8f6']
-}, function(err, res) {
+}, function (err, res) {
   console.log(err, res);
 });
 /**/
@@ -32,7 +32,7 @@ Lob.jobs.create({
     address_zip: '94085',
     address_country: 'US',
   },
-  to:{ //or an new object
+  to: { //or an new object
     name: 'Joe Smith',
     email: 'berry@Lob.com',
     phone: '5555555555',
@@ -50,31 +50,30 @@ Lob.jobs.create({
       setting_id: 100
     }
   ]
-}, function(err, res) {
+}, function (err, res) {
   console.log(err, res);
 });
 /**/
 
 // List All Jobs with default offset:0, count:0
 /**/
-Lob.jobs.list(function(err, data) {
-	console.log(err, data);
+Lob.jobs.list(function (err, data) {
+  console.log(err, data);
 });
 /**/
 
 // List Jobs with offset:10, count:5
 //
-Lob.jobs.list(5, 10, function(err, res) {
-	console.log(err, res);
+Lob.jobs.list(5, 10, function (err, res) {
+  console.log(err, res);
 });
 /**/
 
 // Retrieve a particular job JOB_ID = "job_*" (required)
 //
-Lob.jobs.get('job_f6f4c0c3f6338136', function(err, res) {
-	console.log(err, res);
+Lob.jobs.get('job_f6f4c0c3f6338136', function (err, res) {
+  console.log(err, res);
 });
 /**/
-
 
 /* jshint camelcase: true */

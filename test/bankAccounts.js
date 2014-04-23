@@ -3,14 +3,14 @@ Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 var Should;
 Should = require('should');
 /* jshint camelcase: false */
-describe('Bank Accounts', function() {
-  describe('create', function() {
-    it('should succeed with inline addresses', function(done) {
+describe('Bank Accounts', function () {
+  describe('create', function () {
+    it('should succeed with inline addresses', function (done) {
       Lob.bankAccounts.create({
         routing_number: '123456789',
         account_number: '123456788',
         bank_address: {
-          name:'Chase',
+          name: 'Chase',
           address_line1: '123 Test Street',
           address_line2: 'Unit 199',
           address_city: 'Bangalore',
@@ -18,8 +18,8 @@ describe('Bank Accounts', function() {
           address_zip: '560039',
           address_country: 'IN',
         },
-        account_address:{
-          name:'Lob.com',
+        account_address: {
+          name: 'Lob.com',
           address_line1: '123 Test Street',
           address_line2: 'Unit 199',
           address_city: 'Bangalore',
@@ -27,7 +27,7 @@ describe('Bank Accounts', function() {
           address_zip: '560039',
           address_country: 'IN',
         }
-      }, function(err, res) {
+      }, function (err, res) {
         res.should.have.property('id');
         res.should.have.property('bank_code');
         res.should.have.property('routing_number');
@@ -41,7 +41,7 @@ describe('Bank Accounts', function() {
       });
     });
 
-    it('should succeed with address ids', function(done) {
+    it('should succeed with address ids', function (done) {
 
       var routingNumber = '123456789';
       var accountNumber = '123456788';
@@ -52,8 +52,8 @@ describe('Bank Accounts', function() {
         routing_number: routingNumber,
         account_number: accountNumber,
         bank_address: bankAddressId,
-        account_address:accountAddressId
-      }, function(err, res) {
+        account_address: accountAddressId
+      }, function (err, res) {
         res.should.have.property('id');
         res.should.have.property('bank_code');
         res.should.have.property('routing_number');
@@ -67,8 +67,8 @@ describe('Bank Accounts', function() {
       });
     });
   });
-  describe('get', function() {
-    it('should succeed on get', function(done) {
+  describe('get', function () {
+    it('should succeed on get', function (done) {
       var routingNumber = '123456789';
       var accountNumber = '123456788';
       var bankAddressId =  'adr_a11a87b8240b1540';
@@ -78,10 +78,10 @@ describe('Bank Accounts', function() {
         routing_number: routingNumber,
         account_number: accountNumber,
         bank_address: bankAddressId,
-        account_address:accountAddressId
-      }, function(err, res) {
+        account_address: accountAddressId
+      }, function (err, res) {
         var id = res.id;
-        Lob.bankAccounts.retrieve(id,function(err, res) {
+        Lob.bankAccounts.retrieve(id,function (err, res) {
           res.should.have.property('id');
           res.should.have.property('bank_code');
           res.should.have.property('routing_number');
@@ -96,9 +96,9 @@ describe('Bank Accounts', function() {
       });
     });
   });
-  describe('list', function() {
-    it('should have correct defaults', function(done) {
-      Lob.bankAccounts.list(function(err, res) {
+  describe('list', function () {
+    it('should have correct defaults', function (done) {
+      Lob.bankAccounts.list(function (err, res) {
         res.should.have.property('object');
         res.should.have.property('data');
         res.data.should.be.instanceof(Array);
