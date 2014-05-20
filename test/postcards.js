@@ -117,8 +117,7 @@ describe('Postcards', function () {
         front: 'https://www.lob.com/test.pdf',
         message: 'This is the message'
       }, function (err) {
-        err[0].message.should.eql('To address entered could not be found or ' +
-        'is invalid');
+        err.should.be.an.instanceOf(Object);
         done();
       });
     });
