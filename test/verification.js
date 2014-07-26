@@ -1,7 +1,7 @@
 var Lob = require('../lib/lob');
 Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var Should;
-Should = require('should');
+var chai         = require('chai');
+var expect       = chai.expect;
 /* jshint camelcase: false */
 
 describe('Verification', function () {
@@ -16,19 +16,19 @@ describe('Verification', function () {
       address_state: addressState,
       address_zip: addressZip
     }, function (err, res) {
-      res.should.have.property('address');
-      res.address.should.have.property('address_line1');
-      res.address.address_line1.should.eql('220 WILLIAM T MORRISSEY BLVD');
-      res.address.should.have.property('address_line2');
-      res.address.address_line2.should.eql('');
-      res.address.should.have.property('address_city');
-      res.address.address_city.should.eql('BOSTON');
-      res.address.should.have.property('address_state');
-      res.address.address_state.should.eql('MA');
-      res.address.should.have.property('address_zip');
-      res.address.address_zip.should.eql('02125-3314');
-      res.address.should.have.property('address_country');
-      res.address.address_country.should.eql('US');
+      expect(res).to.have.property('address');
+      expect(res.address).to.have.property('address_line1');
+      expect(res.address.address_line1).to.eql('220 WILLIAM T MORRISSEY BLVD');
+      expect(res.address).to.have.property('address_line2');
+      expect(res.address.address_line2).to.eql('');
+      expect(res.address).to.have.property('address_city');
+      expect(res.address.address_city).to.eql('BOSTON');
+      expect(res.address).to.have.property('address_state');
+      expect(res.address.address_state).to.eql('MA');
+      expect(res.address).to.have.property('address_zip');
+      expect(res.address.address_zip).to.eql('02125-3314');
+      expect(res.address).to.have.property('address_country');
+      expect(res.address.address_country).to.eql('US');
       return done();
     });
   });
@@ -43,7 +43,7 @@ describe('Verification', function () {
       address_state: addressState,
       address_zip: addressZip
     }, function (err) {
-      err.should.be.instanceof(Array);
+      expect(err).to.be.instanceof(Array);
       return done();
     });
   });
@@ -58,20 +58,20 @@ describe('Verification', function () {
       address_state: addressState,
       address_zip: addressZip
     }, function (err, res) {
-      res.should.have.property('address');
-      res.address.should.have.property('address_line1');
-      res.address.address_line1.should.eql('325 BERRY ST');
-      res.address.should.have.property('address_line2');
-      res.address.address_line2.should.eql('');
-      res.address.should.have.property('address_city');
-      res.address.address_city.should.eql('SAN FRANCISCO');
-      res.address.should.have.property('address_state');
-      res.address.address_state.should.eql('CA');
-      res.address.should.have.property('address_zip');
-      res.address.address_zip.should.eql('94158-1553');
-      res.address.should.have.property('address_country');
-      res.address.address_country.should.eql('US');
-      res.should.have.property('message');
+      expect(res).to.have.property('address');
+      expect(res.address).to.have.property('address_line1');
+      expect(res.address.address_line1).to.eql('325 BERRY ST');
+      expect(res.address).to.have.property('address_line2');
+      expect(res.address.address_line2).to.eql('');
+      expect(res.address).to.have.property('address_city');
+      expect(res.address.address_city).to.eql('SAN FRANCISCO');
+      expect(res.address).to.have.property('address_state');
+      expect(res.address.address_state).to.eql('CA');
+      expect(res.address).to.have.property('address_zip');
+      expect(res.address.address_zip).to.eql('94158-1553');
+      expect(res.address).to.have.property('address_country');
+      expect(res.address.address_country).to.eql('US');
+      expect(res).to.have.property('message');
       return done();
     });
   });

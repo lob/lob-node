@@ -2,19 +2,14 @@ language: node_js
 node_js:
 - '0.10'
 install:
-    - npm install istanbul -g
-    - npm install jshint -g
-    - npm install jscs -g
-    - npm install mocha -g
-    - npm install
+  - echo -e $npmrc > ~/.npmrc
+  - npm install gulp -g
 
 before_script:
-  - jshint lib/**/*.js
-  - jscs lib/**/*.js
-
+  - npm run-script style
+  - npm run-script lint
 after_script:
-  - istanbul check-coverage --statements 100 --branches 99 --functions 100 --lines 100
-  - npm run coveralls
+  - npm run-script enforce
 notifications:
   hipchat:
     matrix:

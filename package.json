@@ -16,7 +16,8 @@
   "contributors": [
     "Harry Zhang <harry@lob.com>",
     "Leore Avidar <leore@lob.com>",
-    "Peter Nagel <peter@lob.com>"
+    "Peter Nagel <peter@lob.com>",
+    "Shrav Mehta <shrav@lob.com>"
   ],
   "dependencies": {
     "request": "^2.39.0",
@@ -26,6 +27,9 @@
   "devDependencies": {
     "gulp": "~3.8.6",
     "gulp-jshint": "~1.8.0",
+    "chai": "^1.9.1",
+    "yargs": "^1.2.6",
+    "gulp-load-plugins": "^0.5.3",
     "jshint-stylish": "~0.4.0",
     "mocha": "~1.21.0",
     "gulp-mocha": "~0.5.2",
@@ -35,8 +39,7 @@
     "gulp-istanbul-enforcer": "^1.0.3",
     "gulp-exit": "0.0.2",
     "gulp-clean": "^0.3.1",
-    "gulp-util": "^3.0.0",
-    "should": "^4.0.4"
+    "gulp-util": "^3.0.0"
   },
   "repository": {
     "type": "git",
@@ -49,6 +52,10 @@
   },
   "scripts": {
     "coveralls": "istanbul cover _mocha --report lcovonly -- --timeout 10000 -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "test": "istanbul cover _mocha -- -t 10000 -R spec"
+    "start": "node src/index.js",
+    "test": "gulp testCI",
+    "enforce": "gulp enforce",
+    "lint": "gulp lint",
+    "style": "gulp style"
   }
 }

@@ -1,8 +1,10 @@
 var Lob = require('../lib/lob');
 Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var Should;
-Should = require('should');
+var chai         = require('chai');
+var expect       = chai.expect;
+
 /* jshint camelcase: false */
+/*jshint expr: true*/
 describe('Bank Accounts', function () {
   describe('create', function () {
     it('should succeed with inline addresses', function (done) {
@@ -28,15 +30,15 @@ describe('Bank Accounts', function () {
           address_country: 'IN',
         }
       }, function (err, res) {
-        res.should.have.property('id');
-        res.should.have.property('bank_code');
-        res.should.have.property('routing_number');
-        res.should.have.property('bank_address');
-        res.should.have.property('account_address');
-        res.routing_number.should.eql('123456789');
-        res.should.have.property('account_number');
-        res.account_number.should.eql('123456788');
-        res.object.should.eql('bank_account');
+        expect(res).to.have.property('id');
+        expect(res).to.have.property('bank_code');
+        expect(res).to.have.property('routing_number');
+        expect(res).to.have.property('bank_address');
+        expect(res).to.have.property('account_address');
+        expect(res.routing_number).to.eql('123456789');
+        expect(res).to.have.property('account_number');
+        expect(res.account_number).to.eql('123456788');
+        expect(res.object).to.eql('bank_account');
         return done();
       });
     });
@@ -53,15 +55,15 @@ describe('Bank Accounts', function () {
         bank_address: bankAddressId,
         account_address: accountAddressId
       }, function (err, res) {
-        res.should.have.property('id');
-        res.should.have.property('bank_code');
-        res.should.have.property('routing_number');
-        res.should.have.property('bank_address');
-        res.should.have.property('account_address');
-        res.routing_number.should.eql(routingNumber);
-        res.should.have.property('account_number');
-        res.account_number.should.eql(accountNumber);
-        res.object.should.eql('bank_account');
+        expect(res).to.have.property('id');
+        expect(res).to.have.property('bank_code');
+        expect(res).to.have.property('routing_number');
+        expect(res).to.have.property('bank_address');
+        expect(res).to.have.property('account_address');
+        expect(res.routing_number).to.eql(routingNumber);
+        expect(res).to.have.property('account_number');
+        expect(res.account_number).to.eql(accountNumber);
+        expect(res.object).to.eql('bank_account');
         return done();
       });
     });
@@ -77,7 +79,7 @@ describe('Bank Accounts', function () {
         bank_address: bankAddressId,
         account_address: accountAddressId
       }, function (err) {
-        Should.exist(err);
+        expect(err).to.exist;
         return done();
       });
     });
@@ -97,22 +99,22 @@ describe('Bank Accounts', function () {
       }, function (err, res) {
         var id = res.id;
         Lob.bankAccounts.retrieve(id,function (err, res) {
-          res.should.have.property('id');
-          res.should.have.property('bank_code');
-          res.should.have.property('routing_number');
-          res.should.have.property('bank_address');
-          res.should.have.property('account_address');
-          res.routing_number.should.eql('123456789');
-          res.should.have.property('account_number');
-          res.account_number.should.eql('123456788');
-          res.object.should.eql('bank_account');
+          expect(res).to.have.property('id');
+          expect(res).to.have.property('bank_code');
+          expect(res).to.have.property('routing_number');
+          expect(res).to.have.property('bank_address');
+          expect(res).to.have.property('account_address');
+          expect(res.routing_number).to.eql('123456789');
+          expect(res).to.have.property('account_number');
+          expect(res.account_number).to.eql('123456788');
+          expect(res.object).to.eql('bank_account');
           return done();
         });
       });
     });
     it('should error on bad bank_account', function (done) {
       Lob.bankAccounts.retrieve('38472', function (err) {
-        Should.exist(err[0]);
+        expect(err[0]).to.exist;
         return done();
       });
     });
@@ -132,14 +134,14 @@ describe('Bank Accounts', function () {
       }, function (err, res) {
         var id = res.id;
         Lob.bankAccounts.delete(id,function (err, res) {
-          Should.exist(res);
+          expect(res).to.exist;
           return done();
         });
       });
     });
     it('should error on bad bank_account', function (done) {
       Lob.bankAccounts.delete('38472', function (err) {
-        Should.exist(err[0]);
+        expect(err[0]).to.exist;
         return done();
       });
     });
@@ -147,58 +149,59 @@ describe('Bank Accounts', function () {
   describe('list', function () {
     it('should have correct defaults', function (done) {
       Lob.bankAccounts.list(function (err, res) {
-        res.should.have.property('object');
-        res.should.have.property('data');
-        res.data.should.be.instanceof(Array);
-        res.data.length.should.eql(10);
-        res.should.have.property('count');
-        res.should.have.property('next_url');
-        res.next_url.should.eql('https://api.lob.com/' +
+        expect(res).to.have.property('object');
+        expect(res).to.have.property('data');
+        expect(res.data).to.be.instanceof(Array);
+        expect(res.data.length).to.eql(10);
+        expect(res).to.have.property('count');
+        expect(res).to.have.property('next_url');
+        expect(res.next_url).to.eql('https://api.lob.com/' +
         'v1/bank_accounts?count=10&offset=10');
-        res.should.have.property('previous_url');
-        res.object.should.eql('list');
-        res.count.should.eql(10);
+        expect(res).to.have.property('previous_url');
+        expect(res.object).to.eql('list');
+        expect(res.count).to.eql(10);
         return done();
       });
     });
     it('should have correct defaults', function (done) {
       Lob.bankAccounts.list({offset: 0}, function (err, res) {
-        res.should.have.property('object');
-        res.should.have.property('data');
-        res.data.should.be.instanceof(Array);
-        res.data.length.should.eql(10);
-        res.should.have.property('count');
-        res.should.have.property('next_url');
-        res.next_url.should.eql('https://api.lob.com/' +
+        expect(res).to.have.property('object');
+        expect(res).to.have.property('data');
+        expect(res.data).to.be.instanceof(Array);
+        expect(res.data.length).to.eql(10);
+        expect(res).to.have.property('count');
+        expect(res).to.have.property('next_url');
+        expect(res.next_url).to.eql('https://api.lob.com/' +
         'v1/bank_accounts?count=10&offset=10');
-        res.should.have.property('previous_url');
-        res.object.should.eql('list');
-        res.count.should.eql(10);
+        expect(res).to.have.property('previous_url');
+        expect(res.object).to.eql('list');
+        expect(res.count).to.eql(10);
         return done();
       });
     });
     it('should get exact count', function (done) {
       Lob.bankAccounts.list({count: 5, offset: 0}, function (err, res) {
-        res.should.have.property('object');
-        res.should.have.property('data');
-        res.data.should.be.instanceof(Array);
-        res.data.length.should.eql(5);
-        res.should.have.property('count');
-        res.should.have.property('next_url');
-        res.next_url.should.eql('https://api.lob.com/' +
+        expect(res).to.have.property('object');
+        expect(res).to.have.property('data');
+        expect(res.data).to.be.instanceof(Array);
+        expect(res.data.length).to.eql(5);
+        expect(res).to.have.property('count');
+        expect(res).to.have.property('next_url');
+        expect(res.next_url).to.eql('https://api.lob.com/' +
         'v1/bank_accounts?count=5&offset=5');
-        res.should.have.property('previous_url');
-        res.object.should.eql('list');
-        res.count.should.eql(5);
+        expect(res).to.have.property('previous_url');
+        expect(res.object).to.eql('list');
+        expect(res.count).to.eql(5);
         return done();
       });
     });
     it('should get error on high count', function (done) {
       Lob.bankAccounts.list({count: 56565, offset: 0}, function (err) {
-        Should.exist(err);
+        expect(err).to.exist;
         return done();
       });
     });
   });
 });
+/*jshint expr: false*/
 /* jshint camelcase: true */
