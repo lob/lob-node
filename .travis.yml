@@ -1,9 +1,6 @@
 language: node_js
 node_js:
 - '0.10'
-install:
-  - echo -e $npmrc > ~/.npmrc
-  - npm install
 
 before_script:
   - npm run style
