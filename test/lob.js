@@ -1,9 +1,7 @@
-var Lob = require('../lib/lob');
-
 describe('Init', function () {
   it('should error when no api key', function (done) {
     try {
-      new Lob();
+      require('../lib/lob.js')();
     }
     catch (err){
       err.should.throw();

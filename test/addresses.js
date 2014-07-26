@@ -68,7 +68,7 @@ describe('Addresses', function () {
       var addressLine1 = '123 Test Street';
       var addressLine2 = 'Unit 123';
       var addressCity = 'San Francisco';
-      var addressState = 'California';
+      var addressState = 'CA';
       var addressZip = '94158';
       var addressCountry = 'US';
       Lob.addresses.create({

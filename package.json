@@ -19,24 +19,24 @@
     "Peter Nagel <peter@lob.com>"
   ],
   "dependencies": {
-    "request": "^2.34.0",
-    "coveralls": "^2.10.0",
+    "request": "^2.39.0",
+    "coveralls": "^2.11.1",
     "mocha-lcov-reporter": "0.0.1"
   },
   "devDependencies": {
-    "gulp": "~3.5.6",
-    "gulp-jshint": "~1.5.1",
-    "jshint-stylish": "~0.1.5",
-    "mocha": "~1.18.2",
-    "gulp-mocha": "~0.4.1",
-    "gulp-istanbul": "~0.1.1",
-    "istanbul": "^0.2.7",
-    "gulp-jscs": "^0.4.2",
-    "gulp-istanbul-enforcer": "^1.0.2",
+    "gulp": "~3.8.6",
+    "gulp-jshint": "~1.8.0",
+    "jshint-stylish": "~0.4.0",
+    "mocha": "~1.21.0",
+    "gulp-mocha": "~0.5.2",
+    "gulp-istanbul": "~0.2.1",
+    "istanbul": "^0.3.0",
+    "gulp-jscs": "^1.0.0",
+    "gulp-istanbul-enforcer": "^1.0.3",
     "gulp-exit": "0.0.2",
-    "gulp-clean": "^0.2.4",
-    "gulp-util": "^2.2.14",
-    "should": "^3.3.1"
+    "gulp-clean": "^0.3.1",
+    "gulp-util": "^3.0.0",
+    "should": "^4.0.4"
   },
   "repository": {
     "type": "git",
