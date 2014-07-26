@@ -24,7 +24,8 @@
     "coveralls": "^2.11.1",
     "mocha-lcov-reporter": "0.0.1",
     "gulp": "^3.8.6",
-    "gulp-load-plugins": "^0.5.3"
+    "gulp-load-plugins": "^0.5.3",
+    "gulp-coveralls": "^0.1.2"
   },
   "devDependencies": {
     "gulp": "~3.8.6",
@@ -53,11 +54,11 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "coveralls": "istanbul cover _mocha --report lcovonly -- --timeout 10000 -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "start": "node src/index.js",
     "test": "gulp testCI",
     "enforce": "gulp enforce",
     "lint": "gulp lint",
-    "style": "gulp style"
+    "style": "gulp style",
+    "coveralls": "gulp coveralls"
   }
 }

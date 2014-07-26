@@ -21,6 +21,11 @@ gulp.task('cover', function () {
     .pipe(plugins.istanbul());
 });
 
+gulp.task('coveralls', function () {
+  gulp.src('coverage/**/lcov.info')
+    .pipe(plugins.coveralls());
+});
+
 gulp.task('testCI', ['lint', 'style', 'cover'], function () {
   var options = {
     dir: process.env.COVERAGE_DIR + '/coverage',
