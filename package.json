@@ -23,7 +23,8 @@
     "request": "^2.39.0",
     "coveralls": "^2.11.1",
     "mocha-lcov-reporter": "0.0.1",
-    "gulp": "^3.8.6"
+    "gulp": "^3.8.6",
+    "gulp-load-plugins": "^0.5.3"
   },
   "devDependencies": {
     "gulp": "~3.8.6",
