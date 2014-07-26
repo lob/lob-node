@@ -3,7 +3,7 @@ node_js:
 - '0.10'
 install:
   - echo -e $npmrc > ~/.npmrc
-  - npm install gulp -g
+  - npm install gulp
 
 before_script:
   - npm run-script style
