@@ -3,13 +3,13 @@ node_js:
 - '0.10'
 install:
   - echo -e $npmrc > ~/.npmrc
-  - npm install gulp
+  - npm install
 
 before_script:
-  - npm run-script style
-  - npm run-script lint
+  - npm run style
+  - npm run lint
 after_script:
-  - npm run-script enforce
+  - npm run enforce
 notifications:
   hipchat:
     matrix:
