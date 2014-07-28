@@ -54,7 +54,6 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "start": "node src/index.js",
     "test": "gulp testCI",
     "enforce": "gulp enforce",
     "lint": "gulp lint",
