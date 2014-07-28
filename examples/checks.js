@@ -19,6 +19,41 @@ Lob.checks.create({
   console.log(err, res);
 });
 /**/
+// Creating Check with Bank Account
+/**/
+Lob.bankAccounts.create({
+  routing_number: '123456789',
+  account_number: '123456788',
+  bank_address: {
+    name: 'Chase',
+    address_line1: '123 Test Street',
+    address_line2: 'Unit 199',
+    address_city: 'Bangalore',
+    address_state: 'KA',
+    address_zip: '560039',
+    address_country: 'IN',
+  },
+  account_address: {
+    name: 'Lob.com',
+    address_line1: '123 Test Street',
+    address_line2: 'Unit 199',
+    address_city: 'Bangalore',
+    address_state: 'KA',
+    address_zip: '560039',
+    address_country: 'IN',
+  }
+}, function (err, res) {
+  Lob.checks.create({
+    name: 'TEST_CHECK',
+    bank_account: res.id,
+    to: 'adr_8613108bcfa00806',
+    amount: 100,
+    memo: 'test check'
+  }, function (err, res2) {
+    console.log(err, res2);
+  });
+});
+/**/
 // List All Checks with default offset:0, count:0
 //
 Lob.checks.list(function (err, res) {
