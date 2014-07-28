@@ -1,7 +1,8 @@
 var Lob = require('../lib/lob');
 Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var Should;
-Should = require('should');
+var chai         = require('chai');
+var expect       = chai.expect;
+
 /* jshint camelcase: false */
 describe('Checks', function () {
   describe('create', function () {
@@ -13,14 +14,14 @@ describe('Checks', function () {
         amount: 100,
         memo: 'test check'
       }, function (err, res) {
-        res.should.have.property('id');
-        res.should.have.property('name');
-        res.should.have.property('bank_account');
-        res.should.have.property('bank_account');
-        res.should.have.property('check_number');
-        res.should.have.property('memo');
-        res.memo.should.eql('test check');
-        res.object.should.eql('check');
+        expect(res).to.have.property('id');
+        expect(res).to.have.property('name');
+        expect(res).to.have.property('bank_account');
+        expect(res).to.have.property('bank_account');
+        expect(res).to.have.property('check_number');
+        expect(res).to.have.property('memo');
+        expect(res.memo).to.eql('test check');
+        expect(res.object).to.eql('check');
         return done();
       });
     });
@@ -41,14 +42,14 @@ describe('Checks', function () {
         amount: 100,
         memo: 'test check'
       }, function (err, res) {
-        res.should.have.property('id');
-        res.should.have.property('name');
-        res.should.have.property('bank_account');
-        res.should.have.property('bank_account');
-        res.should.have.property('check_number');
-        res.should.have.property('memo');
-        res.memo.should.eql('test check');
-        res.object.should.eql('check');
+        expect(res).to.have.property('id');
+        expect(res).to.have.property('name');
+        expect(res).to.have.property('bank_account');
+        expect(res).to.have.property('bank_account');
+        expect(res).to.have.property('check_number');
+        expect(res).to.have.property('memo');
+        expect(res.memo).to.eql('test check');
+        expect(res.object).to.eql('check');
         return done();
       });
     });
@@ -72,14 +73,14 @@ describe('Checks', function () {
       }, function (err, res) {
         var id = res.id;
         Lob.checks.retrieve(id,function (err, res) {
-          res.should.have.property('id');
-          res.should.have.property('name');
-          res.should.have.property('bank_account');
-          res.should.have.property('bank_account');
-          res.should.have.property('check_number');
-          res.should.have.property('memo');
-          res.memo.should.eql('test check');
-          res.object.should.eql('check');
+          expect(res).to.have.property('id');
+          expect(res).to.have.property('name');
+          expect(res).to.have.property('bank_account');
+          expect(res).to.have.property('bank_account');
+          expect(res).to.have.property('check_number');
+          expect(res).to.have.property('memo');
+          expect(res.memo).to.eql('test check');
+          expect(res.object).to.eql('check');
           return done();
         });
       });
@@ -88,49 +89,49 @@ describe('Checks', function () {
   describe('list', function () {
     it('should have correct defaults', function (done) {
       Lob.checks.list(function (err, res) {
-        res.should.have.property('object');
-        res.should.have.property('data');
-        res.data.should.be.instanceof(Array);
-        res.data.length.should.eql(10);
-        res.should.have.property('count');
-        res.should.have.property('next_url');
-        res.next_url.should.eql('https://api.lob.com/' +
+        expect(res).to.have.property('object');
+        expect(res).to.have.property('data');
+        expect(res.data).to.be.instanceof(Array);
+        expect(res.data.length).to.eql(10);
+        expect(res).to.have.property('count');
+        expect(res).to.have.property('next_url');
+        expect(res.next_url).to.eql('https://api.lob.com/' +
         'v1/checks?count=10&offset=10');
-        res.should.have.property('previous_url');
-        res.object.should.eql('list');
-        res.count.should.eql(10);
+        expect(res).to.have.property('previous_url');
+        expect(res.object).to.eql('list');
+        expect(res.count).to.eql(10);
         return done();
       });
     });
     it('should override count', function (done) {
       Lob.checks.list({count: 5, offset: 0}, function (err, res) {
-        res.should.have.property('object');
-        res.should.have.property('data');
-        res.data.should.be.instanceof(Array);
-        res.data.length.should.eql(5);
-        res.should.have.property('count');
-        res.should.have.property('next_url');
-        res.next_url.should.eql('https://api.lob.com/' +
+        expect(res).to.have.property('object');
+        expect(res).to.have.property('data');
+        expect(res.data).to.be.instanceof(Array);
+        expect(res.data.length).to.eql(5);
+        expect(res).to.have.property('count');
+        expect(res).to.have.property('next_url');
+        expect(res.next_url).to.eql('https://api.lob.com/' +
         'v1/checks?count=5&offset=5');
-        res.should.have.property('previous_url');
-        res.object.should.eql('list');
-        res.count.should.eql(5);
+        expect(res).to.have.property('previous_url');
+        expect(res.object).to.eql('list');
+        expect(res.count).to.eql(5);
         done();
       });
     });
     it('should override count', function (done) {
       Lob.checks.list({offset: 0}, function (err, res) {
-        res.should.have.property('object');
-        res.should.have.property('data');
-        res.data.should.be.instanceof(Array);
-        res.data.length.should.eql(10);
-        res.should.have.property('count');
-        res.should.have.property('next_url');
-        res.next_url.should.eql('https://api.lob.com/' +
+        expect(res).to.have.property('object');
+        expect(res).to.have.property('data');
+        expect(res.data).to.be.instanceof(Array);
+        expect(res.data.length).to.eql(10);
+        expect(res).to.have.property('count');
+        expect(res).to.have.property('next_url');
+        expect(res.next_url).to.eql('https://api.lob.com/' +
         'v1/checks?count=10&offset=10');
-        res.should.have.property('previous_url');
-        res.object.should.eql('list');
-        res.count.should.eql(10);
+        expect(res).to.have.property('previous_url');
+        expect(res.object).to.eql('list');
+        expect(res.count).to.eql(10);
         done();
       });
     });

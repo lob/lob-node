@@ -12,7 +12,7 @@
   "noempty": true,
   "nonew": true,
   "nonbsp": true,
-  "plusplus": true,
+  "plusplus": false,
   "undef": true,
   "unused": true,
   "freeze": true,
@@ -22,8 +22,13 @@
   "trailing": true,
   "quotmark": "single",
   "maxlen": 80,
+  "node": true,
+  "globalstrict": false,
   "globals": {
     "describe": false,
-    "it": false
+    "it": false,
+    "before": false,
+    "should": false,
+    "beforeEach": false
   }
 }

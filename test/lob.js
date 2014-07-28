@@ -1,12 +1,13 @@
-var Lob = require('../lib/lob');
+var chai         = require('chai');
+var expect       = chai.expect;
 
 describe('Init', function () {
   it('should error when no api key', function (done) {
     try {
-      new Lob();
+      require('../lib/lob.js')();
     }
     catch (err){
-      err.should.throw();
+      expect(err).to.be.an.instanceof(Error);
     }
 
     done();

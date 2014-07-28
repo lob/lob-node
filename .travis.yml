@@ -1,23 +1,12 @@
 language: node_js
 node_js:
 - '0.10'
-install:
-    - npm install istanbul -g
-    - npm install jshint -g
-    - npm install jscs -g
-    - npm install mocha -g
-    - npm install
-
 before_script:
-  - jshint lib/**/*.js
-  - jscs lib/**/*.js
-
+- npm run style
+- npm run lint
 after_script:
-  - istanbul check-coverage --statements 100 --branches 99 --functions 100 --lines 100
-  - npm run coveralls
+- npm run enforce
+- npm run coveralls
 notifications:
-  hipchat:
-    matrix:
-    - 6d94f492766ddb84ea19b56f4a490f@Lob
-    rooms:
-      secure: Hfao06qDVk8r/hW8ReewmvxUWPduhepgO4FXJDo6QCmboEgIte7f+HYoSALiBZzHpPkyYdKW7korQ4eZYrDr8a2z5cUkkA5PZkc0gznQtoF+2uRYKKC+G6OXDe0t1FPSAoGtHh0b6+h/AmpuHCndbDnj0rInxweZDbXMTxpC6b0=
+  slack:
+    secure: lWfUx2jh4yLxb2EHpQBroDaGt0ZBFAw1IpSAPO4SUmai2G0oXCfkCkkFrgfYh32qaeRGY8uixYOwcT6LXrSucygTsn3rWZ9Yygwl/0NRDLdXLANk61JRPI2q0nxX/oX15P2+KQ+aH7WWPCwvVQRbx5YvumW+LZ3kmkx139uSp8Y=

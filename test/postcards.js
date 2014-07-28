@@ -1,48 +1,50 @@
 var Lob = require('../lib/lob');
 Lob = new Lob('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var should = require('should');
+var chai         = require('chai');
+var expect       = chai.expect;
 var fs = require('fs');
 /* jshint camelcase: false */
+/*jshint expr: true*/
 describe('Postcards', function () {
   describe('list', function () {
     it('should error with an invalid count or offset', function (done) {
       Lob.postcards.list({offset: 0,count: 1000}, function (err) {
-        should.exist(err);
+        expect(err).to.exist;
         done();
       });
     });
     it('should have the correct defaults', function (done) {
       Lob.postcards.list(function (err, res) {
-        res.should.have.property('object');
-        res.should.have.property('data');
-        res.data.should.be.instanceof(Array);
-        res.data.length.should.eql(10);
-        res.should.have.property('count');
-        res.should.have.property('next_url');
-        res.next_url.should.eql('https://api.lob.com/' +
+        expect(res).to.have.property('object');
+        expect(res).to.have.property('data');
+        expect(res.data).to.be.instanceof(Array);
+        expect(res.data.length).to.eql(10);
+        expect(res).to.have.property('count');
+        expect(res).to.have.property('next_url');
+        expect(res.next_url).to.eql('https://api.lob.com/' +
           'v1/postcards?count=10&offset=10');
-        res.should.have.property('previous_url');
-        res.object.should.eql('list');
-        res.count.should.eql(10);
+        expect(res).to.have.property('previous_url');
+        expect(res.object).to.eql('list');
+        expect(res.count).to.eql(10);
         done();
       });
     });
     it('should let you limit the count', function (done) {
       Lob.postcards.list({offset: 0}, function (err, res) {
-        res.count.should.eql(10);
+        expect(res.count).to.eql(10);
         done();
       });
     });
     it('should let you limit the count', function (done) {
       Lob.postcards.list({count: 5, offset: 0}, function (err, res) {
-        res.count.should.eql(5);
+        expect(res.count).to.eql(5);
         done();
       });
     });
     it('should let you shift the offset', function (done) {
       Lob.postcards.list({offset: 5,count: 1}, function (err, res1) {
         Lob.postcards.list({offset: 10,count: 1}, function (err, res2) {
-          res1.should.not.eql(res2);
+          expect(res1).to.not.eql(res2);
           done();
         });
       });
@@ -66,14 +68,14 @@ describe('Postcards', function () {
         back: 'https://www.lob.com/test.pdf'
       }, function (err, res) {
         Lob.postcards.retrieve(res.id, function (err2, res2) {
-          res.should.eql(res2);
+          expect(res).to.eql(res2);
           done();
         });
       });
     });
     it('should throw an error with an invalid id', function (done) {
       Lob.postcards.retrieve('badId', function (err) {
-        should.exist(err);
+        expect(err).to.exist;
         done();
       });
     });
@@ -89,7 +91,7 @@ describe('Postcards', function () {
           front: 'https://www.lob.com/test.pdf',
           back: 'https://www.lob.com/test.pdf'
         }, function (err, res) {
-          res.object.should.eql('postcard');
+          expect(res.object).to.eql('postcard');
           done();
         });
       });
@@ -104,7 +106,7 @@ describe('Postcards', function () {
           front: 'https://www.lob.com/test.pdf',
           message: 'This is the message'
         }, function (err, res) {
-          res.object.should.eql('postcard');
+          expect(res.object).to.eql('postcard');
           done();
         });
       });
@@ -117,7 +119,7 @@ describe('Postcards', function () {
         front: 'https://www.lob.com/test.pdf',
         message: 'This is the message'
       }, function (err) {
-        err.should.be.an.instanceOf(Object);
+        expect(err).to.be.an.instanceOf(Object);
         done();
       });
     });
@@ -132,7 +134,7 @@ describe('Postcards', function () {
           front: filePath,
           back: filePath
         }, function (err, res) {
-          res.object.should.eql('postcard');
+          expect(res.object).to.eql('postcard');
           done();
         });
       });
@@ -150,11 +152,12 @@ describe('Postcards', function () {
           front: front,
           back: back
         }, function (err, res) {
-          res.object.should.eql('postcard');
+          expect(res.object).to.eql('postcard');
           done();
         });
       });
     });
   });
 });
+/*jshint expr: false*/
 /* jshint camelcase: true */

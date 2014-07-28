@@ -62,40 +62,19 @@
         "<",
         "<="
     ],
-    "disallowLeftStickedOperators" : [
-        "?",
-        "+",
-        "-",
-        "/",
-        "*",
-        "=",
-        "==",
-        "===",
-        "!=",
-        "!==",
-        ">",
-        ">=",
-        "<",
-        "<="
+    "requireSpaceBeforeBinaryOperators": [
+    "=",
+    ",",
+    "+",
+    "-",
+    "/",
+    "*",
+    "==",
+    "===",
+    "!=",
+    "!=="
+    // etc
     ],
-    "requireRightStickedOperators" : ["!"],
-    "disallowRightStickedOperators" : [
-        "?",
-        "+",
-        "/",
-        "*",
-        ":",
-        "=",
-        "==",
-        "===",
-        "!=",
-        "!==",
-        ">",
-        ">=",
-        "<",
-        "<="
-    ],
-    "requireLeftStickedOperators" : [","],
     "disallowSpaceAfterPrefixUnaryOperators" : [
         "++",
         "--",
