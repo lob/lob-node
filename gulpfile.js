@@ -83,18 +83,3 @@ gulp.task('lint-nofail', function () {
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter(stylish));
 });
-
-gulp.task('start', ['lint-nofail', 'style'], function () {
-  plugins.nodemon({
-    script: 'src/index.js',
-    ext: 'js',
-    nodeArgs: argv.debug ? ['debug'] : []
-  })
-    .on('restart', ['lint-nofail', 'style'])
-    .on('error', function () {
-      console.log('error');
-    })
-    .on('restart', function () {
-      console.log('Server restarted...');
-    });
-});
