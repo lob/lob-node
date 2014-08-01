@@ -7,7 +7,11 @@ var stylish = require('jshint-stylish');
 var paths = {
   sourceFiles: 'lib/**/*.js',
   testFiles: 'test/**/*.js',
-  gulpFile: 'gulpfile.js'
+  gulpFile: 'gulpfile.js',
+};
+
+var envVars = {
+  COVERAGE_DIR: '.',
 };
 
 /* jshint camelcase: false */
@@ -17,6 +21,11 @@ gulp.task('style', function () {
 });
 
 gulp.task('cover', function () {
+  if (process.env.NODE_ENV !== 'test') {
+    Object.keys(envVars).forEach(function (key) {
+      process.env[key] = envVars[key];
+    });
+  }
   return gulp.src(paths.sourceFiles)
     .pipe(plugins.istanbul());
 });
@@ -27,6 +36,14 @@ gulp.task('coveralls', function () {
 });
 
 gulp.task('testCI', ['lint', 'style', 'cover'], function () {
+  if (process.env.NODE_ENV !== 'test') {
+    gulp.src(process.env.COVERAGE_DIR + '/coverage')
+      .pipe(plugins.clean());
+    Object.keys(envVars).forEach(function (key) {
+      process.env[key] = envVars[key];
+    });
+  }
+
   var options = {
     dir: process.env.COVERAGE_DIR + '/coverage',
     reporters: ['lcov', 'json', 'text', 'text-summary'],
