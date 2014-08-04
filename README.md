@@ -26,7 +26,7 @@ You can access your API access credentials from the [Accounts Page](https://www.
 
 ##Usage
 ```javascript
-var Lob = require('Lob');
+var Lob = require('lob');
 Lob = new Lob('YOUR API KEY');
 ```
 
