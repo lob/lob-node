@@ -1,4 +1,4 @@
-# Lob-node
+# lob-node
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]  [![Build Status](https://travis-ci.org/lob/lob-node.svg?branch=master)](https://travis-ci.org/lob/lob-node) [![Dependency Status](https://gemnasium.com/lob/lob-node.svg)](https://gemnasium.com/lob/lob-node) [![Coverage Status](https://coveralls.io/repos/lob/lob-node/badge.png?branch=master)](https://coveralls.io/r/lob/lob-node?branch=master)
 
 
@@ -6,15 +6,15 @@ Node.js wrapper for the [Lob.com](http://Lob.com) API.
 
 ## Installation
 
-Lob-node can be installed through the npm:
+lob-node can be installed through the npm:
 
 ```
-$ npm install Lob
+$ npm install lob
 ```
 To build and install from the latest source:
 
 ```
-$ git clone git@github.com:Lob/Lob-node.git
+$ git clone git@github.com:lob/lob-node.git
 $ npm install
 ```
 
@@ -41,3 +41,19 @@ Please Check out the Examples Folder for working examples.
 [travis-image]: https://travis-ci.org/lob/lob-node.svg?branch=master
 [depstat-url]: https://david-dm.org/Lob/Lob-node
 [depstat-image]: https://david-dm.org/Lob/Lob-node.svg
+
+## Running the test-suite
+
+To run the tests with coverage:
+
+    gulp testCI
+
+To run the tests without coverage:
+
+    gulp test
+
+## Credits
+
+Copyright &copy; 2013 Lob.com
+
+Released under the MIT License, which can be found in the repository in `LICENSE.txt`.
