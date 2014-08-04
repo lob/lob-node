@@ -46,10 +46,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Lob/Lob-node.git"
+    "url": "https://github.com/lob/lob-node.git"
   },
-  "bugs:": "https://github.com/Lob/Lob-node/issues",
-  "main": "./lib/Lob",
+  "bugs:": "https://github.com/lob/lob-node/issues",
+  "main": "./lib/lob",
   "engines": {
     "node": ">= 0.8.0"
   },
