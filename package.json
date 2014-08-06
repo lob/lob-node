@@ -17,7 +17,8 @@
     "Harry Zhang <harry@lob.com>",
     "Leore Avidar <leore@lob.com>",
     "Peter Nagel <peter@lob.com>",
-    "Shrav Mehta <shrav@lob.com>"
+    "Shrav Mehta <shrav@lob.com>",
+    "Amrit Ayalur <amrit@lob.com>"
   ],
   "dependencies": {
     "request": "^2.39.0",
@@ -49,7 +50,7 @@
     "url": "https://github.com/lob/lob-node.git"
   },
   "bugs:": "https://github.com/lob/lob-node/issues",
-  "main": "./lib/lob",
+  "main": "./lib/index",
   "engines": {
     "node": ">= 0.8.0"
   },
