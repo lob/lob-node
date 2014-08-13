@@ -30,6 +30,9 @@ You can access your API access credentials from the [Accounts Page](https://www.
   undefined
 ```
 
+##API
+Please see the [API reference](API.md)
+
 ## Examples
 
 Please Check out the Examples Folder for working examples.
