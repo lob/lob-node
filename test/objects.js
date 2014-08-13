@@ -106,6 +106,27 @@ describe('Objects', function () {
       });
     });
   });
+
+  describe('delete', function () {
+    it('should have the correct defaults', function (done) {
+      Lob.objects.create({
+        name: 'Test Object',
+        file: 'https://www.lob.com/goblue.pdf',
+        setting_id: 100
+      }, function (err, res) {
+        Lob.objects.delete(res.id, function (err2, res2) {
+          expect(res2.deleted).to.eql(1);
+          done();
+        });
+      });
+    });
+    it('should throw an error with an invalid id', function (done) {
+      Lob.objects.delete('object_badId', function (err) {
+        expect(err).to.exist;
+        done();
+      });
+    });
+  });
 });
 /*jshint expr: false*/
 /* jshint camelcase: true */
