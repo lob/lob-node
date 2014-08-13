@@ -18,9 +18,10 @@
   - [`Lob.objects.retrieve(String id, Function done)`](#Lob-objects-retrieve)
   - [`Lob.objects.list(Object options, Function done)`](#Lob-objects-list)
   - [`Lob.objects.create(Object params, Function done)`](#Lob-objects-create)
+  - [`Lob.objects.delete(String id, Function done)`](#Lob-objects-delete)
 - [`Lob.settings`](#Lob-settings)
-  - [`Lob.objects.retrieve(String id, Function done)`](#Lob-objects-retrieve)
-  - [`Lob.objects.create(Object params, Function done)`](#Lob-objects-create)
+  - [`Lob.settings.retrieve(String id, Function done)`](#Lob-settings-retrieve)
+  - [`Lob.settings.create(Object params, Function done)`](#Lob-settings-create)
 - [`Lob.services`](#Lob-services)
   - [`Lob.services.retrieve(String id, Function done)`](#Lob-services-retrieve)
   - [`Lob.services.list(Object options, Function done)`](#Lob-services-list)
@@ -46,45 +47,259 @@
 
 ###`Lob.jobs`<a name="Lob-jobs"></a>
 #####`Lob.jobs.retrieve(String id, Function done)`<a name="Lob-jobs-retrieve"></a>
+```
+// Retrieve a particular job JOB_ID = "job_*" (required)
+Lob.jobs.retrieve('job_f6f4c0c3f6338136', function (err, res) {
+  console.log(err, res);
+});
+```
 #####`Lob.jobs.list(Object options, Function done)`<a name="Lob-jobs-list"></a>
+```
+// List Jobs with default offset:0, count:0
+Lob.jobs.list(function (err, data) {
+  console.log(err, data);
+});
+
+// List Jobs with offset:10, count:5
+Lob.jobs.list({count: 5, options: 10}, function (err, res) {
+  console.log(err, res);
+});
+```
 #####`Lob.jobs.create(Object params, Function done)`<a name="Lob-jobs-create"></a>
+```
+//using ID's you already created
+Lob.jobs.create({
+  name: 'Lob Test Job',
+  from: 'adr_71d64099e6729996', //Can pass an ID
+  to: 'adr_71d64099e6729996',
+  objects: ['obj_fe40799250bac8f6']
+}, function (err, res) {
+  console.log(err, res);
+});
+
+//using inline objects instead of IDs
+Lob.jobs.create({
+  name: 'Lob Test Job',
+  from: {
+    name: 'Jane Smith',
+    email: 'jane@b.com',
+    phone: '5555555555',
+    address_line1: '123 Test Street',
+    address_line2: 'Unit 199',
+    address_city: 'Mountain View',
+    address_state: 'CA',
+    address_zip: '94085',
+    address_country: 'US',
+  },
+  to: {
+    name: 'Joe Smith',
+    email: 'berry@Lob.com',
+    phone: '5555555555',
+    address_line1: '123 Test Street',
+    address_line2: 'Unit 199',
+    address_city: 'Mountain View',
+    address_state: 'CA',
+    address_zip: '94085',
+    address_country: 'US',
+  },
+  objects: [
+    {
+      name: 'GO BLUE',
+      file: 'https://www.Lob.com/goblue.pdf',
+      setting_id: 100
+    }
+  ]
+}, function (err, res) {
+  console.log(err, res);
+});
+```
 ###`Lob.addresses`<a name="Lob-addresses"></a>
 #####`Lob.addresses.retrieve(String id, Function done)`<a name="Lob-addresses-retrieve"></a>
+```
+// Retrieve a particular address address object
+//
+Lob.addresses.retrieve('adr_cda562558b71ff93', function (err, res) {
+  console.log(err, res);
+});
+```
 #####`Lob.addresses.delete(String id, Function done)`<a name="Lob-addresses-delete"></a>
+```
+// Delete an Address Object (make sure it exists first)
+//
+Lob.addresses.delete('adr_71d64099e6729996', function (err, res) {
+  console.log(err, res);
+});
+```
 #####`Lob.addresses.list(Object options, Function done)`<a name="Lob-addresses-list"></a>
+```
+// List All Addresses with default offset:0, count:0
+//
+Lob.addresses.list(function (err, res) {
+  console.log(err, res);
+});
+
+// List Addreses with offset:10, count:5
+//
+Lob.addresses.list({count: 10, offset: 5}, function (err, res) {
+  console.log(err, res);
+});
+```
 #####`Lob.addresses.create(Object params, Function done)`<a name="Lob-addresses-create"></a>
+```
+Lob.addresses.create({
+  name: 'Test Name',
+  email: 'test@gmail.com',
+  phone: '123456789',
+  address_line1: '123 Test Street',
+  address_line2: 'Unit 199',
+  address_city: 'Chicago',
+  address_state: 'IL',
+  address_zip: '60012',
+  address_country: 'US',
+}, function (err, res) {
+  console.log(err, res);
+});
+```
 ###`Lob.verification`<a name="Lob-verification"></a>
 #####`Lob.verification.verify(Object params, Function done)`<a name="Lob-verification-verify"></a>
+```
+Lob.verification.verify({
+  address_line1: '325 Berry Street',
+  address_line2: 'Unit 211',
+  address_city: 'San Francisco',
+  address_state: 'CA',
+  address_zip: '94158',
+  address_country: 'US',
+}, function (err, res) {
+  console.log (err, res);
+});
+```
 ###`Lob.states`<a name="Lob-states"></a>
 #####`Lob.states.list(Object options, Function done)`<a name="Lob-states-list"></a>
+```
+Lob.states.list(function (err, res) {
+  console.log(err, res);
+});
+```
 ###`Lob.countries`<a name="Lob-countries"></a>
 #####`Lob.countries.list(Object options, Function done)`<a name="Lob-countries-list"></a>
+```
+// List All Countries with defaults
+//
+Lob.countries.list(function (err, res) {
+  console.log(err, res);
+});
+```
 ###`Lob.objects`<a name="Lob-objects"></a>
 #####`Lob.objects.retrieve(String id, Function done)`<a name="Lob-objects-retrieve"></a>
+```
+// Retrieve a particular object OBJECT_ID = "obj_*" (required)
+//
+Lob.objects.retrieve('obj_1d1188df1e8d6427', function (err, res) {
+  console.log(err, res);
+});
+```
 #####`Lob.objects.list(Object options, Function done)`<a name="Lob-objects-list"></a>
+```
+// List All Objects with default offset:0, count:0
+//
+Lob.objects.list(function (err, res) {
+  console.log(err, res);
+});
+
+// List Objects with count:10, offset:5
+//
+Lob.objects.list({count: 10, offset: 5}, function (err, res) {
+  console.log(err, res);
+});
+```
 #####`Lob.objects.create(Object params, Function done)`<a name="Lob-objects-create"></a>
+```
+// Creating an Object with local file
+//
+Lob.objects.create({
+  name: 'My First Object',
+  file: '@/home/Downloads/goblue.pdf',
+  setting_id: 100
+}, function (err, res) {
+  console.log(err, res);
+});
+
+// Creating an Object with remote file
+//
+Lob.objects.create({
+  name: 'My First Object',
+  file: 'https://www.Lob.com/goblue.pdf',
+  setting_id: 100
+}, function (err, res) {
+  console.log(err, res);
+});
+```
+#####`Lob.objects.delete(String id, Function done)`<a name="Lob-objects-delete"></a>
+```
+Lob.objects.delete('obj_1d1188df1e8d6427', function (err, res) {
+  console.log(err, res);
+});
+```
 ###`Lob.settings`<a name="Lob-settings"></a>
-#####`Lob.objects.retrieve(String id, Function done)`<a name="Lob-objects-retrieve"></a>
-#####`Lob.objects.create(Object params, Function done)`<a name="Lob-objects-create"></a>
+#####`Lob.settings.retrieve(String id, Function done)`<a name="Lob-settings-retrieve"></a>
+```
+```
+#####`Lob.settings.create(Object params, Function done)`<a name="Lob-settings-create"></a>
+```
+```
 ###`Lob.services`<a name="Lob-services"></a>
 #####`Lob.services.retrieve(String id, Function done)`<a name="Lob-services-retrieve"></a>
+```
+```
 #####`Lob.services.list(Object options, Function done)`<a name="Lob-services-list"></a>
+```
+```
 ###`Lob.postcards`<a name="Lob-postcards"></a>
 #####`Lob.postcards.retrieve(String id, Function done)`<a name="Lob-postcards-retrieve"></a>
+```
+```
 #####`Lob.postcards.list(Object options, Function done)`<a name="Lob-postcards-list"></a>
+```
+```
 #####`Lob.postcards.create(Object params, Function done)`<a name="Lob-postcards-create"></a>
+```
+```
 ###`Lob.checks`<a name="Lob-checks"></a>
 #####`Lob.checks.retrieve(String id, Function done)`<a name="Lob-checks-retrieve"></a>
+```
+```
 #####`Lob.checks.list(Object options, Function done)`<a name="Lob-checks-list"></a>
+```
+```
 #####`Lob.checks.create(Object params, Function done)`<a name="Lob-checks-create"></a>
+```
+```
 ###`Lob.bankAccounts`<a name="Lob-bankAccounts"></a>
 #####`Lob.bankAccounts.retrieve(String id, Function done)`<a name="Lob-bankAccounts-retrieve"></a>
+```
+```
 #####`Lob.bankAccounts.delete(String id, Function done)`<a name="Lob-bankAccounts-delete"></a>
+```
+```
 #####`Lob.bankAccounts.list(Object options, Function done)`<a name="Lob-bankAccounts-list"></a>
+```
+```
 #####`Lob.bankAccounts.create(Object params, Function done)`<a name="Lob-bankAccounts-create"></a>
+```
+```
 ###`Lob.areas`<a name="Lob-areas"></a>
 #####`Lob.areas.retrieve(String id, Function done)`<a name="Lob-areas-retrieve"></a>
+```
+```
 #####`Lob.areas.list(Object options, Function done)`<a name="Lob-areas-list"></a>
+```
+```
 #####`Lob.areas.create(Object params, Function done)`<a name="Lob-areas-create"></a>
+```
+```
 ###`Lob.routes`<a name="Lob-routes"></a>
 #####`Lob.routes.list(Object options, Function done)`<a name="Lob-routes-list"></a>
+```
+```
+
