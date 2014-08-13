@@ -62,9 +62,9 @@ Lob.jobs.list(function (err, data) {
 });
 /**/
 
-// List Jobs with offset:10, count:5
+// List Jobs with count: 5, offset: 10
 //
-Lob.jobs.list(5, 10, function (err, res) {
+Lob.jobs.list({count: 5, offset: 10}, function (err, res) {
   console.log(err, res);
 });
 /**/

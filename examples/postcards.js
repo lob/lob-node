@@ -24,8 +24,8 @@ Lob.postcards.retrieve('psc_056fdd2b4a11a169', function (err, res) {
 Lob.postcards.create({
   name: 'Test Card',
   to: 'adr_3b5fe0b76713a6e8',
-  front: '@/home/Downloads/postcardfront.pdf',
-  back: '@/home/Downloads/postcardback.pdf'
+  front: '@' + __dirname + '/../test/assets/4x6.pdf',
+  back: '@' + __dirname + '/../test/assets/4x6.pdf',
 }, function (err, res) {
   console.log(err, res);
 });

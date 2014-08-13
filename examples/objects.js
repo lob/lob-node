@@ -30,7 +30,7 @@ Lob.objects.retrieve('obj_1d1188df1e8d6427', function (err, res) {
 //
 Lob.objects.create({
   name: 'My First Object',
-  file: '@/home/Downloads/goblue.pdf',
+  file: '@' + __dirname + '/../test/assets/4x6.pdf',
   setting_id: 100
 }, function (err, res) {
   console.log(err, res);
@@ -50,7 +50,7 @@ Lob.objects.create({
 
 // Delete an Object
 //
-Lob.objects.delete('obj_1d1188df1e8d6427', function (err, res) {
+/*Lob.objects.delete('obj_1d1188df1e8d6427', function (err, res) {
   console.log(err, res);
-});
+});*/
 /**/
