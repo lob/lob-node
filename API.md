@@ -251,55 +251,238 @@ Lob.objects.delete('obj_1d1188df1e8d6427', function (err, res) {
 ###`Lob.services`<a name="Lob-services"></a>
 #####`Lob.services.retrieve(String id, Function done)`<a name="Lob-services-retrieve"></a>
 ```
+// Retrieve a particular service object
+//
+Lob.services.retrieve('2', function (err, res) {
+  console.log(err, res);
+});
 ```
 #####`Lob.services.list(Object options, Function done)`<a name="Lob-services-list"></a>
 ```
+// List All services
+//
+Lob.services.list(function (err, res) {
+  console.log(err, res);
+});
 ```
 ###`Lob.postcards`<a name="Lob-postcards"></a>
 #####`Lob.postcards.retrieve(String id, Function done)`<a name="Lob-postcards-retrieve"></a>
 ```
+// Retrieve a particular postcard object
+//
+Lob.postcards.retrieve('psc_056fdd2b4a11a169', function (err, res) {
+  console.log(err, res);
+});
 ```
 #####`Lob.postcards.list(Object options, Function done)`<a name="Lob-postcards-list"></a>
 ```
+// List All Postcards with default offset:0, count:0
+//
+Lob.postcards.list(function (err, res) {
+  console.log(err, res);
+});
+
+// List All Postcards with offset:10, count:5
+//
+Lob.postcards.list({offset: 10, count: 5}, function (err, res) {
+  console.log(err, res);
+});
 ```
 #####`Lob.postcards.create(Object params, Function done)`<a name="Lob-postcards-create"></a>
 ```
+// Creating PostCard with local file
+//
+Lob.postcards.create({
+  name: 'Test Card',
+  to: 'adr_3b5fe0b76713a6e8',
+  front: '@/home/Downloads/postcardfront.pdf',
+  back: '@/home/Downloads/postcardback.pdf'
+}, function (err, res) {
+  console.log(err, res);
+});
+/**/
+
+// Creating a PostCard with remote file
+//
+Lob.postcards.create({
+  name: 'My First Postcard',
+  to: 'adr_3b5fe0b76713a6e8',
+  front: 'https://www.Lob.com/postcardfront.pdf',
+  back: 'https://www.Lob.com/postcardback.pdf'
+}, function (err, res) {
+  console.log(err, res);
+});
+/**/
+
+// Creating a PostCard with local, remote file
+//
+Lob.postcards.create({
+  name: 'My First Postcard',
+  to: 'adr_3b5fe0b76713a6e8',
+  front: 'https://www.Lob.com/postcardback.pdf',
+  back: 'https://www.Lob.com/postcardback.pdf'
+}, function (err, res) {
+  console.log(err, res);
+});
 ```
 ###`Lob.checks`<a name="Lob-checks"></a>
 #####`Lob.checks.retrieve(String id, Function done)`<a name="Lob-checks-retrieve"></a>
 ```
+// Retrieve a particular check object
+//
+Lob.checks.retrieve('psc_056fdd2b4a11a169', function (err, res) {
+  console.log(err, res);
+});
 ```
 #####`Lob.checks.list(Object options, Function done)`<a name="Lob-checks-list"></a>
 ```
+// List All Checks with default offset:0, count:0
+//
+Lob.checks.list(function (err, res) {
+  console.log(err, res);
+});
+/**/
 ```
 #####`Lob.checks.create(Object params, Function done)`<a name="Lob-checks-create"></a>
 ```
+// Creating Check
+/**/
+Lob.checks.create({
+  name: 'Test Check',
+  check_number: '10000',
+  bank_account: 'bank_7a88fa3abe5e2da',
+  to: 'adr_3b5fe0b76713a6e8',
+  amount: 100,
+  memo: 'THis is my first Check',
+  message: 'this check is for laundry'
+}, function (err, res) {
+  console.log(err, res);
+});
+/**/
+// Creating Check with Bank Account
+/**/
+Lob.bankAccounts.create({
+  routing_number: '123456789',
+  account_number: '123456788',
+  bank_address: {
+    name: 'Chase',
+    address_line1: '123 Test Street',
+    address_line2: 'Unit 199',
+    address_city: 'Bangalore',
+    address_state: 'KA',
+    address_zip: '560039',
+    address_country: 'IN',
+  },
+  account_address: {
+    name: 'Lob.com',
+    address_line1: '123 Test Street',
+    address_line2: 'Unit 199',
+    address_city: 'Bangalore',
+    address_state: 'KA',
+    address_zip: '560039',
+    address_country: 'IN',
+  }
+}, function (err, res) {
+  Lob.checks.create({
+    name: 'TEST_CHECK',
+    bank_account: res.id,
+    to: 'adr_8613108bcfa00806',
+    amount: 100,
+    memo: 'test check'
+  }, function (err, res2) {
+    console.log(err, res2);
+  });
+});
+/**/
 ```
 ###`Lob.bankAccounts`<a name="Lob-bankAccounts"></a>
 #####`Lob.bankAccounts.retrieve(String id, Function done)`<a name="Lob-bankAccounts-retrieve"></a>
 ```
+// Retrieve a particular Bank Account Object
+//
+Lob.bankAccounts.retrieve('bank_7a88fa3abe5e2da', function (err, res) {
+  console.log(err, res);
+});
 ```
 #####`Lob.bankAccounts.delete(String id, Function done)`<a name="Lob-bankAccounts-delete"></a>
 ```
+// Deleting a bank account
+Lob.bankAccounts.delete('bank_7a88fa3abe5e2da', function (err, res) {
+  console.log(err, res);
+});
 ```
 #####`Lob.bankAccounts.list(Object options, Function done)`<a name="Lob-bankAccounts-list"></a>
 ```
+// List All Accounts with default offset:0, count:10
+//
+Lob.bankAccounts.list(function (err, res) {
+  console.log(err, res);
+});
 ```
 #####`Lob.bankAccounts.create(Object params, Function done)`<a name="Lob-bankAccounts-create"></a>
 ```
+// Creating a Bank Account
+//
+Lob.bankAccounts.create({
+  routing_number: 123456789,
+  account_number: 123456789,
+  bank_code: 123456789,
+  bank_address: {
+    name: 'Chase Bank',
+    address_line1: '55 Edmonds',
+    address_city: 'Palo Alto',
+    address_state: 'CA',
+    address_zip: '90081',
+    address_country: 'US'
+  },
+  account_address: {
+    name: 'Leore Avidar',
+    address_line1: '123 Test Street',
+    address_city: 'Sunnyvale',
+    address_state: 'CA',
+    address_zip: '94085',
+    address_country: 'US'
+  }
+}, function (err, res) {
+  console.log(err, res);
+});
 ```
 ###`Lob.areas`<a name="Lob-areas"></a>
 #####`Lob.areas.retrieve(String id, Function done)`<a name="Lob-areas-retrieve"></a>
 ```
+// Retrieve a particular Area
+Lob.areas.retrieve('area_350e47ace201ee4', function (err, res) {
+  console.log(err, res);
+});
 ```
 #####`Lob.areas.list(Object options, Function done)`<a name="Lob-areas-list"></a>
 ```
+// List all areas with count: 5 and offset: 10
+Lob.areas.list({count: 5, offset: 10}, function (err, res) {
+  console.log(err, res);
+});
 ```
 #####`Lob.areas.create(Object params, Function done)`<a name="Lob-areas-create"></a>
 ```
+// Create an area mailing with a mix of local and remote files
+// You can mix and match (for example, both local or both remote)
+Lob.areas.create({
+  front: '@/path/to/local/file',
+  back: 'https://www.lob.com/areaback.pdf',
+  routes: ['94107-C031', '94158-C031'], // required
+  target_type: 'all', // optional
+  full_bleed: 1 // optional
+}, function (err, res) {
+  console.log(err, res);
+})
 ```
 ###`Lob.routes`<a name="Lob-routes"></a>
 #####`Lob.routes.list(Object options, Function done)`<a name="Lob-routes-list"></a>
 ```
+// List all routes for a set of zip codes
+Lob.routes.list({
+  zip_codes: ['94108', '94709', '94608']
+}, function (err, res) {
+  console.log(err, res);
+});
 ```
-

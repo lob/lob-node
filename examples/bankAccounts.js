@@ -47,4 +47,8 @@ Lob.bankAccounts.create({
 });
 /**/
 
+// Deleting a bank account
+Lob.bankAccounts.delete('bank_7a88fa3abe5e2da', function (err, res) {
+  console.log(err, res);
+});
 /* jshint camelcase: true */
