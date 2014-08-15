@@ -26,10 +26,12 @@ You can access your API access credentials from the [Accounts Page](https://www.
 
 ##Usage
 ```javascript
-var Lob = require('lob');
-Lob = new Lob('YOUR API KEY');
+> var Lob = require('Lob')('YOUR API KEY');
+  undefined
 ```
 
+##API
+Please see the [API reference](API.md)
 
 ## Examples
 
