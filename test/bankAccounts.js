@@ -9,7 +9,7 @@ describe('Bank Accounts', function () {
   describe('create', function () {
     it('should succeed with inline addresses', function (done) {
       Lob.bankAccounts.create({
-        routing_number: '123456789',
+        routing_number: '122100024',
         account_number: '123456788',
         bank_address: {
           name: 'Chase',
@@ -35,7 +35,7 @@ describe('Bank Accounts', function () {
         expect(res).to.have.property('routing_number');
         expect(res).to.have.property('bank_address');
         expect(res).to.have.property('account_address');
-        expect(res.routing_number).to.eql('123456789');
+        expect(res.routing_number).to.eql('122100024');
         expect(res).to.have.property('account_number');
         expect(res.account_number).to.eql('123456788');
         expect(res.object).to.eql('bank_account');
@@ -44,7 +44,7 @@ describe('Bank Accounts', function () {
     });
 
     it('should succeed with address ids', function (done) {
-      var routingNumber = '123456789';
+      var routingNumber = '122100024';
       var accountNumber = '123456788';
       var bankAddressId =  'adr_a11a87b8240b1540';
       var accountAddressId = 'adr_a11a87b8240b1540';
@@ -68,7 +68,7 @@ describe('Bank Accounts', function () {
       });
     });
     it('should error with bad address', function (done) {
-      var routingNumber = '123456789';
+      var routingNumber = '122100024';
       var accountNumber = '123456788';
       var bankAddressId =  'adr_bad';
       var accountAddressId = 'adr_a11a87b8240b1540';
