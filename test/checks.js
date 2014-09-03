@@ -26,7 +26,7 @@ describe('Checks', function () {
     });
     it('should succeed with inline bank account', function (done) {
       Lob.bankAccounts.create({
-        routing_number: '123456789',
+        routing_number: '122100024',
         account_number: '123456788',
         bank_address: {
           name: 'Chase',
