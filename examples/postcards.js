@@ -12,6 +12,11 @@ Lob.postcards.list(function (err, res) {
 });
 /**/
 
+// List all postcards with offset: 3, count: 7
+Lob.postcards.list({offset: 3, count: 7}, function (err, res) {
+  console.log(err, res);
+});
+
 // Retrieve a particular postcard object
 //
 Lob.postcards.retrieve('psc_056fdd2b4a11a169', function (err, res) {
