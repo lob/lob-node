@@ -23,7 +23,7 @@ Lob.bankAccounts.retrieve('bank_7a88fa3abe5e2da', function (err, res) {
 // Creating a Bank Account
 //
 Lob.bankAccounts.create({
-  routing_number: 123456789,
+  routing_number: 122100024,
   account_number: 123456789,
   bank_code: 123456789,
   bank_address: {

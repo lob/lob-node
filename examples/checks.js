@@ -22,7 +22,7 @@ Lob.checks.create({
 // Creating Check with Bank Account
 /**/
 Lob.bankAccounts.create({
-  routing_number: '123456789',
+  routing_number: '122100024',
   account_number: '123456788',
   bank_address: {
     name: 'Chase',
@@ -63,7 +63,7 @@ Lob.checks.list(function (err, res) {
 
 // Retrieve a particular check object
 //
-Lob.checks.retrieve('psc_056fdd2b4a11a169', function (err, res) {
+Lob.checks.retrieve('chk_ee2d62ea99705bfe', function (err, res) {
   console.log(err, res);
 });
 /**/
