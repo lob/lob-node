@@ -91,6 +91,21 @@ describe('Checks', function () {
         return done();
       });
     });
+
+    it('should fail when no address provided', function (done) {
+      Lob.checks.create({
+        name: 'TEST_CHECK',
+        bank_account: 'bank_e13902b6bdfff24',
+        amount: 100,
+        memo: 'test check'
+      }, function (err, res) {
+        expect(err[0].message).to.eql('to is required');
+        expect(err[0].status_code).to.eql(422);
+        expect(res.errors[0].message).to.eql('to is required');
+        expect(res.errors[0].status_code).to.eql(422);
+        return done();
+      });
+    });
   });
   describe('get', function () {
     it('should succeed on get', function (done) {
