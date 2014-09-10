@@ -35,7 +35,13 @@ Please see the [API reference](API.md)
 
 ## Examples
 
-Please Check out the Examples Folder for working examples.
+Please Check out the Examples Folder for working examples.s
+
+#### Creating a PDF
+
+If you need to generate your own PDF programmatically we recommend
+using [pdfkit](http://pdfkit.org/). There is an example provided in the examples folder [here](examples/create_pdf.js).
+
 [downloads-image]: http://img.shields.io/npm/dm/lob.svg
 [npm-url]: https://npmjs.org/package/lob
 [npm-image]: https://badge.fury.io/js/lob.svg
