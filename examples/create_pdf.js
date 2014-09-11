@@ -48,5 +48,5 @@ function createPostcard(done) {
 }
 
 createPostcard(function (res) {
-  console.log(res);
+  console.log('View your created PDF here: ' + res.url);
 });
