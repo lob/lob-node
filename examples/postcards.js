@@ -24,7 +24,7 @@ Lob.postcards.retrieve('psc_056fdd2b4a11a169', function (err, res) {
 });
 /**/
 
-// Creating PostCard with local file
+// Creating a postcard with local file
 //
 Lob.postcards.create({
   name: 'Test Card',
@@ -36,25 +36,46 @@ Lob.postcards.create({
 });
 /**/
 
-// Creating an PostCard with remote file
+// Creating a postcard with remote file
 //
 Lob.postcards.create({
   name: 'My First Postcard',
   to: 'adr_3b5fe0b76713a6e8',
-  front: 'https://www.Lob.com/postcardfront.pdf',
-  back: 'https://www.Lob.com/postcardback.pdf'
+  front: 'https://www.lob.com/postcardfront.pdf',
+  back: 'https://www.lob.com/postcardback.pdf'
 }, function (err, res) {
   console.log(err, res);
 });
 /**/
 
-// Creating an PostCard with local, remote file
+// Creating a postcard with local, remote file
 //
 Lob.postcards.create({
   name: 'My First Postcard',
   to: 'adr_3b5fe0b76713a6e8',
-  front: 'https://www.Lob.com/postcardback.pdf',
-  back: 'https://www.Lob.com/postcardback.pdf'
+  front: 'https://www.lob.com/postcardback.pdf',
+  back: 'https://www.lob.com/postcardback.pdf'
+}, function (err, res) {
+  console.log(err, res);
+});
+/**/
+
+// Creating a postcard with remote files and inline address
+Lob.postcards.create({
+  name: 'My First Postcard',
+  to: {
+    name: 'Grayson Chao', // required
+    email: 'grayson@lob.com', // optional
+    phone: '5555555555', //optional
+    address_line1: '402 Test Street',
+    address_line2: 'Floor LL', // optional
+    address_city: 'San Francisco',
+    address_state: 'CA',
+    address_zip: '94107',
+    address_country: 'US' // 2-letter country code
+  }
+  front: 'https://www.lob.com/postcardback.pdf',
+  back: 'https://www.lob.com/postcardback.pdf'
 }, function (err, res) {
   console.log(err, res);
 });

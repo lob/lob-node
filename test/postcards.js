@@ -111,6 +111,7 @@ describe('Postcards', function () {
         });
       });
     });
+
     it('should error with bad address', function (done) {
       var address = 'kjkjk';
       Lob.postcards.create({
@@ -123,6 +124,7 @@ describe('Postcards', function () {
         done();
       });
     });
+
     it('should succeed using address and local file', function (done) {
       var filePath = '@' + __dirname + '/assets/4x6.pdf';
       var address;
@@ -139,6 +141,31 @@ describe('Postcards', function () {
         });
       });
     });
+
+    it('should succeed using inline address and local file', function (done) {
+      var filePath = '@' + __dirname + '/assets/4x6.pdf';
+      var address = {
+        name: 'Grayson Chao',
+        email: 'grayson@lob.com',
+        phone: '5555555555',
+        address_line1: '402 Test Street',
+        address_line2: 'Floor LL',
+        address_city: 'San Francisco',
+        address_state: 'CA',
+        address_zip: '94107',
+        address_country: 'US'
+      };
+      Lob.postcards.create({
+        name: 'Test Postcard',
+        to: address,
+        front: filePath,
+        back: filePath
+      }, function (err, res) {
+        expect(res.object).to.eql('postcard');
+        done();
+      });
+    });
+
     it('should succeed using address and buffers', function (done) {
       var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
       var front = file;
