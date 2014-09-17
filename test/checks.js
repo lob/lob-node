@@ -107,7 +107,7 @@ describe('Checks', function () {
       });
     });
   });
-  describe('get', function () {
+  describe('retrieve', function () {
     it('should succeed on get', function (done) {
       Lob.checks.create({
         name: 'TEST_CHECK',
@@ -125,7 +125,7 @@ describe('Checks', function () {
         memo: 'test check'
       }, function (err, res) {
         var id = res.id;
-        Lob.checks.retrieve(id,function (err, res) {
+        Lob.checks.retrieve(id, function (err, res) {
           expect(res).to.have.property('id');
           expect(res).to.have.property('name');
           expect(res).to.have.property('bank_account');
@@ -133,11 +133,19 @@ describe('Checks', function () {
           expect(res).to.have.property('memo');
           expect(res.memo).to.eql('test check');
           expect(res.object).to.eql('check');
-          return done();
+          done();
         });
       });
     });
+
+    it('should fail with invalid id', function (done) {
+      Lob.checks.retrieve('BADCHECKID', function (err) {
+        expect(err).to.not.eql(null);
+        done();
+      });
+    });
   });
+
   describe('list', function () {
     it('should have correct defaults', function (done) {
       Lob.checks.list(function (err, res) {
@@ -155,6 +163,7 @@ describe('Checks', function () {
         return done();
       });
     });
+
     it('should override count', function (done) {
       Lob.checks.list({count: 5, offset: 0}, function (err, res) {
         expect(res).to.have.property('object');
@@ -171,6 +180,7 @@ describe('Checks', function () {
         done();
       });
     });
+
     it('should override count', function (done) {
       Lob.checks.list({offset: 0}, function (err, res) {
         expect(res).to.have.property('object');
@@ -184,6 +194,13 @@ describe('Checks', function () {
         expect(res).to.have.property('previous_url');
         expect(res.object).to.eql('list');
         expect(res.count).to.eql(10);
+        done();
+      });
+    });
+
+    it('should error with count>100', function (done) {
+      Lob.checks.list({count: 9001}, function (err) {
+        expect(err).to.not.eql(null);
         done();
       });
     });
