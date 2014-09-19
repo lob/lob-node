@@ -17,12 +17,25 @@ To build and install from the latest source:
 $ git clone git@github.com:lob/lob-node.git
 $ npm install
 ```
-
 ## Getting Started
 
 In order to use the client, you must have an API key. To obtain your key, you need to first create an account at [Lob.com](https://www.lob.com/)
 
 You can access your API access credentials from the [Accounts Page](https://www.Lob.com/account)
+
+## Supported Image Types
+
+- PDF
+- PNG
+- JPEG
+
+For more information on prepping the images please see the [Lob documentation](https://lob.com/docs#prepping)
+
+## Creating a PDF
+
+If you need to generate your own PDF programmatically we recommend
+using [pdfkit](http://pdfkit.org/). There is an example provided in the examples folder [here](examples/create_pdf.js).
+
 
 ##Usage
 ```javascript
@@ -37,10 +50,6 @@ Please see the [API reference](API.md)
 
 Please Check out the Examples Folder for working examples.s
 
-#### Creating a PDF
-
-If you need to generate your own PDF programmatically we recommend
-using [pdfkit](http://pdfkit.org/). There is an example provided in the examples folder [here](examples/create_pdf.js).
 
 [downloads-image]: http://img.shields.io/npm/dm/lob.svg
 [npm-url]: https://npmjs.org/package/lob
