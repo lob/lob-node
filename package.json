@@ -18,7 +18,8 @@
     "Leore Avidar <leore@lob.com>",
     "Peter Nagel <peter@lob.com>",
     "Shrav Mehta <shrav@lob.com>",
-    "Amrit Ayalur <amrit@lob.com>"
+    "Amrit Ayalur <amrit@lob.com>",
+    "Grayson Chao <grayson@lob.com>"
   ],
   "dependencies": {
     "coveralls": "^2.11.1",
