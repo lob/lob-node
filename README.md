@@ -1,10 +1,17 @@
 # lob-node
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]  [![Build Status](https://travis-ci.org/lob/lob-node.svg?branch=master)](https://travis-ci.org/lob/lob-node) [![Dependency Status](https://gemnasium.com/lob/lob-node.svg)](https://gemnasium.com/lob/lob-node) [![Coverage Status](https://coveralls.io/repos/lob/lob-node/badge.png?branch=master)](https://coveralls.io/r/lob/lob-node?branch=master)
 
-
 Node.js wrapper for the [Lob.com](http://Lob.com) API.
 
-## Installation
+## Table of Contents
+[Installation][#Installation]
+[Getting Started][#GettingStarted]
+[Supported Image Types][#SupportedImageTypes]
+[Creating a PDF][#CreatingAPDF]
+[Usage][#Usage]
+[API][#API]
+
+## Installation<a name="Installation"></a>
 
 lob-node can be installed through the npm:
 
@@ -17,13 +24,13 @@ To build and install from the latest source:
 $ git clone git@github.com:lob/lob-node.git
 $ npm install
 ```
-## Getting Started
+## Getting Started<a name="GettingStarted"></a>
 
 In order to use the client, you must have an API key. To obtain your key, you need to first create an account at [Lob.com](https://www.lob.com/)
 
 You can access your API access credentials from the [Accounts Page](https://dashboard.lob.com/account)
 
-## Supported Image Types
+## Supported Image Types<a name="SupportedImageTypes"></a>
 
 - PDF
 - PNG
@@ -31,13 +38,13 @@ You can access your API access credentials from the [Accounts Page](https://dash
 
 For more information on prepping the images please see the [Lob documentation](https://lob.com/docs#prepping)
 
-## Creating a PDF
+## Creating a PDF<a name="CreatingAPDF"></a>
 
 If you need to generate your own PDF programmatically we recommend
 using [pdfkit](http://pdfkit.org/). There is an example provided in the examples folder [here](examples/create_pdf.js).
 
 
-##Usage
+##Usage<a name="Usage"></a>
 ```javascript
 > var Lob = require('Lob')('YOUR API KEY');
   undefined
