@@ -61,7 +61,7 @@ Lob.jobs.list(function (err, data) {
 });
 
 // List Jobs with offset:10, count:5
-Lob.jobs.list({count: 5, options: 10}, function (err, res) {
+Lob.jobs.list({count: 5, offset: 10}, function (err, res) {
   console.log(err, res);
 });
 ```
@@ -71,16 +71,7 @@ Lob.jobs.list({count: 5, options: 10}, function (err, res) {
 Lob.jobs.create({
   name: 'Lob Test Job',
   from: 'adr_71d64099e6729996', //Can pass an ID
-  to: 'adr_71d64099e6729996',
-  objects: ['obj_fe40799250bac8f6']
-}, function (err, res) {
-  console.log(err, res);
-});
-
-//using inline objects instead of IDs
-Lob.jobs.create({
-  name: 'Lob Test Job',
-  from: {
+  to: { // or an inline address object
     name: 'Jane Smith',
     email: 'jane@b.com',
     phone: '5555555555',
@@ -91,27 +82,19 @@ Lob.jobs.create({
     address_zip: '94085',
     address_country: 'US',
   },
-  to: {
-    name: 'Joe Smith',
-    email: 'berry@Lob.com',
-    phone: '5555555555',
-    address_line1: '123 Test Street',
-    address_line2: 'Unit 199',
-    address_city: 'Mountain View',
-    address_state: 'CA',
-    address_zip: '94085',
-    address_country: 'US',
-  },
   objects: [
-    {
+    'obj_fe40799250bac8f6', // use an ID
+    { // or an inline object
       name: 'GO BLUE',
       file: 'https://www.Lob.com/goblue.pdf',
       setting_id: 100
     }
-  ]
+
+  ] // always an array
 }, function (err, res) {
   console.log(err, res);
 });
+
 ```
 ###`Lob.addresses`<a name="Lob-addresses"></a>
 #####`Lob.addresses.retrieve(String id, Function done)`<a name="Lob-addresses-retrieve"></a>
@@ -163,7 +146,7 @@ Lob.addresses.create({
 ###`Lob.verification`<a name="Lob-verification"></a>
 #####`Lob.verification.verify(Object params, Function done)`<a name="Lob-verification-verify"></a>
 ```
-Lob.verification.verify({
+Lob.verification.verify({ // Inline address only
   address_line1: '325 Berry Street',
   address_line2: 'Unit 211',
   address_city: 'San Francisco',

@@ -41,6 +41,7 @@ using [pdfkit](http://pdfkit.org/). There is an example provided in the examples
 ```javascript
 > var Lob = require('Lob')('YOUR API KEY');
   undefined
+> Lob.objects.create #...
 ```
 
 ##API
