@@ -1,4 +1,4 @@
-/* 
+/*
  * Create an address, then send two postcards with it - one with a message
  * on the back, and one with a custom PDF back instead.
  * Run me! This example works out of the box, "batteries included".
@@ -19,7 +19,9 @@ Lob.addresses.create({
   address_zip: '60012',
   address_country: 'US',
 }, function (err, address) {
-  if (!err) {
+  if (err) {
+    console.log(err);
+  } else {
     // with message
     Lob.postcards.create({
       name: 'My first postcard',
@@ -27,7 +29,11 @@ Lob.addresses.create({
       front: 'https://www.lob.com/postcardfront.pdf',
       message: 'Hello from lob!'
     }, function (err, postcard) {
-      console.log(postcard);
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('The Lob API responded with this postcard object: ', postcard);
+      }
     });
 
     // with custom back
@@ -37,7 +43,11 @@ Lob.addresses.create({
       front: 'https://www.lob.com/postcardfront.pdf',
       back: 'https://www.lob.com/postcardback.pdf'
     }, function (err, postcard) {
-      console.log(postcard);
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('The Lob API responded with this postcard object: ', postcard);
+      }
     });
   }
 });

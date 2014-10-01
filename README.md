@@ -4,12 +4,17 @@
 Node.js wrapper for the [Lob.com](http://Lob.com) API.
 
 ## Table of Contents
-[Installation][#Installation]
-[Getting Started][#GettingStarted]
-[Supported Image Types][#SupportedImageTypes]
-[Creating a PDF][#CreatingAPDF]
-[Usage][#Usage]
-[API][#API]
+[Installation](#Installation)
+
+[Getting Started](#GettingStarted)
+
+[Supported Image Types](#SupportedImageTypes)
+
+[Creating a PDF](#CreatingAPDF)
+
+[Usage](#Usage)
+
+[API](#API)
 
 ## Installation<a name="Installation"></a>
 

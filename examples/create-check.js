@@ -19,7 +19,9 @@ Lob.addresses.create({
   address_zip: '60012',
   address_country: 'US',
 }, function (err, address) {
-  if (!err) {
+  if (err) {
+    console.log(err);
+  } else {
     Lob.bankAccounts.create({
       routing_number: 122100024,
       account_number: 123456789,
@@ -41,17 +43,25 @@ Lob.addresses.create({
         address_country: 'US'
       }
     }, function (err, bankAccount) {
-      Lob.checks.create({
-        name: 'Test Check',
-        check_number: '10000',
-        bank_account: bankAccount.id,
-        to: address.id,
-        amount: 100,
-        memo: 'THis is my first Check',
-        message: 'this check is for laundry'
-      }, function (err, check) {
-        console.log(err, check);
-      });
+      if (err) {
+        console.log(err);
+      } else {
+        Lob.checks.create({
+          name: 'Test Check',
+          check_number: '10000',
+          bank_account: bankAccount.id,
+          to: address.id,
+          amount: 100,
+          memo: 'THis is my first Check',
+          message: 'this check is for laundry'
+        }, function (err, check) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log('The Lob API responded with this check object: ', check);
+          }
+        });
+      }
     });
   }
 });

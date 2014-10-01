@@ -1,4 +1,4 @@
-/* 
+/*
  * Example of creating an address, then object, then a job using the created
  * address and object.
  * Run me! This example works out of the box, "batteries included".
@@ -48,7 +48,7 @@ Lob.addresses.create({
           if (err) {
             console.log(err);
           } else {
-            console.log(job);
+            console.log('The Lob API responded with this job object: ', job);
           }
         })
       }
