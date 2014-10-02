@@ -70,12 +70,6 @@ For a detailed API reference see [below](#API)
   - [`Lob.addresses.delete(String id, Function done)`](#Lob-addresses-delete)
   - [`Lob.addresses.list(Object options, Function done)`](#Lob-addresses-list)
   - [`Lob.addresses.create(Object params, Function done)`](#Lob-addresses-create)
-- [`Lob.verification`](#Lob-verification)
-  - [`Lob.verification.verify(Object params, Function done)`](#Lob-verification-verify)
-- [`Lob.states`](#Lob-states)
-  - [`Lob.states.list(Object options, Function done)`](#Lob-states-list)
-- [`Lob.countries`](#Lob-countries)
-  - [`Lob.countries.list(Object options, Function done)`](#Lob-countries-list)
 - [`Lob.objects`](#Lob-objects)
   - [`Lob.objects.retrieve(String id, Function done)`](#Lob-objects-retrieve)
   - [`Lob.objects.list(Object options, Function done)`](#Lob-objects-list)
@@ -106,6 +100,12 @@ For a detailed API reference see [below](#API)
   - [`Lob.areas.create(Object params, Function done)`](#Lob-areas-create)
 - [`Lob.routes`](#Lob-routes)
   - [`Lob.routes.list(Object options, Function done)`](#Lob-routes-list)
+- [`Lob.verification`](#Lob-verification)
+  - [`Lob.verification.verify(Object params, Function done)`](#Lob-verification-verify)
+- [`Lob.countries`](#Lob-countries)
+  - [`Lob.countries.list(Object options, Function done)`](#Lob-countries-list)
+- [`Lob.states`](#Lob-states)
+  - [`Lob.states.list(Object options, Function done)`](#Lob-states-list)
 
 ###`Lob.jobs`<a name="Lob-jobs"></a>
 #####`Lob.jobs.retrieve(String id, Function done)`<a name="Lob-jobs-retrieve"></a>
@@ -202,36 +202,6 @@ Lob.addresses.create({
   address_zip: '60012',
   address_country: 'US',
 }, function (err, res) {
-  console.log(err, res);
-});
-```
-###`Lob.verification`<a name="Lob-verification"></a>
-#####`Lob.verification.verify(Object params, Function done)`<a name="Lob-verification-verify"></a>
-```
-Lob.verification.verify({ // Inline address only
-  address_line1: '325 Berry Street',
-  address_line2: 'Unit 211',
-  address_city: 'San Francisco',
-  address_state: 'CA',
-  address_zip: '94158',
-  address_country: 'US',
-}, function (err, res) {
-  console.log (err, res);
-});
-```
-###`Lob.states`<a name="Lob-states"></a>
-#####`Lob.states.list(Object options, Function done)`<a name="Lob-states-list"></a>
-```
-Lob.states.list(function (err, res) {
-  console.log(err, res);
-});
-```
-###`Lob.countries`<a name="Lob-countries"></a>
-#####`Lob.countries.list(Object options, Function done)`<a name="Lob-countries-list"></a>
-```
-// List All Countries with defaults
-//
-Lob.countries.list(function (err, res) {
   console.log(err, res);
 });
 ```
@@ -528,6 +498,36 @@ Lob.areas.create({
 Lob.routes.list({
   zip_codes: ['94108', '94709', '94608']
 }, function (err, res) {
+  console.log(err, res);
+});
+```
+###`Lob.verification`<a name="Lob-verification"></a>
+#####`Lob.verification.verify(Object params, Function done)`<a name="Lob-verification-verify"></a>
+```
+Lob.verification.verify({ // Inline address only
+  address_line1: '325 Berry Street',
+  address_line2: 'Unit 211',
+  address_city: 'San Francisco',
+  address_state: 'CA',
+  address_zip: '94158',
+  address_country: 'US',
+}, function (err, res) {
+  console.log (err, res);
+});
+```
+###`Lob.countries`<a name="Lob-countries"></a>
+#####`Lob.countries.list(Object options, Function done)`<a name="Lob-countries-list"></a>
+```
+// List All Countries with defaults
+//
+Lob.countries.list(function (err, res) {
+  console.log(err, res);
+});
+```
+###`Lob.states`<a name="Lob-states"></a>
+#####`Lob.states.list(Object options, Function done)`<a name="Lob-states-list"></a>
+```
+Lob.states.list(function (err, res) {
   console.log(err, res);
 });
 ```
