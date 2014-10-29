@@ -64,8 +64,8 @@ describe('Postcards', function () {
           address_zip: '94158',
           address_country: 'US'
         },
-        front: 'https://www.lob.com/test.pdf',
-        back: 'https://www.lob.com/test.pdf'
+        front: 'https://assets.lob.com/test.pdf',
+        back: 'https://assets.lob.com/test.pdf'
       }, function (err, res) {
         Lob.postcards.retrieve(res.id, function (err2, res2) {
           expect(res).to.eql(res2);
@@ -88,8 +88,8 @@ describe('Postcards', function () {
         Lob.postcards.create({
           name: 'Test Postcard',
           to: address,
-          front: 'https://www.lob.com/test.pdf',
-          back: 'https://www.lob.com/test.pdf'
+          front: 'https://assets.lob.com/test.pdf',
+          back: 'https://assets.lob.com/test.pdf'
         }, function (err, res) {
           expect(res.object).to.eql('postcard');
           done();
@@ -103,7 +103,7 @@ describe('Postcards', function () {
         Lob.postcards.create({
           name: 'Test Postcard',
           to: address,
-          front: 'https://www.lob.com/test.pdf',
+          front: 'https://assets.lob.com/test.pdf',
           message: 'This is the message'
         }, function (err, res) {
           expect(res.object).to.eql('postcard');
@@ -117,7 +117,7 @@ describe('Postcards', function () {
       Lob.postcards.create({
         name: 'Test Postcard',
         to: address,
-        front: 'https://www.lob.com/test.pdf',
+        front: 'https://assets.lob.com/test.pdf',
         message: 'This is the message'
       }, function (err) {
         expect(err).to.be.an.instanceOf(Object);
