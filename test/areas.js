@@ -57,8 +57,8 @@ describe('Areas', function () {
       Lob.areas.create({
         name: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front: 'https://www.lob.com/sam_back_template.pdf',
-        back: 'https://www.lob.com/sam_back_template.pdf'
+        front: 'https://assets.lob.com/sam_back_template.pdf',
+        back: 'https://assets.lob.com/sam_back_template.pdf'
       }, function (err, res) {
         Lob.areas.retrieve(res.id, function (err2, res2) {
           expect(res).to.eql(res2);
@@ -83,8 +83,8 @@ describe('Areas', function () {
         Lob.areas.create({
           name: 'Test Area',
           routes: ['94158-C001', '94107-C031'],
-          front: 'https://www.lob.com/sam_back_template.pdf',
-          back: 'https://www.lob.com/sam_back_template.pdf'
+          front: 'https://assets.lob.com/sam_back_template.pdf',
+          back: 'https://assets.lob.com/sam_back_template.pdf'
         }, function (err, res) {
           expect(res.object).to.eql('area');
           done();
@@ -95,8 +95,8 @@ describe('Areas', function () {
       Lob.areas.create({
         name: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front: 'https://www.lob.com/sam_back_template.pdf',
-        back: 'https://www.lob.com/sam_back_template.pdf',
+        front: 'https://assets.lob.com/sam_back_template.pdf',
+        back: 'https://assets.lob.com/sam_back_template.pdf',
         target_type: 'residential'
       }, function (err, res) {
         expect(res.object).to.eql('area');
@@ -108,8 +108,8 @@ describe('Areas', function () {
       Lob.areas.create({
         name: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front: 'https://www.lob.com/sam_back_template.pdf',
-        back: 'https://www.lob.com/sam_back_template.pdf',
+        front: 'https://assets.lob.com/sam_back_template.pdf',
+        back: 'https://assets.lob.com/sam_back_template.pdf',
         full_bleed: 1
       }, function (err, res) {
         expect(res.object).to.eql('area');
@@ -120,8 +120,8 @@ describe('Areas', function () {
       Lob.areas.create({
         name: 'Test Area',
         routes: ['this route is bananas', 'B A N A N A S'],
-        front: 'https://www.lob.com/sam_back_template.pdf',
-        back: 'https://www.lob.com/sam_back_template.pdf'
+        front: 'https://assets.lob.com/sam_back_template.pdf',
+        back: 'https://assets.lob.com/sam_back_template.pdf'
       }, function (err) {
         expect(err).to.be.an.instanceOf(Object);
         done();

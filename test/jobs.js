@@ -75,7 +75,7 @@ describe('Jobs', function () {
         objects: [
           {
             name: 'GO BLUE',
-            file: 'https://www.lob.com/goblue.pdf',
+            file: 'https://assets.lob.com/goblue.pdf',
             setting_id: 100
           }
         ]
@@ -143,7 +143,7 @@ describe('Jobs', function () {
         objects: [
           {
             name: 'GO BLUE',
-            file: 'https://www.lob.com/goblue.pdf',
+            file: 'https://assets.lob.com/goblue.pdf',
             setting_id: 100
           }
         ]
@@ -178,12 +178,12 @@ describe('Jobs', function () {
         objects: [
           {
             name: 'GO BLUE',
-            file: 'https://www.lob.com/goblue.pdf',
+            file: 'https://assets.lob.com/goblue.pdf',
             setting_id: 100
           },
           {
             name: 'TEST',
-            file: 'https://www.lob.com/goblue.pdf',
+            file: 'https://assets.lob.com/goblue.pdf',
             setting_id: 100
           }
         ]
@@ -201,12 +201,12 @@ describe('Jobs', function () {
         objects: [
           {
             name: 'GO BLUE',
-            file: 'https://www.lob.com/goblue.pdf',
+            file: 'https://assets.lob.com/goblue.pdf',
             setting_id: 100
           },
           {
             name: 'TEST',
-            file: 'https://www.lob.com/goblue.pdf',
+            file: 'https://assets.lob.com/goblue.pdf',
             setting_id: 100
           }
         ]
@@ -277,7 +277,7 @@ describe('Jobs', function () {
         objects: [
           {
             name: 'GO BLUE',
-            file: 'https://www.lob.com/test.pdf',
+            file: 'https://assets.lob.com/test.pdf',
             setting_id: 201
           }
         ]
