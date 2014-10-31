@@ -23,7 +23,7 @@ Lob.addresses.create({
     // Create the object (Lob object, not JS object!!)
     Lob.objects.create({
       name: 'My first object',
-      file: 'https://www.lob.com/goblue.pdf',
+      file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
       setting_id: 100
     }, function (err, object) {
       if (!err) {

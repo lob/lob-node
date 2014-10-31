@@ -1,7 +1,7 @@
 # lob-node
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]  [![Build Status](https://travis-ci.org/lob/lob-node.svg?branch=master)](https://travis-ci.org/lob/lob-node) [![Dependency Status](https://gemnasium.com/lob/lob-node.svg)](https://gemnasium.com/lob/lob-node) [![Coverage Status](https://coveralls.io/repos/lob/lob-node/badge.png?branch=master)](https://coveralls.io/r/lob/lob-node?branch=master)
 
-Node.js wrapper for the [Lob.com](http://Lob.com) API.
+Node.js wrapper for the [Lob.com](https://lob.com) API.
 
 ## Table of Contents
 [Installation](#Installation)
@@ -31,7 +31,7 @@ $ npm install
 ```
 ## Getting Started<a name="GettingStarted"></a>
 
-In order to use the client, you must have an API key. To obtain your key, you need to first create an account at [Lob.com](https://www.lob.com/)
+In order to use the client, you must have an API key. To obtain your key, you need to first create an account at [Lob.com](https://lob.com/)
 
 You can access your API access credentials from the [Accounts Page](https://dashboard.lob.com/account)
 
@@ -148,7 +148,7 @@ Lob.jobs.create({
     'obj_fe40799250bac8f6', // use an ID
     { // or an inline object
       name: 'GO BLUE',
-      file: 'https://www.Lob.com/goblue.pdf',
+      file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
       setting_id: 100
     }
 
@@ -244,7 +244,7 @@ Lob.objects.create({
 //
 Lob.objects.create({
   name: 'My First Object',
-  file: 'https://www.Lob.com/goblue.pdf',
+  file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
   setting_id: 100
 }, function (err, res) {
   console.log(err, res);
@@ -322,8 +322,8 @@ Lob.postcards.create({
 Lob.postcards.create({
   name: 'My First Postcard',
   to: 'adr_3b5fe0b76713a6e8',
-  front: 'https://www.Lob.com/postcardfront.pdf',
-  back: 'https://www.Lob.com/postcardback.pdf'
+  front: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardfront.pdf',
+  back: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardback.pdf'
 }, function (err, res) {
   console.log(err, res);
 });
@@ -334,8 +334,8 @@ Lob.postcards.create({
 Lob.postcards.create({
   name: 'My First Postcard',
   to: 'adr_3b5fe0b76713a6e8',
-  front: 'https://www.Lob.com/postcardback.pdf',
-  back: 'https://www.Lob.com/postcardback.pdf'
+  front: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardback.pdf',
+  back: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardback.pdf'
 }, function (err, res) {
   console.log(err, res);
 });
@@ -483,7 +483,7 @@ Lob.areas.list({count: 5, offset: 10}, function (err, res) {
 // You can mix and match (for example, both local or both remote)
 Lob.areas.create({
   front: '@/path/to/local/file',
-  back: 'https://www.lob.com/areaback.pdf',
+  back: 'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
   routes: ['94107-C031', '94158-C031'], // required
   target_type: 'all', // optional
   full_bleed: 1 // optional
