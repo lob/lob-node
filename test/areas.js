@@ -57,8 +57,10 @@ describe('Areas', function () {
       Lob.areas.create({
         name: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front: 'https://www.lob.com/sam_back_template.pdf',
-        back: 'https://www.lob.com/sam_back_template.pdf'
+        front:
+          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
+        back:
+          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf'
       }, function (err, res) {
         Lob.areas.retrieve(res.id, function (err2, res2) {
           expect(res).to.eql(res2);
@@ -83,8 +85,10 @@ describe('Areas', function () {
         Lob.areas.create({
           name: 'Test Area',
           routes: ['94158-C001', '94107-C031'],
-          front: 'https://www.lob.com/sam_back_template.pdf',
-          back: 'https://www.lob.com/sam_back_template.pdf'
+          front: 'https://s3-us-west-2.amazonaws.com/lob-assets/' +
+            'areaback.pdf',
+          back: 'https://s3-us-west-2.amazonaws.com/lob-assets/' +
+            'areaback.pdf'
         }, function (err, res) {
           expect(res.object).to.eql('area');
           done();
@@ -95,8 +99,10 @@ describe('Areas', function () {
       Lob.areas.create({
         name: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front: 'https://www.lob.com/sam_back_template.pdf',
-        back: 'https://www.lob.com/sam_back_template.pdf',
+        front:
+          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
+        back:
+          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
         target_type: 'residential'
       }, function (err, res) {
         expect(res.object).to.eql('area');
@@ -108,8 +114,10 @@ describe('Areas', function () {
       Lob.areas.create({
         name: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front: 'https://www.lob.com/sam_back_template.pdf',
-        back: 'https://www.lob.com/sam_back_template.pdf',
+        front:
+          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
+        back:
+          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
         full_bleed: 1
       }, function (err, res) {
         expect(res.object).to.eql('area');
@@ -120,15 +128,17 @@ describe('Areas', function () {
       Lob.areas.create({
         name: 'Test Area',
         routes: ['this route is bananas', 'B A N A N A S'],
-        front: 'https://www.lob.com/sam_back_template.pdf',
-        back: 'https://www.lob.com/sam_back_template.pdf'
+        front:
+          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
+        back:
+          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf'
       }, function (err) {
         expect(err).to.be.an.instanceOf(Object);
         done();
       });
     });
     it('should succeed using address and local file', function (done) {
-      var filePath = '@' + __dirname + '/assets/sam_back_template.pdf';
+      var filePath = '@' + __dirname + '/assets/areaback.pdf';
       Lob.areas.create({
         name: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
@@ -140,7 +150,7 @@ describe('Areas', function () {
       });
     });
     it('should succeed using address and buffers', function (done) {
-      fs.readFile(__dirname + '/assets/sam_back_template.pdf',
+      fs.readFile(__dirname + '/assets/areaback.pdf',
         function (err, file) {
         Lob.areas.create({
           name: 'Test Area',

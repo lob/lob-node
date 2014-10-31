@@ -10,9 +10,9 @@
     "Lob.com",
     "printing"
   ],
-  "version": "2.6.1",
+  "version": "2.6.2",
   "homepage": "https://github.com/lob/lob-node",
-  "author": "Lob <support@lob.com> (https://www.lob.com/)",
+  "author": "Lob <support@lob.com> (https://lob.com/)",
   "contributors": [
     "Harry Zhang <harry@lob.com>",
     "Leore Avidar <leore@lob.com>",

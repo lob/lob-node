@@ -26,7 +26,7 @@ Lob.addresses.create({
     Lob.postcards.create({
       name: 'My first postcard',
       to: address.id,
-      front: 'https://www.lob.com/postcardfront.pdf',
+      front: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardfront.pdf',
       message: 'Hello from lob!'
     }, function (err, postcard) {
       if (err) {
@@ -40,8 +40,8 @@ Lob.addresses.create({
     Lob.postcards.create({
       name: 'My first postcard',
       to: address.id,
-      front: 'https://www.lob.com/postcardfront.pdf',
-      back: 'https://www.lob.com/postcardback.pdf'
+      front: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardfront.pdf',
+      back: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardback.pdf'
     }, function (err, postcard) {
       if (err) {
         console.log(err);

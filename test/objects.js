@@ -46,7 +46,7 @@ describe('Objects', function () {
     it('should have the correct defaults', function (done) {
       Lob.objects.create({
         name: 'Test Object',
-        file: 'https://www.lob.com/goblue.pdf',
+        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
         setting_id: 100
       }, function (err, res) {
         Lob.objects.retrieve(res.id, function (err2, res2) {
@@ -87,7 +87,7 @@ describe('Objects', function () {
     it('should succeed using a remote file', function (done) {
       Lob.objects.create({
         name: 'Test Job',
-        file: 'https://www.lob.com/test.pdf',
+        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
         setting_id: 201
       }, function (err, res) {
         expect(res.object).to.eql('object');
@@ -111,7 +111,7 @@ describe('Objects', function () {
     it('should have the correct defaults', function (done) {
       Lob.objects.create({
         name: 'Test Object',
-        file: 'https://www.lob.com/goblue.pdf',
+        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
         setting_id: 100
       }, function (err, res) {
         Lob.objects.delete(res.id, function (err2, res2) {
