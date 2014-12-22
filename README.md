@@ -56,6 +56,10 @@ var Lob = require('Lob')('YOUR API KEY');
 // alternative way to initialize
 var lobFactory = require('Lob');
 var Lob = new lobFactory('YOUR API KEY');
+
+// change api version
+var Lob = require('Lob')('YOUR API KEY');
+Lob.setVersion('api_version');
 ```
 
 For a detailed API reference see [below](#API)
