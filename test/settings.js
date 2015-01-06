@@ -6,7 +6,7 @@ var expect       = chai.expect;
 describe('Settings', function () {
   describe('list', function () {
     it('should have correct defaults', function (done) {
-      Lob.settings.list(function (err, res) {
+      Lob.settings.list({type: 1}, function (err, res) {
         expect(res).to.have.property('object');
         expect(res).to.have.property('data');
         expect(res.data).to.be.instanceof(Array);
