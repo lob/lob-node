@@ -47,7 +47,7 @@ describe('Objects', function () {
       Lob.objects.create({
         name: 'Test Object',
         file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-        setting_id: 100
+        setting: 100
       }, function (err, res) {
         Lob.objects.retrieve(res.id, function (err2, res2) {
           expect(res).to.eql(res2);
@@ -68,7 +68,7 @@ describe('Objects', function () {
       Lob.objects.create({
         name: 'Test Job',
         file: filePath,
-        setting_id: 201
+        setting: 201
       }, function (err, res) {
         expect(res.object).to.eql('object');
         done();
@@ -88,7 +88,7 @@ describe('Objects', function () {
       Lob.objects.create({
         name: 'Test Job',
         file: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
-        setting_id: 201
+        setting: 201
       }, function (err, res) {
         expect(res.object).to.eql('object');
         done();
@@ -99,7 +99,7 @@ describe('Objects', function () {
       Lob.objects.create({
         name: 'Test Job',
         file: file,
-        setting_id: 201
+        setting: 201
       }, function (err, res) {
         expect(res.object).to.eql('object');
         done();
@@ -112,7 +112,7 @@ describe('Objects', function () {
       Lob.objects.create({
         name: 'Test Object',
         file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-        setting_id: 100
+        setting: 100
       }, function (err, res) {
         Lob.objects.delete(res.id, function (err2, res2) {
           expect(res2.deleted).to.eql(1);
