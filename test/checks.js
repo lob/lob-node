@@ -28,6 +28,7 @@ describe('Checks', function () {
       Lob.bankAccounts.create({
         routing_number: '122100024',
         account_number: '123456788',
+        signatory: 'John Doe',
         bank_address: {
           name: 'Chase',
           address_line1: '123 Test Street',

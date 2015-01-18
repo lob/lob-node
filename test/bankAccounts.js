@@ -11,6 +11,7 @@ describe('Bank Accounts', function () {
       Lob.bankAccounts.create({
         routing_number: '122100024',
         account_number: '123456788',
+        signatory: 'John Doe',
         bank_address: {
           name: 'Chase',
           address_line1: '123 Test Street',
@@ -31,7 +32,6 @@ describe('Bank Accounts', function () {
         }
       }, function (err, res) {
         expect(res).to.have.property('id');
-        expect(res).to.have.property('bank_code');
         expect(res).to.have.property('routing_number');
         expect(res).to.have.property('bank_address');
         expect(res).to.have.property('account_address');
@@ -50,13 +50,13 @@ describe('Bank Accounts', function () {
       var accountAddressId = 'adr_a11a87b8240b1540';
 
       Lob.bankAccounts.create({
+        signatory: 'John Doe',
         routing_number: routingNumber,
         account_number: accountNumber,
         bank_address: bankAddressId,
         account_address: accountAddressId
       }, function (err, res) {
         expect(res).to.have.property('id');
-        expect(res).to.have.property('bank_code');
         expect(res).to.have.property('routing_number');
         expect(res).to.have.property('bank_address');
         expect(res).to.have.property('account_address');
@@ -77,7 +77,8 @@ describe('Bank Accounts', function () {
         routing_number: routingNumber,
         account_number: accountNumber,
         bank_address: bankAddressId,
-        account_address: accountAddressId
+        account_address: accountAddressId,
+        signatory: 'John Doe'
       }, function (err) {
         expect(err).to.exist;
         return done();
@@ -95,12 +96,12 @@ describe('Bank Accounts', function () {
         routing_number: routingNumber,
         account_number: accountNumber,
         bank_address: bankAddressId,
-        account_address: accountAddressId
+        account_address: accountAddressId,
+        signatory: 'John Doe'
       }, function (err, res) {
         var id = res.id;
         Lob.bankAccounts.retrieve(id,function (err, res) {
           expect(res).to.have.property('id');
-          expect(res).to.have.property('bank_code');
           expect(res).to.have.property('routing_number');
           expect(res).to.have.property('bank_address');
           expect(res).to.have.property('account_address');
@@ -130,11 +131,12 @@ describe('Bank Accounts', function () {
         routing_number: routingNumber,
         account_number: accountNumber,
         bank_address: bankAddressId,
-        account_address: accountAddressId
+        account_address: accountAddressId,
+        signatory: 'John Doe'
       }, function (err, res) {
         var id = res.id;
         Lob.bankAccounts.delete(id,function (err, res) {
-          expect(res).to.exist;
+          expect(res.deleted).to.eql(1);
           return done();
         });
       });

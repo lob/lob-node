@@ -76,7 +76,7 @@ describe('Jobs', function () {
           {
             name: 'GO BLUE',
             file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting_id: 100
+            setting: 100
           }
         ]
       }, function (err, res) {
@@ -144,7 +144,7 @@ describe('Jobs', function () {
           {
             name: 'GO BLUE',
             file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting_id: 100
+            setting: 100
           }
         ]
       }, function (err, res) {
@@ -179,12 +179,12 @@ describe('Jobs', function () {
           {
             name: 'GO BLUE',
             file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting_id: 100
+            setting: 100
           },
           {
             name: 'TEST',
             file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting_id: 100
+            setting: 100
           }
         ]
       }, function (err, res) {
@@ -202,12 +202,12 @@ describe('Jobs', function () {
           {
             name: 'GO BLUE',
             file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting_id: 100
+            setting: 100
           },
           {
             name: 'TEST',
             file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting_id: 100
+            setting: 100
           }
         ]
       }, function (err) {
@@ -243,7 +243,7 @@ describe('Jobs', function () {
           {
             name: 'GO BLUE',
             file: filePath,
-            setting_id: 201
+            setting: 201
           }
         ]
       }, function (err, res) {
@@ -278,7 +278,7 @@ describe('Jobs', function () {
           {
             name: 'GO BLUE',
             file: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
-            setting_id: 201
+            setting: 201
           }
         ]
       }, function (err, res) {
@@ -314,7 +314,7 @@ describe('Jobs', function () {
           {
             name: 'GO BLUE',
             file: file,
-            setting_id: 201
+            setting: 201
           }
         ]
       }, function (err, res) {
@@ -350,12 +350,12 @@ describe('Jobs', function () {
           {
             name: 'GO BLUE',
             file: file,
-            setting_id: 201
+            setting: 201
           },
           {
             name: 'GO BLUE',
             file: file,
-            setting_id: 201
+            setting: 201
           }
         ]
       }, function (err, res) {
