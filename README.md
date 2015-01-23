@@ -80,8 +80,8 @@ For a detailed API reference see [below](#API)
   - [`Lob.objects.create(Object params, Function done)`](#Lob-objects-create)
   - [`Lob.objects.delete(String id, Function done)`](#Lob-objects-delete)
 - [`Lob.settings`](#Lob-settings)
+  - [`Lob.settings.list(Object options, Function done)`](#Lob-settings-list)
   - [`Lob.settings.retrieve(String id, Function done)`](#Lob-settings-retrieve)
-  - [`Lob.settings.create(Object params, Function done)`](#Lob-settings-create)
 - [`Lob.services`](#Lob-services)
   - [`Lob.services.retrieve(String id, Function done)`](#Lob-services-retrieve)
   - [`Lob.services.list(Object options, Function done)`](#Lob-services-list)
@@ -261,11 +261,17 @@ Lob.objects.delete('obj_1d1188df1e8d6427', function (err, res) {
 });
 ```
 ###`Lob.settings`<a name="Lob-settings"></a>
+#####`Lob.settings.list(Object options, Function done)`<a name="Lob-settings-list"></a>
+```
+Lob.settings.list({ type: 1 }, function (err, res) {
+  console.log(err, res);
+});
+```
 #####`Lob.settings.retrieve(String id, Function done)`<a name="Lob-settings-retrieve"></a>
 ```
-```
-#####`Lob.settings.create(Object params, Function done)`<a name="Lob-settings-create"></a>
-```
+Lob.settings.retrieve('100', function (err, res) {
+  console.log(err, res);
+});
 ```
 ###`Lob.services`<a name="Lob-services"></a>
 #####`Lob.services.retrieve(String id, Function done)`<a name="Lob-services-retrieve"></a>
