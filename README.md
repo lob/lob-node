@@ -51,14 +51,14 @@ using [pdfkit](http://pdfkit.org/). There is an example provided in the examples
 
 ##Usage<a name="Usage"></a>
 ```javascript
-var Lob = require('Lob')('YOUR API KEY');
+var Lob = require('lob')('YOUR API KEY');
 
 // alternative way to initialize
-var lobFactory = require('Lob');
+var lobFactory = require('lob');
 var Lob = new lobFactory('YOUR API KEY');
 
 // change api version
-var Lob = require('Lob')('YOUR API KEY');
+var Lob = require('lob')('YOUR API KEY');
 Lob.setVersion('api_version');
 ```
 
