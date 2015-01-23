@@ -381,7 +381,7 @@ Lob.checks.create({
 // Creating Check with Bank Account
 /**/
 Lob.bankAccounts.create({
-  routing_number: '123456789',
+  routing_number: '322271627',
   account_number: '123456788',
   bank_address: {
     name: 'Chase',
@@ -400,7 +400,8 @@ Lob.bankAccounts.create({
     address_state: 'KA',
     address_zip: '560039',
     address_country: 'IN',
-  }
+  },
+  signatory: 'John Doe'
 }, function (err, res) {
   Lob.checks.create({
     name: 'TEST_CHECK',
@@ -443,9 +444,8 @@ Lob.bankAccounts.list(function (err, res) {
 // Creating a Bank Account
 //
 Lob.bankAccounts.create({
-  routing_number: 123456789,
-  account_number: 123456789,
-  bank_code: 123456789,
+  routing_number: '322271627',
+  account_number: '123456789',
   bank_address: {
     name: 'Chase Bank',
     address_line1: '55 Edmonds',
@@ -461,7 +461,8 @@ Lob.bankAccounts.create({
     address_state: 'CA',
     address_zip: '94085',
     address_country: 'US'
-  }
+  },
+  signatory: 'John Doe'
 }, function (err, res) {
   console.log(err, res);
 });
