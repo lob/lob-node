@@ -33,7 +33,7 @@ $ npm install
 
 In order to use the client, you must have an API key. To obtain your key, you need to first create an account at [Lob.com](https://lob.com/)
 
-You can access your API access credentials from the [Accounts Page](https://dashboard.lob.com/account)
+You can access your API access credentials from the [Settings Panel](https://dashboard.lob.com/settings)
 
 ## Supported Image Types<a name="SupportedImageTypes"></a>
 
