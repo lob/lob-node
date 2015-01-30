@@ -23,9 +23,8 @@ Lob.addresses.create({
     console.log(err);
   } else {
     Lob.bankAccounts.create({
-      routing_number: 122100024,
-      account_number: 123456789,
-      bank_code: 123456789,
+      routing_number: '122100024',
+      account_number: '123456789',
       bank_address: {
         name: 'Chase Bank',
         address_line1: '55 Edmonds',
@@ -41,7 +40,8 @@ Lob.addresses.create({
         address_state: 'CA',
         address_zip: '94085',
         address_country: 'US'
-      }
+      },
+      signatory: 'John Doe'
     }, function (err, bankAccount) {
       if (err) {
         console.log(err);
