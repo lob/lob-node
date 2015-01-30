@@ -31,9 +31,9 @@ $ npm install
 ```
 ## Getting Started<a name="GettingStarted"></a>
 
-In order to use the client, you must have an API key. To obtain your key, you need to first create an account at [Lob.com](https://lob.com/)
+In order to use the client, you must have an API key. To obtain your key, you need to first create an account at [Lob.com](https://lob.com/).
 
-You can access your API access credentials from the [Settings Panel](https://dashboard.lob.com/settings)
+You can access your API access credentials from the [Settings Panel](https://dashboard.lob.com/settings).
 
 ## Supported Image Types<a name="SupportedImageTypes"></a>
 
@@ -41,7 +41,7 @@ You can access your API access credentials from the [Settings Panel](https://das
 - PNG
 - JPEG
 
-For more information on prepping the images please see the [Lob documentation](https://lob.com/docs#prepping)
+For more information on prepping the images please see the [Lob documentation](https://lob.com/docs/node#prepping).
 
 ## Creating a PDF<a name="CreatingAPDF"></a>
 
@@ -153,7 +153,7 @@ Lob.jobs.create({
     { // or an inline object
       name: 'GO BLUE',
       file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-      setting_id: 100
+      setting: 100
     }
 
   ] // always an array
@@ -239,7 +239,7 @@ Lob.objects.list({count: 10, offset: 5}, function (err, res) {
 Lob.objects.create({
   name: 'My First Object',
   file: '@/home/Downloads/goblue.pdf',
-  setting_id: 100
+  setting: 100
 }, function (err, res) {
   console.log(err, res);
 });
@@ -249,7 +249,7 @@ Lob.objects.create({
 Lob.objects.create({
   name: 'My First Object',
   file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-  setting_id: 100
+  setting: 100
 }, function (err, res) {
   console.log(err, res);
 });
