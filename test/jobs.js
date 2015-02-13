@@ -178,21 +178,20 @@ describe('Jobs', function () {
         objects: [
           {
             name: 'GO BLUE',
-            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting: 100
+            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
+            setting: 500
           },
           {
             name: 'TEST',
-            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting: 100
+            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
+            setting: 500
           }
         ]
       }, function (err, res) {
-        Lob.jobs.retrieve(res.id, function (err2, res2) {
-          expect(res.objects.length).to.eql(2);
-          expect(res).to.eql(res2);
-          done();
-        });
+        console.log(res);
+        expect(res.object).to.eql('job');
+        expect(res.objects.length).to.eql(2);
+        done();
       });
     });
     it('should fail on bad parameter', function (done) {
@@ -350,12 +349,12 @@ describe('Jobs', function () {
           {
             name: 'GO BLUE',
             file: file,
-            setting: 201
+            setting: 500
           },
           {
             name: 'GO BLUE',
             file: file,
-            setting: 201
+            setting: 500
           }
         ]
       }, function (err, res) {
