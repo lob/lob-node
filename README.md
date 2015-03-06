@@ -379,7 +379,8 @@ Lob.checks.create({
   to: 'adr_3b5fe0b76713a6e8',
   amount: 100,
   memo: 'THis is my first Check',
-  message: 'this check is for laundry'
+  message: 'this check is for laundry',
+  logo: 'https://s3-us-west-2.amazonaws.com/lob-assets/lob_check_logo.png'
 }, function (err, res) {
   console.log(err, res);
 });
@@ -414,7 +415,8 @@ Lob.bankAccounts.create({
     bank_account: res.id,
     to: 'adr_8613108bcfa00806',
     amount: 100,
-    memo: 'test check'
+    memo: 'test check',
+    logo: 'http://assets.lob.com/lob_check_logo.png'
   }, function (err, res2) {
     console.log(err, res2);
   });

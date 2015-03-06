@@ -53,7 +53,8 @@ Lob.addresses.create({
           to: address.id,
           amount: 100,
           memo: 'THis is my first Check',
-          message: 'this check is for laundry'
+          message: 'this check is for laundry',
+          logo: 'https://s3-us-west-2.amazonaws.com/lob-assets/lob_check_logo.png'
         }, function (err, check) {
           if (err) {
             console.log(err);
