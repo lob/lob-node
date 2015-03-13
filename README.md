@@ -43,11 +43,16 @@ You can access your API access credentials from the [Settings Panel](https://das
 
 For more information on prepping the images please see the [Lob documentation](https://lob.com/docs/node#prepping).
 
-## Creating a PDF<a name="CreatingAPDF"></a>
+### Creating a PDF<a name="CreatingAPDF"></a>
 
 If you need to generate your own PDF programmatically we recommend
 using [pdfkit](http://pdfkit.org/). There is an example provided in the examples folder [here](examples/create_pdf.js).
 
+## HTML Support
+
+The Lob.com API also supports HTML strings in leiu of a file of the above type. See below for examples of submitting with HTML strings.
+
+For templates and more information regarding HTML, please see the [Lob documentation](https://lob.com/docs/node#html-fonts). 
 
 ##Usage<a name="Usage"></a>
 ```javascript
@@ -253,6 +258,16 @@ Lob.objects.create({
 }, function (err, res) {
   console.log(err, res);
 });
+
+// Creating an Object with HTML
+//
+Lob.objects.create({
+  name: 'My First Object',
+  file: '<html style="margin: 130px; font-size: 50;">HTML here</html>',
+  setting: 100
+}, function (err, res) {
+  console.log(err, res);
+});
 ```
 #####`Lob.objects.delete(String id, Function done)`<a name="Lob-objects-delete"></a>
 ```
@@ -339,13 +354,13 @@ Lob.postcards.create({
 });
 /**/
 
-// Creating a PostCard with local, remote file
+// Creating a PostCard with HTML
 //
 Lob.postcards.create({
   name: 'My First Postcard',
   to: 'adr_3b5fe0b76713a6e8',
-  front: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardback.pdf',
-  back: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardback.pdf'
+  front: '<html style="margin: 130px; font-size: 50;">Front HTML</html>',
+  back: '<html style="margin: 130px; font-size: 50;">Back HTML</html>'
 }, function (err, res) {
   console.log(err, res);
 });
@@ -497,6 +512,17 @@ Lob.areas.list({count: 5, offset: 10}, function (err, res) {
 Lob.areas.create({
   front: '@/path/to/local/file',
   back: 'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
+  routes: ['94107-C031', '94158-C031'], // required
+  target_type: 'all', // optional
+  full_bleed: 1 // optional
+}, function (err, res) {
+  console.log(err, res);
+})
+
+// Create an area mailing with HTML
+Lob.areas.create({
+  front: '<html style="margin: 130px; font-size: 50;">Front HTML</html>',
+  back: '<html style="margin: 130px; font-size: 50;">Back HTML</html>',
   routes: ['94107-C031', '94158-C031'], // required
   target_type: 'all', // optional
   full_bleed: 1 // optional
