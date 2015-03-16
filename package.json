@@ -23,6 +23,7 @@
     "Joshua McGinnis <joshua@mcginnis.io>"
   ],
   "dependencies": {
+    "bluebird": "^2.9.14",
     "coveralls": "^2.11.1",
     "del": "^1.1.1",
     "gulp": "^3.8.6",
