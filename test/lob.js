@@ -20,6 +20,16 @@ describe('Init', function () {
   });
 });
 
+describe('Promisification', function() {
+  it('should allow you to promisify the wrapper', function () {
+    var Lob = require('../lib')('api_key');
+    expect(Lob.promisify).to.be.a('function');
+
+    Lob = Lob.promisify();
+    expect(Lob.setVersionAsync).to.be.a('function');
+  });
+});
+
 describe('setHost', function () {
   it('should allow you to override the host', function () {
     var lob = require('../lib')('api_key');
