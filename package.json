@@ -19,7 +19,8 @@
     "Peter Nagel <peter@lob.com>",
     "Shrav Mehta <shrav@lob.com>",
     "Amrit Ayalur <amrit@lob.com>",
-    "Grayson Chao <grayson@lob.com>"
+    "Grayson Chao <grayson@lob.com>",
+    "Joshua McGinnis <joshua@mcginnis.io>"
   ],
   "dependencies": {
     "coveralls": "^2.11.1",
