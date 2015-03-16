@@ -69,6 +69,24 @@ Lob.setVersion('api_version');
 
 For a detailed API reference see [below](#API)
 
+### Using Promises
+The Lob wrapper provides a `.promisify()` helper method which creates
+a promise-friendly version of the wrapper.
+
+Note that calling `.promisify()` returns additional methods with the
+`Async`-suffix attached to the Lob object.
+
+Example:
+```javascript
+var Lob = require('lob')('YOUR API KEY').promisify();
+
+Lob.settings.listAsync({ type: 1 }).then(function (res) {
+  console.log(res.data);
+}).catch(function (e) {
+  console.log(e);
+});
+```
+
 ##API<a name="API"></a>
 - [`Lob.jobs`](#Lob-jobs)
   - [`Lob.jobs.retrieve(String id, Function done)`](#Lob-jobs-retrieve)
