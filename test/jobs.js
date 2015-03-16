@@ -188,7 +188,6 @@ describe('Jobs', function () {
           }
         ]
       }, function (err, res) {
-        console.log(res);
         expect(res.object).to.eql('job');
         expect(res.objects.length).to.eql(2);
         done();

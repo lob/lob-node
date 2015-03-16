@@ -1,8 +1,10 @@
 // Include gulp
-var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
-var argv    = require('yargs').argv;
-var stylish = require('jshint-stylish');
+var gulp       = require('gulp');
+var plugins    = require('gulp-load-plugins')();
+var del        = require('del');
+var argv       = require('yargs').argv;
+var stylish    = require('jshint-stylish');
+var vinylPaths = require('vinyl-paths');
 
 var paths = {
   sourceFiles: 'lib/**/*.js',
@@ -38,7 +40,7 @@ gulp.task('coveralls', function () {
 gulp.task('testCI', ['lint', 'style', 'cover'], function () {
   if (process.env.NODE_ENV !== 'test') {
     gulp.src(process.env.COVERAGE_DIR + '/coverage')
-      .pipe(plugins.clean());
+      .pipe(vinylPaths(del));
     Object.keys(envVars).forEach(function (key) {
       process.env[key] = envVars[key];
     });
