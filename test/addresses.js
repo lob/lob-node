@@ -1,8 +1,7 @@
-var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var chai         = require('chai');
-var expect       = chai.expect;
-/* jshint camelcase: false */
+var chai   = require('chai');
+var expect = chai.expect;
+var Lob    = require('../lib/index.js')('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
+
 describe('Addresses', function () {
   describe('list', function () {
     it('should have correct defaults', function (done) {
@@ -21,6 +20,7 @@ describe('Addresses', function () {
         return done();
       });
     });
+
     it('should have correct defaults', function (done) {
       Lob.addresses.list({offset: 0}, function (err, res) {
         expect(res).to.have.property('object');
@@ -37,18 +37,21 @@ describe('Addresses', function () {
         return done();
       });
     });
+
     it('should let you limit the count', function (done) {
       Lob.addresses.list({count: 5}, function (err, res) {
         expect(res.count).to.eql(5);
         return done();
       });
     });
+
     it('should error on high count', function (done) {
       Lob.addresses.list({count: 589}, function (err) {
         expect(err[0].status_code).to.eql(422);
         return done();
       });
     });
+
     it('should let you shift the offset', function (done) {
       Lob.addresses.list({offset: 10}, function (err, res) {
         var address1 = res.data[9].id;
@@ -60,6 +63,7 @@ describe('Addresses', function () {
       });
     });
   });
+
   describe('create', function () {
     it('should succeed with default POST request', function (done) {
       var name = 'Harry Zhang';
@@ -156,6 +160,7 @@ describe('Addresses', function () {
         return done();
       });
     });
+
     it('should error when no name is provided', function (done) {
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -179,6 +184,7 @@ describe('Addresses', function () {
         return done();
       });
     });
+
     it('should error when no address_line1 is provided', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
@@ -202,6 +208,7 @@ describe('Addresses', function () {
         return done();
       });
     });
+
     it('should error when no address_zip is provided', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
@@ -225,6 +232,7 @@ describe('Addresses', function () {
         return done();
       });
     });
+
     it('should error when an invalid state is provided', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
@@ -251,6 +259,7 @@ describe('Addresses', function () {
       });
     });
   });
+
   describe('get', function () {
     it('should have correct defaults', function (done) {
       var name = 'Harry Zhang';
@@ -279,6 +288,7 @@ describe('Addresses', function () {
         });
       });
     });
+
     it('should error on bad address', function (done) {
       Lob.addresses.retrieve('38472', function (err) {
         expect(err[0].status_code).to.eql(404);
@@ -286,6 +296,7 @@ describe('Addresses', function () {
       });
     });
   });
+
   describe('delete', function () {
     it('should delete correctly', function (done) {
       var name = 'Harry Zhang';
@@ -314,6 +325,7 @@ describe('Addresses', function () {
         });
       });
     });
+
     it('should error on bad delete', function (done) {
       Lob.addresses.delete('38472', function (err) {
         expect(err[0].status_code).to.eql(404);
