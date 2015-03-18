@@ -1,9 +1,7 @@
-var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var chai         = require('chai');
-var expect       = chai.expect;
+var chai   = require('chai');
+var expect = chai.expect;
+var Lob    = require('../lib/index.js')('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
-/* jshint camelcase: false */
 describe('Checks', function () {
   describe('create', function () {
     it('should succeed with default parameters', function (done) {
@@ -24,6 +22,7 @@ describe('Checks', function () {
         return done();
       });
     });
+
     it('should succeed with inline bank account', function (done) {
       Lob.bankAccounts.create({
         routing_number: '122100024',
@@ -66,6 +65,7 @@ describe('Checks', function () {
         });
       });
     });
+
     it('should succeed with inline to address id', function (done) {
       Lob.checks.create({
         name: 'TEST_CHECK',
@@ -99,15 +99,14 @@ describe('Checks', function () {
         bank_account: 'bank_e13902b6bdfff24',
         amount: 100,
         memo: 'test check'
-      }, function (err, res) {
+      }, function (err) {
         expect(err[0].message).to.eql('to is required');
         expect(err[0].status_code).to.eql(422);
-        expect(res.errors[0].message).to.eql('to is required');
-        expect(res.errors[0].status_code).to.eql(422);
         return done();
       });
     });
   });
+
   describe('retrieve', function () {
     it('should succeed on get', function (done) {
       Lob.checks.create({
@@ -207,4 +206,3 @@ describe('Checks', function () {
     });
   });
 });
-/* jshint camelcase: true */
