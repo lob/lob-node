@@ -1,10 +1,8 @@
-var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var chai         = require('chai');
-var expect       = chai.expect;
+var fs     = require('fs');
+var chai   = require('chai');
+var expect = chai.expect;
+var Lob    = require('../lib/index.js')('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
-/* jshint camelcase: false */
-/*jshint expr: true*/
 describe('Bank Accounts', function () {
   describe('create', function () {
     it('should succeed with inline addresses', function (done) {
@@ -67,6 +65,7 @@ describe('Bank Accounts', function () {
         return done();
       });
     });
+
     it('should error with bad address', function (done) {
       var routingNumber = '122100024';
       var accountNumber = '123456788';
@@ -85,6 +84,7 @@ describe('Bank Accounts', function () {
       });
     });
   });
+
   describe('get', function () {
     it('should succeed on get', function (done) {
       var routingNumber = '122100024';
@@ -113,6 +113,7 @@ describe('Bank Accounts', function () {
         });
       });
     });
+
     it('should error on bad bank_account', function (done) {
       Lob.bankAccounts.retrieve('38472', function (err) {
         expect(err[0]).to.exist;
@@ -120,6 +121,7 @@ describe('Bank Accounts', function () {
       });
     });
   });
+
   describe('delete', function () {
     it('should succeed on delete', function (done) {
       var routingNumber = '122100024';
@@ -141,6 +143,7 @@ describe('Bank Accounts', function () {
         });
       });
     });
+
     it('should error on bad bank_account', function (done) {
       Lob.bankAccounts.delete('38472', function (err) {
         expect(err[0]).to.exist;
@@ -148,6 +151,7 @@ describe('Bank Accounts', function () {
       });
     });
   });
+
   describe('list', function () {
     it('should have correct defaults', function (done) {
       Lob.bankAccounts.list(function (err, res) {
@@ -165,6 +169,7 @@ describe('Bank Accounts', function () {
         return done();
       });
     });
+
     it('should have correct defaults', function (done) {
       Lob.bankAccounts.list({offset: 0}, function (err, res) {
         expect(res).to.have.property('object');
@@ -181,6 +186,7 @@ describe('Bank Accounts', function () {
         return done();
       });
     });
+
     it('should get exact count', function (done) {
       Lob.bankAccounts.list({count: 5, offset: 0}, function (err, res) {
         expect(res).to.have.property('object');
@@ -197,6 +203,7 @@ describe('Bank Accounts', function () {
         return done();
       });
     });
+
     it('should get error on high count', function (done) {
       Lob.bankAccounts.list({count: 56565, offset: 0}, function (err) {
         expect(err).to.exist;
@@ -205,5 +212,3 @@ describe('Bank Accounts', function () {
     });
   });
 });
-/*jshint expr: false*/
-/* jshint camelcase: true */
