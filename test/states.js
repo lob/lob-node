@@ -1,8 +1,7 @@
-var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var chai         = require('chai');
-var expect       = chai.expect;
-/* jshint camelcase: false */
+var chai   = require('chai');
+var expect = chai.expect;
+var Lob    = require('../lib/index.js')('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
+
 describe('States', function () {
   describe('list', function () {
     it('should have correct defaults', function (done) {
@@ -15,4 +14,3 @@ describe('States', function () {
     });
   });
 });
-/* jshint camelcase: true */
