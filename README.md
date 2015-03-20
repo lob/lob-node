@@ -62,7 +62,7 @@ var Lob = require('lob')('YOUR API KEY');
 var Lob = require('lob')('YOUR API KEY', 'API_VERSION');
 
 // change internal defaults (e.g. host)
-var options = {/* options */};
+var options = {/* see options below */};
 var Lob = require('lob')('YOUR API KEY', 'API_VERSION', options);
 
 // callback pattern
@@ -83,6 +83,13 @@ Lob.settings.list({ type: 1 }).then(function(res) {
   console.log(e);
 });
 ```
+
+### Options
+The Lob constructor accepts an `options` object which may contain one or more of the following options:
+
+* `baseURI` - Override the default host API calls are issued to.
+* `userAgent` - Override the default userAgent.
+* `headers` - Edit the headers sent in all API calls.
 
 For a detailed API reference see [below](#API)
 
