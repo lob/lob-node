@@ -2,10 +2,10 @@ var chai   = require('chai');
 var expect = chai.expect;
 var Lob    = require('../lib/index.js')('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
-describe('Services', function () {
-  describe('list', function () {
-    it('should have correct defaults', function (done) {
-      Lob.services.list(function (err, res) {
+describe('Services', function() {
+  describe('list', function() {
+    it('should have correct defaults', function(done) {
+      Lob.services.list(function(err, res) {
         expect(res).to.have.property('object');
         expect(res).to.have.property('data');
         expect(res.data).to.be.instanceof(Array);
@@ -15,16 +15,16 @@ describe('Services', function () {
     });
   });
 
-  describe('retrieve', function () {
-    it('should have correct defaults', function (done) {
-      Lob.services.retrieve('2', function (err, res) {
+  describe('retrieve', function() {
+    it('should have correct defaults', function(done) {
+      Lob.services.retrieve('2', function(err, res) {
         expect(res.object).to.eql('service');
         done();
       });
     });
 
-    it('should fail with bad id', function (done) {
-      Lob.services.retrieve('9800', function (err) {
+    it('should fail with bad id', function(done) {
+      Lob.services.retrieve('9800', function(err) {
         expect(err[0].status_code).to.eql(404);
         done();
       });
