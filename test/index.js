@@ -20,7 +20,7 @@ describe('Main Lob Object', function() {
     var options = { host: 'http://test' };
     var Lob = require('../lib')(API_KEY, options);
 
-    expect(Lob.options.baseURI).to.eql('http://test');
+    expect(Lob.options.host).to.eql('http://test');
   });
 
   it('should propogate request errors', function(done) {
