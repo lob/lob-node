@@ -58,34 +58,34 @@ For templates and more information regarding HTML, please see the [Lob documenta
 ```javascript
 var Lob = require('lob')('YOUR API KEY');
 
-// alternative way to initialize
-var lobFactory = require('lob');
-var Lob = new lobFactory('YOUR API KEY');
-
 // change api version
-var Lob = require('lob')('YOUR API KEY');
-Lob.setVersion('api_version');
+var Lob = require('lob')('YOUR API KEY', 'API_VERSION');
+
+// change internal defaults (e.g. host)
+var options = {/* options */};
+var Lob = require('lob')('YOUR API KEY', 'API_VERSION', options);
+
+// callback pattern
+Lob.settings.list({ type: 1 }, function(err, body) {
+  if(err) return callback(err);
+  return callback(null, body.data);
+});
 ```
 
-For a detailed API reference see [below](#API)
-
-### Using Promises
-The Lob wrapper provides a `.promisify()` helper method which creates
-a promise-friendly version of the wrapper.
-
-Note that calling `.promisify()` returns additional methods with the
-`Async`-suffix attached to the Lob object.
+Additionally, every resource method returns a promise, so you don't have to use the regular callback. E.g.
 
 Example:
 ```javascript
 var Lob = require('lob')('YOUR API KEY').promisify();
 
-Lob.settings.listAsync({ type: 1 }).then(function (res) {
+Lob.settings.list({ type: 1 }).then(function(res) {
   console.log(res.data);
 }).catch(function (e) {
   console.log(e);
 });
 ```
+
+For a detailed API reference see [below](#API)
 
 ##API<a name="API"></a>
 - [`Lob.jobs`](#Lob-jobs)
