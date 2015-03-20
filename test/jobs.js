@@ -1,7 +1,9 @@
-var chai   = require('chai');
-var expect = chai.expect;
-var fs     = require('fs');
-var Lob    = require('../lib/index.js')('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
+var fs      = require('fs');
+var chai    = require('chai');
+var expect  = chai.expect;
+
+var API_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc';
+var Lob     = require('../lib/index.js')(API_KEY);
 
 describe('Jobs', function() {
 
@@ -21,7 +23,8 @@ describe('Jobs', function() {
         expect(res.data.length).to.eql(10);
         expect(res).to.have.property('count');
         expect(res).to.have.property('next_url');
-        expect(res.next_url).to.eql('https://api.lob.com/' + 'v1/jobs?count=10&offset=10');
+        expect(res.next_url).to.eql('https://api.lob.com/' +
+                                    'v1/jobs?count=10&offset=10');
         expect(res).to.have.property('previous_url');
         expect(res.object).to.eql('list');
         expect(res.count).to.eql(10);
