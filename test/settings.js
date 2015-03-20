@@ -14,7 +14,7 @@ describe('Settings', function() {
       });
     });
 
-    it.only('should have optional options', function(done) {
+    it('should have optional options', function(done) {
       Lob.settings.list(function(err, res) {
         expect(res).to.have.property('object');
         expect(res).to.have.property('data');
