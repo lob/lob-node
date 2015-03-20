@@ -74,7 +74,6 @@ Lob.settings.list({ type: 1 }, function(err, body) {
 
 Additionally, every resource method returns a promise, so you don't have to use the regular callback. E.g.
 
-Example:
 ```javascript
 var Lob = require('lob')('YOUR API KEY').promisify();
 
