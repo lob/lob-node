@@ -5,7 +5,17 @@ var Lob    = require('../lib/index.js')('test_0dc8d51e0acffcb1880e0f19c79b2f5b0c
 describe('Settings', function() {
   describe('list', function() {
     it('should have correct defaults', function(done) {
-      Lob.settings.list({type: 1}, function(err, res) {
+      Lob.settings.list({ type: 1 }, function(err, res) {
+        expect(res).to.have.property('object');
+        expect(res).to.have.property('data');
+        expect(res.data).to.be.instanceof(Array);
+        expect(res.object).to.eql('list');
+        done();
+      });
+    });
+
+    it.only('should have optional options', function(done) {
+      Lob.settings.list(function(err, res) {
         expect(res).to.have.property('object');
         expect(res).to.have.property('data');
         expect(res.data).to.be.instanceof(Array);
