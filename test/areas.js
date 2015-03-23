@@ -83,7 +83,6 @@ describe('Areas', function() {
   });
 
   describe('create', function() {
-
     it('should succeed using address and remote file', function(done) {
       var address;
       Lob.addresses.list({ offset: 0, count: 1 }, function(err, res) {
@@ -173,8 +172,8 @@ describe('Areas', function() {
       Lob.areas.create({
         name: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front: filePath,
-        back: filePath
+        front: fs.createReadStream(filePath),
+        back: fs.createReadStream(filePath)
       }, function(err, res) {
         expect(res.object).to.eql('area');
         done();

@@ -74,7 +74,7 @@ describe('Objects', function () {
       var filePath = __dirname + '/assets/4x6.pdf';
       Lob.objects.create({
         name: 'Test Job',
-        file: filePath,
+        file: fs.createReadStream(filePath),
         setting: 201
       }, function (err, res) {
         expect(res.object).to.eql('object');

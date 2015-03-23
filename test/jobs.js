@@ -278,7 +278,7 @@ describe('Jobs', function() {
         objects: [
           {
             name: 'GO BLUE',
-            file: filePath,
+            file: fs.createReadStream(filePath),
             setting: 201
           }
         ]

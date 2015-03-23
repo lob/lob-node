@@ -163,8 +163,8 @@ describe('Postcards', function() {
         Lob.postcards.create({
           name: 'Test Postcard',
           to: address,
-          front: filePath,
-          back: filePath
+          front: fs.createReadStream(filePath),
+          back: fs.createReadStream(filePath)
         }, function(err, res) {
           expect(res.object).to.eql('postcard');
           done();
@@ -190,8 +190,8 @@ describe('Postcards', function() {
       Lob.postcards.create({
         name: 'Test Postcard',
         to: address,
-        front: filePath,
-        back: filePath
+        front: fs.createReadStream(filePath),
+        back: fs.createReadStream(filePath)
       }, function(err, res) {
         expect(res.object).to.eql('postcard');
         done();
