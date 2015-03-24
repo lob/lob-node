@@ -19,32 +19,33 @@
     "Peter Nagel <peter@lob.com>",
     "Shrav Mehta <shrav@lob.com>",
     "Amrit Ayalur <amrit@lob.com>",
-    "Grayson Chao <grayson@lob.com>"
+    "Grayson Chao <grayson@lob.com>",
+    "Joshua McGinnis <joshua@mcginnis.io>"
   ],
   "dependencies": {
+    "bluebird": "^2.9.14",
     "coveralls": "^2.11.1",
+    "del": "^1.1.1",
     "gulp": "^3.8.6",
     "gulp-coveralls": "^0.1.2",
     "gulp-load-plugins": "^0.5.3",
     "mocha-lcov-reporter": "0.0.1",
     "pdfkit": "^0.6.5",
-    "request": "^2.39.0"
+    "request": "^2.39.0",
+    "vinyl-paths": "^1.0.0"
   },
   "devDependencies": {
-    "gulp": "~3.8.6",
     "gulp-jshint": "~1.8.2",
     "chai": "^1.9.1",
     "yargs": "^1.3.1",
-    "gulp-load-plugins": "^0.5.3",
     "jshint-stylish": "~0.4.0",
     "mocha": "~1.21.3",
-    "gulp-mocha": "~0.5.2",
-    "gulp-istanbul": "~0.2.1",
-    "istanbul": "^0.3.0",
+    "gulp-mocha": "~2.0.0",
+    "gulp-istanbul": "~0.6.0",
+    "istanbul": "~0.3.8",
     "gulp-jscs": "^1.0.0",
     "gulp-istanbul-enforcer": "^1.0.3",
     "gulp-exit": "0.0.2",
-    "gulp-clean": "^0.3.1",
     "gulp-util": "^3.0.0"
   },
   "repository": {

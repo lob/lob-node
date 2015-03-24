@@ -52,20 +52,45 @@ using [pdfkit](http://pdfkit.org/). There is an example provided in the examples
 
 The Lob.com API also supports HTML strings in leiu of a file of the above type. See below for examples of submitting with HTML strings.
 
-For templates and more information regarding HTML, please see the [Lob documentation](https://lob.com/docs/node#html-fonts). 
+For templates and more information regarding HTML, please see the [Lob documentation](https://lob.com/docs/node#html-fonts).
 
 ##Usage<a name="Usage"></a>
 ```javascript
 var Lob = require('lob')('YOUR API KEY');
 
-// alternative way to initialize
-var lobFactory = require('lob');
-var Lob = new lobFactory('YOUR API KEY');
-
 // change api version
 var Lob = require('lob')('YOUR API KEY');
-Lob.setVersion('api_version');
+
+// change internal defaults (e.g. host)
+var options = {/* see options below */};
+var Lob = require('lob')('YOUR API KEY', options);
+
+// callback pattern
+Lob.settings.list({ type: 1 }, function(err, body) {
+  if(err) return callback(err);
+  return callback(null, body.data);
+});
 ```
+
+Additionally, every resource method returns a promise, so you don't have to use the regular callback. E.g.
+
+```javascript
+var Lob = require('lob')('YOUR API KEY');
+
+Lob.settings.list({ type: 1 }).then(function(res) {
+  console.log(res.data);
+}).catch(function (e) {
+  console.log(e);
+});
+```
+
+### Options
+The Lob constructor accepts an `options` object which may contain one or more of the following options:
+
+* `apiVersion` - Optionally set the version of the Lob API to use. Defaults to latest.
+* `host` - Override the default host API calls are issued to.
+* `userAgent` - Override the default userAgent.
+* `headers` - Edit the headers sent in all API calls.
 
 For a detailed API reference see [below](#API)
 
@@ -118,14 +143,14 @@ For a detailed API reference see [below](#API)
 
 ###`Lob.jobs`<a name="Lob-jobs"></a>
 #####`Lob.jobs.retrieve(String id, Function done)`<a name="Lob-jobs-retrieve"></a>
-```
+```javascript
 // Retrieve a particular job JOB_ID = "job_*" (required)
 Lob.jobs.retrieve('job_f6f4c0c3f6338136', function (err, res) {
   console.log(err, res);
 });
 ```
 #####`Lob.jobs.list(Object options, Function done)`<a name="Lob-jobs-list"></a>
-```
+```javascript
 // List Jobs with default offset:0, count:0
 Lob.jobs.list(function (err, data) {
   console.log(err, data);
@@ -137,7 +162,7 @@ Lob.jobs.list({count: 5, offset: 10}, function (err, res) {
 });
 ```
 #####`Lob.jobs.create(Object params, Function done)`<a name="Lob-jobs-create"></a>
-```
+```javascript
 //using ID's you already created
 Lob.jobs.create({
   name: 'Lob Test Job',
@@ -169,7 +194,7 @@ Lob.jobs.create({
 ```
 ###`Lob.addresses`<a name="Lob-addresses"></a>
 #####`Lob.addresses.retrieve(String id, Function done)`<a name="Lob-addresses-retrieve"></a>
-```
+```javascript
 // Retrieve a particular address address object
 //
 Lob.addresses.retrieve('adr_cda562558b71ff93', function (err, res) {
@@ -177,7 +202,7 @@ Lob.addresses.retrieve('adr_cda562558b71ff93', function (err, res) {
 });
 ```
 #####`Lob.addresses.delete(String id, Function done)`<a name="Lob-addresses-delete"></a>
-```
+```javascript
 // Delete an Address Object (make sure it exists first)
 //
 Lob.addresses.delete('adr_71d64099e6729996', function (err, res) {
@@ -185,7 +210,7 @@ Lob.addresses.delete('adr_71d64099e6729996', function (err, res) {
 });
 ```
 #####`Lob.addresses.list(Object options, Function done)`<a name="Lob-addresses-list"></a>
-```
+```javascript
 // List All Addresses with default offset:0, count:0
 //
 Lob.addresses.list(function (err, res) {
@@ -199,7 +224,7 @@ Lob.addresses.list({count: 10, offset: 5}, function (err, res) {
 });
 ```
 #####`Lob.addresses.create(Object params, Function done)`<a name="Lob-addresses-create"></a>
-```
+```javascript
 Lob.addresses.create({
   name: 'Test Name',
   email: 'test@gmail.com',
@@ -216,7 +241,7 @@ Lob.addresses.create({
 ```
 ###`Lob.objects`<a name="Lob-objects"></a>
 #####`Lob.objects.retrieve(String id, Function done)`<a name="Lob-objects-retrieve"></a>
-```
+```javascript
 // Retrieve a particular object OBJECT_ID = "obj_*" (required)
 //
 Lob.objects.retrieve('obj_1d1188df1e8d6427', function (err, res) {
@@ -224,7 +249,7 @@ Lob.objects.retrieve('obj_1d1188df1e8d6427', function (err, res) {
 });
 ```
 #####`Lob.objects.list(Object options, Function done)`<a name="Lob-objects-list"></a>
-```
+```javascript
 // List All Objects with default offset:0, count:0
 //
 Lob.objects.list(function (err, res) {
@@ -238,7 +263,7 @@ Lob.objects.list({count: 10, offset: 5}, function (err, res) {
 });
 ```
 #####`Lob.objects.create(Object params, Function done)`<a name="Lob-objects-create"></a>
-```
+```javascript
 // Creating an Object with local file
 //
 Lob.objects.create({
@@ -270,7 +295,7 @@ Lob.objects.create({
 });
 ```
 #####`Lob.objects.delete(String id, Function done)`<a name="Lob-objects-delete"></a>
-```
+```javascript
 Lob.objects.delete('obj_1d1188df1e8d6427', function (err, res) {
   console.log(err, res);
 });
@@ -283,14 +308,14 @@ Lob.settings.list({ type: 1 }, function (err, res) {
 });
 ```
 #####`Lob.settings.retrieve(String id, Function done)`<a name="Lob-settings-retrieve"></a>
-```
+```javascript
 Lob.settings.retrieve('100', function (err, res) {
   console.log(err, res);
 });
 ```
 ###`Lob.services`<a name="Lob-services"></a>
 #####`Lob.services.retrieve(String id, Function done)`<a name="Lob-services-retrieve"></a>
-```
+```javascript
 // Retrieve a particular service object
 //
 Lob.services.retrieve('2', function (err, res) {
@@ -298,7 +323,7 @@ Lob.services.retrieve('2', function (err, res) {
 });
 ```
 #####`Lob.services.list(Object options, Function done)`<a name="Lob-services-list"></a>
-```
+```javascript
 // List All services
 //
 Lob.services.list(function (err, res) {
@@ -307,7 +332,7 @@ Lob.services.list(function (err, res) {
 ```
 ###`Lob.postcards`<a name="Lob-postcards"></a>
 #####`Lob.postcards.retrieve(String id, Function done)`<a name="Lob-postcards-retrieve"></a>
-```
+```javascript
 // Retrieve a particular postcard object
 //
 Lob.postcards.retrieve('psc_056fdd2b4a11a169', function (err, res) {
@@ -315,7 +340,7 @@ Lob.postcards.retrieve('psc_056fdd2b4a11a169', function (err, res) {
 });
 ```
 #####`Lob.postcards.list(Object options, Function done)`<a name="Lob-postcards-list"></a>
-```
+```javascript
 // List All Postcards with default offset:0, count:0
 //
 Lob.postcards.list(function (err, res) {
@@ -329,7 +354,7 @@ Lob.postcards.list({offset: 10, count: 5}, function (err, res) {
 });
 ```
 #####`Lob.postcards.create(Object params, Function done)`<a name="Lob-postcards-create"></a>
-```
+```javascript
 // Creating PostCard with local file
 //
 Lob.postcards.create({
@@ -367,7 +392,7 @@ Lob.postcards.create({
 ```
 ###`Lob.checks`<a name="Lob-checks"></a>
 #####`Lob.checks.retrieve(String id, Function done)`<a name="Lob-checks-retrieve"></a>
-```
+```javascript
 // Retrieve a particular check object
 //
 Lob.checks.retrieve('psc_056fdd2b4a11a169', function (err, res) {
@@ -375,7 +400,7 @@ Lob.checks.retrieve('psc_056fdd2b4a11a169', function (err, res) {
 });
 ```
 #####`Lob.checks.list(Object options, Function done)`<a name="Lob-checks-list"></a>
-```
+```javascript
 // List All Checks with default offset:0, count:0
 //
 Lob.checks.list(function (err, res) {
@@ -384,7 +409,7 @@ Lob.checks.list(function (err, res) {
 /**/
 ```
 #####`Lob.checks.create(Object params, Function done)`<a name="Lob-checks-create"></a>
-```
+```javascript
 // Creating Check
 /**/
 Lob.checks.create({
@@ -440,7 +465,7 @@ Lob.bankAccounts.create({
 ```
 ###`Lob.bankAccounts`<a name="Lob-bankAccounts"></a>
 #####`Lob.bankAccounts.retrieve(String id, Function done)`<a name="Lob-bankAccounts-retrieve"></a>
-```
+```javascript
 // Retrieve a particular Bank Account Object
 //
 Lob.bankAccounts.retrieve('bank_7a88fa3abe5e2da', function (err, res) {
@@ -448,14 +473,14 @@ Lob.bankAccounts.retrieve('bank_7a88fa3abe5e2da', function (err, res) {
 });
 ```
 #####`Lob.bankAccounts.delete(String id, Function done)`<a name="Lob-bankAccounts-delete"></a>
-```
+```javascript
 // Deleting a bank account
 Lob.bankAccounts.delete('bank_7a88fa3abe5e2da', function (err, res) {
   console.log(err, res);
 });
 ```
 #####`Lob.bankAccounts.list(Object options, Function done)`<a name="Lob-bankAccounts-list"></a>
-```
+```javascript
 // List All Accounts with default offset:0, count:10
 //
 Lob.bankAccounts.list(function (err, res) {
@@ -463,7 +488,7 @@ Lob.bankAccounts.list(function (err, res) {
 });
 ```
 #####`Lob.bankAccounts.create(Object params, Function done)`<a name="Lob-bankAccounts-create"></a>
-```
+```javascript
 // Creating a Bank Account
 //
 Lob.bankAccounts.create({
@@ -492,21 +517,21 @@ Lob.bankAccounts.create({
 ```
 ###`Lob.areas`<a name="Lob-areas"></a>
 #####`Lob.areas.retrieve(String id, Function done)`<a name="Lob-areas-retrieve"></a>
-```
+```javascript
 // Retrieve a particular Area
 Lob.areas.retrieve('area_350e47ace201ee4', function (err, res) {
   console.log(err, res);
 });
 ```
 #####`Lob.areas.list(Object options, Function done)`<a name="Lob-areas-list"></a>
-```
+```javascript
 // List all areas with count: 5 and offset: 10
 Lob.areas.list({count: 5, offset: 10}, function (err, res) {
   console.log(err, res);
 });
 ```
 #####`Lob.areas.create(Object params, Function done)`<a name="Lob-areas-create"></a>
-```
+```javascript
 // Create an area mailing with a mix of local and remote files
 // You can mix and match (for example, both local or both remote)
 Lob.areas.create({
@@ -532,7 +557,7 @@ Lob.areas.create({
 ```
 ###`Lob.routes`<a name="Lob-routes"></a>
 #####`Lob.routes.list(Object options, Function done)`<a name="Lob-routes-list"></a>
-```
+```javascript
 // List all routes for a set of zip codes
 Lob.routes.list({
   zip_codes: ['94108', '94709', '94608']
@@ -542,7 +567,7 @@ Lob.routes.list({
 ```
 ###`Lob.verification`<a name="Lob-verification"></a>
 #####`Lob.verification.verify(Object params, Function done)`<a name="Lob-verification-verify"></a>
-```
+```javascript
 Lob.verification.verify({ // Inline address only
   address_line1: '325 Berry Street',
   address_line2: 'Unit 211',
@@ -556,7 +581,7 @@ Lob.verification.verify({ // Inline address only
 ```
 ###`Lob.countries`<a name="Lob-countries"></a>
 #####`Lob.countries.list(Object options, Function done)`<a name="Lob-countries-list"></a>
-```
+```javascript
 // List All Countries with defaults
 //
 Lob.countries.list(function (err, res) {
@@ -565,7 +590,7 @@ Lob.countries.list(function (err, res) {
 ```
 ###`Lob.states`<a name="Lob-states"></a>
 #####`Lob.states.list(Object options, Function done)`<a name="Lob-states-list"></a>
-```
+```javascript
 Lob.states.list(function (err, res) {
   console.log(err, res);
 });

@@ -1,11 +1,11 @@
-var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var chai         = require('chai');
-var expect       = chai.expect;
-/* jshint camelcase: false */
+var chai    = require('chai');
+var expect  = chai.expect;
 
-describe('Verification', function () {
-  it('should have correct defaults', function (done) {
+var API_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc';
+var Lob     = require('../lib/index.js')(API_KEY);
+
+describe('Verification', function() {
+  it('should have correct defaults', function(done) {
     var addressLine1 = '220 William T Morrissey Boulevard';
     var addressCity = 'Boston';
     var addressState = 'MA';
@@ -15,7 +15,7 @@ describe('Verification', function () {
       address_city: addressCity,
       address_state: addressState,
       address_zip: addressZip
-    }, function (err, res) {
+    }, function(err, res) {
       expect(res).to.have.property('address');
       expect(res.address).to.have.property('address_line1');
       expect(res.address.address_line1).to.eql('220 WILLIAM T MORRISSEY BLVD');
@@ -32,7 +32,8 @@ describe('Verification', function () {
       return done();
     });
   });
-  it('should error when invalid address is provided', function (done) {
+
+  it('should error when invalid address is provided', function(done) {
     var addressLine1 = '123 Test Street';
     var addressCity = 'Boston';
     var addressState = 'MA';
@@ -42,12 +43,13 @@ describe('Verification', function () {
       address_city: addressCity,
       address_state: addressState,
       address_zip: addressZip
-    }, function (err) {
+    }, function(err) {
       expect(err).to.be.instanceof(Array);
       return done();
     });
   });
-  it('should warn when semi-valid address is provided', function (done) {
+
+  it('should warn when semi-valid address is provided', function(done) {
     var addressLine1 = '325 Berry St';
     var addressCity = 'San Francisco';
     var addressState = 'CA';
@@ -57,7 +59,7 @@ describe('Verification', function () {
       address_city: addressCity,
       address_state: addressState,
       address_zip: addressZip
-    }, function (err, res) {
+    }, function(err, res) {
       expect(res).to.have.property('address');
       expect(res.address).to.have.property('address_line1');
       expect(res.address.address_line1).to.eql('325 BERRY ST');
@@ -76,5 +78,3 @@ describe('Verification', function () {
     });
   });
 });
-
-/* jshint camelcase: true */

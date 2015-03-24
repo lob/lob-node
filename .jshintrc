@@ -1,5 +1,5 @@
 {
-  "camelcase": true,
+  "camelcase": false,
   "curly": true,
   "node" : true,
   "debug": false,
@@ -29,6 +29,8 @@
     "it": false,
     "before": false,
     "should": false,
-    "beforeEach": false
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false
   }
 }

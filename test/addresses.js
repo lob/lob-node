@@ -1,12 +1,14 @@
-var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var chai         = require('chai');
-var expect       = chai.expect;
-/* jshint camelcase: false */
-describe('Addresses', function () {
-  describe('list', function () {
-    it('should have correct defaults', function (done) {
-      Lob.addresses.list(function (err, res) {
+var chai    = require('chai');
+var expect  = chai.expect;
+
+var API_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc';
+var Lob     = require('../lib/index.js')(API_KEY);
+
+describe('Addresses', function() {
+
+  describe('list', function() {
+    it('should have correct defaults', function(done) {
+      Lob.addresses.list(function(err, res) {
         expect(res).to.have.property('object');
         expect(res).to.have.property('data');
         expect(res.data).to.be.instanceof(Array);
@@ -21,8 +23,9 @@ describe('Addresses', function () {
         return done();
       });
     });
-    it('should have correct defaults', function (done) {
-      Lob.addresses.list({offset: 0}, function (err, res) {
+
+    it('should have correct defaults', function(done) {
+      Lob.addresses.list({ offset: 0 }, function(err, res) {
         expect(res).to.have.property('object');
         expect(res).to.have.property('data');
         expect(res.data).to.be.instanceof(Array);
@@ -37,22 +40,25 @@ describe('Addresses', function () {
         return done();
       });
     });
-    it('should let you limit the count', function (done) {
-      Lob.addresses.list({count: 5}, function (err, res) {
+
+    it('should let you limit the count', function(done) {
+      Lob.addresses.list({ count: 5 }, function(err, res) {
         expect(res.count).to.eql(5);
         return done();
       });
     });
-    it('should error on high count', function (done) {
-      Lob.addresses.list({count: 589}, function (err) {
+
+    it('should error on high count', function(done) {
+      Lob.addresses.list({ count: 589 }, function(err) {
         expect(err[0].status_code).to.eql(422);
         return done();
       });
     });
-    it('should let you shift the offset', function (done) {
-      Lob.addresses.list({offset: 10}, function (err, res) {
+
+    it('should let you shift the offset', function(done) {
+      Lob.addresses.list({ offset: 10 }, function(err, res) {
         var address1 = res.data[9].id;
-        Lob.addresses.list({offset: 9, count: 1}, function (err, res) {
+        Lob.addresses.list({ offset: 9, count: 1 }, function(err, res) {
           var address2 = res.data[0].id;
           expect(address1).to.not.eql(address2);
           return done();
@@ -60,8 +66,9 @@ describe('Addresses', function () {
       });
     });
   });
-  describe('create', function () {
-    it('should succeed with default POST request', function (done) {
+
+  describe('create', function() {
+    it('should succeed with default POST request', function(done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -81,7 +88,7 @@ describe('Addresses', function () {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function (err, res) {
+      }, function(err, res) {
         expect(res).to.have.property('id');
         expect(res).to.have.property('name');
         expect(res.name).to.eql(name);
@@ -109,7 +116,7 @@ describe('Addresses', function () {
       });
     });
 
-    it('should succeed with foreign state and country', function (done) {
+    it('should succeed with foreign state and country', function(done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -129,7 +136,7 @@ describe('Addresses', function () {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function (err, res) {
+      }, function(err, res) {
         expect(res).to.have.property('id');
         expect(res).to.have.property('name');
         expect(res.name).to.eql(name);
@@ -156,7 +163,8 @@ describe('Addresses', function () {
         return done();
       });
     });
-    it('should error when no name is provided', function (done) {
+
+    it('should error when no name is provided', function(done) {
       var email = 'harry@Lob.com';
       var phone = '5555555555';
       var addressLine1 = '123 Test Street';
@@ -174,12 +182,13 @@ describe('Addresses', function () {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function (err) {
+      }, function(err) {
         expect(err).to.be.instanceof(Array);
         return done();
       });
     });
-    it('should error when no address_line1 is provided', function (done) {
+
+    it('should error when no address_line1 is provided', function(done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -197,12 +206,13 @@ describe('Addresses', function () {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function (err) {
+      }, function(err) {
         expect(err).to.be.instanceof(Array);
         return done();
       });
     });
-    it('should error when no address_zip is provided', function (done) {
+
+    it('should error when no address_zip is provided', function(done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -220,12 +230,13 @@ describe('Addresses', function () {
         address_city: addressCity,
         address_state: addressState,
         address_country: addressCountry
-      }, function (err) {
+      }, function(err) {
         expect(err).to.be.instanceof(Array);
         return done();
       });
     });
-    it('should error when an invalid state is provided', function (done) {
+
+    it('should error when an invalid state is provided', function(done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -245,14 +256,15 @@ describe('Addresses', function () {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function (err) {
+      }, function(err) {
         expect(err).to.be.instanceof(Array);
         return done();
       });
     });
   });
-  describe('get', function () {
-    it('should have correct defaults', function (done) {
+
+  describe('get', function() {
+    it('should have correct defaults', function(done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -272,22 +284,24 @@ describe('Addresses', function () {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function (err, res) {
-        Lob.addresses.retrieve(res.id, function (err2, res2) {
+      }, function(err, res) {
+        Lob.addresses.retrieve(res.id, function(err2, res2) {
           expect(res).to.eql(res2);
           return done();
         });
       });
     });
-    it('should error on bad address', function (done) {
-      Lob.addresses.retrieve('38472', function (err) {
+
+    it('should error on bad address', function(done) {
+      Lob.addresses.retrieve('38472', function(err) {
         expect(err[0].status_code).to.eql(404);
         return done();
       });
     });
   });
-  describe('delete', function () {
-    it('should delete correctly', function (done) {
+
+  describe('delete', function() {
+    it('should delete correctly', function(done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
       var phone = '5555555555';
@@ -307,19 +321,19 @@ describe('Addresses', function () {
         address_state: addressState,
         address_zip: addressZip,
         address_country: addressCountry
-      }, function (err, res) {
-        Lob.addresses.delete(res.id, function (err2, res2) {
+      }, function(err, res) {
+        Lob.addresses.delete(res.id, function(err2, res2) {
           expect(res2.deleted).to.eql(1);
           return done();
         });
       });
     });
-    it('should error on bad delete', function (done) {
-      Lob.addresses.delete('38472', function (err) {
+
+    it('should error on bad delete', function(done) {
+      Lob.addresses.delete('38472', function(err) {
         expect(err[0].status_code).to.eql(404);
         return done();
       });
     });
   });
 });
-/* jshint camelcase: true */
