@@ -215,5 +215,25 @@ describe('Postcards', function() {
         });
       });
     });
+
+    it('should succeed with an inline address containing a null value',
+    function(done) {
+      Lob.postcards.create({
+        to: {
+          name: 'Peter Nagel',
+          phone: null,
+          address_line1: '1389 Jefferson Street',
+          address_line2: 'Unit A201',
+          address_city: 'Oakland',
+          address_state: 'CA',
+          address_zip: '94612'
+        },
+        front: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
+        back: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf'
+      }, function (err, res) {
+        expect(res.object).to.eql('postcard');
+        done();
+      });
+    });
   });
 });

@@ -57,7 +57,6 @@ describe('Areas', function() {
   });
 
   describe('get', function() {
-
     it('should have the correct defaults', function(done) {
       Lob.areas.create({
         name: 'Test Area',
