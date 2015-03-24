@@ -23,6 +23,14 @@ describe('Main Lob Object', function() {
     expect(Lob.options.host).to.eql('http://test');
   });
 
+  it('should allow you to only pass options as first arg', function() {
+    var options = { apiKey: API_KEY, host: 'http://test' };
+    var Lob = require('../lib')(options);
+
+    expect(Lob.options.apiKey).to.eql(API_KEY);
+    expect(Lob.options.host).to.eql('http://test');
+  });
+
   it('should propogate request errors', function(done) {
     var options = { baseURI: 'http://test' };
     var Lob = require('../lib')(API_KEY, options);

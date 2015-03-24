@@ -65,6 +65,10 @@ var Lob = require('lob')('YOUR API KEY');
 var options = {/* see options below */};
 var Lob = require('lob')('YOUR API KEY', options);
 
+// you can also just pass options
+var options = { apiKey: 'foo', host: 'bar' };
+var Lob = require('lob')(options);
+
 // callback pattern
 Lob.settings.list({ type: 1 }, function(err, body) {
   if(err) return callback(err);
