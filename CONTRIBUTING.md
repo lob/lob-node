@@ -15,3 +15,13 @@ Code changes are welcome and should follow the guidelines below.
 To help encourage consistent code style guidelines, we have included an `.editorconfig` file for use with your favorite [editor](http://editorconfig.org/#download).
 
 Read more about EditorConfig [here](http://editorconfig.org/).
+
+## Testing
+
+To run the tests with coverage:
+
+    gulp testCI
+
+To run the tests without coverage:
+
+    gulp test
