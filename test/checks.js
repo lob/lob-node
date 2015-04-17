@@ -35,19 +35,19 @@ describe('Checks', function() {
           name: 'Chase',
           address_line1: '123 Test Street',
           address_line2: 'Unit 199',
-          address_city: 'Bangalore',
-          address_state: 'KA',
-          address_zip: '560039',
-          address_country: 'IN',
+          address_city: 'San Francisco',
+          address_state: 'CA',
+          address_zip: '60039',
+          address_country: 'US',
         },
         account_address: {
           name: 'Lob.com',
           address_line1: '123 Test Street',
           address_line2: 'Unit 199',
-          address_city: 'Bangalore',
-          address_state: 'KA',
-          address_zip: '560039',
-          address_country: 'IN',
+          address_city: 'San Francisco',
+          address_state: 'CA',
+          address_zip: '60039',
+          address_country: 'US',
         }
       }, function(err, res) {
         Lob.checks.create({
