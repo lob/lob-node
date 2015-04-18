@@ -15,20 +15,32 @@ Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documen
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Reference](#api-reference)
+  - [Registration](#registration)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Options](#options)
 - [Examples](#examples)
+- [API Documentation](#api-documentation)
 - [Contributing](#contributing)
 - [Testing](#testing)
 
 ## Getting Started
 
+Here's a general overview of the Lob services available, click through to read more.
+
+- [Simple Print Service](https://lob.com/services/sps)
+- [Simple Postcard Service](https://lob.com/services/postcards)
+- [Simple Check Service](https://lob.com/services/postcards)
+- [Simple Area Mail](https://lob.com/services/sam)
+- [Address Verification](https://lob.com/verification/address)
+
+### Registration
+
 First, you will need to first create an account at [Lob.com](https://dashboard.lob.com/#/register) and obtain your Test and Live API Keys.
 
 Once you have created an account, you can access your API Keys from the [Settings Panel](https://dashboard.lob.com/#/settings).
 
-## Installation
+### Installation
 
 lob-node can be installed through the npm:
 
@@ -43,7 +55,7 @@ $ git clone git@github.com:lob/lob-node.git
 $ npm install
 ```
 
-##Usage
+### Usage
 ```javascript
 var Lob = require('lob')('YOUR API KEY');
 
@@ -85,12 +97,16 @@ The Lob constructor accepts an `options` object which may contain one or more of
 * `userAgent` - Override the default userAgent.
 * `headers` - Edit the headers sent in all API calls.
 
-## API Reference
+## Examples
+
+We've provided various examples for you to try out [here](https://github.com/lob/lob-node/tree/master/examples).
+
+## API Documentation
 
 - [Introduction](https://lob.com/docs/node#introduction)
 - [Versioning](https://lob.com/docs/node#version)
 - [Image Prepping](https://lob.com/docs/node#prepping)
-- Simple Print Service
+- **Simple Print Service**
   - [Jobs](https://lob.com/docs/node#jobs)
     - [Create a Job](https://lob.com/docs/node#jobs_create)
     - [Retrieve a Job](https://lob.com/docs/node#jobs_retrieve)
@@ -110,12 +126,12 @@ The Lob constructor accepts an `options` object which may contain one or more of
     - [List all Settings](https://lob.com/docs/node#settings_list)
   - [Services](https://lob.com/docs/node#services)
     - [List all Services](https://lob.com/docs/node#services_list)
-- Simple Postcard Service
+- **Simple Postcard Service**
   - [Postcards](https://lob.com/docs/node#postcards)
     - [Create a Postcard](https://lob.com/docs/node#postcards_create)
     - [Retrieve a Postcard](https://lob.com/docs/node#postcards_retrieve)
     - [List all Postcards](https://lob.com/docs/node#postcards_list)
-- Simple Check Service
+- **Simple Check Service**
   - [Checks](https://lob.com/docs/node#checks)
     - [Create a Check](https://lob.com/docs/node#checks_create)
     - [Retrieve a Check](https://lob.com/docs/node#checks_retrieve)
@@ -126,7 +142,7 @@ The Lob constructor accepts an `options` object which may contain one or more of
     - [List all Bank Accounts](https://lob.com/docs/node#bankaccounts_list)
     - [Verify a Bank Account](https://lob.com/docs/node#bankaccounts_verify)
     - [Delete a Bank Account](https://lob.com/docs/node#bankaccounts_delete)
-- Simple Area Mail
+- **Simple Area Mail**
   - [Areas](https://lob.com/docs/node#areas)
     - [Create an Area Mailing](https://lob.com/docs/node#areas_create)
     - [Retrieve an Area Mailing](https://lob.com/docs/node#areas_retrieve)
@@ -134,24 +150,20 @@ The Lob constructor accepts an `options` object which may contain one or more of
   - [Routes](https://lob.com/docs/node#routes)
     - [Retrieve a Zip Code](https://lob.com/docs/node#routes_retrieve)
     - [List all Zip Codes](https://lob.com/docs/node#routes_list)
-- Simple Address Verification
+- **Address Verification**
   - [Verify](https://lob.com/docs/node#verify)
     - [Verify an Address](https://lob.com/docs/node#verify_create)
-- Resources
+- **Resources**
   - [Countries](https://lob.com/docs/node#countries)
     - [List all Countries](https://lob.com/docs/node#countries_list)
   - [States](https://lob.com/docs/node#states)
     - [List all States](https://lob.com/docs/node#states_list)
-- Appendix
+- **Appendix**
   - [SPS Templates](https://lob.com/docs/node#sps-templates)
   - [Custom Fonts with HTML](https://lob.com/docs/node#html-fonts)
   - [Postcard HTML Examples](https://lob.com/docs/node#postcard-examples)
   - [Area HTML Examples](https://lob.com/docs/node#area-examples)
   - [Letter HTML Examples](https://lob.com/docs/node#letter-examples)
-
-## Examples
-
-We've provided various examples for you to try out [here](https://github.com/lob/lob-node/tree/master/examples).
 
 ## Contributing
 
