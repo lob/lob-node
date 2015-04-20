@@ -50,21 +50,24 @@ describe('Checks', function() {
           address_country: 'US',
         }
       }, function(err, res) {
-        Lob.checks.create({
-          name: 'TEST_CHECK',
-          bank_account: res.id,
-          to: 'adr_8613108bcfa00806',
-          amount: 100,
-          memo: 'test check'
-        }, function(err, res2) {
-          expect(res2).to.have.property('id');
-          expect(res2).to.have.property('name');
-          expect(res2).to.have.property('bank_account');
-          expect(res2).to.have.property('check_number');
-          expect(res2).to.have.property('memo');
-          expect(res2.memo).to.eql('test check');
-          expect(res2.object).to.eql('check');
-          return done();
+        var id = res.id;
+        Lob.bankAccounts.verify(id, [23, 34], function () {
+          Lob.checks.create({
+            name: 'TEST_CHECK',
+            bank_account: id,
+            to: 'adr_8613108bcfa00806',
+            amount: 100,
+            memo: 'test check'
+          }, function(err, res2) {
+            expect(res2).to.have.property('id');
+            expect(res2).to.have.property('name');
+            expect(res2).to.have.property('bank_account');
+            expect(res2).to.have.property('check_number');
+            expect(res2).to.have.property('memo');
+            expect(res2.memo).to.eql('test check');
+            expect(res2.object).to.eql('check');
+            return done();
+          });
         });
       });
     });

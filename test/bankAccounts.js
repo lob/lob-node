@@ -39,6 +39,7 @@ describe('Bank Accounts', function() {
         expect(res.routing_number).to.eql('122100024');
         expect(res).to.have.property('account_number');
         expect(res.account_number).to.eql('123456788');
+        expect(res.verified).to.eql(false);
         expect(res.object).to.eql('bank_account');
         return done();
       });
@@ -64,6 +65,7 @@ describe('Bank Accounts', function() {
         expect(res.routing_number).to.eql(routingNumber);
         expect(res).to.have.property('account_number');
         expect(res.account_number).to.eql(accountNumber);
+        expect(res.verified).to.eql(false);
         expect(res.object).to.eql('bank_account');
         return done();
       });
@@ -111,6 +113,7 @@ describe('Bank Accounts', function() {
           expect(res.routing_number).to.eql('122100024');
           expect(res).to.have.property('account_number');
           expect(res.account_number).to.eql('123456788');
+          expect(res.verified).to.eql(false);
           expect(res.object).to.eql('bank_account');
           return done();
         });
@@ -210,6 +213,45 @@ describe('Bank Accounts', function() {
     it('should get error on high count', function(done) {
       Lob.bankAccounts.list({ count: 56565, offset: 0 }, function(err) {
         expect(err).to.exist;
+        return done();
+      });
+    });
+  });
+
+  describe('verify', function() {
+    it('should succeed on verify with amounts', function(done) {
+      var routingNumber = '122100024';
+      var accountNumber = '123456788';
+      var bankAddressId =  'adr_a11a87b8240b1540';
+      var accountAddressId = 'adr_a11a87b8240b1540';
+      var amounts = [23, 34];
+
+      Lob.bankAccounts.create({
+        routing_number: routingNumber,
+        account_number: accountNumber,
+        bank_address: bankAddressId,
+        account_address: accountAddressId,
+        signatory: 'John Doe'
+      }, function(err, res) {
+        var id = res.id;
+        Lob.bankAccounts.verify(id, amounts, function(err, res) {
+          expect(res).to.have.property('id');
+          expect(res).to.have.property('routing_number');
+          expect(res).to.have.property('bank_address');
+          expect(res).to.have.property('account_address');
+          expect(res.routing_number).to.eql('122100024');
+          expect(res).to.have.property('account_number');
+          expect(res.account_number).to.eql('123456788');
+          expect(res.verified).to.eql(true);
+          expect(res.object).to.eql('bank_account');
+          return done();
+        });
+      });
+    });
+
+    it('should error on bad bank_account', function(done) {
+      Lob.bankAccounts.verify('38472', [23, 34], function(err) {
+        expect(err[0]).to.exist;
         return done();
       });
     });
