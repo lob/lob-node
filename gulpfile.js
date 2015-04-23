@@ -18,7 +18,7 @@ var envVars = {
 
 /* jshint camelcase: false */
 gulp.task('style', function () {
-  gulp.src([paths.sourceFiles, paths.testFiles, paths.gulpFile])
+  return gulp.src([paths.sourceFiles, paths.testFiles, paths.gulpFile])
     .pipe(plugins.jscs());
 });
 
@@ -49,11 +49,11 @@ gulp.task('testCI', ['lint', 'style', 'cover'], function () {
   var options = {
     dir: process.env.COVERAGE_DIR + '/coverage',
     reporters: ['lcov', 'json', 'text', 'text-summary'],
-    reportOpts: {dir: process.env.COVERAGE_DIR + '/coverage'}
+    reportOpts: { dir: process.env.COVERAGE_DIR + '/coverage' }
   };
 
   return gulp.src(paths.testFiles)
-    .pipe(plugins.mocha({reporter: 'spec', timeout: 15000, grep: argv.grep}))
+    .pipe(plugins.mocha({ reporter: 'spec', timeout: 15000, grep: argv.grep }))
     .on('error', function (error) {
       plugins.util.log(plugins.util.colors.red(error.message));
       process.exit(1);
@@ -64,7 +64,7 @@ gulp.task('testCI', ['lint', 'style', 'cover'], function () {
 
 gulp.task('test', ['lint', 'style'], function () {
   return gulp.src(paths.testFiles)
-    .pipe(plugins.mocha({reporter: 'spec', timeout: 15000, grep: argv.grep}))
+    .pipe(plugins.mocha({ reporter: 'spec', timeout: 15000, grep: argv.grep }))
     .on('error', function (error) {
       plugins.util.log(plugins.util.colors.red(error.message));
     })
@@ -91,7 +91,7 @@ gulp.task('enforce', function () {
 });
 
 gulp.task('lint', function () {
-  gulp.src([paths.sourceFiles, paths.testFiles, paths.gulpFile])
+  return gulp.src([paths.sourceFiles, paths.testFiles, paths.gulpFile])
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter(stylish))
     .pipe(plugins.jshint.reporter('fail'));

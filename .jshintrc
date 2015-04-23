@@ -1,7 +1,7 @@
 {
   "camelcase": false,
   "curly": true,
-  "node" : true,
+  "node": true,
   "debug": false,
   "devel": false,
   "eqeqeq": true,
