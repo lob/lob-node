@@ -30,7 +30,7 @@ Here's a general overview of the Lob services available, click through to read m
 
 - [Simple Letter Service](https://lob.com/services/letters)
 - [Simple Postcard Service](https://lob.com/services/postcards)
-- [Simple Check Service](https://lob.com/services/postcards)
+- [Simple Check Service](https://lob.com/services/checks)
 - [Simple Print Service](https://lob.com/services/sps)
 - [Simple Area Mail](https://lob.com/services/sam)
 - [Address Verification](https://lob.com/verification/address)
