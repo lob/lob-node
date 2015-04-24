@@ -28,8 +28,8 @@ Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documen
 
 Here's a general overview of the Lob services available, click through to read more.
 
-- [Simple Letter Service](https://lob.com/services/letters)
 - [Simple Postcard Service](https://lob.com/services/postcards)
+- [Simple Letter Service](https://lob.com/services/letters)
 - [Simple Check Service](https://lob.com/services/checks)
 - [Simple Print Service](https://lob.com/services/sps)
 - [Simple Area Mail](https://lob.com/services/sam)
