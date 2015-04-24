@@ -4,17 +4,17 @@ var expect  = chai.expect;
 var API_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc';
 var Lob     = require('../lib/index.js')(API_KEY);
 
-describe('Checks', function() {
+describe('Checks', function () {
 
-  describe('create', function() {
-    it('should succeed with default parameters', function(done) {
+  describe('create', function () {
+    it('should succeed with default parameters', function (done) {
       Lob.checks.create({
         name: 'TEST_CHECK',
         bank_account: 'bank_e13902b6bdfff24',
         to: 'adr_8613108bcfa00806',
         amount: 100,
         memo: 'test check'
-      }, function(err, res) {
+      }, function (err, res) {
         expect(res).to.have.property('id');
         expect(res).to.have.property('name');
         expect(res).to.have.property('bank_account');
@@ -26,7 +26,7 @@ describe('Checks', function() {
       });
     });
 
-    it('should succeed with inline bank account', function(done) {
+    it('should succeed with inline bank account', function (done) {
       Lob.bankAccounts.create({
         routing_number: '122100024',
         account_number: '123456788',
@@ -49,7 +49,7 @@ describe('Checks', function() {
           address_zip: '60039',
           address_country: 'US',
         }
-      }, function(err, res) {
+      }, function (err, res) {
         var id = res.id;
         Lob.bankAccounts.verify(id, [23, 34], function () {
           Lob.checks.create({
@@ -58,7 +58,7 @@ describe('Checks', function() {
             to: 'adr_8613108bcfa00806',
             amount: 100,
             memo: 'test check'
-          }, function(err, res2) {
+          }, function (err, res2) {
             expect(res2).to.have.property('id');
             expect(res2).to.have.property('name');
             expect(res2).to.have.property('bank_account');
@@ -72,7 +72,7 @@ describe('Checks', function() {
       });
     });
 
-    it('should succeed with inline to address id', function(done) {
+    it('should succeed with inline to address id', function (done) {
       Lob.checks.create({
         name: 'TEST_CHECK',
         bank_account: 'bank_e13902b6bdfff24',
@@ -87,7 +87,7 @@ describe('Checks', function() {
         },
         amount: 100,
         memo: 'test check'
-      }, function(err, res) {
+      }, function (err, res) {
         expect(res).to.have.property('id');
         expect(res).to.have.property('name');
         expect(res).to.have.property('bank_account');
@@ -99,13 +99,13 @@ describe('Checks', function() {
       });
     });
 
-    it('should fail when no address provided', function(done) {
+    it('should fail when no address provided', function (done) {
       Lob.checks.create({
         name: 'TEST_CHECK',
         bank_account: 'bank_e13902b6bdfff24',
         amount: 100,
         memo: 'test check'
-      }, function(err) {
+      }, function (err) {
         expect(err[0].message).to.eql('to is required');
         expect(err[0].status_code).to.eql(422);
         return done();
@@ -113,8 +113,8 @@ describe('Checks', function() {
     });
   });
 
-  describe('retrieve', function() {
-    it('should succeed on get', function(done) {
+  describe('retrieve', function () {
+    it('should succeed on get', function (done) {
       Lob.checks.create({
         name: 'TEST_CHECK',
         bank_account: 'bank_e13902b6bdfff24',
@@ -129,9 +129,9 @@ describe('Checks', function() {
         },
         amount: 100,
         memo: 'test check'
-      }, function(err, res) {
+      }, function (err, res) {
         var id = res.id;
-        Lob.checks.retrieve(id, function(err, res) {
+        Lob.checks.retrieve(id, function (err, res) {
           expect(res).to.have.property('id');
           expect(res).to.have.property('name');
           expect(res).to.have.property('bank_account');
@@ -144,17 +144,17 @@ describe('Checks', function() {
       });
     });
 
-    it('should fail with invalid id', function(done) {
-      Lob.checks.retrieve('BADCHECKID', function(err) {
+    it('should fail with invalid id', function (done) {
+      Lob.checks.retrieve('BADCHECKID', function (err) {
         expect(err).to.not.eql(null);
         done();
       });
     });
   });
 
-  describe('list', function() {
-    it('should have correct defaults', function(done) {
-      Lob.checks.list(function(err, res) {
+  describe('list', function () {
+    it('should have correct defaults', function (done) {
+      Lob.checks.list(function (err, res) {
         expect(res).to.have.property('object');
         expect(res).to.have.property('data');
         expect(res.data).to.be.instanceof(Array);
@@ -170,8 +170,8 @@ describe('Checks', function() {
       });
     });
 
-    it('should override count', function(done) {
-      Lob.checks.list({ count: 5, offset: 0 }, function(err, res) {
+    it('should override count', function (done) {
+      Lob.checks.list({ count: 5, offset: 0 }, function (err, res) {
         expect(res).to.have.property('object');
         expect(res).to.have.property('data');
         expect(res.data).to.be.instanceof(Array);
@@ -187,8 +187,8 @@ describe('Checks', function() {
       });
     });
 
-    it('should override count', function(done) {
-      Lob.checks.list({ offset: 0 }, function(err, res) {
+    it('should override count', function (done) {
+      Lob.checks.list({ offset: 0 }, function (err, res) {
         expect(res).to.have.property('object');
         expect(res).to.have.property('data');
         expect(res.data).to.be.instanceof(Array);
@@ -204,8 +204,8 @@ describe('Checks', function() {
       });
     });
 
-    it('should error with count>100', function(done) {
-      Lob.checks.list({count: 9001}, function(err) {
+    it('should error with count>100', function (done) {
+      Lob.checks.list({ count: 9001 }, function (err) {
         expect(err).to.not.eql(null);
         done();
       });

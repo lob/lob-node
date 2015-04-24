@@ -5,18 +5,18 @@ var expect  = chai.expect;
 var API_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc';
 var Lob     = require('../lib/index.js')(API_KEY);
 
-describe('Jobs', function() {
+describe('Jobs', function () {
 
-  describe('list', function() {
-    it('should error with an invalid count or offset', function(done) {
-      Lob.jobs.list({ offset: 0, count: 10000 }, function(err) {
+  describe('list', function () {
+    it('should error with an invalid count or offset', function (done) {
+      Lob.jobs.list({ offset: 0, count: 10000 }, function (err) {
         expect(err).to.be.a('array');
         done();
       });
     });
 
-    it('should have the correct defaults', function(done) {
-      Lob.jobs.list(function(err, res) {
+    it('should have the correct defaults', function (done) {
+      Lob.jobs.list(function (err, res) {
         expect(res).to.have.property('object');
         expect(res).to.have.property('data');
         expect(res.data).to.be.instanceof(Array);
@@ -32,23 +32,23 @@ describe('Jobs', function() {
       });
     });
 
-    it('should let you limit the count', function(done) {
-      Lob.jobs.list({ offset: 0, count: 5 }, function(err, res) {
+    it('should let you limit the count', function (done) {
+      Lob.jobs.list({ offset: 0, count: 5 }, function (err, res) {
         expect(res.count).to.eql(5);
         done();
       });
     });
 
-    it('should let you limit the count', function(done) {
-      Lob.jobs.list({ offset: 10 }, function(err, res) {
+    it('should let you limit the count', function (done) {
+      Lob.jobs.list({ offset: 10 }, function (err, res) {
         expect(res.count).to.eql(10);
         done();
       });
     });
   });
 
-  describe('retrieve', function() {
-    it('should have the correct defaults', function(done) {
+  describe('retrieve', function () {
+    it('should have the correct defaults', function (done) {
       Lob.jobs.create({
         name: 'Test Job',
         from: {
@@ -78,38 +78,36 @@ describe('Jobs', function() {
             setting: 100
           }
         ]
-      }, function(err, res) {
-        Lob.jobs.retrieve(res.id, function(err2, res2) {
+      }, function (err, res) {
+        Lob.jobs.retrieve(res.id, function (err2, res2) {
           expect(res2.name).to.eql('Test Job');
           done();
         });
       });
     });
 
-    it('should throw an error with an invalid id', function(done) {
-      Lob.jobs.retrieve('badId', function(err) {
+    it('should throw an error with an invalid id', function (done) {
+      Lob.jobs.retrieve('badId', function (err) {
         expect(err).to.be.a('array');
         done();
       });
     });
   });
 
-  describe('create', function() {
-    it('should succeed when using address and object ids', function(done) {
-      var object, address;
+  describe('create', function () {
+    it('should succeed when using address and object ids', function (done) {
+      Lob.addresses.list({ count: 1, offset: 0 }, function (err, res) {
+        var address = res.data[0].id;
 
-      Lob.addresses.list({ count: 1, offset: 0 }, function(err, res) {
-        address = res.data[0].id;
-
-        Lob.objects.list({ count: 1, offset: 0 }, function(err, res) {
-          object = res.data[0].id;
+        Lob.objects.list({ count: 1, offset: 0 }, function (err, res) {
+          var object = res.data[0].id;
 
           Lob.jobs.create({
             name: 'Test',
             to: address,
             from: address,
             objects: object
-          }, function(err, res) {
+          }, function (err, res) {
             expect(res.object).to.eql('job');
             done();
           });
@@ -117,7 +115,7 @@ describe('Jobs', function() {
       });
     });
 
-    it('should return an error if file is missing', function(done) {
+    it('should return an error if file is missing', function (done) {
       Lob.jobs.create({
         name: 'Test Job',
         from: {
@@ -146,13 +144,13 @@ describe('Jobs', function() {
             setting: 100
           }
         ]
-      }, function(err) {
+      }, function (err) {
         expect(err).to.be.a('array');
         done();
       });
     });
 
-    it('should succeed using inline address and object', function(done) {
+    it('should succeed using inline address and object', function (done) {
       Lob.jobs.create({
         name: 'Test Job',
         from: {
@@ -182,13 +180,13 @@ describe('Jobs', function() {
             setting: 100
           }
         ]
-      }, function(err, res) {
+      }, function (err, res) {
         expect(res.object).to.eql('job');
         done();
       });
     });
 
-    it('should succeed with a multi-object job', function(done) {
+    it('should succeed with a multi-object job', function (done) {
       Lob.jobs.create({
         name: 'Test Job',
         from: {
@@ -223,14 +221,14 @@ describe('Jobs', function() {
             setting: 500
           }
         ]
-      }, function(err, res) {
+      }, function (err, res) {
         expect(res.object).to.eql('job');
         expect(res.objects.length).to.eql(2);
         done();
       });
     });
 
-    it('should fail on bad parameter', function(done) {
+    it('should fail on bad parameter', function (done) {
       Lob.jobs.create({
         name: 'Test Job',
         objects: [
@@ -245,13 +243,13 @@ describe('Jobs', function() {
             setting: 100
           }
         ]
-      }, function(err) {
+      }, function (err) {
         expect(err).to.exist;
         done();
       });
     });
 
-    it('should succeed using an object local file', function(done) {
+    it('should succeed using an object local file', function (done) {
       var filePath = __dirname + '/assets/4x6.pdf';
       Lob.jobs.create({
         name: 'Test Job',
@@ -282,13 +280,13 @@ describe('Jobs', function() {
             setting: 201
           }
         ]
-      }, function(err, res) {
+      }, function (err, res) {
         expect(res.object).to.eql('job');
         done();
       });
     });
 
-    it('should succeed using a remote file', function(done) {
+    it('should succeed using a remote file', function (done) {
       Lob.jobs.create({
         name: 'Test Job',
         from: {
@@ -318,13 +316,13 @@ describe('Jobs', function() {
             setting: 201
           }
         ]
-      }, function(err, res) {
+      }, function (err, res) {
         expect(res.object).to.eql('job');
         done();
       });
     });
 
-    it('should succeed using a buffer', function(done) {
+    it('should succeed using a buffer', function (done) {
       var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
       Lob.jobs.create({
         name: 'Test Job',
@@ -355,13 +353,13 @@ describe('Jobs', function() {
             setting: 201
           }
         ]
-      }, function(err, res) {
+      }, function (err, res) {
         expect(res.object).to.eql('job');
         done();
       });
     });
 
-    it('should succeed with multi object', function(done) {
+    it('should succeed with multi object', function (done) {
       var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
       Lob.jobs.create({
         name: 'Test Job',
@@ -397,7 +395,7 @@ describe('Jobs', function() {
             setting: 500
           }
         ]
-      }, function(err, res) {
+      }, function (err, res) {
         expect(res.object).to.eql('job');
         done();
       });
