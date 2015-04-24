@@ -28,9 +28,10 @@ Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documen
 
 Here's a general overview of the Lob services available, click through to read more.
 
-- [Simple Print Service](https://lob.com/services/sps)
 - [Simple Postcard Service](https://lob.com/services/postcards)
-- [Simple Check Service](https://lob.com/services/postcards)
+- [Simple Letter Service](https://lob.com/services/letters)
+- [Simple Check Service](https://lob.com/services/checks)
+- [Simple Print Service](https://lob.com/services/sps)
 - [Simple Area Mail](https://lob.com/services/sam)
 - [Address Verification](https://lob.com/verification/address)
 
@@ -108,31 +109,24 @@ We've provided various examples for you to try out [here](https://github.com/lob
 - [Introduction](https://lob.com/docs/node#introduction)
 - [Versioning](https://lob.com/docs/node#version)
 - [Image Prepping](https://lob.com/docs/node#prepping)
-- **Simple Print Service**
-  - [Jobs](https://lob.com/docs/node#jobs)
-    - [Create a Job](https://lob.com/docs/node#jobs_create)
-    - [Retrieve a Job](https://lob.com/docs/node#jobs_retrieve)
-    - [List all Jobs](https://lob.com/docs/node#jobs_list)
-  - [Addresses](https://lob.com/docs/node#addresses)
+- **Addresses**
+  - [Address Book](https://lob.com/docs/node#addresses)
     - [Create an Address](https://lob.com/docs/node#addresses_create)
     - [Retrieve an Address](https://lob.com/docs/node#addresses_retrieve)
     - [Delete an Address](https://lob.com/docs/node#addresses_delete)
     - [List all Addresses](https://lob.com/docs/node#addresses_list)
-  - [Objects](https://lob.com/docs/node#objects)
-    - [Create an Object](https://lob.com/docs/node#objects_create)
-    - [Retrieve an Object](https://lob.com/docs/node#objects_retrieve)
-    - [Delete an Object](https://lob.com/docs/node#objects_delete)
-    - [List all Objects](https://lob.com/docs/node#objects_list)
-  - [Settings](https://lob.com/docs/node#settings)
-    - [Retrieve a Setting](https://lob.com/docs/node#settings_retrieve)
-    - [List all Settings](https://lob.com/docs/node#settings_list)
-  - [Services](https://lob.com/docs/node#services)
-    - [List all Services](https://lob.com/docs/node#services_list)
+  - [Simple Address Verification](https://lob.com/docs/node#verify)
+    - [Verify an Address](https://lob.com/docs/node#verify_create)
 - **Simple Postcard Service**
   - [Postcards](https://lob.com/docs/node#postcards)
     - [Create a Postcard](https://lob.com/docs/node#postcards_create)
     - [Retrieve a Postcard](https://lob.com/docs/node#postcards_retrieve)
     - [List all Postcards](https://lob.com/docs/node#postcards_list)
+- **Simple Letter Service**
+  - [Letters](https://lob.com/docs/node#letters)
+    - [Create a Letter](https://lob.com/docs/node#letters_create)
+    - [Retrieve a Letter](https://lob.com/docs/node#letters_retrieve)
+    - [List all Letters](https://lob.com/docs/node#letters_list)
 - **Simple Check Service**
   - [Checks](https://lob.com/docs/node#checks)
     - [Create a Check](https://lob.com/docs/node#checks_create)
@@ -144,6 +138,19 @@ We've provided various examples for you to try out [here](https://github.com/lob
     - [List all Bank Accounts](https://lob.com/docs/node#bankaccounts_list)
     - [Verify a Bank Account](https://lob.com/docs/node#bankaccounts_verify)
     - [Delete a Bank Account](https://lob.com/docs/node#bankaccounts_delete)
+- **Simple Print Service**
+  - [Jobs](https://lob.com/docs/node#jobs)
+    - [Create a Job](https://lob.com/docs/node#jobs_create)
+    - [Retrieve a Job](https://lob.com/docs/node#jobs_retrieve)
+    - [List all Jobs](https://lob.com/docs/node#jobs_list)
+  - [Objects](https://lob.com/docs/node#objects)
+    - [Create an Object](https://lob.com/docs/node#objects_create)
+    - [Retrieve an Object](https://lob.com/docs/node#objects_retrieve)
+    - [Delete an Object](https://lob.com/docs/node#objects_delete)
+    - [List all Objects](https://lob.com/docs/node#objects_list)
+  - [Settings](https://lob.com/docs/node#settings)
+    - [Retrieve a Setting](https://lob.com/docs/node#settings_retrieve)
+    - [List all Settings](https://lob.com/docs/node#settings_list)
 - **Simple Area Mail**
   - [Areas](https://lob.com/docs/node#areas)
     - [Create an Area Mailing](https://lob.com/docs/node#areas_create)
@@ -152,9 +159,6 @@ We've provided various examples for you to try out [here](https://github.com/lob
   - [Routes](https://lob.com/docs/node#routes)
     - [Retrieve a Zip Code](https://lob.com/docs/node#routes_retrieve)
     - [List all Zip Codes](https://lob.com/docs/node#routes_list)
-- **Address Verification**
-  - [Verify](https://lob.com/docs/node#verify)
-    - [Verify an Address](https://lob.com/docs/node#verify_create)
 - **Resources**
   - [Countries](https://lob.com/docs/node#countries)
     - [List all Countries](https://lob.com/docs/node#countries_list)
