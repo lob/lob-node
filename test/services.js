@@ -27,7 +27,7 @@ describe('Services', function () {
 
     it('should fail with bad id', function (done) {
       Lob.services.retrieve('9800', function (err) {
-        expect(err[0].status_code).to.eql(404);
+        expect(err.status_code).to.eql(404);
         done();
       });
     });

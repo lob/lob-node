@@ -10,7 +10,7 @@ describe('Jobs', function () {
   describe('list', function () {
     it('should error with an invalid count or offset', function (done) {
       Lob.jobs.list({ offset: 0, count: 10000 }, function (err) {
-        expect(err).to.be.a('array');
+        expect(err).to.exist;
         done();
       });
     });
@@ -50,7 +50,7 @@ describe('Jobs', function () {
   describe('retrieve', function () {
     it('should have the correct defaults', function (done) {
       Lob.jobs.create({
-        name: 'Test Job',
+        description: 'Test Job',
         from: {
           name: 'Lob',
           email: 'support@lob.com',
@@ -73,14 +73,15 @@ describe('Jobs', function () {
         },
         objects: [
           {
-            name: 'GO BLUE',
-            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting: 100
+            description: 'GO BLUE',
+            file: 'https://s3-us-west-2.amazonaws.com/' +
+              'lob-assets/200_201_card.pdf',
+            setting: 200
           }
         ]
       }, function (err, res) {
         Lob.jobs.retrieve(res.id, function (err2, res2) {
-          expect(res2.name).to.eql('Test Job');
+          expect(res2.description).to.eql('Test Job');
           done();
         });
       });
@@ -88,7 +89,7 @@ describe('Jobs', function () {
 
     it('should throw an error with an invalid id', function (done) {
       Lob.jobs.retrieve('badId', function (err) {
-        expect(err).to.be.a('array');
+        expect(err).to.exist;
         done();
       });
     });
@@ -103,7 +104,7 @@ describe('Jobs', function () {
           var object = res.data[0].id;
 
           Lob.jobs.create({
-            name: 'Test',
+            description: 'Test',
             to: address,
             from: address,
             objects: object
@@ -117,7 +118,7 @@ describe('Jobs', function () {
 
     it('should return an error if file is missing', function (done) {
       Lob.jobs.create({
-        name: 'Test Job',
+        description: 'Test Job',
         from: {
           name: 'Lob',
           email: 'support@lob.com',
@@ -140,19 +141,19 @@ describe('Jobs', function () {
         },
         objects: [
           {
-            name: 'GO BLUE',
+            description: 'GO BLUE',
             setting: 100
           }
         ]
       }, function (err) {
-        expect(err).to.be.a('array');
+        expect(err).to.exist;
         done();
       });
     });
 
     it('should succeed using inline address and object', function (done) {
       Lob.jobs.create({
-        name: 'Test Job',
+        description: 'Test Job',
         from: {
           name: 'Lob',
           email: 'support@lob.com',
@@ -175,9 +176,10 @@ describe('Jobs', function () {
         },
         objects: [
           {
-            name: 'GO BLUE',
-            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting: 100
+            description: 'GO BLUE',
+            file: 'https://s3-us-west-2.amazonaws.com/' +
+              'lob-assets/200_201_card.pdf',
+            setting: 200
           }
         ]
       }, function (err, res) {
@@ -188,7 +190,7 @@ describe('Jobs', function () {
 
     it('should succeed with a multi-object job', function (done) {
       Lob.jobs.create({
-        name: 'Test Job',
+        description: 'Test Job',
         from: {
           name: 'Lob',
           email: 'support@lob.com',
@@ -211,13 +213,15 @@ describe('Jobs', function () {
         },
         objects: [
           {
-            name: 'GO BLUE',
-            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
+            description: 'GO BLUE',
+            file: 'https://s3-us-west-2.amazonaws.com/' +
+              'lob-assets/lob-postcard-front.pdf',
             setting: 500
           },
           {
-            name: 'TEST',
-            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
+            description: 'TEST',
+            file: 'https://s3-us-west-2.amazonaws.com/' +
+              'lob-assets/lob-postcard-front.pdf',
             setting: 500
           }
         ]
@@ -230,17 +234,19 @@ describe('Jobs', function () {
 
     it('should fail on bad parameter', function (done) {
       Lob.jobs.create({
-        name: 'Test Job',
+        description: 'Test Job',
         objects: [
           {
-            name: 'GO BLUE',
-            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting: 100
+            description: 'GO BLUE',
+            file: 'https://s3-us-west-2.amazonaws.com/' +
+              'lob-assets/200_201_card.pdf',
+            setting: 200
           },
           {
-            name: 'TEST',
-            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-            setting: 100
+            description: 'TEST',
+            file: 'https://s3-us-west-2.amazonaws.com/' +
+              'lob-assets/200_201_card.pdf',
+            setting: 200
           }
         ]
       }, function (err) {
@@ -250,9 +256,9 @@ describe('Jobs', function () {
     });
 
     it('should succeed using an object local file', function (done) {
-      var filePath = __dirname + '/assets/4x6.pdf';
+      var filePath = __dirname + '/assets/4_25x6_25.pdf';
       Lob.jobs.create({
-        name: 'Test Job',
+        description: 'Test Job',
         from: {
           name: 'Lob',
           email: 'support@lob.com',
@@ -275,7 +281,7 @@ describe('Jobs', function () {
         },
         objects: [
           {
-            name: 'GO BLUE',
+            description: 'GO BLUE',
             file: fs.createReadStream(filePath),
             setting: 201
           }
@@ -288,7 +294,7 @@ describe('Jobs', function () {
 
     it('should succeed using a remote file', function (done) {
       Lob.jobs.create({
-        name: 'Test Job',
+        description: 'Test Job',
         from: {
           name: 'Lob',
           email: 'support@lob.com',
@@ -311,8 +317,9 @@ describe('Jobs', function () {
         },
         objects: [
           {
-            name: 'GO BLUE',
-            file: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
+            description: 'GO BLUE',
+            file: 'https://s3-us-west-2.amazonaws.com/' +
+              'lob-assets/200_201_card.pdf',
             setting: 201
           }
         ]
@@ -323,9 +330,9 @@ describe('Jobs', function () {
     });
 
     it('should succeed using a buffer', function (done) {
-      var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
+      var file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
       Lob.jobs.create({
-        name: 'Test Job',
+        description: 'Test Job',
         from: {
           name: 'Lob',
           email: 'support@lob.com',
@@ -348,7 +355,7 @@ describe('Jobs', function () {
         },
         objects: [
           {
-            name: 'GO BLUE',
+            description: 'GO BLUE',
             file: file,
             setting: 201
           }
@@ -360,9 +367,9 @@ describe('Jobs', function () {
     });
 
     it('should succeed with multi object', function (done) {
-      var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
+      var file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
       Lob.jobs.create({
-        name: 'Test Job',
+        description: 'Test Job',
         from: {
           name: 'Lob',
           email: 'support@lob.com',
@@ -385,12 +392,12 @@ describe('Jobs', function () {
         },
         objects: [
           {
-            name: 'GO BLUE',
+            description: 'GO BLUE',
             file: file,
             setting: 500
           },
           {
-            name: 'GO BLUE',
+            description: 'GO BLUE',
             file: file,
             setting: 500
           }

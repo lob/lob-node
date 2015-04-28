@@ -122,7 +122,7 @@ describe('Bank Accounts', function () {
 
     it('should error on bad bank_account', function (done) {
       Lob.bankAccounts.retrieve('38472', function (err) {
-        expect(err[0]).to.exist;
+        expect(err).to.exist;
         return done();
       });
     });
@@ -132,7 +132,7 @@ describe('Bank Accounts', function () {
     it('should succeed on delete', function (done) {
       var routingNumber = '122100024';
       var accountNumber = '123456788';
-      var bankAddressId =  'adr_a11a87b8240b1540';
+      var bankAddressId = 'adr_a11a87b8240b1540';
       var accountAddressId = 'adr_a11a87b8240b1540';
 
       Lob.bankAccounts.create({
@@ -143,8 +143,8 @@ describe('Bank Accounts', function () {
         signatory: 'John Doe'
       }, function (err, res) {
         var id = res.id;
-        Lob.bankAccounts.delete(id,function (err, res) {
-          expect(res.deleted).to.eql(1);
+        Lob.bankAccounts.delete(id, function (err, res) {
+          expect(res.deleted).to.eql(true);
           return done();
         });
       });
@@ -152,7 +152,7 @@ describe('Bank Accounts', function () {
 
     it('should error on bad bank_account', function (done) {
       Lob.bankAccounts.delete('38472', function (err) {
-        expect(err[0]).to.exist;
+        expect(err).to.exist;
         return done();
       });
     });
@@ -251,7 +251,7 @@ describe('Bank Accounts', function () {
 
     it('should error on bad bank_account', function (done) {
       Lob.bankAccounts.verify('38472', [23, 34], function (err) {
-        expect(err[0]).to.exist;
+        expect(err).to.exist;
         return done();
       });
     });

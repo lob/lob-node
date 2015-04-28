@@ -50,9 +50,9 @@ describe('Objects', function () {
   describe('retrieve', function () {
     it('should have the correct defaults', function (done) {
       Lob.objects.create({
-        name: 'Test Object',
-        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-        setting: 100
+        description: 'Test Object',
+        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/200_201_card.pdf',
+        setting: 200
       }, function (err, res) {
         Lob.objects.retrieve(res.id, function (err2, res2) {
           expect(res).to.eql(res2);
@@ -71,9 +71,9 @@ describe('Objects', function () {
 
   describe('create', function () {
     it('should succeed using an object local file', function (done) {
-      var filePath = __dirname + '/assets/4x6.pdf';
+      var filePath = __dirname + '/assets/4_25x6_25.pdf';
       Lob.objects.create({
-        name: 'Test Job',
+        description: 'Test Job',
         file: fs.createReadStream(filePath),
         setting: 201
       }, function (err, res) {
@@ -83,9 +83,9 @@ describe('Objects', function () {
     });
 
     it('fail on bad parameter', function (done) {
-      var filePath = __dirname + '/assets/4x6.pdf';
+      var filePath = __dirname + '/assets/4_25x6_25.pdf';
       Lob.objects.create({
-        name: 'Test Job',
+        description: 'Test Job',
         file: filePath
       }, function (err) {
         expect(err).to.exist;
@@ -95,8 +95,8 @@ describe('Objects', function () {
 
     it('should succeed using a remote file', function (done) {
       Lob.objects.create({
-        name: 'Test Job',
-        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
+        description: 'Test Job',
+        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/200_201_card.pdf',
         setting: 201
       }, function (err, res) {
         expect(res.object).to.eql('object');
@@ -105,9 +105,9 @@ describe('Objects', function () {
     });
 
     it('should succeed using a buffer', function (done) {
-      var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
+      var file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
       Lob.objects.create({
-        name: 'Test Job',
+        description: 'Test Job',
         file: file,
         setting: 201
       }, function (err, res) {
@@ -120,12 +120,12 @@ describe('Objects', function () {
   describe('delete', function () {
     it('should have the correct defaults', function (done) {
       Lob.objects.create({
-        name: 'Test Object',
-        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-        setting: 100
+        description: 'Test Object',
+        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/200_201_card.pdf',
+        setting: 200
       }, function (err, res) {
         Lob.objects.delete(res.id, function (err2, res2) {
-          expect(res2.deleted).to.eql(1);
+          expect(res2.deleted).to.eql(true);
           done();
         });
       });

@@ -31,7 +31,8 @@ Lob.addresses.create({
       address_zip: '60012',
       address_country: 'US',
     },
-    file: '<h1>Hello this is my First Letter!</h1>'
+    file: '<h1>Hello this is my First Letter!</h1>',
+    color: false
   });
 })
 .then(function (letter) {

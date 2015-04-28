@@ -59,12 +59,10 @@ describe('Areas', function () {
   describe('get', function () {
     it('should have the correct defaults', function (done) {
       Lob.areas.create({
-        name: 'Test Area',
+        description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front:
-          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
-        back:
-          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf'
+        front: '<h1>Test Area Front</h1>',
+        back: '<h1>Test Area Back</h1>'
       }, function (err, res) {
         Lob.areas.retrieve(res.id, function (err2, res2) {
           expect(res).to.eql(res2);
@@ -87,7 +85,7 @@ describe('Areas', function () {
       Lob.addresses.list({ offset: 0, count: 1 }, function (err, res) {
         address = res.data[0].id;
         Lob.areas.create({
-          name: 'Test Area',
+          description: 'Test Area',
           routes: ['94158-C001', '94107-C031'],
           front: 'https://s3-us-west-2.amazonaws.com/lob-assets/' +
             'areaback.pdf',
@@ -102,12 +100,10 @@ describe('Areas', function () {
 
     it('should succeed using address, url and target_type', function (done) {
       Lob.areas.create({
-        name: 'Test Area',
+        description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front:
-          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
-        back:
-          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
+        front: '<h1>Test Area Front</h1>',
+        back: '<h1>Test Area Back</h1>',
         target_type: 'residential'
       }, function (err, res) {
         expect(res.object).to.eql('area');
@@ -115,27 +111,24 @@ describe('Areas', function () {
       });
     });
 
-    it('should succeed with full_bleed specified', function (done) {
+    it('should fail with full_bleed specified', function (done) {
       Lob.areas.create({
-        name: 'Test Area',
+        description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front:
-          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
-        back:
-          'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
-        full_bleed: 1
+        front: '<h1>Test Area Front</h1>',
+        back: '<h1>Test Area Back</h1>',
+        full_bleed: true
       }, function (err, res) {
-        expect(res.object).to.eql('area');
+        expect(err).to.exist;
         done();
       });
     });
 
     it('should error if front is missing', function (done) {
       Lob.areas.create({
-        name: 'Test Area',
+        description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        back: 'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
-        full_bleed: 1
+        back: '<h1>Test Area</h1>'
       }, function (err, res) {
         expect(err).to.be.an.instanceOf(Object);
         done();
@@ -144,10 +137,9 @@ describe('Areas', function () {
 
     it('should error if back is missing', function (done) {
       Lob.areas.create({
-        name: 'Test Area',
+        description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front: 'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
-        full_bleed: 1
+        front: 'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf'
       }, function (err, res) {
         expect(err).to.be.an.instanceOf(Object);
         done();
@@ -156,7 +148,7 @@ describe('Areas', function () {
 
     it('should error with bad routes', function (done) {
       Lob.areas.create({
-        name: 'Test Area',
+        description: 'Test Area',
         routes: ['this route is bananas', 'B A N A N A S'],
         front: 'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
         back: 'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf'
@@ -169,7 +161,7 @@ describe('Areas', function () {
     it('should succeed using address and local file', function (done) {
       var filePath = __dirname + '/assets/areaback.pdf';
       Lob.areas.create({
-        name: 'Test Area',
+        description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
         front: fs.createReadStream(filePath),
         back: fs.createReadStream(filePath)
@@ -183,7 +175,7 @@ describe('Areas', function () {
       fs.readFile(__dirname + '/assets/areaback.pdf',
         function (err, file) {
         Lob.areas.create({
-          name: 'Test Area',
+          description: 'Test Area',
           routes: ['94158-C001'],
           front: file,
           back: file

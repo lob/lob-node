@@ -29,7 +29,7 @@ describe('Settings', function () {
 
   describe('retrieve', function () {
     it('should have correct defaults', function (done) {
-      Lob.settings.retrieve('100', function (err, res) {
+      Lob.settings.retrieve('200', function (err, res) {
         expect(res.object).to.eql('setting');
         done();
       });
@@ -37,7 +37,7 @@ describe('Settings', function () {
 
     it('should fail with bad id', function (done) {
       Lob.settings.retrieve('9800', function (err) {
-        expect(err[0].status_code).to.eql(404);
+        expect(err.status_code).to.eql(404);
         done();
       });
     });

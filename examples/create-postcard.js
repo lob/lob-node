@@ -4,7 +4,10 @@
  * Run me! This example works out of the box, "batteries included".
  */
 
+var fs = require('fs');
+
 var lobFactory = require('../lib/index.js');
+
 var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
 // Create the address
@@ -24,9 +27,9 @@ Lob.addresses.create({
   } else {
     // with message
     Lob.postcards.create({
-      name: 'My first postcard',
+      description: 'My first postcard',
       to: address.id,
-      front: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardfront.pdf',
+      front: fs.readFileSync(__dirname + '/../test/assets/4_25x6_25.pdf'),
       message: 'Hello from lob!'
     }, function (err, postcard) {
       if (err) {
@@ -38,10 +41,10 @@ Lob.addresses.create({
 
     // with custom back
     Lob.postcards.create({
-      name: 'My first postcard',
+      description: 'My first postcard',
       to: address.id,
-      front: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardfront.pdf',
-      back: 'https://s3-us-west-2.amazonaws.com/lob-assets/postcardback.pdf'
+      front: fs.readFileSync(__dirname + '/../test/assets/4_25x6_25.pdf'),
+      back: fs.readFileSync(__dirname + '/../test/assets/4_25x6_25.pdf')
     }, function (err, postcard) {
       if (err) {
         console.log(err);

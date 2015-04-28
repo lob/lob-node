@@ -50,7 +50,7 @@ describe('Addresses', function () {
 
     it('should error on high count', function (done) {
       Lob.addresses.list({ count: 589 }, function (err) {
-        expect(err[0].status_code).to.eql(422);
+        expect(err.status_code).to.eql(422);
         return done();
       });
     });
@@ -183,7 +183,7 @@ describe('Addresses', function () {
         address_zip: addressZip,
         address_country: addressCountry
       }, function (err) {
-        expect(err).to.be.instanceof(Array);
+        expect(err).to.be.instanceof(Object);
         return done();
       });
     });
@@ -207,7 +207,7 @@ describe('Addresses', function () {
         address_zip: addressZip,
         address_country: addressCountry
       }, function (err) {
-        expect(err).to.be.instanceof(Array);
+        expect(err).to.be.instanceof(Object);
         return done();
       });
     });
@@ -231,7 +231,7 @@ describe('Addresses', function () {
         address_state: addressState,
         address_country: addressCountry
       }, function (err) {
-        expect(err).to.be.instanceof(Array);
+        expect(err).to.be.instanceof(Object);
         return done();
       });
     });
@@ -257,7 +257,7 @@ describe('Addresses', function () {
         address_zip: addressZip,
         address_country: addressCountry
       }, function (err) {
-        expect(err).to.be.instanceof(Array);
+        expect(err).to.be.instanceof(Object);
         return done();
       });
     });
@@ -294,7 +294,7 @@ describe('Addresses', function () {
 
     it('should error on bad address', function (done) {
       Lob.addresses.retrieve('38472', function (err) {
-        expect(err[0].status_code).to.eql(404);
+        expect(err.status_code).to.eql(404);
         return done();
       });
     });
@@ -323,7 +323,7 @@ describe('Addresses', function () {
         address_country: addressCountry
       }, function (err, res) {
         Lob.addresses.delete(res.id, function (err2, res2) {
-          expect(res2.deleted).to.eql(1);
+          expect(res2.deleted).to.eql(true);
           return done();
         });
       });
@@ -331,7 +331,7 @@ describe('Addresses', function () {
 
     it('should error on bad delete', function (done) {
       Lob.addresses.delete('38472', function (err) {
-        expect(err[0].status_code).to.eql(404);
+        expect(err.status_code).to.eql(404);
         return done();
       });
     });

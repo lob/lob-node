@@ -51,7 +51,7 @@ Lob.addresses.create({
         return console.log(err);
       }
       Lob.checks.create({
-        name: 'Test Check',
+        description: 'Test Check',
         check_number: '10000',
         bank_account: bankAccount.id,
         to: address.id,
