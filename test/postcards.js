@@ -70,10 +70,8 @@ describe('Postcards', function () {
           address_zip: '94158',
           address_country: 'US'
         },
-        front: 'https://s3-us-west-2.amazonaws.com/' +
-          'lob-assets/lob-postcard-front.pdf',
-        back: 'https://s3-us-west-2.amazonaws.com/' +
-          'lob-assets/lob-postcard-front.pdf'
+        front: '<h1>Test Postcard Front</h1>',
+        back: '<h1>Test Postcard Back</h1>'
       }, function (err, res) {
         Lob.postcards.retrieve(res.id, function (err2, res2) {
           expect(res).to.eql(res2);
@@ -114,8 +112,7 @@ describe('Postcards', function () {
         Lob.postcards.create({
           description: 'Test Postcard',
           to: address,
-          front: 'https://s3-us-west-2.amazonaws.com/' +
-            'lob-assets/lob-postcard-front.pdf',
+          front: '<h1>Test Postcard Front</h1>',
           message: 'This is the message'
         }, function (err, res) {
           expect(res.object).to.eql('postcard');
@@ -130,8 +127,7 @@ describe('Postcards', function () {
         Lob.postcards.create({
           description: 'Test Postcard',
           to: address,
-          back: 'https://s3-us-west-2.amazonaws.com/' +
-            'lob-assets/lob-postcard-front.pdf',
+          back: '<h1>Test Postcard Back</h1>',
           message: 'This is the message'
         }, function (err, res) {
           expect(err).to.be.an.instanceOf(Object);
@@ -146,8 +142,7 @@ describe('Postcards', function () {
       Lob.postcards.create({
         description: 'Test Postcard',
         to: address,
-        back: 'https://s3-us-west-2.amazonaws.com/' +
-          'lob-assets/lob-postcard-front.pdf',
+        front: '<h1>Test Postcard Front</h1>',
         message: 'This is the message'
       }, function (err) {
         expect(err).to.be.an.instanceOf(Object);
@@ -230,10 +225,8 @@ describe('Postcards', function () {
           address_state: 'CA',
           address_zip: '94612'
         },
-        front: 'https://s3-us-west-2.amazonaws.com/' +
-          'lob-assets/lob-postcard-front.pdf',
-        back: 'https://s3-us-west-2.amazonaws.com/' +
-          'lob-assets/lob-postcard-front.pdf'
+        front: '<h1>Test Postcard Front</h1>',
+        back: '<h1>Test Postcard Back</h1>'
       }, function (err, res) {
         expect(res.object).to.eql('postcard');
         done();

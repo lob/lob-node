@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <style>
+      @font-face {
+        font-family: 'Loved by the King';
+        font-style: normal;
+        font-weight: 400;
+        src: url('https://s3-us-west-2.amazonaws.com/lob-assets/LovedbytheKing.ttf') format('truetype');
+      }
+
+      *, *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 8.5in;
+        height: 11in;
+        margin: 0;
+        padding: 0;
+        font-family: 'Loved by the King';
+      }
+
+      .page {
+        page-break-after: always;
+      }
+
+      .page-content {
+        position: relative;
+        width: 8.125in;
+        height: 10.625in;
+        left: 0.1875in;
+        top: 0.1875in;
+      }
+
+      .text {
+        position: relative;
+        left: 20px;
+        top: 3in;
+        width: 6in;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="page-content">
+        <div class="text">
+          Hello {{name}},
+          <br>
+          We would like to welcome you to the company! Thanks for being a part of the team!
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -139,7 +139,7 @@ describe('Areas', function () {
       Lob.areas.create({
         description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front: 'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf'
+        front: '<h1>Test Area Front</h1>'
       }, function (err, res) {
         expect(err).to.be.an.instanceOf(Object);
         done();
@@ -150,8 +150,8 @@ describe('Areas', function () {
       Lob.areas.create({
         description: 'Test Area',
         routes: ['this route is bananas', 'B A N A N A S'],
-        front: 'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf',
-        back: 'https://s3-us-west-2.amazonaws.com/lob-assets/areaback.pdf'
+        front: '<h1>Test Area Front</h1>',
+        back: '<h1>Test Area Back</h1>'
       }, function (err) {
         expect(err).to.be.an.instanceOf(Object);
         done();

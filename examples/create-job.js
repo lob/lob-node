@@ -1,15 +1,19 @@
 /*
- * Example of creating an address, then object, then a job using the created
- * address and object.
+ * Example of creating an address, then an object with HTML and template data,
+ * then a job using the created address and object.
  * Run me! This example works out of the box, "batteries included".
  */
+
+var fs = require('fs');
 
 var lobFactory = require('../lib/index.js');
 var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
+var file = fs.readFileSync(__dirname + '/html/card.html').toString();
+
 // Create the address
 Lob.addresses.create({
-  name: 'Test Person',
+  name: 'Robin Joseph',
   email: 'test@gmail.com',
   phone: '123456789',
   address_line1: '123 Test Street',
@@ -22,14 +26,17 @@ Lob.addresses.create({
   if (!err) {
     // Create the object (Lob object, not JS object!!)
     Lob.objects.create({
-      description: 'My first object',
-      file: 'https://s3-us-west-2.amazonaws.com/lob-assets/200_201_card.pdf',
+      description: 'Birthday Card to Robin',
+      file: file,
+      data: {
+        name: 'Robin'
+      },
       setting: 200
     }, function (err, object) {
       if (!err) {
         // Use the returned address and returned Lob object to create the job
         Lob.jobs.create({
-          description: 'My first job!',
+          description: 'My First Job',
           to: address.id,
           // Freely mix references and inline objects
           from: {

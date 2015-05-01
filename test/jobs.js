@@ -74,8 +74,7 @@ describe('Jobs', function () {
         objects: [
           {
             description: 'GO BLUE',
-            file: 'https://s3-us-west-2.amazonaws.com/' +
-              'lob-assets/200_201_card.pdf',
+            file: '<h1>Test Job</h1>',
             setting: 200
           }
         ]
@@ -177,8 +176,7 @@ describe('Jobs', function () {
         objects: [
           {
             description: 'GO BLUE',
-            file: 'https://s3-us-west-2.amazonaws.com/' +
-              'lob-assets/200_201_card.pdf',
+            file: '<h1>Test Job</h1>',
             setting: 200
           }
         ]
@@ -214,14 +212,12 @@ describe('Jobs', function () {
         objects: [
           {
             description: 'GO BLUE',
-            file: 'https://s3-us-west-2.amazonaws.com/' +
-              'lob-assets/lob-postcard-front.pdf',
+            file: '<h1>Test Job</h1>',
             setting: 500
           },
           {
             description: 'TEST',
-            file: 'https://s3-us-west-2.amazonaws.com/' +
-              'lob-assets/lob-postcard-front.pdf',
+            file: '<h1>Test Job</h1>',
             setting: 500
           }
         ]
@@ -238,14 +234,12 @@ describe('Jobs', function () {
         objects: [
           {
             description: 'GO BLUE',
-            file: 'https://s3-us-west-2.amazonaws.com/' +
-              'lob-assets/200_201_card.pdf',
+            file: '<h1>Test Job</h1>',
             setting: 200
           },
           {
             description: 'TEST',
-            file: 'https://s3-us-west-2.amazonaws.com/' +
-              'lob-assets/200_201_card.pdf',
+            file: '<h1>Test Job</h1>',
             setting: 200
           }
         ]

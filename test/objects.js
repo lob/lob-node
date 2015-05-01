@@ -51,7 +51,7 @@ describe('Objects', function () {
     it('should have the correct defaults', function (done) {
       Lob.objects.create({
         description: 'Test Object',
-        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/200_201_card.pdf',
+        file: '<h1>Test Object</h1>',
         setting: 200
       }, function (err, res) {
         Lob.objects.retrieve(res.id, function (err2, res2) {
@@ -83,10 +83,9 @@ describe('Objects', function () {
     });
 
     it('fail on bad parameter', function (done) {
-      var filePath = __dirname + '/assets/4_25x6_25.pdf';
       Lob.objects.create({
-        description: 'Test Job',
-        file: filePath
+        description: 'Test Object',
+        file: '<h1>Test Object</h1>'
       }, function (err) {
         expect(err).to.exist;
         done();
@@ -121,7 +120,7 @@ describe('Objects', function () {
     it('should have the correct defaults', function (done) {
       Lob.objects.create({
         description: 'Test Object',
-        file: 'https://s3-us-west-2.amazonaws.com/lob-assets/200_201_card.pdf',
+        file: '<h1>Test Object</h1>',
         setting: 200
       }, function (err, res) {
         Lob.objects.delete(res.id, function (err2, res2) {

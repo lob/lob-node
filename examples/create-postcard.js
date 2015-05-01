@@ -7,12 +7,13 @@
 var fs = require('fs');
 
 var lobFactory = require('../lib/index.js');
-
 var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
+
+var file = fs.readFileSync(__dirname + '/html/card.html').toString();
 
 // Create the address
 Lob.addresses.create({
-  name: 'Test Person',
+  name: 'Robin Joseph',
   email: 'test@gmail.com',
   phone: '123456789',
   address_line1: '123 Test Street',
@@ -27,10 +28,13 @@ Lob.addresses.create({
   } else {
     // with message
     Lob.postcards.create({
-      description: 'My first postcard',
+      description: 'My First Postcard',
       to: address.id,
-      front: fs.readFileSync(__dirname + '/../test/assets/4_25x6_25.pdf'),
-      message: 'Hello from lob!'
+      front: file,
+      data: {
+        name: 'Robin'
+      },
+      message: 'Happy Birthday!'
     }, function (err, postcard) {
       if (err) {
         console.log(err);
@@ -41,10 +45,13 @@ Lob.addresses.create({
 
     // with custom back
     Lob.postcards.create({
-      description: 'My first postcard',
+      description: 'My Second Postcard',
       to: address.id,
-      front: fs.readFileSync(__dirname + '/../test/assets/4_25x6_25.pdf'),
-      back: fs.readFileSync(__dirname + '/../test/assets/4_25x6_25.pdf')
+      front: file,
+      back: file,
+      data: {
+        name: 'Robin'
+      }
     }, function (err, postcard) {
       if (err) {
         console.log(err);
