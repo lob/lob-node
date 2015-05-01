@@ -1,14 +1,18 @@
 /*
- * Create an address, then send a letter with a custom PDF.
+ * Create an address, then send a letter with HTML and template data.
  * Run me! This example works out of the box, "batteries included".
  */
+
+var fs = require('fs');
 
 var lobFactory = require('../lib/index.js');
 var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
+var file = fs.readFileSync(__dirname + '/html/letter.html').toString();
+
 // Create the address
 Lob.addresses.create({
-  name: 'Test Person',
+  name: 'Robin Joseph',
   email: 'test@gmail.com',
   phone: '123456789',
   address_line1: '123 Test Street',
@@ -31,7 +35,10 @@ Lob.addresses.create({
       address_zip: '60012',
       address_country: 'US',
     },
-    file: '<h1>Hello this is my First Letter!</h1>',
+    file: file,
+    data: {
+      name: 'Robin'
+    },
     color: false
   });
 })

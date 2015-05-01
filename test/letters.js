@@ -73,7 +73,7 @@ describe('Letters', function () {
         to: address,
         from: address,
         color: true,
-        file: 'https://lob.com/goblue.pdf'
+        file: '<h1>Test Letter</h1>'
       }, function (err, res) {
         Lob.letters.retrieve(res.id, function (err2, res2) {
           expect(res2.object).to.eql('letter');
@@ -237,7 +237,7 @@ describe('Letters', function () {
           address_zip: '94612'
         },
         color: false,
-        file: 'https://lob.com/goblue.pdf'
+        file: '<h1>Test Letter</h1>'
       }, function (err, res) {
         expect(res.object).to.eql('letter');
         done();

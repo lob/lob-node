@@ -13,7 +13,8 @@ describe('Checks', function () {
         bank_account: 'bank_e13902b6bdfff24',
         to: 'adr_8613108bcfa00806',
         amount: 100,
-        memo: 'test check'
+        memo: 'test check',
+        file: '<h1>Test Check</h1>'
       }, function (err, res) {
         expect(res).to.have.property('id');
         expect(res).to.have.property('description');
