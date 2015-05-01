@@ -72,10 +72,11 @@ describe('Letters', function () {
         description: 'Test Letter',
         to: address,
         from: address,
+        color: true,
         file: 'https://lob.com/goblue.pdf'
       }, function (err, res) {
         Lob.letters.retrieve(res.id, function (err2, res2) {
-          expect(res).to.eql(res2);
+          expect(res2.object).to.eql('letter');
           done();
         });
       });
@@ -97,6 +98,7 @@ describe('Letters', function () {
           description: 'Test Letter',
           to: address,
           from: address,
+          color: true,
           file: 'https://lob.com/goblue.pdf'
         }, function (err, res) {
           expect(res.object).to.eql('letter');
@@ -112,6 +114,7 @@ describe('Letters', function () {
           description: 'Test Letter',
           to: address,
           from: address,
+          color: true,
           file: 'https://lob.com/goblue.pdf'
         }, function (err, res) {
           expect(res.object).to.eql('letter');
@@ -158,7 +161,8 @@ describe('Letters', function () {
           description: 'Test Letter',
           to: address,
           from: address,
-          file: fs.createReadStream(filePath)
+          file: fs.createReadStream(filePath),
+          color: true
         }, function (err, res) {
           expect(res.object).to.eql('letter');
           done();
@@ -185,6 +189,7 @@ describe('Letters', function () {
         description: 'Test Letter',
         to: address,
         from: address,
+        color: true,
         file: fs.createReadStream(filePath)
       }, function (err, res) {
         expect(res.object).to.eql('letter');
@@ -201,7 +206,8 @@ describe('Letters', function () {
           description: 'Test Letter',
           to: address,
           from: address,
-          file: file
+          file: file,
+          color: false
         }, function (err, res) {
           expect(res.object).to.eql('letter');
           done();
@@ -230,6 +236,7 @@ describe('Letters', function () {
           address_state: 'CA',
           address_zip: '94612'
         },
+        color: false,
         file: 'https://lob.com/goblue.pdf'
       }, function (err, res) {
         expect(res.object).to.eql('letter');

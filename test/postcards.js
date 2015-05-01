@@ -59,7 +59,7 @@ describe('Postcards', function () {
   describe('get', function () {
     it('should have the correct defaults', function (done) {
       Lob.postcards.create({
-        name: 'Test Postcard',
+        description: 'Test Postcard',
         to: {
           name: 'Lob',
           email: 'support@lob.com',
@@ -70,8 +70,10 @@ describe('Postcards', function () {
           address_zip: '94158',
           address_country: 'US'
         },
-        front: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
-        back: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf'
+        front: 'https://s3-us-west-2.amazonaws.com/' +
+          'lob-assets/lob-postcard-front.pdf',
+        back: 'https://s3-us-west-2.amazonaws.com/' +
+          'lob-assets/lob-postcard-front.pdf'
       }, function (err, res) {
         Lob.postcards.retrieve(res.id, function (err2, res2) {
           expect(res).to.eql(res2);
@@ -93,10 +95,12 @@ describe('Postcards', function () {
       Lob.addresses.list({ offset: 0, count: 1 }, function (err, res) {
         var address = res.data[0].id;
         Lob.postcards.create({
-          name: 'Test Postcard',
+          description: 'Test Postcard',
           to: address,
-          front: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
-          back: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf'
+          front: 'https://s3-us-west-2.amazonaws.com/' +
+            'lob-assets/lob-postcard-front.pdf',
+          back: 'https://s3-us-west-2.amazonaws.com/' +
+            'lob-assets/lob-postcard-front.pdf'
         }, function (err, res) {
           expect(res.object).to.eql('postcard');
           done();
@@ -108,9 +112,10 @@ describe('Postcards', function () {
       Lob.addresses.list({ offset: 0, count: 1 }, function (err, res) {
         var address = res.data[0].id;
         Lob.postcards.create({
-          name: 'Test Postcard',
+          description: 'Test Postcard',
           to: address,
-          front: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
+          front: 'https://s3-us-west-2.amazonaws.com/' +
+            'lob-assets/lob-postcard-front.pdf',
           message: 'This is the message'
         }, function (err, res) {
           expect(res.object).to.eql('postcard');
@@ -123,9 +128,10 @@ describe('Postcards', function () {
       Lob.addresses.list({ offset: 0, count: 1 }, function (err, res) {
         var address = res.data[0].id;
         Lob.postcards.create({
-          name: 'Test Postcard',
+          description: 'Test Postcard',
           to: address,
-          back: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
+          back: 'https://s3-us-west-2.amazonaws.com/' +
+            'lob-assets/lob-postcard-front.pdf',
           message: 'This is the message'
         }, function (err, res) {
           expect(err).to.be.an.instanceOf(Object);
@@ -138,9 +144,10 @@ describe('Postcards', function () {
       var address = 'kjkjk';
 
       Lob.postcards.create({
-        name: 'Test Postcard',
+        description: 'Test Postcard',
         to: address,
-        back: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
+        back: 'https://s3-us-west-2.amazonaws.com/' +
+          'lob-assets/lob-postcard-front.pdf',
         message: 'This is the message'
       }, function (err) {
         expect(err).to.be.an.instanceOf(Object);
@@ -149,13 +156,13 @@ describe('Postcards', function () {
     });
 
     it('should succeed using address and local file', function (done) {
-      var filePath = __dirname + '/assets/4x6.pdf';
+      var filePath = __dirname + '/assets/4_25x6_25.pdf';
 
       Lob.addresses.list({ offset: 0, count: 1 }, function (err, res) {
         var address = res.data[0].id;
 
         Lob.postcards.create({
-          name: 'Test Postcard',
+          description: 'Test Postcard',
           to: address,
           front: fs.createReadStream(filePath),
           back: fs.createReadStream(filePath)
@@ -167,7 +174,7 @@ describe('Postcards', function () {
     });
 
     it('should succeed using inline address and local file', function (done) {
-      var filePath = __dirname + '/assets/4x6.pdf';
+      var filePath = __dirname + '/assets/4_25x6_25.pdf';
 
       var address = {
         name: 'Grayson Chao',
@@ -182,7 +189,7 @@ describe('Postcards', function () {
       };
 
       Lob.postcards.create({
-        name: 'Test Postcard',
+        description: 'Test Postcard',
         to: address,
         front: fs.createReadStream(filePath),
         back: fs.createReadStream(filePath)
@@ -193,14 +200,14 @@ describe('Postcards', function () {
     });
 
     it('should succeed using address and buffers', function (done) {
-      var file = fs.readFileSync(__dirname + '/assets/4x6.pdf');
+      var file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
       var front = file;
       var back = file;
 
       Lob.addresses.list({ offset: 0, count: 1 }, function (err, res) {
         var address = res.data[0].id;
         Lob.postcards.create({
-          name: 'Test Postcard',
+          description: 'Test Postcard',
           to: address,
           front: front,
           back: back
@@ -223,8 +230,10 @@ describe('Postcards', function () {
           address_state: 'CA',
           address_zip: '94612'
         },
-        front: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf',
-        back: 'https://s3-us-west-2.amazonaws.com/lob-assets/test.pdf'
+        front: 'https://s3-us-west-2.amazonaws.com/' +
+          'lob-assets/lob-postcard-front.pdf',
+        back: 'https://s3-us-west-2.amazonaws.com/' +
+          'lob-assets/lob-postcard-front.pdf'
       }, function (err, res) {
         expect(res.object).to.eql('postcard');
         done();

@@ -9,14 +9,14 @@ describe('Checks', function () {
   describe('create', function () {
     it('should succeed with default parameters', function (done) {
       Lob.checks.create({
-        name: 'TEST_CHECK',
+        description: 'TEST_CHECK',
         bank_account: 'bank_e13902b6bdfff24',
         to: 'adr_8613108bcfa00806',
         amount: 100,
         memo: 'test check'
       }, function (err, res) {
         expect(res).to.have.property('id');
-        expect(res).to.have.property('name');
+        expect(res).to.have.property('description');
         expect(res).to.have.property('bank_account');
         expect(res).to.have.property('check_number');
         expect(res).to.have.property('memo');
@@ -53,14 +53,14 @@ describe('Checks', function () {
         var id = res.id;
         Lob.bankAccounts.verify(id, [23, 34], function () {
           Lob.checks.create({
-            name: 'TEST_CHECK',
+            description: 'TEST_CHECK',
             bank_account: id,
             to: 'adr_8613108bcfa00806',
             amount: 100,
             memo: 'test check'
           }, function (err, res2) {
             expect(res2).to.have.property('id');
-            expect(res2).to.have.property('name');
+            expect(res2).to.have.property('description');
             expect(res2).to.have.property('bank_account');
             expect(res2).to.have.property('check_number');
             expect(res2).to.have.property('memo');
@@ -74,7 +74,7 @@ describe('Checks', function () {
 
     it('should succeed with inline to address id', function (done) {
       Lob.checks.create({
-        name: 'TEST_CHECK',
+        description: 'TEST_CHECK',
         bank_account: 'bank_e13902b6bdfff24',
         to: {
           name: 'Lob.com',
@@ -89,7 +89,7 @@ describe('Checks', function () {
         memo: 'test check'
       }, function (err, res) {
         expect(res).to.have.property('id');
-        expect(res).to.have.property('name');
+        expect(res).to.have.property('description');
         expect(res).to.have.property('bank_account');
         expect(res).to.have.property('check_number');
         expect(res).to.have.property('memo');
@@ -101,13 +101,13 @@ describe('Checks', function () {
 
     it('should fail when no address provided', function (done) {
       Lob.checks.create({
-        name: 'TEST_CHECK',
+        description: 'TEST_CHECK',
         bank_account: 'bank_e13902b6bdfff24',
         amount: 100,
         memo: 'test check'
       }, function (err) {
-        expect(err[0].message).to.eql('to is required');
-        expect(err[0].status_code).to.eql(422);
+        expect(err.message).to.eql('to is required');
+        expect(err.status_code).to.eql(422);
         return done();
       });
     });
@@ -116,7 +116,7 @@ describe('Checks', function () {
   describe('retrieve', function () {
     it('should succeed on get', function (done) {
       Lob.checks.create({
-        name: 'TEST_CHECK',
+        description: 'TEST_CHECK',
         bank_account: 'bank_e13902b6bdfff24',
         to: {
           name: 'Lob.com',
@@ -133,7 +133,7 @@ describe('Checks', function () {
         var id = res.id;
         Lob.checks.retrieve(id, function (err, res) {
           expect(res).to.have.property('id');
-          expect(res).to.have.property('name');
+          expect(res).to.have.property('description');
           expect(res).to.have.property('bank_account');
           expect(res).to.have.property('check_number');
           expect(res).to.have.property('memo');

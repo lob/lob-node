@@ -1,11 +1,11 @@
-var fs          = require('fs');
-var lobFactory  = require('../lib/index.js');
-var Lob         = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-var pdfkit      = require('pdfkit');
+var fs         = require('fs');
+var lobFactory = require('../lib/index.js');
+var Lob        = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
+var pdfkit     = require('pdfkit');
 
 var POINTS_PER_INCH = 72; // 72 PostScript Points per Inch
 
-function createPostcardFront(done) {
+function createPostcardFront (done) {
   var pdf = new pdfkit({
     size: [POINTS_PER_INCH * 6.25, POINTS_PER_INCH * 4.25],
     margin: 0
@@ -32,15 +32,13 @@ function createPostcardFront(done) {
   pdf.save().end();
 };
 
-function createPostcard(done) {
+function createPostcard (done) {
   createPostcardFront(function (res) {
-    fs.writeFileSync('/tmp/lob_postcard_front.pdf', res);
     Lob.postcards.create({
-      name: 'Test Postcard',
+      description: 'Test Postcard',
       to: 'adr_0f79b269e7d49f7d',
-      front: '@' + '/tmp/lob_postcard_front.pdf',
-      message: 'Enjoy your postcard from Lob!',
-      full_bleed: 1
+      front: res,
+      message: 'Enjoy your postcard from Lob!'
     }, function (err, res) {
       done(res);
     });

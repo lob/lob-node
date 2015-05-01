@@ -44,7 +44,7 @@ describe('Verification', function () {
       address_state: addressState,
       address_zip: addressZip
     }, function (err) {
-      expect(err).to.be.instanceof(Array);
+      expect(err).to.be.instanceof(Object);
       return done();
     });
   });

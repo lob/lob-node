@@ -22,14 +22,14 @@ Lob.addresses.create({
   if (!err) {
     // Create the object (Lob object, not JS object!!)
     Lob.objects.create({
-      name: 'My first object',
-      file: 'https://s3-us-west-2.amazonaws.com/lob-assets/goblue.pdf',
-      setting: 100
+      description: 'My first object',
+      file: 'https://s3-us-west-2.amazonaws.com/lob-assets/200_201_card.pdf',
+      setting: 200
     }, function (err, object) {
       if (!err) {
         // Use the returned address and returned Lob object to create the job
         Lob.jobs.create({
-          name: 'My first job!',
+          description: 'My first job!',
           to: address.id,
           // Freely mix references and inline objects
           from: {
