@@ -104,6 +104,10 @@ The Lob constructor accepts an `options` object which may contain one or more of
 
 We've provided various examples for you to try out [here](https://github.com/lob/lob-node/tree/master/examples).
 
+There are simple scripts to demonstrate how to create all the core Lob objects (checks, letters, postcards. etc.) As well as more complex examples that utilize other libraries and external files:
+
+- [Creating Dynamic Postcards with HTML and Data From a CSV](https://github.com/lob/lob-node/tree/master/examples/csv_postcards)
+
 ## API Documentation
 
 - [Introduction](https://lob.com/docs/node#introduction)
