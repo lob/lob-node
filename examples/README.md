@@ -9,5 +9,5 @@ An example showing how to dynamically create postcards from a CSV using HTML, a 
 You can run the program by entering:
 
 ```javascript
-node index.js input.csv
+node csv_postcards/index.js input.csv
 ```
