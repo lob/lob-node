@@ -58,16 +58,9 @@ describe('Areas', function () {
 
   describe('get', function () {
     it('should have the correct defaults', function (done) {
-      Lob.areas.create({
-        description: 'Test Area',
-        routes: ['94158-C001', '94107-C031'],
-        front: '<h1>Test Area Front</h1>',
-        back: '<h1>Test Area Back</h1>'
-      }, function (err, res) {
-        Lob.areas.retrieve(res.id, function (err2, res2) {
-          expect(res).to.eql(res2);
-          done();
-        });
+      Lob.areas.retrieve('area_610373e604a17d6', function (err, res) {
+        expect(res.object).to.eql('area');
+        done();
       });
     });
 
