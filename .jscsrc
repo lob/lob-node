@@ -117,7 +117,7 @@
   "disallowTrailingWhitespace": true,
   "disallowKeywordsOnNewLine": ["else"],
   "requireLineFeedAtFileEnd": true,
-  "maximumLineLength": 80,
+  "maximumLineLength": 120,
   "requireCapitalizedConstructors": true,
   "safeContextKeyword": ["self"],
   "requireDotNotation": true,
