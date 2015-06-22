@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      @font-face {
+        font-family: 'Loved by the King';
+        font-style: normal;
+        font-weight: 400;
+        src: url('https://s3-us-west-2.amazonaws.com/lob-assets/LovedbytheKing.ttf') format('truetype');
+      }
+
+      *, *:before, *:after {
+
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      body {
+        width: 8.5in;
+        height: 11in;
+        margin: 0;
+        padding: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      .page {
+        page-break-after: always;
+      }
+      .page-content {
+        position: relative;
+        width: 7in;
+        height: 10.625in;
+        left: 0.75in;
+        top: 0.1875in;
+      }
+
+      #logo {
+        position: absolute;
+        right: 0;
+      }
+
+      .wrapper {
+        position: absolute;
+        top: 2.75in;
+      }
+
+      .signature {
+        font-family: 'Loved by the King';
+        font-size: 45px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='page'>
+      <div class='page-content'>
+        <img id="logo" src="https://s3-us-west-2.amazonaws.com/lob-assets/deluxe-logo.png" width="150px" />
+
+        <div class='wrapper'>
+            <p>{{date}}</p>
+
+            <p>Dear {{name}},</p>
+
+            <p>This is a friendly reminder that your account with us appears as past due. Our records indicate that you have
+            a total outstanding balance of <b>${{amountDue}}</b>.</p>
+
+            <p>We would much appreciate if you could let us know the status of this payment. Please do not hesitate to call
+            us if you have any questions about the balance due on your account. If you have already sent us your payment,
+            please disregard this reminder.</p>
+
+            <p>Thank you very much for your attention to this matter and your continued business.</p>
+
+            <p>Sincerely,</p>
+            <p class="signature">Deluxe</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

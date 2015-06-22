@@ -21,7 +21,7 @@
   "indent": 2,
   "trailing": true,
   "quotmark": "single",
-  "maxlen": 80,
+  "maxlen": 120,
   "node": true,
   "globalstrict": false,
   "globals": {

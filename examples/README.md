@@ -9,5 +9,15 @@ An example showing how to dynamically create postcards from a CSV using HTML, a 
 You can run the program by entering:
 
 ```javascript
-node csv_postcards/index.js input.csv
+node csv_postcards/index.js
+```
+
+## Mail Merge. Sending Dynamic Letters with HTML and Data From a CSV
+
+An example showing how to dynamically create letters from a CSV using HTML, a custom font, variable data, and Lob's [Letter API](https://lob.com/services/letters) to remind customers of past due bills.
+
+You can run the program by entering:
+
+```javascript
+node csv_mail_merge/index.js
 ```
