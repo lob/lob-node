@@ -9,6 +9,8 @@ var LobFactory = require('../../lib/index.js');
 var Lob        = new LobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
 var inputFile = fs.createReadStream(__dirname + '/input.csv');
+var successFd = fs.openSync(__dirname + '/success.csv', 'w');
+var errorFd = fs.openSync(__dirname + '/error.csv', 'w');
 var letterTemplate = fs.readFileSync(__dirname + '/letter_template.html').toString();
 
 var companyInfo = {
@@ -29,7 +31,7 @@ var parser = parse({ columns: true }, function (err, data) {
   data.forEach(function (client) {
 
     var name = client.name;
-    var amount = client.amount.toFixed(2);
+    var amount = parseFloat(client.amount).toFixed(2);
     var address = {
       address_line1: client.address1,
       address_line2: client.address2,
@@ -70,19 +72,16 @@ var parser = parse({ columns: true }, function (err, data) {
         if (err) {
           throw err;
         }
-        fs.appendFile(__dirname + '/success.csv', csv);
+        fs.write(successFd, csv);
       }, { PREPEND_HEADER: false });
     })
     .catch(function (error) {
-      if (error) {
-        throw error;
-      }
       console.log('Could not send letter to ' +  client.name);
       converter.json2csv(client, function (err, csv) {
         if (err) {
           throw err;
         }
-        fs.appendFile(__dirname + '/errors.csv', csv);
+        fs.write(errorFd, csv);
       }, { PREPEND_HEADER: false });
     });
   });
