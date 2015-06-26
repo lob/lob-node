@@ -10,7 +10,7 @@
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]  [![Build Status](https://travis-ci.org/lob/lob-node.svg?branch=master)](https://travis-ci.org/lob/lob-node) [![Dependency Status](https://gemnasium.com/lob/lob-node.svg)](https://gemnasium.com/lob/lob-node) [![Coverage Status](https://coveralls.io/repos/lob/lob-node/badge.svg?branch=master)](https://coveralls.io/r/lob/lob-node?branch=master)
 
-Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documentation [here](https://lob.com/docs/node).
+Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documentation [here](https://lob.com/docs/node).  For best results, be sure that you're using [the latest version](https://lob.com/docs/node#version) of the Lob API and the latest version of the Node wrapper.
 
 ## Table of Contents
 
@@ -112,7 +112,8 @@ There are simple scripts to demonstrate how to create all the core Lob objects (
 
 - [Introduction](https://lob.com/docs/node#introduction)
 - [Versioning](https://lob.com/docs/node#version)
-- [Image Prepping](https://lob.com/docs/node#prepping)
+- [Errors](https://lob.com/docs/node#errors)
+- [Metadata](https://lob.com/docs/node#metadata)
 - **Addresses**
   - [Address Book](https://lob.com/docs/node#addresses)
     - [Create an Address](https://lob.com/docs/node#addresses_create)
@@ -145,6 +146,7 @@ There are simple scripts to demonstrate how to create all the core Lob objects (
 - **Simple Print Service**
   - [Jobs](https://lob.com/docs/node#jobs)
     - [Create a Job](https://lob.com/docs/node#jobs_create)
+    - [Create a MultiObject Job](https://lob.com/docs/node#jobs_multi)
     - [Retrieve a Job](https://lob.com/docs/node#jobs_retrieve)
     - [List all Jobs](https://lob.com/docs/node#jobs_list)
   - [Objects](https://lob.com/docs/node#objects)
@@ -169,11 +171,9 @@ There are simple scripts to demonstrate how to create all the core Lob objects (
   - [States](https://lob.com/docs/node#states)
     - [List all States](https://lob.com/docs/node#states_list)
 - **Appendix**
+  - [HTML Examples](https://lob.com/docs/node#html-examples)
+  - [Image Prepping](https://lob.com/docs/node#prepping)
   - [SPS Templates](https://lob.com/docs/node#sps-templates)
-  - [Custom Fonts with HTML](https://lob.com/docs/node#html-fonts)
-  - [Postcard HTML Examples](https://lob.com/docs/node#postcard-examples)
-  - [Area HTML Examples](https://lob.com/docs/node#area-examples)
-  - [Letter HTML Examples](https://lob.com/docs/node#letter-examples)
 
 ## Contributing
 
