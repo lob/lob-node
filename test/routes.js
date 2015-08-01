@@ -20,4 +20,21 @@ describe('Routes', function () {
       });
     });
   });
+
+  describe('get', function () {
+    it('should error with an invalid zip code', function (done) {
+      Lob.routes.retrieve(99999, function (err) {
+        expect(err).to.exist;
+        done();
+      });
+    });
+
+    it('should have the correct defaults', function (done) {
+      Lob.routes.retrieve(48168, function (err, zip) {
+        expect(zip).to.have.property('zip_code');
+        expect(zip).to.have.property('routes');
+        done();
+      });
+    });
+  });
 });
