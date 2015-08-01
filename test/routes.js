@@ -21,7 +21,7 @@ describe('Routes', function () {
     });
   });
 
-  describe('get', function () {
+  describe('retrieve', function () {
     it('should error with an invalid zip code', function (done) {
       Lob.routes.retrieve(99999, function (err) {
         expect(err).to.exist;
