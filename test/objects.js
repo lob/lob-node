@@ -55,7 +55,7 @@ describe('Objects', function () {
         setting: 200
       }, function (err, res) {
         Lob.objects.retrieve(res.id, function (err2, res2) {
-          expect(res).to.eql(res2);
+          expect(res).to.contain.all.keys(res2);
           done();
         });
       });
