@@ -16,7 +16,7 @@ var envVars = {
   COVERAGE_DIR: '.',
 };
 
-var TIMEOUT = 20000;
+var TIMEOUT = 30000;
 
 /* jshint camelcase: false */
 gulp.task('style', function () {
