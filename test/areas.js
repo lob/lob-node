@@ -74,20 +74,16 @@ describe('Areas', function () {
 
   describe('create', function () {
     it('should succeed using address and remote file', function (done) {
-      var address;
-      Lob.addresses.list({ offset: 0, count: 1 }, function (err, res) {
-        address = res.data[0].id;
-        Lob.areas.create({
-          description: 'Test Area',
-          routes: ['94158-C001', '94107-C031'],
-          front: 'https://s3-us-west-2.amazonaws.com/lob-assets/' +
-            'areaback.pdf',
-          back: 'https://s3-us-west-2.amazonaws.com/lob-assets/' +
-            'areaback.pdf'
-        }, function (err, res) {
-          expect(res.object).to.eql('area');
-          done();
-        });
+      Lob.areas.create({
+        description: 'Test Area',
+        routes: ['94158-C001', '94107-C031'],
+        front: 'https://s3-us-west-2.amazonaws.com/lob-assets/' +
+        'areaback.pdf',
+        back: 'https://s3-us-west-2.amazonaws.com/lob-assets/' +
+        'areaback.pdf'
+      }, function (err, res) {
+        expect(res.object).to.eql('area');
+        done();
       });
     });
 

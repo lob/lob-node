@@ -74,7 +74,7 @@ describe('Postcards', function () {
         back: '<h1>Test Postcard Back</h1>'
       }, function (err, res) {
         Lob.postcards.retrieve(res.id, function (err2, res2) {
-          expect(res).to.eql(res2);
+          expect(res.object).to.eql('postcard');
           done();
         });
       });

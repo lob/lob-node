@@ -27,52 +27,6 @@ describe('Checks', function () {
       });
     });
 
-    it('should succeed with inline bank account', function (done) {
-      Lob.bankAccounts.create({
-        routing_number: '122100024',
-        account_number: '123456788',
-        signatory: 'John Doe',
-        bank_address: {
-          name: 'Chase',
-          address_line1: '123 Test Street',
-          address_line2: 'Unit 199',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '60039',
-          address_country: 'US',
-        },
-        account_address: {
-          name: 'Lob.com',
-          address_line1: '123 Test Street',
-          address_line2: 'Unit 199',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '60039',
-          address_country: 'US',
-        }
-      }, function (err, res) {
-        var id = res.id;
-        Lob.bankAccounts.verify(id, [23, 34], function () {
-          Lob.checks.create({
-            description: 'TEST_CHECK',
-            bank_account: id,
-            to: 'adr_8613108bcfa00806',
-            amount: 100,
-            memo: 'test check'
-          }, function (err, res2) {
-            expect(res2).to.have.property('id');
-            expect(res2).to.have.property('description');
-            expect(res2).to.have.property('bank_account');
-            expect(res2).to.have.property('check_number');
-            expect(res2).to.have.property('memo');
-            expect(res2.memo).to.eql('test check');
-            expect(res2.object).to.eql('check');
-            return done();
-          });
-        });
-      });
-    });
-
     it('should succeed with inline to address id', function (done) {
       Lob.checks.create({
         description: 'TEST_CHECK',
@@ -116,32 +70,16 @@ describe('Checks', function () {
 
   describe('retrieve', function () {
     it('should succeed on get', function (done) {
-      Lob.checks.create({
-        description: 'TEST_CHECK',
-        bank_account: 'bank_e13902b6bdfff24',
-        to: {
-          name: 'Lob.com',
-          address_line1: '123 Test Street',
-          address_line2: 'Unit 199',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US',
-        },
-        amount: 100,
-        memo: 'test check'
-      }, function (err, res) {
-        var id = res.id;
-        Lob.checks.retrieve(id, function (err, res) {
-          expect(res).to.have.property('id');
-          expect(res).to.have.property('description');
-          expect(res).to.have.property('bank_account');
-          expect(res).to.have.property('check_number');
-          expect(res).to.have.property('memo');
-          expect(res.memo).to.eql('test check');
-          expect(res.object).to.eql('check');
-          done();
-        });
+      var id = 'chk_9cd5802b918faf86';
+      Lob.checks.retrieve(id, function (err, res) {
+        expect(res).to.have.property('id');
+        expect(res).to.have.property('description');
+        expect(res).to.have.property('bank_account');
+        expect(res).to.have.property('check_number');
+        expect(res).to.have.property('memo');
+        expect(res.memo).to.eql('test check');
+        expect(res.object).to.eql('check');
+        done();
       });
     });
 
