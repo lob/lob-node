@@ -25,22 +25,6 @@ Lob.addresses.create({
   Lob.bankAccounts.create({
     routing_number: '122100024',
     account_number: '123456789',
-    bank_address: {
-      name: 'Chase Bank',
-      address_line1: '55 Edmonds',
-      address_city: 'Palo Alto',
-      address_state: 'CA',
-      address_zip: '90081',
-      address_country: 'US'
-    },
-    account_address: {
-      name: 'Leore Avidar',
-      address_line1: '123 Test Street',
-      address_city: 'Sunnyvale',
-      address_state: 'CA',
-      address_zip: '94085',
-      address_country: 'US'
-    },
     signatory: 'John Doe'
   }, function (err, bankAccount) {
     if (err) {
@@ -55,6 +39,14 @@ Lob.addresses.create({
         check_number: '10000',
         bank_account: bankAccount.id,
         to: address.id,
+        from: {
+          name: 'Leore Avidar',
+          address_line1: '123 Test Street',
+          address_city: 'Sunnyvale',
+          address_state: 'CA',
+          address_zip: '94085',
+          address_country: 'US'
+        },
         amount: 100,
         memo: 'This is my first Check',
         message: 'This check is for laundry',

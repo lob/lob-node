@@ -12,6 +12,7 @@ describe('Checks', function () {
         description: 'TEST_CHECK',
         bank_account: 'bank_e13902b6bdfff24',
         to: 'adr_8613108bcfa00806',
+        from: 'adr_8613108bcfa00806',
         amount: 100,
         memo: 'test check',
         file: '<h1>Test Check</h1>'
@@ -32,6 +33,15 @@ describe('Checks', function () {
         description: 'TEST_CHECK',
         bank_account: 'bank_e13902b6bdfff24',
         to: {
+          name: 'Lob.com',
+          address_line1: '123 Test Street',
+          address_line2: 'Unit 199',
+          address_city: 'San Francisco',
+          address_state: 'CA',
+          address_zip: '94158',
+          address_country: 'US',
+        },
+        from: {
           name: 'Lob.com',
           address_line1: '123 Test Street',
           address_line2: 'Unit 199',

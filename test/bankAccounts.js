@@ -8,34 +8,14 @@ var Lob     = require('../lib/index.js')(API_KEY);
 describe('Bank Accounts', function () {
 
   describe('create', function () {
-    it('should succeed with inline addresses', function (done) {
+    it('creates a bank account', function (done) {
       Lob.bankAccounts.create({
         routing_number: '122100024',
         account_number: '123456788',
-        signatory: 'John Doe',
-        bank_address: {
-          name: 'Chase',
-          address_line1: '123 Test Street',
-          address_line2: 'Unit 199',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '56003',
-          address_country: 'US',
-        },
-        account_address: {
-          name: 'Lob.com',
-          address_line1: '123 Test Street',
-          address_line2: 'Unit 199',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '56003',
-          address_country: 'US',
-        }
+        signatory: 'John Doe'
       }, function (err, res) {
         expect(res).to.have.property('id');
         expect(res).to.have.property('routing_number');
-        expect(res).to.have.property('bank_address');
-        expect(res).to.have.property('account_address');
         expect(res.routing_number).to.eql('122100024');
         expect(res).to.have.property('account_number');
         expect(res.account_number).to.eql('123456788');
@@ -45,43 +25,10 @@ describe('Bank Accounts', function () {
       });
     });
 
-    it('should succeed with address ids', function (done) {
-      var routingNumber = '122100024';
-      var accountNumber = '123456788';
-      var bankAddressId =  'adr_a11a87b8240b1540';
-      var accountAddressId = 'adr_a11a87b8240b1540';
-
+    it('should error with bad routing number', function (done) {
       Lob.bankAccounts.create({
-        signatory: 'John Doe',
-        routing_number: routingNumber,
-        account_number: accountNumber,
-        bank_address: bankAddressId,
-        account_address: accountAddressId
-      }, function (err, res) {
-        expect(res).to.have.property('id');
-        expect(res).to.have.property('routing_number');
-        expect(res).to.have.property('bank_address');
-        expect(res).to.have.property('account_address');
-        expect(res.routing_number).to.eql(routingNumber);
-        expect(res).to.have.property('account_number');
-        expect(res.account_number).to.eql(accountNumber);
-        expect(res.verified).to.eql(false);
-        expect(res.object).to.eql('bank_account');
-        return done();
-      });
-    });
-
-    it('should error with bad address', function (done) {
-      var routingNumber = '122100024';
-      var accountNumber = '123456788';
-      var bankAddressId =  'adr_bad';
-      var accountAddressId = 'adr_a11a87b8240b1540';
-
-      Lob.bankAccounts.create({
-        routing_number: routingNumber,
-        account_number: accountNumber,
-        bank_address: bankAddressId,
-        account_address: accountAddressId,
+        routing_number: '11000000',
+        account_number: '123456788',
         signatory: 'John Doe'
       }, function (err) {
         expect(err).to.exist;
@@ -94,25 +41,19 @@ describe('Bank Accounts', function () {
     it('should succeed on get', function (done) {
       var routingNumber = '122100024';
       var accountNumber = '123456788';
-      var bankAddressId =  'adr_a11a87b8240b1540';
-      var accountAddressId = 'adr_a11a87b8240b1540';
 
       Lob.bankAccounts.create({
         routing_number: routingNumber,
         account_number: accountNumber,
-        bank_address: bankAddressId,
-        account_address: accountAddressId,
         signatory: 'John Doe'
       }, function (err, res) {
         var id = res.id;
         Lob.bankAccounts.retrieve(id,function (err, res) {
           expect(res).to.have.property('id');
           expect(res).to.have.property('routing_number');
-          expect(res).to.have.property('bank_address');
-          expect(res).to.have.property('account_address');
-          expect(res.routing_number).to.eql('122100024');
+          expect(res.routing_number).to.eql(routingNumber);
           expect(res).to.have.property('account_number');
-          expect(res.account_number).to.eql('123456788');
+          expect(res.account_number).to.eql(accountNumber);
           expect(res.verified).to.eql(false);
           expect(res.object).to.eql('bank_account');
           return done();
@@ -132,14 +73,10 @@ describe('Bank Accounts', function () {
     it('should succeed on delete', function (done) {
       var routingNumber = '122100024';
       var accountNumber = '123456788';
-      var bankAddressId = 'adr_a11a87b8240b1540';
-      var accountAddressId = 'adr_a11a87b8240b1540';
 
       Lob.bankAccounts.create({
         routing_number: routingNumber,
         account_number: accountNumber,
-        bank_address: bankAddressId,
-        account_address: accountAddressId,
         signatory: 'John Doe'
       }, function (err, res) {
         var id = res.id;
@@ -185,7 +122,7 @@ describe('Bank Accounts', function () {
         expect(res).to.have.property('count');
         expect(res).to.have.property('next_url');
         expect(res.next_url).to.eql('https://api.lob.com/' +
-        'v1/bank_accounts?count=10&offset=10');
+          'v1/bank_accounts?count=10&offset=10');
         expect(res).to.have.property('previous_url');
         expect(res.object).to.eql('list');
         expect(res.count).to.eql(10);
@@ -222,26 +159,20 @@ describe('Bank Accounts', function () {
     it('should succeed on verify with amounts', function (done) {
       var routingNumber = '122100024';
       var accountNumber = '123456788';
-      var bankAddressId =  'adr_a11a87b8240b1540';
-      var accountAddressId = 'adr_a11a87b8240b1540';
       var amounts = [23, 34];
 
       Lob.bankAccounts.create({
         routing_number: routingNumber,
         account_number: accountNumber,
-        bank_address: bankAddressId,
-        account_address: accountAddressId,
         signatory: 'John Doe'
       }, function (err, res) {
         var id = res.id;
         Lob.bankAccounts.verify(id, amounts, function (err, res) {
           expect(res).to.have.property('id');
           expect(res).to.have.property('routing_number');
-          expect(res).to.have.property('bank_address');
-          expect(res).to.have.property('account_address');
-          expect(res.routing_number).to.eql('122100024');
+          expect(res.routing_number).to.eql(routingNumber);
           expect(res).to.have.property('account_number');
-          expect(res.account_number).to.eql('123456788');
+          expect(res.account_number).to.eql(accountNumber);
           expect(res.verified).to.eql(true);
           expect(res.object).to.eql('bank_account');
           return done();
