@@ -1,3 +1,5 @@
+'use strict';
+
 var chai    = require('chai');
 var expect  = chai.expect;
 
@@ -39,7 +41,7 @@ describe('Checks', function () {
           address_city: 'San Francisco',
           address_state: 'CA',
           address_zip: '94158',
-          address_country: 'US',
+          address_country: 'US'
         },
         from: {
           name: 'Lob.com',
@@ -48,7 +50,7 @@ describe('Checks', function () {
           address_city: 'San Francisco',
           address_state: 'CA',
           address_zip: '94158',
-          address_country: 'US',
+          address_country: 'US'
         },
         amount: 100,
         memo: 'test check'

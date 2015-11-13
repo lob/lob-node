@@ -1,3 +1,5 @@
+'use strict';
+
 var chai    = require('chai');
 var expect  = chai.expect;
 var API_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc';

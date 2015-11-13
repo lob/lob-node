@@ -75,7 +75,7 @@ var parser = parse({ columns: true }, function (err, data) {
         fs.write(successFd, csv);
       }, { PREPEND_HEADER: false });
     })
-    .catch(function (error) {
+    .catch(function () {
       console.log('Could not send letter to ' +  client.name);
       converter.json2csv(client, function (err, csv) {
         if (err) {
