@@ -1,10 +1,8 @@
 language: node_js
 node_js:
 - '0.10'
-before_script:
-- npm run style
-- npm run lint
 after_script:
+- npm run lint
 - npm run enforce
 - npm run coveralls
 notifications:

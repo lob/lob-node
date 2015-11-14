@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * Create an address, then send two postcards with it - one with a message
  * on the back, and one with a custom PDF back instead.
@@ -21,7 +23,7 @@ Lob.addresses.create({
   address_city: 'Chicago',
   address_state: 'IL',
   address_zip: '60012',
-  address_country: 'US',
+  address_country: 'US'
 }, function (err, address) {
   if (err) {
     console.log(err);

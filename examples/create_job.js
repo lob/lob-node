@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * Example of creating an address, then an object with HTML and template data,
  * then a job using the created address and object.
@@ -21,7 +23,7 @@ Lob.addresses.create({
   address_city: 'Chicago',
   address_state: 'IL',
   address_zip: '60012',
-  address_country: 'US',
+  address_country: 'US'
 }, function (err, address) {
   if (!err) {
     // Create the object (Lob object, not JS object!!)

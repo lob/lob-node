@@ -1,3 +1,5 @@
+'use strict';
+
 var fs      = require('fs');
 var chai    = require('chai');
 var expect  = chai.expect;
@@ -107,7 +109,7 @@ describe('Areas', function () {
         front: '<h1>Test Area Front</h1>',
         back: '<h1>Test Area Back</h1>',
         full_bleed: true
-      }, function (err, res) {
+      }, function (err) {
         expect(err).to.exist;
         done();
       });
@@ -118,7 +120,7 @@ describe('Areas', function () {
         description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
         back: '<h1>Test Area</h1>'
-      }, function (err, res) {
+      }, function (err) {
         expect(err).to.be.an.instanceOf(Object);
         done();
       });
@@ -129,7 +131,7 @@ describe('Areas', function () {
         description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
         front: '<h1>Test Area Front</h1>'
-      }, function (err, res) {
+      }, function (err) {
         expect(err).to.be.an.instanceOf(Object);
         done();
       });
@@ -161,8 +163,7 @@ describe('Areas', function () {
     });
 
     it('should succeed using address and buffers', function (done) {
-      fs.readFile(__dirname + '/assets/areaback.pdf',
-        function (err, file) {
+      fs.readFile(__dirname + '/assets/areaback.pdf', function (err, file) {
         Lob.areas.create({
           description: 'Test Area',
           routes: ['94158-C001'],

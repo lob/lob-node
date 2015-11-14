@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * Example of creating an address, then bank acct, then verifying that bank
  * acct, then create a check using the created address and bank account.
@@ -17,7 +19,7 @@ Lob.addresses.create({
   address_city: 'Chicago',
   address_state: 'IL',
   address_zip: '60012',
-  address_country: 'US',
+  address_country: 'US'
 }, function (err, address) {
   if (err) {
     return console.log(err);

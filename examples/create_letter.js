@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * Create an address, then send a letter with HTML and template data.
  * Run me! This example works out of the box, "batteries included".
@@ -20,7 +22,7 @@ Lob.addresses.create({
   address_city: 'Chicago',
   address_state: 'IL',
   address_zip: '60012',
-  address_country: 'US',
+  address_country: 'US'
 })
 .then(function (address) {
   return Lob.letters.create({
@@ -33,7 +35,7 @@ Lob.addresses.create({
       address_city: 'Chicago',
       address_state: 'IL',
       address_zip: '60012',
-      address_country: 'US',
+      address_country: 'US'
     },
     file: file,
     data: {

@@ -1,3 +1,5 @@
+'use strict';
+
 var fs      = require('fs');
 var chai    = require('chai');
 var expect  = chai.expect;
@@ -73,7 +75,7 @@ describe('Postcards', function () {
         front: '<h1>Test Postcard Front</h1>',
         back: '<h1>Test Postcard Back</h1>'
       }, function (err, res) {
-        Lob.postcards.retrieve(res.id, function (err2, res2) {
+        Lob.postcards.retrieve(res.id, function () {
           expect(res.object).to.eql('postcard');
           done();
         });
@@ -129,7 +131,7 @@ describe('Postcards', function () {
           to: address,
           back: '<h1>Test Postcard Back</h1>',
           message: 'This is the message'
-        }, function (err, res) {
+        }, function (err) {
           expect(err).to.be.an.instanceOf(Object);
           done();
         });

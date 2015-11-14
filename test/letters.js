@@ -1,3 +1,5 @@
+'use strict';
+
 var fs      = require('fs');
 var chai    = require('chai');
 var expect  = chai.expect;
@@ -130,7 +132,7 @@ describe('Letters', function () {
           description: 'Test Letter',
           to: address,
           from: address
-        }, function (err, res) {
+        }, function (err) {
           expect(err).to.be.an.instanceOf(Object);
           done();
         });
