@@ -31,8 +31,7 @@ Here's a general overview of the Lob services available, click through to read m
 - [Postcards API](https://lob.com/services/postcards)
 - [Letters API](https://lob.com/services/letters)
 - [Checks API](https://lob.com/services/checks)
-- [Prints API](https://lob.com/services/sps)
-- [Area Mail API](https://lob.com/services/sam)
+- [Area Mail API](https://lob.com/services/area)
 - [Address Verification API](https://lob.com/verification/address)
 
 ### Registration
@@ -146,20 +145,6 @@ There are simple scripts to demonstrate how to create all the core Lob objects (
     - [Delete a Bank Account](https://lob.com/docs/node#bankaccounts_delete)
     - [Verify a Bank Account](https://lob.com/docs/node#bankaccounts_verify)
     - [List all Bank Accounts](https://lob.com/docs/node#bankaccounts_list)
-- **Prints API**
-  - [Jobs](https://lob.com/docs/node#jobs)
-    - [Create a Job](https://lob.com/docs/node#jobs_create)
-    - [Create a MultiObject Job](https://lob.com/docs/node#jobs_multi)
-    - [Retrieve a Job](https://lob.com/docs/node#jobs_retrieve)
-    - [List all Jobs](https://lob.com/docs/node#jobs_list)
-  - [Objects](https://lob.com/docs/node#objects)
-    - [Create an Object](https://lob.com/docs/node#objects_create)
-    - [Retrieve an Object](https://lob.com/docs/node#objects_retrieve)
-    - [Delete an Object](https://lob.com/docs/node#objects_delete)
-    - [List all Objects](https://lob.com/docs/node#objects_list)
-  - [Settings](https://lob.com/docs/node#settings)
-    - [Retrieve a Setting](https://lob.com/docs/node#settings_retrieve)
-    - [List all Settings](https://lob.com/docs/node#settings_list)
 - **Area Mail API**
   - [Areas](https://lob.com/docs/node#areas)
     - [Create an Area Mailing](https://lob.com/docs/node#areas_create)
@@ -177,7 +162,6 @@ There are simple scripts to demonstrate how to create all the core Lob objects (
   - [API Changelog](https://lob.com/docs/node#changelog)
   - [HTML Examples](https://lob.com/docs/node#html-examples)
   - [Image Prepping](https://lob.com/docs/node#prepping)
-  - [Prints API Templates](https://lob.com/docs/node#prints-templates)
 
 ## Contributing
 
