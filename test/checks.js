@@ -17,7 +17,7 @@ describe('Checks', function () {
         from: 'adr_8613108bcfa00806',
         amount: 100,
         memo: 'test check',
-        file: '<h1>Test Check</h1>'
+        check_bottom: '<h1>Test Check</h1>'
       }, function (err, res) {
         expect(res).to.have.property('id');
         expect(res).to.have.property('description');
