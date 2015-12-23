@@ -8,7 +8,7 @@
 var fs = require('fs');
 
 var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
+var Lob = new lobFactory('test_fd34e1b5ea86a597ec89f7f2e46940c874d');
 
 var file = fs.readFileSync(__dirname + '/html/letter.html').toString();
 

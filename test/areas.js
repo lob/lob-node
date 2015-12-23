@@ -4,7 +4,7 @@ var fs      = require('fs');
 var chai    = require('chai');
 var expect  = chai.expect;
 
-var API_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc';
+var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
 var Lob     = require('../lib/index.js')(API_KEY);
 
 describe('Areas', function () {
@@ -60,7 +60,7 @@ describe('Areas', function () {
 
   describe('get', function () {
     it('should have the correct defaults', function (done) {
-      Lob.areas.retrieve('area_610373e604a17d6', function (err, res) {
+      Lob.areas.retrieve('area_c02228ba24c30fa', function (err, res) {
         expect(res.object).to.eql('area');
         done();
       });

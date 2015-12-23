@@ -3,7 +3,7 @@
 var chai    = require('chai');
 var expect  = chai.expect;
 
-var API_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc';
+var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
 var Lob     = require('../lib/index.js')(API_KEY);
 
 describe('Checks', function () {
@@ -12,9 +12,9 @@ describe('Checks', function () {
     it('should succeed with default parameters', function (done) {
       Lob.checks.create({
         description: 'TEST_CHECK',
-        bank_account: 'bank_e13902b6bdfff24',
-        to: 'adr_8613108bcfa00806',
-        from: 'adr_8613108bcfa00806',
+        bank_account: 'bank_42426d3c5c2ffd2',
+        to: 'adr_eed2a7b59384aea7',
+        from: 'adr_eed2a7b59384aea7',
         amount: 100,
         memo: 'test check',
         check_bottom: '<h1>Test Check</h1>'
@@ -33,7 +33,7 @@ describe('Checks', function () {
     it('should succeed with inline to address id', function (done) {
       Lob.checks.create({
         description: 'TEST_CHECK',
-        bank_account: 'bank_e13902b6bdfff24',
+        bank_account: 'bank_42426d3c5c2ffd2',
         to: {
           name: 'Lob.com',
           address_line1: '123 Test Street',
@@ -82,14 +82,13 @@ describe('Checks', function () {
 
   describe('retrieve', function () {
     it('should succeed on get', function (done) {
-      var id = 'chk_9cd5802b918faf86';
+      var id = 'chk_7b4fbda187843768';
       Lob.checks.retrieve(id, function (err, res) {
         expect(res).to.have.property('id');
         expect(res).to.have.property('description');
         expect(res).to.have.property('bank_account');
         expect(res).to.have.property('check_number');
         expect(res).to.have.property('memo');
-        expect(res.memo).to.eql('test check');
         expect(res.object).to.eql('check');
         done();
       });

@@ -4,7 +4,7 @@ var parse = require('csv-parse');
 var fs    = require('fs');
 
 var lobFactory = require('../../lib/index.js');
-var Lob        = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
+var Lob        = new lobFactory('test_fd34e1b5ea86a597ec89f7f2e46940c874d');
 var input      = fs.readFileSync(__dirname + '/input.csv', { encoding: 'utf-8' });
 var frontHtml  = fs.readFileSync(__dirname + '/postcard_front.html', { encoding: 'utf-8' });
 var backHtml   = fs.readFileSync(__dirname + '/postcard_back.html', { encoding: 'utf-8' });
@@ -33,7 +33,7 @@ parse(input, function (err, rows) {
         address_zip: '94185',
         address_country: 'US'
       },
-      setting: 1002,
+      size: '4x6',
       front: frontHtml,
       back: backHtml,
       data: {
