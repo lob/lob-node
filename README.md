@@ -60,7 +60,7 @@ $ npm install
 var Lob = require('lob')('YOUR API KEY');
 
 // change api version
-var Lob = require('lob')('YOUR API KEY');
+var Lob = require('lob')('YOUR API KEY', { apiVersion: 'API-VERSION' });
 
 // change internal defaults (e.g. host)
 var options = {/* see options below */};
@@ -171,11 +171,11 @@ To contribute, please see the [CONTRIBUTING.md](https://github.com/lob/lob-node/
 
 To run the tests with coverage:
 
-    gulp testCI
+    npm test
 
 To run the tests without coverage:
 
-    gulp test
+    npm run test-no-cover
 
 =======================
 

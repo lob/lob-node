@@ -9,7 +9,7 @@ Code changes are welcome and should follow the guidelines below.
 
 * Fork the repository on GitHub.
 * Add tests for your new code ensuring that you have 100% code coverage (we can help you reach 100% but will not merge without it).
-    * Run `gulp cover` to generate a report of test coverage
+    * Run `npm test` to generate a report of the test coverage
 * [Pull requests](http://help.github.com/send-pull-requests/) should be made to the [master branch](https://github.com/Lob/Lob-node/tree/master).
 
 To help encourage consistent code style guidelines, we have included an `.editorconfig` file for use with your favorite [editor](http://editorconfig.org/#download).
