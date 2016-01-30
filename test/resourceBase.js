@@ -16,7 +16,7 @@ describe('ResourceBase', function () {
     });
 
     return resource._transmit('GET', null, null, null, function (err) {
-      expect(err.statusCode).to.eql(504);
+      expect(err.status_code).to.eql(504);
       return done();
     });
   });
