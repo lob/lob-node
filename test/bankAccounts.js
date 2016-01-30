@@ -168,7 +168,7 @@ describe('Bank Accounts', function () {
         signatory: 'John Doe'
       }, function (err, res) {
         var id = res.id;
-        Lob.bankAccounts.verify(id, amounts, function (err, res) {
+        Lob.bankAccounts.verify(id, { amounts: amounts }, function (err, res) {
           expect(res).to.have.property('id');
           expect(res).to.have.property('routing_number');
           expect(res.routing_number).to.eql(routingNumber);
@@ -182,7 +182,7 @@ describe('Bank Accounts', function () {
     });
 
     it('should error on bad bank_account', function (done) {
-      Lob.bankAccounts.verify('38472', [23, 34], function (err) {
+      Lob.bankAccounts.verify('38472', { amounts: [23, 34] }, function (err) {
         expect(err).to.exist;
         return done();
       });
