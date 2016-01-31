@@ -1,15 +1,11 @@
 'use strict';
 
-var fs      = require('fs');
-var chai    = require('chai');
-var expect  = chai.expect;
+var fs = require('fs');
 
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
-var Lob     = require('../lib/index.js')(API_KEY);
-
-describe('Objects', function () {
+describe('objects', function () {
 
   describe('list', function () {
+
     it('should error with an invalid count or offset', function (done) {
       Lob.objects.list({ offset: 0, count: 10000 }, function (err) {
         expect(err).to.exist;
@@ -47,9 +43,11 @@ describe('Objects', function () {
         done();
       });
     });
+
   });
 
   describe('retrieve', function () {
+
     it('should have the correct defaults', function (done) {
       Lob.objects.create({
         description: 'Test Object',
@@ -69,9 +67,11 @@ describe('Objects', function () {
         done();
       });
     });
+
   });
 
   describe('create', function () {
+
     it('should succeed using an object local file', function (done) {
       var filePath = __dirname + '/assets/4_25x6_25.pdf';
       Lob.objects.create({
@@ -116,9 +116,11 @@ describe('Objects', function () {
         done();
       });
     });
+
   });
 
   describe('delete', function () {
+
     it('should have the correct defaults', function (done) {
       Lob.objects.create({
         description: 'Test Object',
@@ -138,5 +140,7 @@ describe('Objects', function () {
         done();
       });
     });
+
   });
+
 });

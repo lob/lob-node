@@ -1,15 +1,11 @@
 'use strict';
 
-var fs      = require('fs');
-var chai    = require('chai');
-var expect  = chai.expect;
+var fs = require('fs');
 
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
-var Lob     = require('../lib/index.js')(API_KEY);
-
-describe('Areas', function () {
+describe('areas', function () {
 
   describe('list', function () {
+
     it('should error with an invalid count or offset', function (done) {
       Lob.areas.list({ offset: 0, count: 1000 }, function (err) {
         expect(err).to.exist;
@@ -56,9 +52,11 @@ describe('Areas', function () {
         });
       });
     });
+
   });
 
   describe('get', function () {
+
     it('should have the correct defaults', function (done) {
       Lob.areas.retrieve('area_c02228ba24c30fa', function (err, res) {
         expect(res.object).to.eql('area');
@@ -72,9 +70,11 @@ describe('Areas', function () {
         done();
       });
     });
+
   });
 
   describe('create', function () {
+
     it('should succeed using address and remote file', function (done) {
       Lob.areas.create({
         description: 'Test Area',
@@ -175,5 +175,7 @@ describe('Areas', function () {
         });
       });
     });
+
   });
+
 });

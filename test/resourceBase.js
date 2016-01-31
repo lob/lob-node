@@ -1,12 +1,9 @@
 'use strict';
 
-var chai    = require('chai');
-var expect  = chai.expect;
-
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
 var ResourceBase = require('../lib/resources/resourceBase.js');
 
-describe('ResourceBase', function () {
+describe('resource base', function () {
+
   it('should get 504 on gateway timeout', function (done) {
     var resource = new ResourceBase('', {
       options: {
@@ -20,4 +17,5 @@ describe('ResourceBase', function () {
       return done();
     });
   });
+
 });

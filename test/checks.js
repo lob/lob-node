@@ -1,14 +1,9 @@
 'use strict';
 
-var chai    = require('chai');
-var expect  = chai.expect;
-
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
-var Lob     = require('../lib/index.js')(API_KEY);
-
-describe('Checks', function () {
+describe('checks', function () {
 
   describe('create', function () {
+
     it('should succeed with default parameters', function (done) {
       Lob.checks.create({
         description: 'TEST_CHECK',
@@ -78,9 +73,11 @@ describe('Checks', function () {
         return done();
       });
     });
+
   });
 
   describe('retrieve', function () {
+
     it('should succeed on get', function (done) {
       var id = 'chk_7b4fbda187843768';
       Lob.checks.retrieve(id, function (err, res) {
@@ -103,6 +100,7 @@ describe('Checks', function () {
   });
 
   describe('list', function () {
+
     it('should have correct defaults', function (done) {
       Lob.checks.list(function (err, res) {
         expect(res).to.have.property('object');
@@ -161,4 +159,5 @@ describe('Checks', function () {
       });
     });
   });
+
 });

@@ -1,14 +1,9 @@
 'use strict';
 
-var chai    = require('chai');
-var expect  = chai.expect;
-
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
-var Lob     = require('../lib/index.js')(API_KEY);
-
-describe('Bank Accounts', function () {
+describe('bank accounts', function () {
 
   describe('create', function () {
+
     it('creates a bank account', function (done) {
       Lob.bankAccounts.create({
         routing_number: '122100024',
@@ -36,9 +31,11 @@ describe('Bank Accounts', function () {
         return done();
       });
     });
+
   });
 
-  describe('get', function () {
+  describe('retrieve', function () {
+
     it('should succeed on get', function (done) {
       var routingNumber = '122100024';
       var accountNumber = '123456788';
@@ -68,9 +65,11 @@ describe('Bank Accounts', function () {
         return done();
       });
     });
+
   });
 
   describe('delete', function () {
+
     it('should succeed on delete', function (done) {
       var routingNumber = '122100024';
       var accountNumber = '123456788';
@@ -97,6 +96,7 @@ describe('Bank Accounts', function () {
   });
 
   describe('list', function () {
+
     it('should have correct defaults', function (done) {
       Lob.bankAccounts.list(function (err, res) {
         expect(res).to.have.property('object');
@@ -154,9 +154,11 @@ describe('Bank Accounts', function () {
         return done();
       });
     });
+
   });
 
   describe('verify', function () {
+
     it('should succeed on verify with amounts', function (done) {
       var routingNumber = '122100024';
       var accountNumber = '123456788';
@@ -187,5 +189,7 @@ describe('Bank Accounts', function () {
         return done();
       });
     });
+
   });
+
 });

@@ -1,10 +1,7 @@
 'use strict';
 
-var chai    = require('chai');
-var expect  = chai.expect;
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
+describe('Lob', function () {
 
-describe('Main Lob Object', function () {
   it('should allow you to specify a version', function () {
     var Lob = require('../lib')(API_KEY, { apiVersion: 'api_version' });
     expect(Lob.options.headers['Lob-Version']).to.eql('api_version');
@@ -50,4 +47,5 @@ describe('Main Lob Object', function () {
       done();
     });
   });
+
 });

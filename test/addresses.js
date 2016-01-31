@@ -1,14 +1,9 @@
 'use strict';
 
-var chai    = require('chai');
-var expect  = chai.expect;
-
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
-var Lob     = require('../lib/index.js')(API_KEY);
-
-describe('Addresses', function () {
+describe('addresses', function () {
 
   describe('list', function () {
+
     it('should have correct defaults', function (done) {
       Lob.addresses.list(function (err, res) {
         expect(res).to.have.property('object');
@@ -67,9 +62,11 @@ describe('Addresses', function () {
         });
       });
     });
+
   });
 
   describe('create', function () {
+
     it('should succeed with default POST request', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
@@ -263,9 +260,11 @@ describe('Addresses', function () {
         return done();
       });
     });
+
   });
 
   describe('get', function () {
+
     it('should have correct defaults', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
@@ -300,9 +299,11 @@ describe('Addresses', function () {
         return done();
       });
     });
+
   });
 
   describe('delete', function () {
+
     it('should delete correctly', function (done) {
       var name = 'Harry Zhang';
       var email = 'harry@Lob.com';
@@ -337,5 +338,7 @@ describe('Addresses', function () {
         return done();
       });
     });
+
   });
+
 });

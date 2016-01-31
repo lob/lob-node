@@ -1,15 +1,11 @@
 'use strict';
 
-var fs      = require('fs');
-var chai    = require('chai');
-var expect  = chai.expect;
+var fs = require('fs');
 
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
-var Lob     = require('../lib/index.js')(API_KEY);
-
-describe('Jobs', function () {
+describe('jobs', function () {
 
   describe('list', function () {
+
     it('should error with an invalid count or offset', function (done) {
       Lob.jobs.list({ offset: 0, count: 10000 }, function (err) {
         expect(err).to.exist;
@@ -47,9 +43,11 @@ describe('Jobs', function () {
         done();
       });
     });
+
   });
 
   describe('retrieve', function () {
+
     it('should have the correct defaults', function (done) {
       Lob.jobs.create({
         description: 'Test Job',
@@ -94,9 +92,11 @@ describe('Jobs', function () {
         done();
       });
     });
+
   });
 
   describe('create', function () {
+
     it('should succeed when using address and object ids', function (done) {
       Lob.addresses.list({ count: 1, offset: 0 }, function (err, res) {
         var address = res.data[0].id;
@@ -404,4 +404,5 @@ describe('Jobs', function () {
       });
     });
   });
+
 });

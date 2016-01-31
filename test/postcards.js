@@ -1,15 +1,11 @@
 'use strict';
 
-var fs      = require('fs');
-var chai    = require('chai');
-var expect  = chai.expect;
+var fs = require('fs');
 
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
-var Lob     = require('../lib/index.js')(API_KEY);
-
-describe('Postcards', function () {
+describe('postcards', function () {
 
   describe('list', function () {
+
     it('should error with an invalid count or offset', function (done) {
       Lob.postcards.list({ offset: 0,count: 1000 }, function (err) {
         expect(err).to.exist;
@@ -56,9 +52,11 @@ describe('Postcards', function () {
         });
       });
     });
+
   });
 
   describe('get', function () {
+
     it('should have the correct defaults', function (done) {
       Lob.postcards.create({
         description: 'Test Postcard',
@@ -88,9 +86,11 @@ describe('Postcards', function () {
         done();
       });
     });
+
   });
 
   describe('create', function () {
+
     it('should succeed using address and remote file', function (done) {
       Lob.addresses.list({ offset: 0, count: 1 }, function (err, res) {
         var address = res.data[0].id;
@@ -215,8 +215,7 @@ describe('Postcards', function () {
       });
     });
 
-    it('should succeed with an inline address containing a null value',
-    function (done) {
+    it('should succeed with an inline address containing a null value', function (done) {
       Lob.postcards.create({
         to: {
           name: 'Peter Nagel',
@@ -234,5 +233,7 @@ describe('Postcards', function () {
         done();
       });
     });
+
   });
+
 });
