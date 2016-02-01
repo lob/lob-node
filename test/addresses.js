@@ -27,7 +27,7 @@ describe('addresses', function () {
     });
 
     it('filters addresses', function (done) {
-      Lob.addresses.list({ count: 1 }, function (err, res) {
+      Lob.addresses.list({ limit: 1 }, function (err, res) {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);

@@ -28,7 +28,7 @@ describe('postcards', function () {
     });
 
     it('filters postcards', function (done) {
-      Lob.postcards.list({ count: 1 }, function (err, res) {
+      Lob.postcards.list({ limit: 1 }, function (err, res) {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);

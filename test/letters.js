@@ -28,7 +28,7 @@ describe('letters', function () {
     });
 
     it('filters letters', function (done) {
-      Lob.letters.list({ count: 1 }, function (err, res) {
+      Lob.letters.list({ limit: 1 }, function (err, res) {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);

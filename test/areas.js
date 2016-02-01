@@ -25,7 +25,7 @@ describe('areas', function () {
     });
 
     it('filters areas', function (done) {
-      Lob.areas.list({ count: 1 }, function (err, res) {
+      Lob.areas.list({ limit: 1 }, function (err, res) {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);

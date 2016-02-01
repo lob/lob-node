@@ -34,7 +34,7 @@ describe('jobs', function () {
     });
 
     it('filters jobs', function (done) {
-      Lob.jobs.list({ count: 1 }, function (err, res) {
+      Lob.jobs.list({ limit: 1 }, function (err, res) {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);

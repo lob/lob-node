@@ -60,7 +60,7 @@ describe('checks', function () {
     });
 
     it('filters checks', function (done) {
-      Lob.checks.list({ count: 1 }, function (err, res) {
+      Lob.checks.list({ limit: 1 }, function (err, res) {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);

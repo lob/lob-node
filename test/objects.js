@@ -23,7 +23,7 @@ describe('objects', function () {
     });
 
     it('filters objects', function (done) {
-      Lob.objects.list({ count: 1 }, function (err, res) {
+      Lob.objects.list({ limit: 1 }, function (err, res) {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);

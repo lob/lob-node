@@ -66,7 +66,7 @@ describe('bank accounts', function () {
     });
 
     it('filters bank accounts', function (done) {
-      Lob.bankAccounts.list({ count: 1 }, function (err, res) {
+      Lob.bankAccounts.list({ limit: 1 }, function (err, res) {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);
