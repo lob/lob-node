@@ -1,3 +1,8 @@
 {
-  extends: "eslint-config-lob"
+  extends: "eslint-config-lob",
+  globals: {
+    "API_KEY": false,
+    "expect": false,
+    "Lob": false
+  }
 }

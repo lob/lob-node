@@ -1,20 +1,17 @@
 'use strict';
 
-var chai    = require('chai');
-var expect  = chai.expect;
+describe('states', function () {
 
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
-var Lob     = require('../lib/index.js')(API_KEY);
-
-describe('States', function () {
   describe('list', function () {
-    it('should have correct defaults', function (done) {
+
+    it('returns a list of states', function (done) {
       Lob.states.list(function (err, res) {
-        expect(res).to.have.property('object');
-        expect(res).to.have.property('data');
+        expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         return done();
       });
     });
+
   });
+
 });

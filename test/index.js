@@ -1,35 +1,28 @@
 'use strict';
 
-var chai    = require('chai');
-var expect  = chai.expect;
-var API_KEY = 'test_fd34e1b5ea86a597ec89f7f2e46940c874d';
+describe('Lob', function () {
 
-describe('Main Lob Object', function () {
-  it('should allow you to specify a version', function () {
+  it('allows specifying a version', function () {
     var Lob = require('../lib')(API_KEY, { apiVersion: 'api_version' });
     expect(Lob.options.headers['Lob-Version']).to.eql('api_version');
   });
 
-  it('should allow the use of promises and callbacks', function (done) {
-    var Lob = require('../lib')(API_KEY);
-    Lob.settings.list()
+  it('allows the use of promises and callbacks', function (done) {
+    Lob.countries.list()
     .then(function (body) {
-      expect(body.data).to.be.a('Array');
-      done();
-    })
-    .catch(function () {
+      expect(body.data).to.be.instanceof(Array);
       done();
     });
   });
 
-  it('should allow options to override defaults (such as host)', function () {
+  it('allows options to override defaults (such as host)', function () {
     var options = { host: 'http://test' };
     var Lob = require('../lib')(API_KEY, options);
 
     expect(Lob.options.host).to.eql('http://test');
   });
 
-  it('should allow you to only pass options as first arg', function () {
+  it('allows options object as first argument', function () {
     var options = { apiKey: API_KEY, host: 'http://test' };
     var Lob     = require('../lib')(options);
 
@@ -38,16 +31,14 @@ describe('Main Lob Object', function () {
   });
 
   it('should propogate request errors', function (done) {
-    var options = { baseURI: 'http://test' };
+    var options = { host: 'http://test' };
     var Lob     = require('../lib')(API_KEY, options);
 
-    Lob.settings.list()
-    .then(function () {
-      done();
-    })
-    .catch(function (e) {
-      expect(e.message).to.eql('getaddrinfo ENOTFOUND testsettings');
+    Lob.countries.list()
+    .catch(function (err) {
+      expect(err.message).to.match(/getaddrinfo ENOTFOUND/);
       done();
     });
   });
+
 });
