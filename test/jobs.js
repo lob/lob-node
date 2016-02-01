@@ -2,44 +2,43 @@
 
 var fs = require('fs');
 
+var ADDRESS = {
+  name: 'Lob',
+  email: 'support@lob.com',
+  address_line1: '123 Main Street',
+  address_line2: 'Apartment A',
+  address_city: 'San Francisco',
+  address_state: 'CA',
+  address_zip: '94158',
+  address_country: 'US'
+};
+var DESCRIPTION = 'Test Job';
+var OBJECT = {
+  description: 'GO BLUE',
+  file: '<h1>Test Job</h1>',
+  setting: 500
+};
+
 describe('jobs', function () {
 
   describe('list', function () {
 
-    it('should error with an invalid count or offset', function (done) {
-      Lob.jobs.list({ offset: 0, count: 10000 }, function (err) {
-        expect(err).to.exist;
-        done();
-      });
-    });
-
-    it('should have the correct defaults', function (done) {
+    it('returns a list of jobs', function (done) {
       Lob.jobs.list(function (err, res) {
-        expect(res).to.have.property('object');
-        expect(res).to.have.property('data');
+        expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(10);
-        expect(res).to.have.property('count');
-        expect(res).to.have.property('next_url');
-        expect(res.next_url).to.eql('https://api.lob.com/' +
-                                    'v1/jobs?count=10&offset=10');
-        expect(res).to.have.property('previous_url');
+        expect(res.count).to.eql(10);
+        done();
+      });
+    });
+
+    it('filters jobs', function (done) {
+      Lob.jobs.list({ count: 1 }, function (err, res) {
         expect(res.object).to.eql('list');
-        expect(res.count).to.eql(10);
-        done();
-      });
-    });
-
-    it('should let you limit the count', function (done) {
-      Lob.jobs.list({ offset: 0, count: 5 }, function (err, res) {
-        expect(res.count).to.eql(5);
-        done();
-      });
-    });
-
-    it('should let you limit the count', function (done) {
-      Lob.jobs.list({ offset: 10 }, function (err, res) {
-        expect(res.count).to.eql(10);
+        expect(res.data).to.be.instanceof(Array);
+        expect(res.data.length).to.eql(1);
+        expect(res.count).to.eql(1);
         done();
       });
     });
@@ -48,48 +47,17 @@ describe('jobs', function () {
 
   describe('retrieve', function () {
 
-    it('should have the correct defaults', function (done) {
+    it('retrieves a job', function (done) {
       Lob.jobs.create({
-        description: 'Test Job',
-        from: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        to: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        objects: [
-          {
-            description: 'GO BLUE',
-            file: '<h1>Test Job</h1>',
-            setting: 200
-          }
-        ]
+        description: DESCRIPTION,
+        from: ADDRESS,
+        to: ADDRESS,
+        objects: [OBJECT]
       }, function (err, res) {
         Lob.jobs.retrieve(res.id, function (err2, res2) {
-          expect(res2.description).to.eql('Test Job');
+          expect(res2.description).to.eql(DESCRIPTION);
           done();
         });
-      });
-    });
-
-    it('should throw an error with an invalid id', function (done) {
-      Lob.jobs.retrieve('badId', function (err) {
-        expect(err).to.exist;
-        done();
       });
     });
 
@@ -97,18 +65,13 @@ describe('jobs', function () {
 
   describe('create', function () {
 
-    it('should succeed when using address and object ids', function (done) {
-      Lob.addresses.list({ count: 1, offset: 0 }, function (err, res) {
-        var address = res.data[0].id;
-
-        Lob.objects.list({ count: 1, offset: 0 }, function (err, res) {
-          var object = res.data[0].id;
-
+    it('creates a job with address and object ids', function (done) {
+      Lob.addresses.create(ADDRESS, function (err, address) {
+        Lob.objects.create(OBJECT, function (err, object) {
           Lob.jobs.create({
-            description: 'Test',
-            to: address,
-            from: address,
-            objects: object
+            to: address.id,
+            from: address.id,
+            objects: object.id
           }, function (err, res) {
             expect(res.object).to.eql('job');
             done();
@@ -117,112 +80,22 @@ describe('jobs', function () {
       });
     });
 
-    it('should return an error if file is missing', function (done) {
+    it('creates a job with inline address and object', function (done) {
       Lob.jobs.create({
-        description: 'Test Job',
-        from: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        to: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        objects: [
-          {
-            description: 'GO BLUE',
-            setting: 100
-          }
-        ]
-      }, function (err) {
-        expect(err).to.exist;
-        done();
-      });
-    });
-
-    it('should succeed using inline address and object', function (done) {
-      Lob.jobs.create({
-        description: 'Test Job',
-        from: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        to: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        objects: [
-          {
-            description: 'GO BLUE',
-            file: '<h1>Test Job</h1>',
-            setting: 200
-          }
-        ]
+        from: ADDRESS,
+        to: ADDRESS,
+        objects: [OBJECT]
       }, function (err, res) {
         expect(res.object).to.eql('job');
         done();
       });
     });
 
-    it('should succeed with a multi-object job', function (done) {
+    it('creates a multi-object job', function (done) {
       Lob.jobs.create({
-        description: 'Test Job',
-        from: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        to: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        objects: [
-          {
-            description: 'GO BLUE',
-            file: '<h1>Test Job</h1>',
-            setting: 500
-          },
-          {
-            description: 'TEST',
-            file: '<h1>Test Job</h1>',
-            setting: 500
-          }
-        ]
+        from: ADDRESS,
+        to: ADDRESS,
+        objects: [OBJECT, OBJECT]
       }, function (err, res) {
         expect(res.object).to.eql('job');
         expect(res.objects.length).to.eql(2);
@@ -230,51 +103,12 @@ describe('jobs', function () {
       });
     });
 
-    it('should fail on bad parameter', function (done) {
-      Lob.jobs.create({
-        description: 'Test Job',
-        objects: [
-          {
-            description: 'GO BLUE',
-            file: '<h1>Test Job</h1>',
-            setting: 200
-          },
-          {
-            description: 'TEST',
-            file: '<h1>Test Job</h1>',
-            setting: 200
-          }
-        ]
-      }, function (err) {
-        expect(err).to.exist;
-        done();
-      });
-    });
-
-    it('should succeed using an object local file', function (done) {
+    it('creates a job with a local file', function (done) {
       var filePath = __dirname + '/assets/4_25x6_25.pdf';
       Lob.jobs.create({
         description: 'Test Job',
-        from: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        to: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
+        from: ADDRESS,
+        to: ADDRESS,
         objects: [
           {
             description: 'GO BLUE',
@@ -288,29 +122,10 @@ describe('jobs', function () {
       });
     });
 
-    it('should succeed using a remote file', function (done) {
+    it('creates a job with a remote file', function (done) {
       Lob.jobs.create({
-        description: 'Test Job',
-        from: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        to: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
+        from: ADDRESS,
+        to: ADDRESS,
         objects: [
           {
             description: 'GO BLUE',
@@ -325,30 +140,11 @@ describe('jobs', function () {
       });
     });
 
-    it('should succeed using a buffer', function (done) {
+    it('creates a job from a buffer', function (done) {
       var file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
       Lob.jobs.create({
-        description: 'Test Job',
-        from: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        to: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
+        from: ADDRESS,
+        to: ADDRESS,
         objects: [
           {
             description: 'GO BLUE',
@@ -362,30 +158,11 @@ describe('jobs', function () {
       });
     });
 
-    it('should succeed with multi object', function (done) {
+    it('creates a job from a multi-object buffer', function (done) {
       var file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
       Lob.jobs.create({
-        description: 'Test Job',
-        from: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
-        to: {
-          name: 'Lob',
-          email: 'support@lob.com',
-          address_line1: '123 Main Street',
-          address_line2: 'Apartment A',
-          address_city: 'San Francisco',
-          address_state: 'CA',
-          address_zip: '94158',
-          address_country: 'US'
-        },
+        from: ADDRESS,
+        to: ADDRESS,
         objects: [
           {
             description: 'GO BLUE',
@@ -403,6 +180,18 @@ describe('jobs', function () {
         done();
       });
     });
+
+    it('errors on an object without a file', function (done) {
+      Lob.jobs.create({
+        from: ADDRESS,
+        to: ADDRESS,
+        objects: [{ setting: 200 }]
+      }, function (err) {
+        expect(err).to.exist;
+        done();
+      });
+    });
+
   });
 
 });

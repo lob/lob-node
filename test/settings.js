@@ -4,22 +4,18 @@ describe('settings', function () {
 
   describe('list', function () {
 
-    it('should have correct defaults', function (done) {
-      Lob.settings.list({ type: 1 }, function (err, res) {
-        expect(res).to.have.property('object');
-        expect(res).to.have.property('data');
-        expect(res.data).to.be.instanceof(Array);
+    it('returns a list of settings', function (done) {
+      Lob.settings.list(function (err, res) {
         expect(res.object).to.eql('list');
+        expect(res.data).to.be.instanceof(Array);
         done();
       });
     });
 
-    it('should have optional options', function (done) {
-      Lob.settings.list(function (err, res) {
-        expect(res).to.have.property('object');
-        expect(res).to.have.property('data');
-        expect(res.data).to.be.instanceof(Array);
+    it('filters settings', function (done) {
+      Lob.settings.list({ type: 1 }, function (err, res) {
         expect(res.object).to.eql('list');
+        expect(res.data).to.be.instanceof(Array);
         done();
       });
     });
@@ -28,16 +24,9 @@ describe('settings', function () {
 
   describe('retrieve', function () {
 
-    it('should have correct defaults', function (done) {
+    it('retrieves a setting', function (done) {
       Lob.settings.retrieve('200', function (err, res) {
         expect(res.object).to.eql('setting');
-        done();
-      });
-    });
-
-    it('should fail with bad id', function (done) {
-      Lob.settings.retrieve('9800', function (err) {
-        expect(err.status_code).to.eql(404);
         done();
       });
     });
