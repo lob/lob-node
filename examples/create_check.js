@@ -27,12 +27,13 @@ Lob.addresses.create({
   Lob.bankAccounts.create({
     routing_number: '122100024',
     account_number: '123456789',
+    account_type: 'company',
     signatory: 'John Doe'
   }, function (err, bankAccount) {
     if (err) {
       return console.log(err);
     }
-    Lob.bankAccounts.verify(bankAccount.id, [23, 34], function (err) {
+    Lob.bankAccounts.verify(bankAccount.id, { amounts: [23, 34] }, function (err) {
       if (err) {
         return console.log(err);
       }

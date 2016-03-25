@@ -3,6 +3,7 @@
 var BANK_ACCOUNT = {
   routing_number: '122100024',
   account_number: '123456788',
+  account_type: 'company',
   signatory: 'John Doe'
 };
 
