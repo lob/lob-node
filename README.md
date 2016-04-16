@@ -108,6 +108,28 @@ There are simple scripts to demonstrate how to create all the core Lob objects (
 - [Creating Dynamic Postcards with HTML and Data](https://github.com/lob/lob-node/tree/master/examples/create_postcards_from_csv)
 - [Verifying and Creating Letters from CSV](https://github.com/lob/lob-node/tree/master/examples/verify_and_create_letters_from_csv)
 
+#### Accessing Response Headers
+
+You can access response headers via a hidden `_response` property.
+
+```js
+Lob.addresses.list()
+.then(function (res) {
+  res._response.headers['content-type'];
+  // => "application/json; charset=utf-8"
+});
+```
+
+You can also access headers from errors.
+
+```js
+Lob.addresses.retrieve('adr_bad_id')
+.catch(function (err) {
+  err._response.headers['content-type'];
+  // => "application/json; charset=utf-8"
+});
+```
+
 ## API Documentation
 
 - [Introduction](https://lob.com/docs/node#introduction)
