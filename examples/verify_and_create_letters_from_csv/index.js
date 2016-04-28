@@ -17,7 +17,7 @@ var companyInfo = {
   name: 'Deluxe Virgina Realty',
   address_line1: '185 Berry St.',
   address_line2: 'Ste 170',
-  address_city: 'San Francsisco',
+  address_city: 'San Francisco',
   address_state: 'CA',
   address_zip: 94107,
   address_country: 'US'
