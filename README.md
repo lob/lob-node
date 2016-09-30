@@ -71,7 +71,7 @@ var options = { apiKey: 'foo', host: 'bar' };
 var Lob = require('lob')(options);
 
 // callback pattern
-Lob.settings.list({ type: 1 }, function (err, body) {
+Lob.addresses.list(function (err, body) {
   if (err) return callback(err);
   return callback(null, body.data);
 });
@@ -82,7 +82,7 @@ Additionally, every resource method returns a promise, so you don't have to use 
 ```javascript
 var Lob = require('lob')('YOUR API KEY');
 
-Lob.settings.list({ type: 1 })
+Lob.addresses.list()
 .then(function (res) {
   console.log(res.data);
 })

@@ -37,11 +37,6 @@ node index.js
 node create_check.js
 ```
 
-### Create a job
-```
-node create_job.js
-```
-
 ### Create a letter
 ```
 node create_letter.js
