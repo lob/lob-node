@@ -4,20 +4,6 @@ var ResourceBase = require('../lib/resources/resourceBase.js');
 
 describe('resource base', function () {
 
-  it('should get 504 on gateway timeout', function (done) {
-    var resource = new ResourceBase('', {
-      options: {
-        host: 'http://mock.codes/504',
-        apiKey: API_KEY
-      }
-    });
-
-    return resource._transmit('GET', null, null, null, function (err) {
-      expect(err.status_code).to.eql(504);
-      return done();
-    });
-  });
-
   it('should expose response headers', function (done) {
     Lob.addresses.list(function (err, res) {
       expect(res._response.headers['content-type']).to.exist;
@@ -42,12 +28,12 @@ describe('resource base', function () {
   it('should expose the raw response on 500 level errors', function (done) {
     var resource = new ResourceBase('', {
       options: {
-        host: 'http://mock.codes/504',
+        host: 'https://mock.lob.com/500',
         apiKey: API_KEY
       }
     });
 
-    return resource._transmit('GET', null, null, null, function (err) {
+    return resource._transmit('POST', null, null, null, function (err) {
       expect(err._response).to.exist;
       return done();
     });
