@@ -136,6 +136,7 @@ Lob.addresses.retrieve('adr_bad_id')
 - [Versioning](https://lob.com/docs/node#version)
 - [Errors](https://lob.com/docs/node#errors)
 - [Rate Limiting](https://lob.com/docs/node#rate-limits)
+- [Webhooks](https://lob.com/docs/node#webhooks)
 - [Metadata](https://lob.com/docs/node#metadata)
 - [Asset URLs](https://lob.com/docs/node#urls)
 - **Addresses**
@@ -190,6 +191,7 @@ Lob.addresses.retrieve('adr_bad_id')
 - **Appendix**
   - [API Changelog](https://lob.com/docs/node#changelog)
   - [The Tracking Event Object](https://lob.com/docs/node#tracking_event_object)
+  - [Events](https://lob.com/docs/node#events)
   - [HTML Examples](https://lob.com/docs/node#html-examples)
   - [Image Prepping](https://lob.com/docs/node#prepping)
 
