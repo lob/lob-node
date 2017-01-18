@@ -49,7 +49,7 @@ describe('addresses', function () {
         expect(res.address_line1).to.eql(ADDRESS.address_line1);
         expect(res.address_line2).to.eql(ADDRESS.address_line2);
         expect(res.address_city).to.eql(ADDRESS.address_city);
-        expect(res.address_state).to.eql('California');
+        expect(res.address_state).to.eql(ADDRESS.address_state);
         expect(res.address_zip).to.eql(ADDRESS.address_zip);
         expect(res.address_country).to.eql('United States');
         expect(res).to.have.property('date_created');
