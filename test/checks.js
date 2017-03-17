@@ -71,4 +71,17 @@ describe('checks', function () {
 
   });
 
+  describe('delete', function () {
+
+    it('deletes a check', function (done) {
+      Lob.checks.create(CHECK, function (err, res) {
+        Lob.checks.delete(res.id, function (err2, res2) {
+          expect(res2.deleted).to.eql(true);
+          return done();
+        });
+      });
+    });
+    
+  });
+
 });
