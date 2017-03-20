@@ -1,3 +1,24 @@
+### 3.10.0 (2017-3-20)
+
+##### Chores
+
+* **ignore:** Git ignore sublime files feat(delete): Add DELETE method to postcards, letters, and checks ([75b6bc0b](https://github.com/lob/lob-node/commit/75b6bc0baaa29566a99e0535cf3576d21503e9c5))
+* **mock:** use mock.lob.com ([1fed1c75](https://github.com/lob/lob-node/commit/1fed1c753eeb4f6a0ec15ee4f3619c2758d7c08e))
+* **jobs:** removes jobs, objects, settings endpoints ([bbfd446e](https://github.com/lob/lob-node/commit/bbfd446e85f43f870d1c40ed76f6ec7d9ffc8281))
+
+##### Documentation Changes
+
+* **contributing:** changed out-of-date link to valid ([96e21cff](https://github.com/lob/lob-node/commit/96e21cffa16efbe5c5cb3473368ca0362dfbb057))
+
+##### New Features
+
+* **version:** support Node versions 0.12, 4, 5, and 6. ([7754b22f](https://github.com/lob/lob-node/commit/7754b22f020343b5adb93e4b9c2a5e8241023cfc))
+
+##### Bug Fixes
+
+* **test:** fixes broken address test ([f22dcf8d](https://github.com/lob/lob-node/commit/f22dcf8d6041c58e5dc766dbf0196d8d62a22130))
+* **examples:** fix typo ([50bb5487](https://github.com/lob/lob-node/commit/50bb5487ea392d16dd5782b3f51fd398a911684a))
+
 ### 3.9.0 (2016-4-15)
 
 ##### New Features
