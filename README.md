@@ -32,7 +32,7 @@ Here's a general overview of the Lob services available, click through to read m
 - [Letters API](https://lob.com/services/letters)
 - [Checks API](https://lob.com/services/checks)
 - [Area Mail API](https://lob.com/services/area)
-- [Address Verification API](https://lob.com/verification/address)
+- [Address Verification API](https://lob.com/services/verifications)
 
 ### Registration
 
@@ -146,8 +146,13 @@ Lob.addresses.retrieve('adr_bad_id')
     - [Retrieve an Address](https://lob.com/docs/node#addresses_retrieve)
     - [Delete an Address](https://lob.com/docs/node#addresses_delete)
     - [List all Addresses](https://lob.com/docs/node#addresses_list)
-  - [Address Verification API](https://lob.com/docs/node#verify)
-    - [Verify an Address](https://lob.com/docs/node#verify_create)
+- **US Verification API**
+  - [US Verification API](https://lob.com/docs/node#us_verifications)
+    - [The US Verification Object](https://lob.com/docs/node#us_verifications_object)
+    - [Verify a US Address](https://lob.com/docs/node#us_verifications_create)
+- **Int'l Verification API**
+  - [International Verifications](https://lob.com/docs/node#intl_verifications)
+    - [Verify an International Address](https://lob.com/docs/node#intl_verifications_create)
 - **Postcards API**
   - [Postcards](https://lob.com/docs/node#postcards)
     - [The Postcard Object](https://lob.com/docs/node#postcards_object)
@@ -194,6 +199,7 @@ Lob.addresses.retrieve('adr_bad_id')
   - [Events](https://lob.com/docs/node#events)
   - [HTML Examples](https://lob.com/docs/node#html-examples)
   - [Image Prepping](https://lob.com/docs/node#prepping)
+  - [US Verification Details](https://lob.com/docs/node#us_verification_details)
 
 ## Contributing
 
