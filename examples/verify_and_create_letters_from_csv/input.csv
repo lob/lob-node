@@ -1,4 +1,4 @@
-name,amount,address1,address2,city,state,zip
+name,amount,primary_line,secondary_line,city,state,zip_code
 Kelly Jones,185.54,185 Berry St,,San Francisco,CA,94107
 Margaret Smith,387.45,6575 W Rialto,,fresno,CA,93723
 Jess Smith,19.87,537 Fillmore Street, Apt #2,San Francicso,ca,94117

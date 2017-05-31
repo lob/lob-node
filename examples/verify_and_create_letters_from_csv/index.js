@@ -33,25 +33,25 @@ var parser = parse({ columns: true }, function (err, data) {
     var name = client.name;
     var amount = parseFloat(client.amount).toFixed(2);
     var address = {
-      address_line1: client.address1,
-      address_line2: client.address2,
-      address_city: client.city,
-      address_state: client.state,
-      address_zip: client.zip,
-      address_country: 'US'
+      recipient: name,
+      primary_line: client.primary_line,
+      secondary_line: client.secondary_line,
+      city: client.city,
+      state: client.state,
+      zip_code: client.zip_code
     };
 
-    Lob.verification.verify(address)
+    Lob.usVerifications.verify(address)
     .then(function (verifiedAddress) {
       return Lob.letters.create({
         description: 'Automated Past Due Bill for ' + name,
         to: {
-          name: name,
-          address_line1: verifiedAddress.address.address_line1,
-          address_line2: verifiedAddress.address.address_line12,
-          address_city: verifiedAddress.address.address_city,
-          address_state: verifiedAddress.address.address_state,
-          address_zip: verifiedAddress.address.address_zip,
+          name: verifiedAddress.recipient,
+          address_line1: verifiedAddress.primary_line,
+          address_line2: verifiedAddress.secondary_line,
+          address_city: verifiedAddress.components.city,
+          address_state: verifiedAddress.components.state,
+          address_zip: verifiedAddress.components.zip_code,
           address_country: 'US'
         },
         from: companyInfo,
