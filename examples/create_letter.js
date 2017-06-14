@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- * Create an address, then send a letter with HTML and template data.
+ * Create an address, then send a letter with HTML and template merge variables.
  * Run me! This example works out of the box, "batteries included".
  */
 
@@ -38,7 +38,7 @@ Lob.addresses.create({
       address_country: 'US'
     },
     file: file,
-    data: {
+    merge_variables: {
       name: 'Robin'
     },
     color: false

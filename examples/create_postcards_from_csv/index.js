@@ -36,7 +36,7 @@ parse(input, function (err, rows) {
       size: '4x6',
       front: frontHtml,
       back: backHtml,
-      data: {
+      merge_variables: {
         background_image: row[1],
         background_color: row[2],
         name: row[0],
