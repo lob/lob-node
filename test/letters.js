@@ -103,4 +103,25 @@ describe('letters', function () {
 
   });
 
+  describe('delete', function () {
+
+    it('deletes a letter', function (done) {
+      var filePath = __dirname + '/assets/8.5x11.pdf';
+      
+      Lob.letters.create({
+        description: 'Test Letter',
+        to: ADDRESS,
+        from: ADDRESS,
+        file: fs.createReadStream(filePath),
+        color: true
+      }, function (err, res) {
+        Lob.letters.delete(res.id, function (err2, res2) {
+          expect(res2.deleted).to.eql(true);
+          return done();
+        });
+      });
+    });
+    
+  });
+
 });
