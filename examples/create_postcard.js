@@ -33,7 +33,7 @@ Lob.addresses.create({
       description: 'My First Postcard',
       to: address.id,
       front: file,
-      data: {
+      merge_variables: {
         name: 'Robin'
       },
       message: 'Happy Birthday!'
@@ -51,7 +51,7 @@ Lob.addresses.create({
       to: address.id,
       front: file,
       back: file,
-      data: {
+      merge_variables: {
         name: 'Robin'
       }
     }, function (err, postcard) {

@@ -56,7 +56,7 @@ var parser = parse({ columns: true }, function (err, data) {
         },
         from: companyInfo,
         file: letterTemplate,
-        data: {
+        merge_variables: {
           date: moment().format('LL'),
           name: name,
           amountDue: amount

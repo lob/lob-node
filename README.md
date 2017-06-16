@@ -105,7 +105,7 @@ We've provided various examples for you to try out [here](https://github.com/lob
 
 There are simple scripts to demonstrate how to create all the core Lob objects (checks, letters, postcards. etc.) as well as more complex examples that utilize other libraries and external files:
 
-- [Creating Dynamic Postcards with HTML and Data](https://github.com/lob/lob-node/tree/master/examples/create_postcards_from_csv)
+- [Creating Dynamic Postcards with HTML and Merge Variables](https://github.com/lob/lob-node/tree/master/examples/create_postcards_from_csv)
 - [Verifying and Creating Letters from CSV](https://github.com/lob/lob-node/tree/master/examples/verify_and_create_letters_from_csv)
 
 #### Accessing Response Headers
