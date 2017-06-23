@@ -112,4 +112,24 @@ describe('postcards', function () {
 
   });
 
+  describe('delete', function () {
+
+    it('deletes a postcard', function (done) {
+      var file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
+      
+      Lob.postcards.create({
+        description: 'Test Postcard',
+        to: ADDRESS,
+        front: file,
+        back: file
+      }, function (err, res) {
+        Lob.postcards.delete(res.id, function (err2, res2) {
+          expect(res2.deleted).to.eql(true);
+          return done();
+        });
+      });
+    });
+    
+  });
+
 });
