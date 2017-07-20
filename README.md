@@ -10,7 +10,7 @@
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]  [![Build Status](https://travis-ci.org/lob/lob-node.svg?branch=master)](https://travis-ci.org/lob/lob-node) [![Dependency Status](https://gemnasium.com/lob/lob-node.svg)](https://gemnasium.com/lob/lob-node) [![Coverage Status](https://coveralls.io/repos/lob/lob-node/badge.svg?branch=master)](https://coveralls.io/r/lob/lob-node?branch=master)
 
-Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documentation [here](https://lob.com/docs/node).  For best results, be sure that you're using [the latest version](https://lob.com/docs/node#version) of the Lob API and the latest version of the Node wrapper.
+Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documentation [here](https://lob.com/docs/node). For best results, be sure that you're using [the latest version](https://lob.com/docs/node#version) of the Lob API and the latest version of the Node wrapper.
 
 ## Table of Contents
 
@@ -33,6 +33,8 @@ Here's a general overview of the Lob services available, click through to read m
 - [Checks API](https://lob.com/services/checks)
 - [Area Mail API](https://lob.com/services/area)
 - [Address Verification API](https://lob.com/services/verifications)
+
+Please read through the official [API Documentation](#api-documentation) to get a complete sense of what to expect from each endpoint.
 
 ### Registration
 
@@ -103,10 +105,7 @@ The Lob constructor accepts an `options` object which may contain one or more of
 
 We've provided various examples for you to try out [here](https://github.com/lob/lob-node/tree/master/examples).
 
-There are simple scripts to demonstrate how to create all the core Lob objects (checks, letters, postcards. etc.) as well as more complex examples that utilize other libraries and external files:
-
-- [Creating Dynamic Postcards with HTML and Merge Variables](https://github.com/lob/lob-node/tree/master/examples/create_postcards_from_csv)
-- [Verifying and Creating Letters from CSV](https://github.com/lob/lob-node/tree/master/examples/verify_and_create_letters_from_csv)
+There are simple scripts to demonstrate how to create all the core Lob objects (checks, letters, postcards. etc.) as well as more complex examples that utilize other libraries and external files.
 
 #### Accessing Response Headers
 
@@ -137,7 +136,10 @@ Lob.addresses.retrieve('adr_bad_id')
 - [Errors](https://lob.com/docs/node#errors)
 - [Rate Limiting](https://lob.com/docs/node#rate-limits)
 - [Webhooks](https://lob.com/docs/node#webhooks)
+- [Cancellation Windows](https://lob.com/docs/node#cancellation)
+- [Scheduled Mailings](https://lob.com/docs/node#scheduled)
 - [Metadata](https://lob.com/docs/node#metadata)
+- [HTML Templates](https://lob.com/docs/node#templates)
 - [Asset URLs](https://lob.com/docs/node#urls)
 - **Addresses**
   - [Address Book](https://lob.com/docs/node#addresses)
@@ -158,18 +160,21 @@ Lob.addresses.retrieve('adr_bad_id')
     - [The Postcard Object](https://lob.com/docs/node#postcards_object)
     - [Create a Postcard](https://lob.com/docs/node#postcards_create)
     - [Retrieve a Postcard](https://lob.com/docs/node#postcards_retrieve)
+    - [Cancel a Postcard](https://lob.com/docs/node#postcards_delete)
     - [List all Postcards](https://lob.com/docs/node#postcards_list)
 - **Letters API**
   - [Letters](https://lob.com/docs/node#letters)
     - [The Letter Object](https://lob.com/docs/node#letters_object)
     - [Create a Letter](https://lob.com/docs/node#letters_create)
     - [Retrieve a Letter](https://lob.com/docs/node#letters_retrieve)
+    - [Cancel a Letter](https://lob.com/docs/node#letters_delete)
     - [List all Letters](https://lob.com/docs/node#letters_list)
 - **Checks API**
   - [Checks](https://lob.com/docs/node#checks)
     - [The Check Object](https://lob.com/docs/node#checks_object)
     - [Create a Check](https://lob.com/docs/node#checks_create)
     - [Retrieve a Check](https://lob.com/docs/node#checks_retrieve)
+    - [Cancel a Check](https://lob.com/docs/node#checks_delete)
     - [List all Checks](https://lob.com/docs/node#checks_list)
   - [Bank Accounts](https://lob.com/docs/node#bank-accounts)
     - [The Bank Account Object](https://lob.com/docs/node#bankaccounts_object)
