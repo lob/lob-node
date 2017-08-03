@@ -1,5 +1,7 @@
 'use strict';
 
+var uuid = require('uuid/v1');
+
 var CHECK = {
   description: 'TEST_CHECK',
   bank_account: 'bank_42426d3c5c2ffd2',
@@ -24,6 +26,30 @@ describe('checks', function () {
         expect(res.memo).to.eql('test check');
         expect(res.object).to.eql('check');
         return done();
+      });
+    });
+
+    var idempotencyKey = uuid();
+
+    it('creates a check with an idempotency key', function (done) {
+      Lob.checks.create(CHECK, {
+        'idempotency-key': idempotencyKey
+      },
+        function (err, res) {
+          Lob.checks.create(CHECK, {
+          'idempotency-key': idempotencyKey
+        },
+        function(err, resTwo) {
+          expect(res.id).to.eql(resTwo.id);
+          expect(res).to.have.property('id');
+          expect(res).to.have.property('description');
+          expect(res).to.have.property('bank_account');
+          expect(res).to.have.property('check_number');
+          expect(res).to.have.property('memo');
+          expect(res.memo).to.eql('test check');
+          expect(res.object).to.eql('check');
+          return done();
+        });
       });
     });
 
