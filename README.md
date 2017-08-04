@@ -152,6 +152,8 @@ Lob.addresses.retrieve('adr_bad_id')
   - [US Verification API](https://lob.com/docs/node#us_verifications)
     - [The US Verification Object](https://lob.com/docs/node#us_verifications_object)
     - [Verify a US Address](https://lob.com/docs/node#us_verifications_create)
+    - [The US ZIP Lookup Object](https://lob.com/docs/node#us_zip_lookups_object)
+    - [Lookup a US ZIP Code](https://lob.com/docs/node#us_zip_lookups_create)
 - **Int'l Verification API**
   - [International Verifications](https://lob.com/docs/node#intl_verifications)
     - [Verify an International Address](https://lob.com/docs/node#intl_verifications_create)
