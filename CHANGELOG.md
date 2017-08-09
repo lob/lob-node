@@ -1,3 +1,21 @@
+#### 4.1.1 (2017-08-09)
+
+##### Chores
+
+* **examples:**
+  * update to use merge_variables ([cc6c2d3c](https://github.com/lob/lob-node/commit/cc6c2d3c96492f52e0c6a173380985fa691ee86b))
+  * Fix examples to use new us_verifications endpoint ([b6096944](https://github.com/lob/lob-node/commit/b6096944843d1a9ee67632ee6a27688bb3da381a))
+
+##### New Features
+
+* **idempotency-key:** Add optional headers argument to create() methods to support idempotency-key ([99ef7e92](https://github.com/lob/lob-node/commit/99ef7e92cc8e57608553abdd3b8acd38abe08cf3))
+* **us-zip-lookups:** Add US Zip Code Lookup ([d51e8c8b](https://github.com/lob/lob-node/commit/d51e8c8b8f6a9facb1df94d80b230a2387a9e05f))
+* **delete:** Add delete method to postcards, letters, and checks chore(ignore): ignore Sublime files ([aa340b57](https://github.com/lob/lob-node/commit/aa340b579cc87999dc7c0ed1cc571e30cefafbda))
+
+##### Bug Fixes
+
+* **readme:** update documentation ([73afa906](https://github.com/lob/lob-node/commit/73afa906bd393097a3a4d18988e80f8bf6c4308b))
+
 ## 4.0.0 (2017-5-17)
 
 ##### Chores
