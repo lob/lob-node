@@ -1,14 +1,14 @@
 'use strict';
 
 var ADDRESS = {
-  name: 'Harry Zhang',
+  name: 'HARRY ZHANG',
   email: 'harry@lob.com',
   phone: '5555555555',
-  address_line1: '123 Test Street',
-  address_line2: 'Unit 123',
-  address_city: 'San Francisco',
+  address_line1: '185 BERRY ST STE 6100',
+  address_line2: '',
+  address_city: 'SAN FRANCISCO',
   address_state: 'CA',
-  address_zip: '94158',
+  address_zip: '94107-1741',
   address_country: 'US'
 };
 
@@ -51,7 +51,7 @@ describe('addresses', function () {
         expect(res.address_city).to.eql(ADDRESS.address_city);
         expect(res.address_state).to.eql(ADDRESS.address_state);
         expect(res.address_zip).to.eql(ADDRESS.address_zip);
-        expect(res.address_country).to.eql('United States');
+        expect(res.address_country).to.eql('UNITED STATES');
         expect(res).to.have.property('date_created');
         expect(res).to.have.property('date_modified');
         expect(res).to.have.property('object');
