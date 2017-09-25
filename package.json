@@ -38,7 +38,7 @@
   "bugs:": "https://github.com/lob/lob-node/issues",
   "main": "./lib/index",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 4.0.0"
   },
   "scripts": {
     "test": "NODE_ENV=test istanbul cover _mocha -- test --recursive --timeout 30000",
