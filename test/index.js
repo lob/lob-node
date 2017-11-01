@@ -8,9 +8,11 @@ describe('Lob', function () {
   });
 
   it('allows the use of promises and callbacks', function (done) {
-    Lob.countries.list()
-    .then(function (body) {
-      expect(body.data).to.be.instanceof(Array);
+    var Lob = require('../lib')(API_KEY);
+
+    Lob.addresses.list()
+    .then(function(result) {
+      expect(result.data).to.be.instanceof(Array);
       done();
     });
   });
@@ -34,8 +36,9 @@ describe('Lob', function () {
     var options = { host: 'http://test' };
     var Lob     = require('../lib')(API_KEY, options);
 
-    Lob.countries.list()
-    .catch(function (err) {
+    Lob.addresses.list()
+    .catch(err => err)
+    .then(err => {
       expect(err.message).to.match(/getaddrinfo ENOTFOUND/);
       done();
     });
