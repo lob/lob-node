@@ -11,7 +11,7 @@ describe('Lob', function () {
     var Lob = require('../lib')(API_KEY);
 
     Lob.addresses.list()
-    .then(function(result) {
+    .then(function (result) {
       expect(result.data).to.be.instanceof(Array);
       done();
     });
@@ -37,8 +37,7 @@ describe('Lob', function () {
     var Lob     = require('../lib')(API_KEY, options);
 
     Lob.addresses.list()
-    .catch(err => err)
-    .then(err => {
+    .catch(function (err) {
       expect(err.message).to.match(/getaddrinfo ENOTFOUND/);
       done();
     });
