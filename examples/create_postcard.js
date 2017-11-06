@@ -1,8 +1,7 @@
 'use strict';
 
 /*
- * Create an address, then send two postcards with it - one with a message
- * on the back, and one with a custom PDF back instead.
+ * Create an address, then send a postcard with a custom PDF back.
  * Run me! This example works out of the box, "batteries included".
  */
 
@@ -28,24 +27,6 @@ Lob.addresses.create({
   if (err) {
     console.log(err);
   } else {
-    // with message
-    Lob.postcards.create({
-      description: 'My First Postcard',
-      to: address.id,
-      front: file,
-      merge_variables: {
-        name: 'Robin'
-      },
-      message: 'Happy Birthday!'
-    }, function (err, postcard) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('The Lob API responded with this postcard object: ', postcard);
-      }
-    });
-
-    // with custom back
     Lob.postcards.create({
       description: 'My Second Postcard',
       to: address.id,

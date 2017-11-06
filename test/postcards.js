@@ -58,18 +58,6 @@ describe('postcards', function () {
 
   describe('create', function () {
 
-    it('creates a postcard with message', function (done) {
-      Lob.postcards.create({
-        description: 'Test Postcard',
-        to: ADDRESS,
-        front: '<h1>Ello</h1>',
-        message: 'Gday mate'
-      }, function (err, res) {
-        expect(res.object).to.eql('postcard');
-        done();
-      });
-    });
-
     it('creates a postcard with a local file', function (done) {
       var filePath = __dirname + '/assets/4_25x6_25.pdf';
 
@@ -116,7 +104,7 @@ describe('postcards', function () {
 
     it('deletes a postcard', function (done) {
       var file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
-      
+
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
@@ -129,7 +117,7 @@ describe('postcards', function () {
         });
       });
     });
-    
+
   });
 
 });
