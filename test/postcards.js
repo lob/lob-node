@@ -1,8 +1,8 @@
 'use strict';
 
-var fs = require('fs');
+const fs = require('fs');
 
-var ADDRESS =  {
+const ADDRESS =  {
   name: 'Lob',
   email: 'support@lob.com',
   address_line1: '123 Main Street',
@@ -13,12 +13,12 @@ var ADDRESS =  {
   address_country: 'US'
 };
 
-describe('postcards', function () {
+describe('postcards', () => {
 
-  describe('list', function () {
+  describe('list', () => {
 
-    it('returns a list of postcards', function (done) {
-      Lob.postcards.list(function (err, res) {
+    it('returns a list of postcards', (done) => {
+      Lob.postcards.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(10);
@@ -27,8 +27,8 @@ describe('postcards', function () {
       });
     });
 
-    it('filters postcards', function (done) {
-      Lob.postcards.list({ limit: 1 }, function (err, res) {
+    it('filters postcards', (done) => {
+      Lob.postcards.list({ limit: 1 }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);
@@ -39,15 +39,15 @@ describe('postcards', function () {
 
   });
 
-  describe('retrieve', function () {
+  describe('retrieve', () => {
 
-    it('retrieves a postcard', function (done) {
+    it('retrieves a postcard', (done) => {
       Lob.postcards.create({
         to: ADDRESS,
         front: '<h1>Test Postcard Front</h1>',
         back: '<h1>Test Postcard Back</h1>'
-      }, function (err, res) {
-        Lob.postcards.retrieve(res.id, function () {
+      }, (err, res) => {
+        Lob.postcards.retrieve(res.id, () => {
           expect(res.object).to.eql('postcard');
           done();
         });
@@ -56,43 +56,43 @@ describe('postcards', function () {
 
   });
 
-  describe('create', function () {
+  describe('create', () => {
 
-    it('creates a postcard with a local file', function (done) {
-      var filePath = __dirname + '/assets/4_25x6_25.pdf';
+    it('creates a postcard with a local file', (done) => {
+      const filePath = __dirname + '/assets/4_25x6_25.pdf';
 
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
         front: fs.createReadStream(filePath),
         back: fs.createReadStream(filePath)
-      }, function (err, res) {
+      }, (err, res) => {
         expect(res.object).to.eql('postcard');
         done();
       });
     });
 
-    it('creates a postcard with a buffer', function (done) {
-      var file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
+    it('creates a postcard with a buffer', (done) => {
+      const file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
 
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
         front: file,
         back: file
-      }, function (err, res) {
+      }, (err, res) => {
         expect(res.object).to.eql('postcard');
         done();
       });
     });
 
-    it('errors with missing front', function (done) {
+    it('errors with missing front', (done) => {
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
         back: '<h1>Test Postcard Back</h1>',
         message: 'This is the message'
-      }, function (err) {
+      }, (err) => {
         expect(err).to.be.an.instanceOf(Object);
         done();
       });
@@ -100,18 +100,18 @@ describe('postcards', function () {
 
   });
 
-  describe('delete', function () {
+  describe('delete', () => {
 
-    it('deletes a postcard', function (done) {
-      var file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
+    it('deletes a postcard', (done) => {
+      const file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
 
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
         front: file,
         back: file
-      }, function (err, res) {
-        Lob.postcards.delete(res.id, function (err2, res2) {
+      }, (err, res) => {
+        Lob.postcards.delete(res.id, (err2, res2) => {
           expect(res2.deleted).to.eql(true);
           return done();
         });

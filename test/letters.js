@@ -13,12 +13,12 @@ var ADDRESS = {
   address_country: 'US'
 };
 
-describe('letters', function () {
+describe('letters', () => {
 
-  describe('list', function () {
+  describe('list', () => {
 
-    it('returns a list of letters', function (done) {
-      Lob.letters.list(function (err, res) {
+    it('returns a list of letters', (done) => {
+      Lob.letters.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(10);
@@ -27,8 +27,8 @@ describe('letters', function () {
       });
     });
 
-    it('filters letters', function (done) {
-      Lob.letters.list({ limit: 1 }, function (err, res) {
+    it('filters letters', (done) => {
+      Lob.letters.list({ limit: 1 }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);
@@ -39,17 +39,17 @@ describe('letters', function () {
 
   });
 
-  describe('retrieve', function () {
+  describe('retrieve', () => {
 
-    it('retrieves a letter', function (done) {
+    it('retrieves a letter', (done) => {
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS,
         color: true,
         file: '<h1>Test Letter</h1>'
-      }, function (err, res) {
-        Lob.letters.retrieve(res.id, function (err2, res2) {
+      }, (err, res) => {
+        Lob.letters.retrieve(res.id, (err2, res2) => {
           expect(res2.object).to.eql('letter');
           done();
         });
@@ -58,9 +58,9 @@ describe('letters', function () {
 
   });
 
-  describe('create', function () {
+  describe('create', () => {
 
-    it('creates a letter with a local file', function (done) {
+    it('creates a letter with a local file', (done) => {
       var filePath = __dirname + '/assets/8.5x11.pdf';
 
       Lob.letters.create({
@@ -69,13 +69,13 @@ describe('letters', function () {
         from: ADDRESS,
         file: fs.createReadStream(filePath),
         color: true
-      }, function (err, res) {
+      }, (err, res) => {
         expect(res.object).to.eql('letter');
         done();
       });
     });
 
-    it('creates a letter with a buffer', function (done) {
+    it('creates a letter with a buffer', (done) => {
       var file = fs.readFileSync(__dirname + '/assets/8.5x11.pdf');
 
       Lob.letters.create({
@@ -84,18 +84,18 @@ describe('letters', function () {
         from: ADDRESS,
         file: file,
         color: false
-      }, function (err, res) {
+      }, (err, res) => {
         expect(res.object).to.eql('letter');
         done();
       });
     });
 
-    it('errors with a missing file', function (done) {
+    it('errors with a missing file', (done) => {
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS
-      }, function (err) {
+      }, (err) => {
         expect(err).to.be.an.instanceOf(Object);
         done();
       });
@@ -103,25 +103,25 @@ describe('letters', function () {
 
   });
 
-  describe('delete', function () {
+  describe('delete', () => {
 
-    it('deletes a letter', function (done) {
+    it('deletes a letter', (done) => {
       var filePath = __dirname + '/assets/8.5x11.pdf';
-      
+
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS,
         file: fs.createReadStream(filePath),
         color: true
-      }, function (err, res) {
-        Lob.letters.delete(res.id, function (err2, res2) {
+      }, (err, res) => {
+        Lob.letters.delete(res.id, (err2, res2) => {
           expect(res2.deleted).to.eql(true);
           return done();
         });
       });
     });
-    
+
   });
 
 });
