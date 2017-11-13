@@ -1,6 +1,6 @@
 'use strict';
 
-var ADDRESS = {
+const ADDRESS = {
   name: 'HARRY ZHANG',
   email: 'harry@lob.com',
   phone: '5555555555',
@@ -12,12 +12,12 @@ var ADDRESS = {
   address_country: 'US'
 };
 
-describe('addresses', function () {
+describe('addresses', () => {
 
-  describe('list', function () {
+  describe('list', () => {
 
-    it('returns a list of addresses', function (done) {
-      Lob.addresses.list(function (err, res) {
+    it('returns a list of addresses', (done) => {
+      Lob.addresses.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(10);
@@ -26,8 +26,8 @@ describe('addresses', function () {
       });
     });
 
-    it('filters addresses', function (done) {
-      Lob.addresses.list({ limit: 1 }, function (err, res) {
+    it('filters addresses', (done) => {
+      Lob.addresses.list({ limit: 1 }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);
@@ -38,10 +38,10 @@ describe('addresses', function () {
 
   });
 
-  describe('create', function () {
+  describe('create', () => {
 
-    it('creates an address', function (done) {
-      Lob.addresses.create(ADDRESS, function (err, res) {
+    it('creates an address', (done) => {
+      Lob.addresses.create(ADDRESS, (err, res) => {
         expect(res).to.have.property('id');
         expect(res.name).to.eql(ADDRESS.name);
         expect(res.email).to.eql(ADDRESS.email);
@@ -62,11 +62,11 @@ describe('addresses', function () {
 
   });
 
-  describe('retrieve', function () {
+  describe('retrieve', () => {
 
-    it('retrieves an address', function (done) {
-      Lob.addresses.create(ADDRESS, function (err, res) {
-        Lob.addresses.retrieve(res.id, function (err2, res2) {
+    it('retrieves an address', (done) => {
+      Lob.addresses.create(ADDRESS, (err, res) => {
+        Lob.addresses.retrieve(res.id, (err2, res2) => {
           expect(res).to.eql(res2);
           return done();
         });
@@ -75,11 +75,11 @@ describe('addresses', function () {
 
   });
 
-  describe('delete', function () {
+  describe('delete', () => {
 
-    it('deletes an address', function (done) {
-      Lob.addresses.create(ADDRESS, function (err, res) {
-        Lob.addresses.delete(res.id, function (err2, res2) {
+    it('deletes an address', (done) => {
+      Lob.addresses.create(ADDRESS, (err, res) => {
+        Lob.addresses.delete(res.id, (err2, res2) => {
           expect(res2.deleted).to.eql(true);
           return done();
         });
