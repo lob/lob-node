@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require('fs');
+const Fs = require('fs');
 
 const AREA = {
   description: 'Test Area',
@@ -63,8 +63,8 @@ describe('areas', () => {
       Lob.areas.create({
         description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
-        front: fs.createReadStream(filePath),
-        back: fs.createReadStream(filePath)
+        front: Fs.createReadStream(filePath),
+        back: Fs.createReadStream(filePath)
       }, (err, res) => {
         expect(res.object).to.eql('area');
         done();
@@ -72,7 +72,7 @@ describe('areas', () => {
     });
 
     it('creates an area from a buffer', (done) => {
-      fs.readFile(`${__dirname}/assets/areaback.pdf`, (err, file) => {
+      Fs.readFile(`${__dirname}/assets/areaback.pdf`, (err, file) => {
         Lob.areas.create({
           description: 'Test Area',
           routes: ['94158-C001'],

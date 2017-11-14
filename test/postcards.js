@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require('fs');
+const Fs = require('fs');
 
 const ADDRESS =  {
   name: 'Lob',
@@ -64,8 +64,8 @@ describe('postcards', () => {
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
-        front: fs.createReadStream(filePath),
-        back: fs.createReadStream(filePath)
+        front: Fs.createReadStream(filePath),
+        back: Fs.createReadStream(filePath)
       }, (err, res) => {
         expect(res.object).to.eql('postcard');
         done();
@@ -73,7 +73,7 @@ describe('postcards', () => {
     });
 
     it('creates a postcard with a buffer', (done) => {
-      const file = fs.readFileSync(`${__dirname}/assets/4_25x6_25.pdf`);
+      const file = Fs.readFileSync(`${__dirname}/assets/4_25x6_25.pdf`);
 
       Lob.postcards.create({
         description: 'Test Postcard',
@@ -103,7 +103,7 @@ describe('postcards', () => {
   describe('delete', () => {
 
     it('deletes a postcard', (done) => {
-      const file = fs.readFileSync(`${__dirname}/assets/4_25x6_25.pdf`);
+      const file = Fs.readFileSync(`${__dirname}/assets/4_25x6_25.pdf`);
 
       Lob.postcards.create({
         description: 'Test Postcard',
