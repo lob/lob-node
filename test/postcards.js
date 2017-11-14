@@ -59,7 +59,7 @@ describe('postcards', () => {
   describe('create', () => {
 
     it('creates a postcard with a local file', (done) => {
-      const filePath = __dirname + '/assets/4_25x6_25.pdf';
+      const filePath = `${__dirname}/assets/4_25x6_25.pdf`;
 
       Lob.postcards.create({
         description: 'Test Postcard',
@@ -73,7 +73,7 @@ describe('postcards', () => {
     });
 
     it('creates a postcard with a buffer', (done) => {
-      const file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
+      const file = fs.readFileSync(`${__dirname}/assets/4_25x6_25.pdf`);
 
       Lob.postcards.create({
         description: 'Test Postcard',
@@ -103,7 +103,7 @@ describe('postcards', () => {
   describe('delete', () => {
 
     it('deletes a postcard', (done) => {
-      const file = fs.readFileSync(__dirname + '/assets/4_25x6_25.pdf');
+      const file = fs.readFileSync(`${__dirname}/assets/4_25x6_25.pdf`);
 
       Lob.postcards.create({
         description: 'Test Postcard',

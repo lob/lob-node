@@ -32,7 +32,7 @@ describe('Lob', () => {
     expect(Lob.options.host).to.eql('http://test');
   });
 
-  it('should propogate request errors', (done) => {
+  it('should propagate request errors', (done) => {
     var options = { host: 'http://test' };
     var Lob     = require('../lib')(API_KEY, options);
 

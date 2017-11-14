@@ -59,7 +59,7 @@ describe('areas', () => {
     });
 
     it('creates an area from a local file', (done) => {
-      const filePath = __dirname + '/assets/areaback.pdf';
+      const filePath = `${__dirname}/assets/areaback.pdf`;
       Lob.areas.create({
         description: 'Test Area',
         routes: ['94158-C001', '94107-C031'],
@@ -72,7 +72,7 @@ describe('areas', () => {
     });
 
     it('creates an area from a buffer', (done) => {
-      fs.readFile(__dirname + '/assets/areaback.pdf', (err, file) => {
+      fs.readFile(`${__dirname}/assets/areaback.pdf`, (err, file) => {
         Lob.areas.create({
           description: 'Test Area',
           routes: ['94158-C001'],

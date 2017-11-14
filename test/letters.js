@@ -61,7 +61,7 @@ describe('letters', () => {
   describe('create', () => {
 
     it('creates a letter with a local file', (done) => {
-      var filePath = __dirname + '/assets/8.5x11.pdf';
+      var filePath = `${__dirname}/assets/8.5x11.pdf`;
 
       Lob.letters.create({
         description: 'Test Letter',
@@ -76,7 +76,7 @@ describe('letters', () => {
     });
 
     it('creates a letter with a buffer', (done) => {
-      var file = fs.readFileSync(__dirname + '/assets/8.5x11.pdf');
+      var file = fs.readFileSync(`${__dirname}/assets/8.5x11.pdf`);
 
       Lob.letters.create({
         description: 'Test Letter',
@@ -106,7 +106,7 @@ describe('letters', () => {
   describe('delete', () => {
 
     it('deletes a letter', (done) => {
-      var filePath = __dirname + '/assets/8.5x11.pdf';
+      var filePath = `${__dirname}/assets/8.5x11.pdf`;
 
       Lob.letters.create({
         description: 'Test Letter',
