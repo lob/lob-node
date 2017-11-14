@@ -107,7 +107,7 @@ describe('letters', function () {
 
     it('deletes a letter', function (done) {
       var filePath = __dirname + '/assets/8.5x11.pdf';
-      
+
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
@@ -121,7 +121,7 @@ describe('letters', function () {
         });
       });
     });
-    
+
   });
 
 });

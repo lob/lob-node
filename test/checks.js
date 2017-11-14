@@ -107,7 +107,7 @@ describe('checks', function () {
         });
       });
     });
-    
+
   });
 
 });
