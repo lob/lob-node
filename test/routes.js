@@ -1,11 +1,11 @@
 'use strict';
 
-describe('routes', function () {
+describe('routes', () => {
 
-  describe('list', function () {
+  describe('list', () => {
 
-    it('returns a list of routes', function (done) {
-      Lob.routes.list({ zip_codes: [48168, 94158] }, function (err, res) {
+    it('returns a list of routes', (done) => {
+      Lob.routes.list({ zip_codes: [48168, 94158] }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         done();
@@ -14,10 +14,10 @@ describe('routes', function () {
 
   });
 
-  describe('retrieve', function () {
+  describe('retrieve', () => {
 
-    it('retrieves a route', function (done) {
-      Lob.routes.retrieve(48168, function (err, zip) {
+    it('retrieves a route', (done) => {
+      Lob.routes.retrieve(48168, (err, zip) => {
         expect(zip).to.have.property('zip_code');
         expect(zip).to.have.property('routes');
         done();

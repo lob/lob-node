@@ -1,8 +1,8 @@
 'use strict';
 
-var uuid = require('uuid/v1');
+const uuid = require('uuid/v1');
 
-var CHECK = {
+const CHECK = {
   description: 'TEST_CHECK',
   bank_account: 'bank_42426d3c5c2ffd2',
   to: 'adr_eed2a7b59384aea7',
@@ -12,12 +12,12 @@ var CHECK = {
   check_bottom: '<h1>Test Check</h1>'
 };
 
-describe('checks', function () {
+describe('checks', () => {
 
-  describe('create', function () {
+  describe('create', () => {
 
-    it('creates a check', function (done) {
-      Lob.checks.create(CHECK, function (err, res) {
+    it('creates a check', (done) => {
+      Lob.checks.create(CHECK, (err, res) => {
         expect(res).to.have.property('id');
         expect(res).to.have.property('description');
         expect(res).to.have.property('bank_account');
@@ -29,17 +29,17 @@ describe('checks', function () {
       });
     });
 
-    var idempotencyKey = uuid();
+    const idempotencyKey = uuid();
 
-    it('creates a check with an idempotency key', function (done) {
+    it('creates a check with an idempotency key', (done) => {
       Lob.checks.create(CHECK, {
         'idempotency-key': idempotencyKey
       },
-        function (err, res) {
+        (err, res) => {
           Lob.checks.create(CHECK, {
           'idempotency-key': idempotencyKey
         },
-        function(err, resTwo) {
+        (err, resTwo) => {
           expect(res.id).to.eql(resTwo.id);
           expect(res).to.have.property('id');
           expect(res).to.have.property('description');
@@ -55,11 +55,11 @@ describe('checks', function () {
 
   });
 
-  describe('retrieve', function () {
+  describe('retrieve', () => {
 
-    it('retrieves a check', function (done) {
-      Lob.checks.create(CHECK, function (err, res) {
-        Lob.checks.retrieve(res.id, function (err, res) {
+    it('retrieves a check', (done) => {
+      Lob.checks.create(CHECK, (err, res) => {
+        Lob.checks.retrieve(res.id, (err, res) => {
           expect(res).to.have.property('id');
           expect(res).to.have.property('description');
           expect(res).to.have.property('bank_account');
@@ -73,10 +73,10 @@ describe('checks', function () {
 
   });
 
-  describe('list', function () {
+  describe('list', () => {
 
-    it('returns a list of checks', function (done) {
-      Lob.checks.list(function (err, res) {
+    it('returns a list of checks', (done) => {
+      Lob.checks.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(10);
@@ -85,8 +85,8 @@ describe('checks', function () {
       });
     });
 
-    it('filters checks', function (done) {
-      Lob.checks.list({ limit: 1 }, function (err, res) {
+    it('filters checks', (done) => {
+      Lob.checks.list({ limit: 1 }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);
@@ -97,11 +97,11 @@ describe('checks', function () {
 
   });
 
-  describe('delete', function () {
+  describe('delete', () => {
 
-    it('deletes a check', function (done) {
-      Lob.checks.create(CHECK, function (err, res) {
-        Lob.checks.delete(res.id, function (err2, res2) {
+    it('deletes a check', (done) => {
+      Lob.checks.create(CHECK, (err, res) => {
+        Lob.checks.delete(res.id, (err2, res2) => {
           expect(res2.deleted).to.eql(true);
           return done();
         });

@@ -1,18 +1,18 @@
 'use strict';
 
-var BANK_ACCOUNT = {
+const BANK_ACCOUNT = {
   routing_number: '122100024',
   account_number: '123456788',
   account_type: 'company',
   signatory: 'John Doe'
 };
 
-describe('bank accounts', function () {
+describe('bank accounts', () => {
 
-  describe('create', function () {
+  describe('create', () => {
 
-    it('creates a bank account', function (done) {
-      Lob.bankAccounts.create(BANK_ACCOUNT, function (err, res) {
+    it('creates a bank account', (done) => {
+      Lob.bankAccounts.create(BANK_ACCOUNT, (err, res) => {
         expect(res).to.have.property('id');
         expect(res.routing_number).to.eql(BANK_ACCOUNT.routing_number);
         expect(res.account_number).to.eql(BANK_ACCOUNT.account_number);
@@ -24,11 +24,11 @@ describe('bank accounts', function () {
 
   });
 
-  describe('retrieve', function () {
+  describe('retrieve', () => {
 
-    it('retrieves a bank account', function (done) {
-      Lob.bankAccounts.create(BANK_ACCOUNT, function (err, res) {
-        Lob.bankAccounts.retrieve(res.id, function (err, res) {
+    it('retrieves a bank account', (done) => {
+      Lob.bankAccounts.create(BANK_ACCOUNT, (err, res) => {
+        Lob.bankAccounts.retrieve(res.id, (err, res) => {
           expect(res).to.have.property('id');
           expect(res.routing_number).to.eql(BANK_ACCOUNT.routing_number);
           expect(res.account_number).to.eql(BANK_ACCOUNT.account_number);
@@ -41,11 +41,11 @@ describe('bank accounts', function () {
 
   });
 
-  describe('delete', function () {
+  describe('delete', () => {
 
-    it('deletes a bank account', function (done) {
-      Lob.bankAccounts.create(BANK_ACCOUNT, function (err, res) {
-        Lob.bankAccounts.delete(res.id, function (err, res) {
+    it('deletes a bank account', (done) => {
+      Lob.bankAccounts.create(BANK_ACCOUNT, (err, res) => {
+        Lob.bankAccounts.delete(res.id, (err, res) => {
           expect(res.deleted).to.eql(true);
           return done();
         });
@@ -54,10 +54,10 @@ describe('bank accounts', function () {
 
   });
 
-  describe('list', function () {
+  describe('list', () => {
 
-    it('returns a list of bank accounts', function (done) {
-      Lob.bankAccounts.list(function (err, res) {
+    it('returns a list of bank accounts', (done) => {
+      Lob.bankAccounts.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(10);
@@ -66,8 +66,8 @@ describe('bank accounts', function () {
       });
     });
 
-    it('filters bank accounts', function (done) {
-      Lob.bankAccounts.list({ limit: 1 }, function (err, res) {
+    it('filters bank accounts', (done) => {
+      Lob.bankAccounts.list({ limit: 1 }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);
@@ -78,13 +78,13 @@ describe('bank accounts', function () {
 
   });
 
-  describe('verify', function () {
+  describe('verify', () => {
 
-    it('verifies a bank account', function (done) {
-      var amounts = [23, 34];
+    it('verifies a bank account', (done) => {
+      const amounts = [23, 34];
 
-      Lob.bankAccounts.create(BANK_ACCOUNT, function (err, res) {
-        Lob.bankAccounts.verify(res.id, { amounts: amounts }, function (err, res) {
+      Lob.bankAccounts.create(BANK_ACCOUNT, (err, res) => {
+        Lob.bankAccounts.verify(res.id, { amounts: amounts }, (err, res) => {
           expect(res).to.have.property('id');
           expect(res.routing_number).to.eql(BANK_ACCOUNT.routing_number);
           expect(res.account_number).to.eql(BANK_ACCOUNT.account_number);
