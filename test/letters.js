@@ -1,8 +1,8 @@
 'use strict';
 
-var fs = require('fs');
+const Fs = require('fs');
 
-var ADDRESS = {
+const ADDRESS = {
   name: 'Lob',
   email: 'support@lob.com',
   address_line1: '123 Main Street',
@@ -61,13 +61,13 @@ describe('letters', () => {
   describe('create', () => {
 
     it('creates a letter with a local file', (done) => {
-      var filePath = `${__dirname}/assets/8.5x11.pdf`;
+      const filePath = `${__dirname}/assets/8.5x11.pdf`;
 
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS,
-        file: fs.createReadStream(filePath),
+        file: Fs.createReadStream(filePath),
         color: true
       }, (err, res) => {
         expect(res.object).to.eql('letter');
@@ -76,7 +76,7 @@ describe('letters', () => {
     });
 
     it('creates a letter with a buffer', (done) => {
-      var file = fs.readFileSync(`${__dirname}/assets/8.5x11.pdf`);
+      const file = Fs.readFileSync(`${__dirname}/assets/8.5x11.pdf`);
 
       Lob.letters.create({
         description: 'Test Letter',
@@ -106,13 +106,13 @@ describe('letters', () => {
   describe('delete', () => {
 
     it('deletes a letter', (done) => {
-      var filePath = `${__dirname}/assets/8.5x11.pdf`;
+      const filePath = `${__dirname}/assets/8.5x11.pdf`;
 
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS,
-        file: fs.createReadStream(filePath),
+        file: Fs.createReadStream(filePath),
         color: true
       }, (err, res) => {
         Lob.letters.delete(res.id, (err2, res2) => {
