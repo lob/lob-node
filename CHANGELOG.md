@@ -1,3 +1,29 @@
+## 5.0.0 (2017-12-11)
+
+##### Chores
+
+* **lib:**
+  * use es6 classes ([38ee703e](https://github.com/lob/lob-node/commit/38ee703e2e03703d4029a922144db53d51320c01))
+  * es6 ify resource and test files ([fbd106f3](https://github.com/lob/lob-node/commit/fbd106f3554dafefc6c0e99d24959eaf7970b6fb))
+* **deprecate:** Deprecate support for 0.10 and 0.12 ([#187](https://github.com/lob/lob-node/pull/187)) ([bd0130d3](https://github.com/lob/lob-node/commit/bd0130d31ff7df699d423043098385cdbec362a7))
+
+##### Bug Fixes
+
+* **test:** fix US verification test ([a0f10925](https://github.com/lob/lob-node/commit/a0f10925bd4e244d69c53c1e9097f3c04f70f5e5))
+* **auto-verify:** update tests to manage auto-verify ([107eeae3](https://github.com/lob/lob-node/commit/107eeae3702290174438fd38ef0ab6d9193b3725))
+
+##### Other Changes
+
+* **postcards:** Remove message field from postcard ([c298fe4c](https://github.com/lob/lob-node/commit/c298fe4c5eace7d746b0215b3f7e5958ae0d18c8))
+
+##### Refactors
+
+* **object:** Use Object.prototype.call, instead of assuming objects inherit from Object.prototype ([#191](https://github.com/lob/lob-node/pull/191)) ([8648cb0c](https://github.com/lob/lob-node/commit/8648cb0cc192650352a061a8c110d09d7345ccf3))
+
+##### Tests
+
+* **intl:** Update international verifications tests ([5f38b3d3](https://github.com/lob/lob-node/commit/5f38b3d3df4b0d44bedd5bbbf5969a5279590b57))
+
 #### 4.1.1 (2017-08-09)
 
 ##### Chores
