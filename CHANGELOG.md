@@ -1,3 +1,9 @@
+### 5.1.0 (2018-02-22)
+
+##### Refactors
+
+* **resources:** remove dynamic requires ([#196](https://github.com/lob/lob-node/pull/196)) ([4036cdda](https://github.com/lob/lob-node/commit/4036cdda417fc859dbe737eef48c78d97e38c1a8))
+
 ## 5.0.0 (2017-12-11)
 
 ##### Chores
