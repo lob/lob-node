@@ -1,3 +1,9 @@
+### 5.2.0 (2018-3-13)
+
+##### New Features
+
+* **us-verifications:** allow passing queries in verification creation (#197) ([84b9a44a](https://github.com/lob/lob-node/commit/84b9a44a0044eccc33bc8e1a839c54f9ae5cb067))
+
 ### 5.1.0 (2018-02-22)
 
 ##### Refactors
