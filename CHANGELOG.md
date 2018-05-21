@@ -1,3 +1,13 @@
+### 5.3.0 (2018-05-21)
+
+##### New Features
+
+* **us-autocompletions:**  add USAutocompletions ([b64b02db](https://github.com/lob/lob-node/commit/b64b02db3712d92a6934c37629c804debdfcb42c))
+
+##### Bug Fixes
+
+* **readme:**  replace dependency status badge and upgrade vulnerable deps ([#198](https://github.com/lob/lob-node/pull/198)) ([b758c76d](https://github.com/lob/lob-node/commit/b758c76d3cdd24d379c13ad5189dce4e28efe45e))
+
 ### 5.2.0 (2018-3-13)
 
 ##### New Features
