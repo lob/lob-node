@@ -98,6 +98,17 @@ describe('postcards', () => {
       });
     });
 
+    it('errors with missing back', (done) => {
+      Lob.postcards.create({
+        description: 'Test Postcard',
+        to: ADDRESS,
+        front: '<h1>Test Postcard Back</h1>'
+      }, (err) => {
+        expect(err).to.be.an.instanceOf(Object);
+        done();
+      });
+    });
+
   });
 
   describe('delete', () => {
