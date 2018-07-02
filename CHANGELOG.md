@@ -1,3 +1,9 @@
+## 6.0.0 (2018-07-02)
+
+##### New Features
+
+* **area-mail:** remove areas and routes resources ([a17d234d](https://github.com/lob/lob-node/commit/a17d234da61f38c9a254642109a85aa6a5622810))
+
 ### 5.3.0 (2018-05-21)
 
 ##### New Features
