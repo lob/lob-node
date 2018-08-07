@@ -1,3 +1,9 @@
+#### 6.0.1 (2018-8-7)
+
+##### Bug Fixes
+
+* **headers:** don't save request specific headers in configs (#201) ([cfa0fb19](https://github.com/lob/lob-node/commit/cfa0fb191581aef2aa4a42c8ca554446700956d8))
+
 ## 6.0.0 (2018-07-02)
 
 ##### New Features
