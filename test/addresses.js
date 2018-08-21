@@ -47,7 +47,7 @@ describe('addresses', () => {
         expect(res.email).to.eql(ADDRESS.email);
         expect(res.phone).to.eql(ADDRESS.phone);
         expect(res.address_line1).to.eql(ADDRESS.address_line1);
-        expect(res.address_line2).to.eql(ADDRESS.address_line2);
+        expect(res.address_line2).to.eql(null);
         expect(res.address_city).to.eql(ADDRESS.address_city);
         expect(res.address_state).to.eql(ADDRESS.address_state);
         expect(res.address_zip).to.eql(ADDRESS.address_zip);
