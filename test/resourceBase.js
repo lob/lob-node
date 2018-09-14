@@ -33,7 +33,7 @@ describe('resource base', () => {
       }
     });
 
-    return resource._transmit('POST', null, null, null, (err) => {
+    resource._transmit('POST', null, null, null, (err) => {
       expect(err._response).to.exist;
       return done();
     });
