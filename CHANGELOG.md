@@ -1,3 +1,13 @@
+#### 6.0.2 (2018-12-3)
+
+##### Bug Fixes
+
+* **resource-base:** default body to empty object ([70f9c804](https://github.com/lob/lob-node/commit/70f9c804e1dabd2360afcf307e2e98b4787d46d9))
+* **deps:**
+  * upgrade rest of vulnerable deps ([3b84d7e0](https://github.com/lob/lob-node/commit/3b84d7e09b29b7cbd4718396f8fba7d74bc5b7ec))
+  * upgrade mocha (and growl) version ([95bdf700](https://github.com/lob/lob-node/commit/95bdf700d99986d03cb85ad09d300df1557e8abf))
+* **addresses:** fix broken test (#202) ([e560d6bc](https://github.com/lob/lob-node/commit/e560d6bc207f8d5964470ce1b9b9883829f198e3))
+
 #### 6.0.1 (2018-8-7)
 
 ##### Bug Fixes
