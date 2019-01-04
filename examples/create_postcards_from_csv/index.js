@@ -4,7 +4,7 @@ var parse = require('csv-parse');
 var fs    = require('fs');
 
 var lobFactory = require('../../lib/index.js');
-var Lob        = new lobFactory('test_fd34e1b5ea86a597ec89f7f2e46940c874d');
+var Lob        = new lobFactory('YOUR_API_KEY');
 var input      = fs.readFileSync(__dirname + '/input.csv', { encoding: 'utf-8' });
 var frontHtml  = fs.readFileSync(__dirname + '/postcard_front.html', { encoding: 'utf-8' });
 var backHtml   = fs.readFileSync(__dirname + '/postcard_back.html', { encoding: 'utf-8' });

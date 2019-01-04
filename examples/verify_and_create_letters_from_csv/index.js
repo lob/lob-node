@@ -6,7 +6,7 @@ var moment   = require('moment');
 var parse    = require('csv-parse');
 
 var LobFactory = require('../../lib/index.js');
-var Lob        = new LobFactory('test_fd34e1b5ea86a597ec89f7f2e46940c874d');
+var Lob        = new LobFactory('YOUR_API_KEY');
 
 var inputFile = fs.createReadStream(__dirname + '/input.csv');
 var successFd = fs.openSync(__dirname + '/success.csv', 'w');
