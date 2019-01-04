@@ -7,7 +7,7 @@
  */
 
 var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('test_fd34e1b5ea86a597ec89f7f2e46940c874d');
+var Lob = new lobFactory('YOUR_API_KEY');
 
 // Create the address
 Lob.addresses.create({

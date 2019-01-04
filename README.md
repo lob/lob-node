@@ -204,11 +204,11 @@ To contribute, please see the [CONTRIBUTING.md](https://github.com/lob/lob-node/
 
 To run the tests with coverage:
 
-    npm test
+    LOB_API_KEY=YOUR_TEST_API_KEY npm test
 
 To run the tests without coverage:
 
-    npm run test-no-cover
+    LOB_API_KEY=YOUR_TEST_API_KEY npm run test-no-cover
 
 =======================
 
