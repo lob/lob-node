@@ -42,6 +42,11 @@ parse(input, function (err, rows) {
         name: row[0],
         car: row[3],
         mileage: row[4]
+      },
+      metadata: {
+        name: row[0],
+        customer_id: "customer_123",
+        campaign: "Example Campaign"
       }
     }, function (err, postcard) {
       if (err) {
