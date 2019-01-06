@@ -4,7 +4,7 @@ var parse = require('csv-parse');
 var fs    = require('fs');
 
 var lobFactory = require('../../lib/index.js');
-var Lob        = new lobFactory('YOUR_API_KEY');
+var Lob        = new lobFactory('test_e99a73415929726237e17095825be3225b3');
 var input      = fs.readFileSync(__dirname + '/input.csv', { encoding: 'utf-8' });
 var frontHtml  = fs.readFileSync(__dirname + '/postcard_front.html', { encoding: 'utf-8' });
 var backHtml   = fs.readFileSync(__dirname + '/postcard_back.html', { encoding: 'utf-8' });
@@ -42,6 +42,11 @@ parse(input, function (err, rows) {
         name: row[0],
         car: row[3],
         mileage: row[4]
+      },
+      metadata: {
+        name: row[0],
+        customer_id: "cust_123",
+        campaign: "Example Campaign"
       }
     }, function (err, postcard) {
       if (err) {
