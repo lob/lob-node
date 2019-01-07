@@ -1,3 +1,15 @@
+#### 6.0.3 (2019-1-7)
+
+##### Chores
+
+* **assets:** update links ([5d7f66f0](https://github.com/lob/lob-node/commit/5d7f66f0487151a3b50b8d4581fe5b2cfa9474a9))
+
+##### Tests
+
+* **api-key:**
+  * remove lob api key from tests and examples ([93fee77a](https://github.com/lob/lob-node/commit/93fee77a156c53eb9454fc0be3a4d220e1943d08))
+  * remove lob api key from tests and examples ([062022b3](https://github.com/lob/lob-node/commit/062022b3cc89b921db4a1dec863d687d0db9dabb))
+
 #### 6.0.2 (2018-12-3)
 
 ##### Bug Fixes
