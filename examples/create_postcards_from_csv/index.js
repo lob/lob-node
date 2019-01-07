@@ -1,7 +1,8 @@
 'use strict';
 
-var parse = require('csv-parse');
-var fs    = require('fs');
+var bluebird = require('bluebird')
+var parse    = require('csv-parse');
+var fs       = require('fs');
 
 var lobFactory = require('../../lib/index.js');
 var Lob        = new lobFactory('YOUR_API_KEY');
@@ -9,13 +10,14 @@ var input      = fs.readFileSync(__dirname + '/input.csv', { encoding: 'utf-8' }
 var frontHtml  = fs.readFileSync(__dirname + '/postcard_front.html', { encoding: 'utf-8' });
 var backHtml   = fs.readFileSync(__dirname + '/postcard_back.html', { encoding: 'utf-8' });
 
+var CONCURRENCY = 5;
+
 parse(input, function (err, rows) {
   if (err) {
     return console.log(err);
   }
-  for (var i = 0, l = rows.length; i < l; i++) {
-    var row = rows[i];
-    Lob.postcards.create({
+  bluebird.map(rows, function (row) {
+    return Lob.postcards.create({
       to: {
         name: row[5],
         address_line1: row[6],
@@ -53,5 +55,5 @@ parse(input, function (err, rows) {
       }
       console.log('Postcard to ' + postcard.to.name + ' sent! View it here: ' + postcard.url);
     })
-  }
+  }, { concurrency: CONCURRENCY })
 });
