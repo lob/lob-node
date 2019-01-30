@@ -1,3 +1,13 @@
+#### 6.0.4 (2019-01-30)
+
+##### New Features
+
+* **postcards:** add ability to modify concurrency ([4a3bbf37](https://github.com/lob/lob-node/commit/4a3bbf373727c7c2bd9098b8425988a4adfd70d8))
+
+##### Bug Fixes
+
+* **resource-base:** handle undefined multipart form value ([#212](https://github.com/lob/lob-node/pull/212)) ([711261dc](https://github.com/lob/lob-node/commit/711261dc23d9f09e8ae7050248068219775fb6eb))
+
 #### 6.0.3 (2019-1-7)
 
 ##### Chores
