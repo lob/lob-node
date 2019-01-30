@@ -90,6 +90,23 @@ describe('letters', () => {
       });
     });
 
+    it('creates a letter with undefined optional parameters', (done) => {
+      const filePath = `${__dirname}/assets/8.5x11.pdf`;
+
+      Lob.letters.create({
+        description: 'Test Letter',
+        to: ADDRESS,
+        from: ADDRESS,
+        file: Fs.createReadStream(filePath),
+        color: false,
+        extra_service: undefined
+      }, (err, res) => {
+        expect(res.object).to.eql('letter');
+        done();
+      });
+
+    });
+
     it('errors with a missing file', (done) => {
       Lob.letters.create({
         description: 'Test Letter',
