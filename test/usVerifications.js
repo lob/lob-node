@@ -6,7 +6,7 @@ describe('us_verifications', () => {
 
     it('verifies an address', (done) => {
       Lob.usVerifications.verify({
-        primary_line: 'deliverable',
+        primary_line: '1 Telegraph Hill Blvd',
         city: 'San Francisco',
         state: 'CA',
         zip_code: '94107'
@@ -19,7 +19,7 @@ describe('us_verifications', () => {
 
     it('verifies an address with custom case', (done) => {
       Lob.usVerifications.verify({
-        primary_line: 'deliverable',
+        primary_line: '1 Telegraph Hill Blvd',
         city: 'San Francisco',
         state: 'CA',
         zip_code: '94107'

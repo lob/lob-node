@@ -1,22 +1,22 @@
 'use strict';
 
-var bluebird = require('bluebird')
-var parse    = require('csv-parse');
-var fs       = require('fs');
+const bluebird = require('bluebird');
+const parse    = require('csv-parse');
+const fs       = require('fs');
 
-var lobFactory = require('../../lib/index.js');
-var Lob        = new lobFactory('YOUR_API_KEY');
-var input      = fs.readFileSync(__dirname + '/input.csv', { encoding: 'utf-8' });
-var frontHtml  = fs.readFileSync(__dirname + '/postcard_front.html', { encoding: 'utf-8' });
-var backHtml   = fs.readFileSync(__dirname + '/postcard_back.html', { encoding: 'utf-8' });
+const lobFactory = require('../../lib/index.js');
+const Lob        = new lobFactory('YOUR_API_KEY');
+const input      = fs.readFileSync(`${__dirname  }/input.csv`, { encoding: 'utf-8' });
+const frontHtml  = fs.readFileSync(`${__dirname  }/postcard_front.html`, { encoding: 'utf-8' });
+const backHtml   = fs.readFileSync(`${__dirname  }/postcard_back.html`, { encoding: 'utf-8' });
 
-var CONCURRENCY = 5;
+const CONCURRENCY = 5;
 
-parse(input, function (err, rows) {
+parse(input, (err, rows) => {
   if (err) {
     return console.log(err);
   }
-  bluebird.map(rows, function (row) {
+  bluebird.map(rows, (row) => {
     return Lob.postcards.create({
       to: {
         name: row[5],
@@ -49,11 +49,11 @@ parse(input, function (err, rows) {
         name: row[0],
         campaign_id: 'campaign_234'
       }
-    }, function (err, postcard) {
+    }, (err, postcard) => {
       if (err) {
         return console.log(err);
       }
-      console.log('Postcard to ' + postcard.to.name + ' sent! View it here: ' + postcard.url);
-    })
-  }, { concurrency: CONCURRENCY })
+      console.log(`Postcard to ${  postcard.to.name  } sent! View it here: ${  postcard.url}`);
+    });
+  }, { concurrency: CONCURRENCY });
 });

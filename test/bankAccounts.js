@@ -60,8 +60,8 @@ describe('bank accounts', () => {
       Lob.bankAccounts.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
-        expect(res.data.length).to.eql(10);
-        expect(res.count).to.eql(10);
+        expect(res.data.length <= 10).to.be.true;
+        expect(res.count <= 10).to.be.true;
         return done();
       });
     });
@@ -84,7 +84,7 @@ describe('bank accounts', () => {
       const amounts = [23, 34];
 
       Lob.bankAccounts.create(BANK_ACCOUNT, (err, res) => {
-        Lob.bankAccounts.verify(res.id, { amounts: amounts }, (err, res) => {
+        Lob.bankAccounts.verify(res.id, { amounts }, (err, res) => {
           expect(res).to.have.property('id');
           expect(res.routing_number).to.eql(BANK_ACCOUNT.routing_number);
           expect(res.account_number).to.eql(BANK_ACCOUNT.account_number);

@@ -8,7 +8,7 @@ describe('us_autocompletions', () => {
       Lob.usAutocompletions.autocomplete({
         address_prefix: '185 BER',
         city: 'San Francisco',
-        state: 'CA',
+        state: 'CA'
       }, (err, res) => {
         expect(err).to.not.exist;
         expect(res.suggestions).to.exist;

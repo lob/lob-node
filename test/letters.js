@@ -21,8 +21,8 @@ describe('letters', () => {
       Lob.letters.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
-        expect(res.data.length).to.eql(10);
-        expect(res.count).to.eql(10);
+        expect(res.data.length <= 10).to.be.true;
+        expect(res.count <= 10).to.be.true;
         done();
       });
     });
@@ -82,7 +82,7 @@ describe('letters', () => {
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS,
-        file: file,
+        file,
         color: false
       }, (err, res) => {
         expect(res.object).to.eql('letter');
