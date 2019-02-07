@@ -39,7 +39,7 @@
   "bugs:": "https://github.com/lob/lob-node/issues",
   "main": "./lib/index",
   "engines": {
-    "node": ">= 4.0.0"
+    "node": ">= 6.0.0"
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc mocha test --recursive --timeout 30000",

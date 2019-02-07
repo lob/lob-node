@@ -21,16 +21,20 @@ const BANK_ACCOUNT = {
 
 describe('checks', () => {
 
-  before(async () => {
-    await Lob.addresses.list({ limit: 1 }).then(res => {
-      CHECK.to = res.data[0].id;
-      CHECK.from = res.data[0].id;
-    });
-    await Lob.bankAccounts.create(BANK_ACCOUNT).then(res => {
-      CHECK.bank_account = res.id;
-    });
-    await Lob.bankAccounts.verify(CHECK.bank_account, { amounts: [23, 34] });
-  })
+  before(() => {
+    return new Promise((resolve, reject) => {
+      Lob.addresses.list({ limit: 1 }, (err, res) => {
+        CHECK.to = res.data[0].id;
+        CHECK.from = res.data[0].id;
+        Lob.bankAccounts.create(BANK_ACCOUNT, (err, res) => {
+          CHECK.bank_account = res.id;
+          Lob.bankAccounts.verify(res.id, { amounts: [23, 34] }, (err, res) => {
+            resolve();
+          });
+        });
+      });
+    })
+  });
 
   describe('create', () => {
 
