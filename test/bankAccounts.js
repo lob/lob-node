@@ -60,8 +60,8 @@ describe('bank accounts', () => {
       Lob.bankAccounts.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
-        expect(res.data.length <= 10).to.be.true;
-        expect(res.count <= 10).to.be.true;
+        expect(res.data.length).to.be.at.most(10);
+        expect(res.count).to.be.at.most(10);
         return done();
       });
     });
