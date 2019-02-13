@@ -6,9 +6,9 @@ const fs       = require('fs');
 
 const lobFactory = require('../../lib/index.js');
 const Lob        = new lobFactory('YOUR_API_KEY');
-const input      = fs.readFileSync(`${__dirname  }/input.csv`, { encoding: 'utf-8' });
-const frontHtml  = fs.readFileSync(`${__dirname  }/postcard_front.html`, { encoding: 'utf-8' });
-const backHtml   = fs.readFileSync(`${__dirname  }/postcard_back.html`, { encoding: 'utf-8' });
+const input      = fs.readFileSync(`${__dirname}/input.csv`, { encoding: 'utf-8' });
+const frontHtml  = fs.readFileSync(`${__dirname}/postcard_front.html`, { encoding: 'utf-8' });
+const backHtml   = fs.readFileSync(`${__dirname}/postcard_back.html`, { encoding: 'utf-8' });
 
 const CONCURRENCY = 5;
 
@@ -53,7 +53,7 @@ parse(input, (err, rows) => {
       if (err) {
         return console.log(err);
       }
-      console.log(`Postcard to ${  postcard.to.name  } sent! View it here: ${  postcard.url}`);
+      console.log(`Postcard to ${postcard.to.name} sent! View it here: ${postcard.url}`);
     });
   }, { concurrency: CONCURRENCY });
 });

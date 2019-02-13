@@ -10,7 +10,7 @@ const fs = require('fs');
 const lobFactory = require('../lib/index.js');
 const Lob = new lobFactory('YOUR_API_KEY');
 
-const file = fs.readFileSync(`${__dirname  }/html/letter.html`).toString();
+const file = fs.readFileSync(`${__dirname}/html/letter.html`).toString();
 
 // Create the address
 Lob.addresses.create({

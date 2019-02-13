@@ -8,10 +8,10 @@ const parse     = require('csv-parse');
 const LobFactory = require('../../lib/index.js');
 const Lob        = new LobFactory('YOUR_API_KEY');
 
-const inputFile = fs.createReadStream(`${__dirname  }/input.csv`);
-const successFd = fs.openSync(`${__dirname  }/success.csv`, 'w');
-const errorFd = fs.openSync(`${__dirname  }/error.csv`, 'w');
-const letterTemplate = fs.readFileSync(`${__dirname  }/letter_template.html`).toString();
+const inputFile = fs.createReadStream(`${__dirname}/input.csv`);
+const successFd = fs.openSync(`${__dirname}/success.csv`, 'w');
+const errorFd = fs.openSync(`${__dirname}/error.csv`, 'w');
+const letterTemplate = fs.readFileSync(`${__dirname}/letter_template.html`).toString();
 
 const companyInfo = {
   name: 'Deluxe Virgina Realty',
@@ -44,7 +44,7 @@ const parser = parse({ columns: true }, (err, data) => {
     Lob.usVerifications.verify(address)
     .then((verifiedAddress) => {
       return Lob.letters.create({
-        description: `Automated Past Due Bill for ${  name}`,
+        description: `Automated Past Due Bill for ${name}`,
         to: {
           name: verifiedAddress.recipient,
           address_line1: verifiedAddress.primary_line,
@@ -65,7 +65,7 @@ const parser = parse({ columns: true }, (err, data) => {
       });
     })
     .then((letter) => {
-      console.log(`Successfully sent a letter to ${   client.name}`);
+      console.log(`Successfully sent a letter to ${client.name}`);
       client.letter_id = letter.id;
       client.letter_url = letter.url;
       converter.json2csv(client, (err, csv) => {
@@ -76,7 +76,7 @@ const parser = parse({ columns: true }, (err, data) => {
       }, { PREPEND_HEADER: false });
     })
     .catch(() => {
-      console.log(`Could not send letter to ${   client.name}`);
+      console.log(`Could not send letter to ${client.name}`);
       converter.json2csv(client, (err, csv) => {
         if (err) {
           throw err;
