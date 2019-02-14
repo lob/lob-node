@@ -5,12 +5,12 @@
  * Run me! This example works out of the box, "batteries included".
  */
 
-var fs = require('fs');
+const fs = require('fs');
 
-var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('YOUR_API_KEY');
+const lobFactory = require('../lib/index.js');
+const Lob = new lobFactory('YOUR_API_KEY');
 
-var file = fs.readFileSync(__dirname + '/html/card.html').toString();
+const file = fs.readFileSync(`${__dirname}/html/card.html`).toString();
 
 // Create the address
 Lob.addresses.create({
@@ -23,7 +23,7 @@ Lob.addresses.create({
   address_state: 'IL',
   address_zip: '60012',
   address_country: 'US'
-}, function (err, address) {
+}, (err, address) => {
   if (err) {
     console.log(err);
   } else {
@@ -35,7 +35,7 @@ Lob.addresses.create({
       merge_variables: {
         name: 'Robin'
       }
-    }, function (err, postcard) {
+    }, (err, postcard) => {
       if (err) {
         console.log(err);
       } else {

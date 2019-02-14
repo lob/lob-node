@@ -6,8 +6,8 @@
  * Run me! This example works out of the box, "batteries included".
  */
 
-var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('YOUR_API_KEY');
+const lobFactory = require('../lib/index.js');
+const Lob = new lobFactory('YOUR_API_KEY');
 
 // Create the address
 Lob.addresses.create({
@@ -20,7 +20,7 @@ Lob.addresses.create({
   address_state: 'IL',
   address_zip: '60012',
   address_country: 'US'
-}, function (err, address) {
+}, (err, address) => {
   if (err) {
     return console.log(err);
   }
@@ -29,11 +29,11 @@ Lob.addresses.create({
     account_number: '123456789',
     account_type: 'company',
     signatory: 'John Doe'
-  }, function (err, bankAccount) {
+  }, (err, bankAccount) => {
     if (err) {
       return console.log(err);
     }
-    Lob.bankAccounts.verify(bankAccount.id, { amounts: [23, 34] }, function (err) {
+    Lob.bankAccounts.verify(bankAccount.id, { amounts: [23, 34] }, (err) => {
       if (err) {
         return console.log(err);
       }
@@ -54,7 +54,7 @@ Lob.addresses.create({
         memo: 'This is my first Check',
         message: 'This check is for laundry',
         logo: 'https://s3-us-west-2.amazonaws.com/public.lob.com/assets/check_logo.png'
-      }, function (err, check) {
+      }, (err, check) => {
         if (err) {
           return console.log(err);
         }

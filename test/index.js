@@ -3,12 +3,12 @@
 describe('Lob', () => {
 
   it('allows specifying a version', () => {
-    var Lob = require('../lib')(API_KEY, { apiVersion: 'api_version' });
+    const Lob = require('../lib')(API_KEY, { apiVersion: 'api_version' });
     expect(Lob.options.headers['Lob-Version']).to.eql('api_version');
   });
 
   it('allows the use of promises and callbacks', (done) => {
-    var Lob = require('../lib')(API_KEY);
+    const Lob = require('../lib')(API_KEY);
 
     Lob.addresses.list()
     .then((result) => {
@@ -18,23 +18,23 @@ describe('Lob', () => {
   });
 
   it('allows options to override defaults (such as host)', () => {
-    var options = { host: 'http://test' };
-    var Lob = require('../lib')(API_KEY, options);
+    const options = { host: 'http://test' };
+    const Lob = require('../lib')(API_KEY, options);
 
     expect(Lob.options.host).to.eql('http://test');
   });
 
   it('allows options object as first argument', () => {
-    var options = { apiKey: API_KEY, host: 'http://test' };
-    var Lob     = require('../lib')(options);
+    const options = { apiKey: API_KEY, host: 'http://test' };
+    const Lob = require('../lib')(options);
 
     expect(Lob.options.apiKey).to.eql(API_KEY);
     expect(Lob.options.host).to.eql('http://test');
   });
 
   it('should propagate request errors', (done) => {
-    var options = { host: 'http://test' };
-    var Lob     = require('../lib')(API_KEY, options);
+    const options = { host: 'http://test' };
+    const Lob = require('../lib')(API_KEY, options);
 
     Lob.addresses.list()
     .catch((err) => {

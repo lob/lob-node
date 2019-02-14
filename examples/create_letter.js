@@ -5,12 +5,12 @@
  * Run me! This example works out of the box, "batteries included".
  */
 
-var fs = require('fs');
+const fs = require('fs');
 
-var lobFactory = require('../lib/index.js');
-var Lob = new lobFactory('YOUR_API_KEY');
+const lobFactory = require('../lib/index.js');
+const Lob = new lobFactory('YOUR_API_KEY');
 
-var file = fs.readFileSync(__dirname + '/html/letter.html').toString();
+const file = fs.readFileSync(`${__dirname}/html/letter.html`).toString();
 
 // Create the address
 Lob.addresses.create({
@@ -24,7 +24,7 @@ Lob.addresses.create({
   address_zip: '60012',
   address_country: 'US'
 })
-.then(function (address) {
+.then((address) => {
   return Lob.letters.create({
     description: 'My First Letter',
     to: address.id,
@@ -37,16 +37,16 @@ Lob.addresses.create({
       address_zip: '60012',
       address_country: 'US'
     },
-    file: file,
+    file,
     merge_variables: {
       name: 'Robin'
     },
     color: false
   });
 })
-.then(function (letter) {
+.then((letter) => {
   console.log('The Lob API responded with this letter object: ', letter);
 })
-.catch(function (err) {
+.catch((err) => {
   console.log(err);
 });

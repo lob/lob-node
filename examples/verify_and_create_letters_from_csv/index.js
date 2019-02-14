@@ -1,19 +1,19 @@
 'use strict';
 
-var converter = require('json-2-csv');
-var fs       = require('fs');
-var moment   = require('moment');
-var parse    = require('csv-parse');
+const converter = require('json-2-csv');
+const fs        = require('fs');
+const moment    = require('moment');
+const parse     = require('csv-parse');
 
-var LobFactory = require('../../lib/index.js');
-var Lob        = new LobFactory('YOUR_API_KEY');
+const LobFactory = require('../../lib/index.js');
+const Lob        = new LobFactory('YOUR_API_KEY');
 
-var inputFile = fs.createReadStream(__dirname + '/input.csv');
-var successFd = fs.openSync(__dirname + '/success.csv', 'w');
-var errorFd = fs.openSync(__dirname + '/error.csv', 'w');
-var letterTemplate = fs.readFileSync(__dirname + '/letter_template.html').toString();
+const inputFile = fs.createReadStream(`${__dirname}/input.csv`);
+const successFd = fs.openSync(`${__dirname}/success.csv`, 'w');
+const errorFd = fs.openSync(`${__dirname}/error.csv`, 'w');
+const letterTemplate = fs.readFileSync(`${__dirname}/letter_template.html`).toString();
 
-var companyInfo = {
+const companyInfo = {
   name: 'Deluxe Virgina Realty',
   address_line1: '185 Berry St.',
   address_line2: 'Ste 170',
@@ -23,16 +23,16 @@ var companyInfo = {
   address_country: 'US'
 };
 
-var parser = parse({ columns: true }, function (err, data) {
+const parser = parse({ columns: true }, (err, data) => {
   if (err) {
     return console.log(err);
   }
 
-  data.forEach(function (client) {
+  data.forEach((client) => {
 
-    var name = client.name;
-    var amount = parseFloat(client.amount).toFixed(2);
-    var address = {
+    const name = client.name;
+    const amount = parseFloat(client.amount).toFixed(2);
+    const address = {
       recipient: name,
       primary_line: client.primary_line,
       secondary_line: client.secondary_line,
@@ -42,9 +42,9 @@ var parser = parse({ columns: true }, function (err, data) {
     };
 
     Lob.usVerifications.verify(address)
-    .then(function (verifiedAddress) {
+    .then((verifiedAddress) => {
       return Lob.letters.create({
-        description: 'Automated Past Due Bill for ' + name,
+        description: `Automated Past Due Bill for ${name}`,
         to: {
           name: verifiedAddress.recipient,
           address_line1: verifiedAddress.primary_line,
@@ -58,26 +58,26 @@ var parser = parse({ columns: true }, function (err, data) {
         file: letterTemplate,
         merge_variables: {
           date: moment().format('LL'),
-          name: name,
+          name,
           amountDue: amount
         },
         color: true
       });
     })
-    .then(function (letter) {
-      console.log('Successfully sent a letter to ' +  client.name);
+    .then((letter) => {
+      console.log(`Successfully sent a letter to ${client.name}`);
       client.letter_id = letter.id;
       client.letter_url = letter.url;
-      converter.json2csv(client, function (err, csv) {
+      converter.json2csv(client, (err, csv) => {
         if (err) {
           throw err;
         }
         fs.write(successFd, csv);
       }, { PREPEND_HEADER: false });
     })
-    .catch(function () {
-      console.log('Could not send letter to ' +  client.name);
-      converter.json2csv(client, function (err, csv) {
+    .catch(() => {
+      console.log(`Could not send letter to ${client.name}`);
+      converter.json2csv(client, (err, csv) => {
         if (err) {
           throw err;
         }
