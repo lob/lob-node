@@ -1,3 +1,9 @@
+#### 6.0.5 (2019-02-14)
+
+##### Chores
+
+* **lib:** fixed npm scripts on windows, moved from istanbul to nyc ([#213](https://github.com/lob/lob-node/pull/213)) ([be91922d](https://github.com/lob/lob-node/commit/be91922d59e4fa9cc747c0e8ae2523b6f5d319c6))
+
 #### 6.0.4 (2019-01-30)
 
 ##### New Features
