@@ -1,3 +1,11 @@
+#### 6.0.6 (2019-07-19)
+
+##### Chores
+
+* **deps:**
+  * upgrade vulnerable packages ([#216](https://github.com/lob/lob-node/pull/216)) ([a938fc23](https://github.com/lob/lob-node/commit/a938fc23caf38b87ea6791219d4883e862cdd1c9))
+  * bump lodash from 4.17.11 to 4.17.14 ([#215](https://github.com/lob/lob-node/pull/215)) ([6d6b0436](https://github.com/lob/lob-node/commit/6d6b0436c8caa15d65bfe0534752842c08ee555d))
+
 #### 6.0.5 (2019-02-14)
 
 ##### Chores
