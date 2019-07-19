@@ -1,8 +1,8 @@
 'use strict';
 
-const bluebird = require('bluebird');
 const parse    = require('csv-parse');
 const fs       = require('fs');
+const pMap     = require('p-map')
 
 const lobFactory = require('../../lib/index.js');
 const Lob        = new lobFactory('YOUR_API_KEY');
@@ -16,7 +16,7 @@ parse(input, (err, rows) => {
   if (err) {
     return console.log(err);
   }
-  bluebird.map(rows, (row) => {
+  pMap(rows, (row) => {
     return Lob.postcards.create({
       to: {
         name: row[5],
