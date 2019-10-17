@@ -28,10 +28,10 @@ Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documen
 
 Here's a general overview of the Lob services available, click through to read more.
 
-- [Postcards API](https://lob.com/services/postcards)
-- [Letters API](https://lob.com/services/letters)
-- [Checks API](https://lob.com/services/checks)
-- [Address Verification API](https://lob.com/services/verifications)
+- [Postcards API](https://lob.com/products/print-mail/postcards)
+- [Letters API](https://lob.com/products/print-mail/letters)
+- [Checks API](https://lob.com/products/print-mail/checks)
+- [Address Verification API](https://lob.com/products/address-verification)
 
 Please read through the official [API Documentation](#api-documentation) to get a complete sense of what to expect from each endpoint.
 
