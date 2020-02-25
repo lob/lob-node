@@ -21,7 +21,7 @@
     "chai": "^2.2.0",
     "coveralls": "^3.0.5",
     "cross-env": "^5.2.0",
-    "csv-parse": "^0.1.1",
+    "csv-parse": "^4.4.6",
     "eslint": "^5.16.0",
     "eslint-config-lob": "^1.0.1",
     "generate-changelog": "^1.0.0",
