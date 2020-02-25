@@ -58,21 +58,21 @@ $ npm install
 
 ### Usage
 ```javascript
-var Lob = require('lob')('YOUR API KEY');
+const Lob = require('lob')('YOUR API KEY');
 
 // change api version
-var Lob = require('lob')('YOUR API KEY', { apiVersion: 'API-VERSION' });
+const Lob = require('lob')('YOUR API KEY', { apiVersion: 'API-VERSION' });
 
 // change internal defaults (e.g. host)
-var options = {/* see options below */};
-var Lob = require('lob')('YOUR API KEY', options);
+const options = {/* see options below */};
+const Lob = require('lob')('YOUR API KEY', options);
 
 // you can also just pass options
-var options = { apiKey: 'foo', host: 'bar' };
-var Lob = require('lob')(options);
+const options = { apiKey: 'foo', host: 'bar' };
+const Lob = require('lob')(options);
 
 // callback pattern
-Lob.addresses.list(function (err, body) {
+Lob.addresses.list((err, body) => {
   if (err) return callback(err);
   return callback(null, body.data);
 });
@@ -81,13 +81,13 @@ Lob.addresses.list(function (err, body) {
 Additionally, every resource method returns a promise, so you don't have to use the regular callback. E.g.
 
 ```javascript
-var Lob = require('lob')('YOUR API KEY');
+const Lob = require('lob')('YOUR API KEY');
 
 Lob.addresses.list()
-.then(function (res) {
+.then((res) => {
   console.log(res.data);
 })
-.catch(function (e) {
+.catch((e) => {
   console.log(e);
 });
 ```
@@ -110,9 +110,9 @@ There are simple scripts to demonstrate how to create all the core Lob objects (
 
 You can access response headers via a hidden `_response` property.
 
-```js
+```javascript
 Lob.addresses.list()
-.then(function (res) {
+.then((res) => {
   res._response.headers['content-type'];
   // => "application/json; charset=utf-8"
 });
@@ -120,9 +120,9 @@ Lob.addresses.list()
 
 You can also access headers from errors.
 
-```js
+```javascript
 Lob.addresses.retrieve('adr_bad_id')
-.catch(function (err) {
+.catch((err) => {
   err._response.headers['content-type'];
   // => "application/json; charset=utf-8"
 });
@@ -204,11 +204,15 @@ To contribute, please see the [CONTRIBUTING.md](https://github.com/lob/lob-node/
 
 To run the tests with coverage:
 
-    LOB_API_KEY=YOUR_TEST_API_KEY npm test
+```
+LOB_API_KEY=YOUR_TEST_API_KEY npm test
+```
 
 To run the tests without coverage:
 
-    LOB_API_KEY=YOUR_TEST_API_KEY npm run test-no-cover
+```
+LOB_API_KEY=YOUR_TEST_API_KEY npm run test-no-cover
+```
 
 =======================
 
