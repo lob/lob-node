@@ -1,5 +1,7 @@
 'use strict';
 
+const Agent = require('agentkeepalive');
+
 const ResourceBase = require('../lib/resources/resourceBase.js');
 
 describe('resource base', () => {
@@ -35,6 +37,21 @@ describe('resource base', () => {
 
     resource._transmit('POST', null, null, null, (err) => {
       expect(err._response).to.exist;
+      return done();
+    });
+  });
+
+  it('allows a custom HTTP agent', (done) => {
+    const resource = new ResourceBase('', {
+      options: {
+        host: 'https://mock.lob.com/200',
+        apiKey: API_KEY,
+        agent: new Agent.HttpsAgent()
+      }
+    });
+
+    resource._transmit('POST', null, null, null, (err) => {
+      expect(err).to.not.exist;
       return done();
     });
   });

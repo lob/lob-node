@@ -18,6 +18,7 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
+    "agentkeepalive": "^4.1.0",
     "chai": "^2.2.0",
     "coveralls": "^3.0.5",
     "cross-env": "^5.2.0",
