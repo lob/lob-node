@@ -133,17 +133,22 @@ describe('letters', () => {
 
     });
 
-    it('creates a letter with a merge variable object', (done) => {
+    it('creates a letter with a merge variable list', (done) => {
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS,
-        file: '<html>{{user.name}}</html>',
+        file: '<html>{{#list}} {{name}} {{/list}}</html>',
         color: false,
         merge_variables: {
-          user: {
-            name: 'Nathan'
-          }
+          list: [
+            {
+              name: 'Ami'
+            },
+            {
+              name: 'Nathan'
+            }
+          ]
         }
       }, (err, res) => {
         expect(res.object).to.eql('letter');

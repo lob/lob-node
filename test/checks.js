@@ -9,16 +9,11 @@ const CHECK = {
   from: '',
   amount: 100,
   memo: 'test check',
-  check_bottom: '<h1>{{#list}} {{name}} {{/list}}</h1>',
+  check_bottom: '<h1>{{data.title}}</h1>',
   merge_variables: {
-    list: [
-      {
-        name: 'Ami'
-      },
-      {
-        name: 'Shraddha'
-      }
-    ]
+    data: {
+      title: 'Test Check'
+    }
   }
 };
 
