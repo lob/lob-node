@@ -37,6 +37,32 @@ describe('letters', () => {
       });
     });
 
+    describe('cursor', () => {
+
+      let token;
+
+      beforeEach(async () => {
+        const list = await Lob.letters.list();
+        token = new URLSearchParams(list.next_url).get('after');
+      });
+
+      it('filters letters by before', async () => {
+        const res = await Lob.letters.list({ before: token });
+
+        expect(res.object).to.eql('list');
+        expect(res.data).to.be.instanceof(Array);
+      });
+
+      it('filters letters by after', async () => {
+        const res = await Lob.letters.list({ after: token });
+
+        expect(res.object).to.eql('list');
+        expect(res.data).to.be.instanceof(Array);
+      });
+
+    });
+
+
   });
 
   describe('retrieve', () => {
@@ -100,6 +126,25 @@ describe('letters', () => {
         file: Fs.createReadStream(filePath),
         color: false,
         extra_service: undefined
+      }, (err, res) => {
+        expect(res.object).to.eql('letter');
+        done();
+      });
+
+    });
+
+    it('creates a letter with a merge variable object', (done) => {
+      Lob.letters.create({
+        description: 'Test Letter',
+        to: ADDRESS,
+        from: ADDRESS,
+        file: '<html>{{user.name}}</html>',
+        color: false,
+        merge_variables: {
+          user: {
+            name: 'Nathan'
+          }
+        }
       }, (err, res) => {
         expect(res.object).to.eql('letter');
         done();

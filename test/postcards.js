@@ -37,6 +37,31 @@ describe('postcards', () => {
       });
     });
 
+    describe('cursor', () => {
+
+      let token;
+
+      beforeEach(async () => {
+        const list = await Lob.postcards.list();
+        token = new URLSearchParams(list.next_url).get('after');
+      });
+
+      it('filters postcards by before', async () => {
+        const res = await Lob.postcards.list({ before: token });
+
+        expect(res.object).to.eql('list');
+        expect(res.data).to.be.instanceof(Array);
+      });
+
+      it('filters postcards by after', async () => {
+        const res = await Lob.postcards.list({ after: token });
+
+        expect(res.object).to.eql('list');
+        expect(res.data).to.be.instanceof(Array);
+      });
+
+    });
+
   });
 
   describe('retrieve', () => {
@@ -80,6 +105,23 @@ describe('postcards', () => {
         to: ADDRESS,
         front: file,
         back: file
+      }, (err, res) => {
+        expect(res.object).to.eql('postcard');
+        done();
+      });
+    });
+
+    it('creates a postcard with a merge variable conditional', (done) => {
+      const html = `<html>{{#is_awesome}}You're awesome!{{/is_awesome}}</html>`;
+
+      Lob.postcards.create({
+        description: 'Test Postcard',
+        to: ADDRESS,
+        front: html,
+        back: html,
+        merge_variables: {
+          is_awesome: true
+        }
       }, (err, res) => {
         expect(res.object).to.eql('postcard');
         done();

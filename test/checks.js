@@ -9,7 +9,17 @@ const CHECK = {
   from: '',
   amount: 100,
   memo: 'test check',
-  check_bottom: '<h1>Test Check</h1>'
+  check_bottom: '<h1>{{#list}} {{name}} {{/list}}</h1>',
+  merge_variables: {
+    list: [
+      {
+        name: 'Ami'
+      },
+      {
+        name: 'Shraddha'
+      }
+    ]
+  }
 };
 
 const BANK_ACCOUNT = {
@@ -115,6 +125,31 @@ describe('checks', () => {
         expect(res.count).to.eql(1);
         done();
       });
+    });
+
+    describe('cursor', () => {
+
+      let token;
+
+      beforeEach(async () => {
+        const list = await Lob.checks.list();
+        token = new URLSearchParams(list.next_url).get('after');
+      });
+
+      it('filters checks by before', async () => {
+        const res = await Lob.checks.list({ before: token });
+
+        expect(res.object).to.eql('list');
+        expect(res.data).to.be.instanceof(Array);
+      });
+
+      it('filters checks by after', async () => {
+        const res = await Lob.checks.list({ after: token });
+
+        expect(res.object).to.eql('list');
+        expect(res.data).to.be.instanceof(Array);
+      });
+
     });
 
   });
