@@ -99,6 +99,7 @@ The Lob constructor accepts an `options` object which may contain one or more of
 * `host` - Override the default host API calls are issued to.
 * `userAgent` - Override the default userAgent.
 * `headers` - Edit the headers sent in all API calls.
+* `agent` - Override the default HTTP agent used to make requests.
 
 ## Examples
 
