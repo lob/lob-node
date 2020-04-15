@@ -1,3 +1,23 @@
+### 6.1.0 (2020-04-15)
+
+##### Chores
+
+* **deps:**
+  * csv-parse@4.4.6, travis node v12, docs (#222) ([7ca4eb05](https://github.com/lob/lob-node/commit/7ca4eb05c8fb149bfdbf3c4fd3e9ed119e73e7d1))
+  * bump eslint-utils from 1.4.0 to 1.4.2 (#217) ([212789c8](https://github.com/lob/lob-node/commit/212789c894189544e8710c0ec1619d6fcd76b3d4))
+
+##### New Features
+
+* **resource:** add ability to specify custom HTTP agent (#224) ([bf925b1c](https://github.com/lob/lob-node/commit/bf925b1c3e54babdd9151de0d1b46ed97b4d61cb))
+
+##### Bug Fixes
+
+* **intl-verifications:** fixed failing test (#219) ([f2b712ad](https://github.com/lob/lob-node/commit/f2b712ad93af4237a4dbb1ba565bc034a9856710))
+
+##### Tests
+
+* **plc:** add tests for new versions (template syntax and cursor pagination) (#226) ([d5806217](https://github.com/lob/lob-node/commit/d580621732acec840bb28532ecb8eb9132e64b3b))
+
 #### 6.0.6 (2019-07-19)
 
 ##### Chores
