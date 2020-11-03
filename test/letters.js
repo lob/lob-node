@@ -152,6 +152,8 @@ describe('letters', () => {
         }
       }, (err, res) => {
         expect(res.object).to.eql('letter');
+        expect(res.merge_variables.list[0].name).to.eql('Ami');
+        expect(res.merge_variables.list[1].name).to.eql('Nathan');
         done();
       });
 

@@ -124,6 +124,7 @@ describe('postcards', () => {
         }
       }, (err, res) => {
         expect(res.object).to.eql('postcard');
+        expect(res.merge_variables.is_awesome).to.be.true;
         done();
       });
     });
