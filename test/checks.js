@@ -52,6 +52,7 @@ describe('checks', () => {
         expect(res).to.have.property('memo');
         expect(res.memo).to.eql('test check');
         expect(res.object).to.eql('check');
+        expect(res.merge_variables.data.title).to.eql('Test Check');
         return done();
       });
     });
