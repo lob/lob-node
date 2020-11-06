@@ -1,3 +1,9 @@
+#### 6.1.1 (2020-11-06)
+
+##### Bug Fixes
+
+* **merge-variables:** convert merge variables to JSON ([#232](https://github.com/lob/lob-node/pull/232)) ([5352dea7](https://github.com/lob/lob-node/commit/5352dea7bbb9ddba12da82967a317edcfda0bfca))
+
 ### 6.1.0 (2020-04-15)
 
 ##### Chores
