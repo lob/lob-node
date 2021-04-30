@@ -48,3 +48,8 @@ node create_letter.js
 ```
 node create_postcard.js
 ```
+
+### Create a self mailer
+```
+node create_self_mailer.js
+```

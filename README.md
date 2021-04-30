@@ -189,6 +189,13 @@ Lob.addresses.retrieve('adr_bad_id')
     - [Delete a Bank Account](https://lob.com/docs/node#bankaccounts_delete)
     - [Verify a Bank Account](https://lob.com/docs/node#bankaccounts_verify)
     - [List all Bank Accounts](https://lob.com/docs/node#bankaccounts_list)
+- **Self Mailers API**
+  - [Self Mailers](https://lob.com/docs/node#self_mailers)
+    - [The Self Mailer Object](https://lob.com/docs/node#self_mailers_object)
+    - [Create a Self Mailer](https://lob.com/docs/node#self_mailers_create)
+    - [Retrieve a Self Mailer](https://lob.com/docs/node#self_mailers_retrieve)
+    - [Cancel a Self Mailer](https://lob.com/docs/node#self_mailers_delete)
+    - [List all Self Mailers](https://lob.com/docs/node#self_mailers_list)
 - **Appendix**
   - [API Changelog](https://lob.com/docs/node#changelog)
   - [The Tracking Event Object](https://lob.com/docs/node#tracking_event_object)
