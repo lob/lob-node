@@ -1,3 +1,17 @@
+#### 6.2.0 (2021-05-03)
+
+##### New Features
+
+* **self-mailers:** Add support for Self Mailers ([#236](https://github.com/lob/lob-node/pull/236))
+
+##### Chores
+
+* **deps:**  bump y18n from 4.0.0 to 4.0.1 ([#235](https://github.com/lob/lob-node/pull/235)) ([81cbe7b0](https://github.com/lob/lob-node/commit/81cbe7b09f9b86a02502f6c2de0c8b6471826410))
+
+##### Bug Fixes
+
+* **README:**  correct Bank Accounts documentation link ([#234](https://github.com/lob/lob-node/pull/234)) ([f7f7609d](https://github.com/lob/lob-node/commit/f7f7609d439f1a6187af2b4f7f7a8765f3d47ea5))
+
 #### 6.1.1 (2020-11-06)
 
 ##### Bug Fixes
