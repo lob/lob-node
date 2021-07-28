@@ -1,3 +1,16 @@
+#### 6.2.1 (2021-07-28)
+
+##### Chores
+
+* **deps:**
+  * bump hosted-git-info from 2.1.4 to 2.8.9 ([#241](https://github.com/lob/lob-node/pull/241)) ([a10ed786](https://github.com/lob/lob-node/commit/a10ed786b04ecf4f4380656b2f808996fd7537bb))
+  * bump lodash from 4.17.19 to 4.17.21 ([#239](https://github.com/lob/lob-node/pull/239)) ([b38f7e5e](https://github.com/lob/lob-node/commit/b38f7e5e818385d1435724d23de19513110a11e1))
+  * bump handlebars from 4.5.3 to 4.7.7 ([#238](https://github.com/lob/lob-node/pull/238)) ([72198ab6](https://github.com/lob/lob-node/commit/72198ab65555c8b28c7199570b171aa497e043d7))
+  * bump acorn from 6.2.0 to 6.4.2 ([#233](https://github.com/lob/lob-node/pull/233)) ([533d8309](https://github.com/lob/lob-node/commit/533d83096b50402a579ea8ef5da82915518454cc))
+  * bump yargs-parser from 13.1.1 to 13.1.2 ([#230](https://github.com/lob/lob-node/pull/230)) ([96cd091c](https://github.com/lob/lob-node/commit/96cd091ce6bf5c93dd1dde6855c1734ce2067112))
+  * bump lodash from 4.17.14 to 4.17.19 ([#228](https://github.com/lob/lob-node/pull/228)) ([48e444d1](https://github.com/lob/lob-node/commit/48e444d11a49815f685e11675e307821e4ee12f1))
+* **node14:** add node14 for travis ([#240](https://github.com/lob/lob-node/pull/240)) ([15d83747](https://github.com/lob/lob-node/commit/15d8374798a9f9c79dd6a5db9d566ac285b84b95))
+
 #### 6.2.0 (2021-05-03)
 
 ##### New Features
