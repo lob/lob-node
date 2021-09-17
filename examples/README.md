@@ -1,6 +1,9 @@
 # Node.js Examples
 
-Here we have put together a hand full of Node.js examples to help get you started. Please read through the official [API Documentation](../README.md#api-documentation) to get a complete sense of what to expect from each endpoint. As always, feel free to [contact us](https://lob.com/support) directly if you have any questions on implementation.
+Here we have put together a hand full of Node.js examples to help get you started. Please read through the official [API Documentation](https://docs.lob.com/) to get a complete sense of what to expect from each endpoint. As always, feel free to [contact us](https://lob.com/support) directly if you have any questions on implementation.
+
+There are a number of different examples of postcard requests which illustrate different cases, such as making an idempotent request or sending to
+an international address.
 
 ## Getting started
 Before running these examples make sure you are in the `examples/` directory.
@@ -14,7 +17,7 @@ cd examples/
 
 An example showing how to validate and clean addresses from a CSV spreadsheet full of mailing addresses using Lob's [US Address Verification API](https://lob.com/services/verifications) and then using the clean, valid addresses to dynamically create sample billing letters with merge variables using Lob's [Letter API](https://lob.com/services/letters).
 
-Please note that if you are running this with a Test API Key, the verification API will always return [a dummy address](https://lob.com/docs#us_verifications_create).
+Please note that if you are running this with a Test API Key, the verification API will always return [a dummy address](https://docs.lob.com/#section/US-Verifications-Test-Env).
 
 In order to run the program enter:
 
@@ -47,6 +50,36 @@ node create_letter.js
 ### Create a postcard
 ```
 node create_postcard.js
+```
+
+### Create an international postcard
+```
+node create_postcard_intl.js
+```
+
+### Create an idempotent postcard request
+```
+node create_postcard_idempotent.js
+```
+
+### Create a postcard with metadata
+```
+node create_postcard_metadata.js
+```
+
+### Create a postcard with remote files
+```
+node create_postcard_remote.js
+```
+
+### Create a postcard with a send date specified
+```
+node create_postcard_send_date.js
+```
+
+### Create a postcard using saved HTML templates
+```
+node create_postcard_template.js
 ```
 
 ### Create a self mailer
