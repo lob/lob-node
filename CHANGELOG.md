@@ -1,3 +1,10 @@
+### 6.4.0 (2021-09-21)
+
+##### New Features
+
+* **us_verifications:**  Reverse Geocoding endpoint ([#250](https://github.com/lob/lob-node/pull/250)) ([ea1e49df](https://github.com/lob/lob-node/commit/ea1e49df8cace3938acd34811100e8df553a8180))
+* **examples:**  added a bunch of examples which WERE in the old docs ([#249](https://github.com/lob/lob-node/pull/249)) ([bba10957](https://github.com/lob/lob-node/commit/bba109573d379c09f4e6445da263b163ee7184f6))
+
 ### 6.3.0 (2021-08-27)
 
 #### 6.2.1 (2021-07-28)
