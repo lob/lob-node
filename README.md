@@ -14,12 +14,14 @@ Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documen
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
   - [Registration](#registration)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Options](#options)
 - [Examples](#examples)
+    - [Accessing Response Headers](#accessing-response-headers)
 - [API Documentation](#api-documentation)
 - [Contributing](#contributing)
 - [Testing](#testing)
@@ -131,81 +133,7 @@ Lob.addresses.retrieve('adr_bad_id')
 
 ## API Documentation
 
-- [Introduction](https://lob.com/docs/node#introduction)
-- [Versioning](https://lob.com/docs/node#version)
-- [Errors](https://lob.com/docs/node#errors)
-- [Rate Limiting](https://lob.com/docs/node#rate-limits)
-- [Webhooks](https://lob.com/docs/node#webhooks)
-- [Cancellation Windows](https://lob.com/docs/node#cancellation)
-- [Scheduled Mailings](https://lob.com/docs/node#scheduled)
-- [Metadata](https://lob.com/docs/node#metadata)
-- [HTML Templates](https://lob.com/docs/node#templates)
-- [Asset URLs](https://lob.com/docs/node#urls)
-- **Addresses**
-  - [Address Book](https://lob.com/docs/node#addresses)
-    - [The Address Object](https://lob.com/docs/node#addresses_object)
-    - [Create an Address](https://lob.com/docs/node#addresses_create)
-    - [Retrieve an Address](https://lob.com/docs/node#addresses_retrieve)
-    - [Delete an Address](https://lob.com/docs/node#addresses_delete)
-    - [List all Addresses](https://lob.com/docs/node#addresses_list)
-- **US Verification API**
-  - [US Verification API](https://lob.com/docs/node#us_verifications)
-    - [The US Verification Object](https://lob.com/docs/node#us_verifications_object)
-    - [Verify a US Address](https://lob.com/docs/node#us_verifications_create)
-    - [Bulk Verify US Addresses](https://lob.com/docs/node#us_verifications_bulk_create)
-    - [The US ZIP Lookup Object](https://lob.com/docs/node#us_zip_lookups_object)
-    - [Lookup a US ZIP Code](https://lob.com/docs/node#us_zip_lookups_create)
-    - [Reverse Lookup a Geocode Location](https://lob.com/docs/node#us_zip_lookups_create)
-  - [US Autocompletion API](https://lob.com/docs/node#us_autocompletions)
-    - [The US Autocompletion Object](https://lob.com/docs/node#us_autocompletions_object)
-    - [Autocomplete a US Address](https://lob.com/docs/node#us_autocompletions_create)
-    - [The US Autocompletion Test Environment](https://lob.com/docs/node#us-autocompletions-test-environment)
-- **Int'l Verification API**
-  - [International Verifications](https://lob.com/docs/node#intl_verifications)
-    - [Verify an International Address](https://lob.com/docs/node#intl_verifications_create)
-    - [Bulk Verify International Addresses](https://lob.com/docs/node#intl_verifications_bulk_create)
-- **Postcards API**
-  - [Postcards](https://lob.com/docs/node#postcards)
-    - [The Postcard Object](https://lob.com/docs/node#postcards_object)
-    - [Create a Postcard](https://lob.com/docs/node#postcards_create)
-    - [Retrieve a Postcard](https://lob.com/docs/node#postcards_retrieve)
-    - [Cancel a Postcard](https://lob.com/docs/node#postcards_delete)
-    - [List all Postcards](https://lob.com/docs/node#postcards_list)
-- **Self Mailers API**
-  - [Self Mailers](https://lob.com/docs/node#self_mailers)
-    - [The Self Mailer Object](https://lob.com/docs/node#self_mailers_object)
-    - [Create a Self Mailer](https://lob.com/docs/node#self_mailers_create)
-    - [Retrieve a Self Mailer](https://lob.com/docs/node#self_mailers_retrieve)
-    - [Cancel a Self Mailer](https://lob.com/docs/node#self_mailers_delete)
-    - [List all Self Mailers](https://lob.com/docs/node#self_mailers_list)
-- **Letters API**
-  - [Letters](https://lob.com/docs/node#letters)
-    - [The Letter Object](https://lob.com/docs/node#letters_object)
-    - [Create a Letter](https://lob.com/docs/node#letters_create)
-    - [Retrieve a Letter](https://lob.com/docs/node#letters_retrieve)
-    - [Cancel a Letter](https://lob.com/docs/node#letters_delete)
-    - [List all Letters](https://lob.com/docs/node#letters_list)
-- **Checks API**
-  - [Checks](https://lob.com/docs/node#checks)
-    - [The Check Object](https://lob.com/docs/node#checks_object)
-    - [Create a Check](https://lob.com/docs/node#checks_create)
-    - [Retrieve a Check](https://lob.com/docs/node#checks_retrieve)
-    - [Cancel a Check](https://lob.com/docs/node#checks_delete)
-    - [List all Checks](https://lob.com/docs/node#checks_list)
-  - [Bank Accounts](https://lob.com/docs/node#bankaccounts)
-    - [The Bank Account Object](https://lob.com/docs/node#bankaccounts_object)
-    - [Create a Bank Account](https://lob.com/docs/node#bankaccounts_create)
-    - [Retrieve a Bank Account](https://lob.com/docs/node#bankaccounts_retrieve)
-    - [Delete a Bank Account](https://lob.com/docs/node#bankaccounts_delete)
-    - [Verify a Bank Account](https://lob.com/docs/node#bankaccounts_verify)
-    - [List all Bank Accounts](https://lob.com/docs/node#bankaccounts_list)
-- **Appendix**
-  - [API Changelog](https://lob.com/docs/node#changelog)
-  - [The Tracking Event Object](https://lob.com/docs/node#tracking_event_object)
-  - [Events](https://lob.com/docs/node#events)
-  - [HTML Examples](https://lob.com/docs/node#html-examples)
-  - [Image Prepping](https://lob.com/docs/node#prepping)
-  - [US Verification Details](https://lob.com/docs/node#us_verification_details)
+The full and comprehensive documentation of Lob's APIs is available [here](https://docs.lob.com/).
 
 ## Contributing
 
