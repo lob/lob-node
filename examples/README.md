@@ -37,6 +37,16 @@ cd create_postcards_from_csv/
 node index.js
 ```
 
+### Create a card
+```
+node create_card.js
+```
+
+### Create a card order
+```
+node create_cardOrder.js
+```
+
 ### Create a check
 ```
 node create_check.js
