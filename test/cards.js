@@ -27,31 +27,6 @@ describe('cards', () => {
       });
     });
 
-    // describe('cursor', () => {
-
-    //   let token;
-
-    //   beforeEach(async () => {
-    //     const list = await Lob.cards.list();
-    //     token = new URLSearchParams(list.next_url).get('after');
-    //   });
-
-    //   it('filters cards by before', async () => {
-    //     const res = await Lob.cards.list({ before: token });
-
-    //     expect(res.object).to.eql('list');
-    //     expect(res.data).to.be.instanceof(Array);
-    //   });
-
-    //   it('filters cards by after', async () => {
-    //     const res = await Lob.cards.list({ after: token });
-
-    //     expect(res.object).to.eql('list');
-    //     expect(res.data).to.be.instanceof(Array);
-    //   });
-
-    // });
-
   });
 
   describe('retrieve', () => {
