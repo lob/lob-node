@@ -1,7 +1,7 @@
 'use strict';
 
 const Fs = require('fs');
-const file = Fs.readFileSync(`${__dirname}/assets/card_horizontal_2_125x3_375.pdf`);
+const file = Fs.readFileSync(`${__dirname}/assets/card.pdf`);
 
 describe('cardOrders', () => {
 

@@ -1,7 +1,7 @@
 'use strict';
 
 const Fs = require('fs');
-const file = Fs.readFileSync(`${__dirname}/assets/card_horizontal_2_125x3_375.pdf`);
+const file = Fs.readFileSync(`${__dirname}/assets/card.pdf`);
 
 describe('cards', () => {
 
@@ -50,7 +50,7 @@ describe('cards', () => {
   describe('create', () => {
 
     it('creates a card with a local file', (done) => {
-      const filePath = `${__dirname}/assets/card_horizontal_2_125x3_375.pdf`;
+      const filePath = `${__dirname}/assets/card.pdf`;
 
       Lob.cards.create({
         description: 'Test Card',
