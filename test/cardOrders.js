@@ -36,7 +36,7 @@ describe('cardOrders', () => {
           'quantity_ordered': 10000
         } 
         Lob.cardOrders.create(res.id, cardOrderParams, (err2, res2) => {
-          expect(res.object).to.eql('card_order');
+          expect(res2.object).to.eql('card_order');
           done();
         });
       });
