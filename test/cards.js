@@ -79,7 +79,6 @@ describe('cards', () => {
       Lob.cards.create({
         description: 'Test Card',
         back: file,
-        message: 'This is the message',
         size: '2.125x3.375',
       }, (err) => {
         expect(err).to.be.an.instanceOf(Object);
