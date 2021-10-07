@@ -63,7 +63,7 @@ describe('cards', () => {
       });
     });
 
-    it('creates a card with a buffer', (done) => {      
+    it('creates a card with a buffer', (done) => {
       Lob.cards.create({
         description: 'Test Card',
         front: file,
