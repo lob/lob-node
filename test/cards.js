@@ -74,6 +74,18 @@ describe('cards', () => {
         done();
       });
     });
+
+    it('creates a card with a url', (done) => {
+      Lob.cards.create({
+        description: 'Test Card',
+        front: 'https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf',
+        back: 'https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf',
+        size: '2.125x3.375',
+      }, (err, res) => {
+        expect(res.object).to.eql('card');
+        done();
+      });
+    });
     
     it('errors with missing front', (done) => {
       Lob.cards.create({
