@@ -76,10 +76,12 @@ describe('cards', () => {
     });
 
     it('creates a card with a url', (done) => {
+      const url = 'https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf';
+
       Lob.cards.create({
         description: 'Test Card',
-        front: 'https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf',
-        back: 'https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf',
+        front: url,
+        back: url,
         size: '2.125x3.375',
       }, (err, res) => {
         expect(res.object).to.eql('card');
