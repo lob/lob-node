@@ -88,22 +88,22 @@ describe('cards', () => {
         done();
       });
     });
+
+    it('creates a card with only a front', (done) => {
+      Lob.cards.create({
+        description: 'Test Card',
+        front: file,
+        size: '2.125x3.375',
+      }, (err,res) => {
+        expect(res.object).to.eql('card');
+        done();
+      });
+    });
     
     it('errors with missing front', (done) => {
       Lob.cards.create({
         description: 'Test Card',
         back: file,
-        size: '2.125x3.375',
-      }, (err) => {
-        expect(err).to.be.an.instanceOf(Object);
-        done();
-      });
-    });
-
-    it('errors with missing back', (done) => {
-      Lob.cards.create({
-        description: 'Test Card',
-        front: file,
         size: '2.125x3.375',
       }, (err) => {
         expect(err).to.be.an.instanceOf(Object);
