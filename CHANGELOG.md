@@ -1,3 +1,10 @@
+### 6.5.0 (2021-10-13)
+
+##### Features
+* **cards:** add support for cards endpoint ([PR_252](https://github.com/lob/lob-node/pull/252)) ([e744da5](https://github.com/lob/lob-node/pull/252/commits/e744da5a96543ef4df8245a554e2cf325b79bdfd))
+* **card_orders:** add support for card orders endpoint ([PR_252](https://github.com/lob/lob-node/pull/252)) ([35bc050](https://github.com/lob/lob-node/pull/252/commits/35bc05046e2cd06029dec6e8799f82481cd2078a))
+* **examples:** add examples for creating a card and card order ([PR_252](https://github.com/lob/lob-node/pull/252)) ([1c41494](https://github.com/lob/lob-node/pull/252/commits/1c41494d6a46414f2f9bd5bcd26ed589cff39a06))
+
 ### 6.4.0 (2021-09-21)
 
 ##### New Features
