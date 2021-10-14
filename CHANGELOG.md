@@ -1,3 +1,8 @@
+### 6.5.1 (2021-10-14)
+
+##### Bug Fix
+* **card orders:** updates the card orders "quantity_ordered" field to "quantity" in the integration test & example to reflect the recent change in Lob API endpoint for creating card orders. ([PR_254](https://github.com/lob/lob-node/pull/254)) ([9d3a261](https://github.com/lob/lob-node/commit/9d3a261ea3e9dace1e5cd79f43c5cdb40568f6c2))
+
 ### 6.5.0 (2021-10-13)
 
 ##### Features
