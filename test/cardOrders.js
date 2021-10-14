@@ -33,7 +33,7 @@ describe('cardOrders', () => {
         size: '2.125x3.375',
       }, (err, res) => {
         const cardOrderParams = {
-          'quantity_ordered': 10000
+          'quantity': 10000
         } 
         Lob.cardOrders.create(res.id, cardOrderParams, (err2, res2) => {
           expect(res2.object).to.eql('card_order');

@@ -10,7 +10,7 @@ const Lob = new lobFactory('YOUR_API_KEY'); // Replace YOUR_API_KEY with your ow
 const cardId = 'YOUR_CARD_ID'; // Replace YOUR_CARD_ID with the Card ID you'd like to place an order for
 
 Lob.cardOrders.create(cardId, {
-  'quantity_ordered': 10000
+  'quantity': 10000
 }, (err, cardOrder) => {
   if (err) {
     console.log(err);
