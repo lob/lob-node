@@ -1,3 +1,8 @@
+### 6.5.2 (2021-10-18)
+
+##### Bug Fix
+* **cards:** adds card update route to expose cards update endpoint in SDK. ([PR_256](https://github.com/lob/lob-node/pull/256)) ([6870842](https://github.com/lob/lob-node/pull/256/commits/68708423b03c40c277a183285920b1408d234e4b))
+
 ### 6.5.1 (2021-10-14)
 
 ##### Bug Fix
