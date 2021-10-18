@@ -10,7 +10,7 @@
     "Lob.com",
     "printing"
   ],
-  "version": "6.5.1",
+  "version": "6.5.2",
   "homepage": "https://github.com/lob/lob-node",
   "author": "Lob <support@lob.com> (https://lob.com/)",
   "dependencies": {
@@ -46,7 +46,7 @@
     "test-no-cover": "cross-env NODE_ENV=test mocha test --recursive --timeout 30000",
     "coverage": "nyc report --reporter=text",
     "enforce": "nyc check-coverage --statements 100 --lines 100 --functions 100 --branches 100",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "test-lcov": "nyc report --reporter=lcov",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags",
