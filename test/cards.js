@@ -57,7 +57,6 @@ describe('cards', () => {
         back: file,
         size: '2.125x3.375',
       }, (err, res) => {
-        console.log('res', res);
         Lob.cards.update(res.id, params, (err2, res2) => {
           expect(res2.object).to.eql('card');
           expect(res2.description).to.eql('Test Card Updated Desc');
