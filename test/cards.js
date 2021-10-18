@@ -47,6 +47,27 @@ describe('cards', () => {
 
   });
 
+  describe('update', () => {
+
+    it('updates a card', (done) => {
+      const params = { description: 'Test Card Updated Desc'}
+      Lob.cards.create({
+        description: 'Test Card',
+        front: file,
+        back: file,
+        size: '2.125x3.375',
+      }, (err, res) => {
+        console.log('res', res);
+        Lob.cards.update(res.id, params, (err2, res2) => {
+          expect(res2.object).to.eql('card');
+          expect(res2.description).to.eql('Test Card Updated Desc');
+          done();
+        });
+      });
+    });
+
+  });
+
   describe('create', () => {
 
     it('creates a card with a local file', (done) => {
