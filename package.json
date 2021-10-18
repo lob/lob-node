@@ -10,7 +10,7 @@
     "Lob.com",
     "printing"
   ],
-  "version": "6.5.1",
+  "version": "6.5.2",
   "homepage": "https://github.com/lob/lob-node",
   "author": "Lob <support@lob.com> (https://lob.com/)",
   "dependencies": {
