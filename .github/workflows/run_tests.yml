@@ -1,0 +1,31 @@
+name: Run Tests
+
+on: [pull_request]
+   
+jobs:
+  node_tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['12', '14']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node }}
+    - name: Create NYC folder
+      run: mkdir .nyc_output
+    - name: Install Dependencies
+      run: npm install
+    - name: Run tests
+      env:
+        LOB_API_KEY: ${{ secrets.API_KEY }}
+      run: npm run test
+    - name: Coverage
+      run: npm run test-lcov
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: ./coverage/lcov.info
