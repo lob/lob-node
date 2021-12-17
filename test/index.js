@@ -36,9 +36,11 @@ describe('Lob', () => {
     const options = { host: 'http://test' };
     const Lob = require('../lib')(API_KEY, options);
 
-    Lob.addresses.list()
+    Lob.addresses.list().then((res) => {
+      done();
+    })
     .catch((err) => {
-      expect(err.message).to.match(/getaddrinfo ENOTFOUND/);
+      expect(err.message).to.match(/getaddrinfo (ENOTFOUND|EAI_AGAIN)/);
       done();
     });
   });
