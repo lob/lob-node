@@ -1,5 +1,4 @@
 'use strict';
-const sinon = require('sinon');
 
 describe('Lob', () => {
 
