@@ -31,18 +31,4 @@ describe('Lob', () => {
     expect(Lob.options.apiKey).to.eql(API_KEY);
     expect(Lob.options.host).to.eql('http://test');
   });
-
-  it('should propagate request errors', (done) => {
-    const options = { host: 'http://test' };
-    const Lob = require('../lib')(API_KEY, options);
-
-    Lob.addresses.list().then((res) => {
-      done();
-    })
-    .catch((err) => {
-      expect(err.message).to.match(/getaddrinfo (ENOTFOUND|EAI_AGAIN)/);
-      done();
-    });
-  });
-
 });
