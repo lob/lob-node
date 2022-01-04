@@ -96,3 +96,9 @@ node create_postcard_template.js
 ```
 node create_self_mailer.js
 ```
+
+### Create an HTML template and use that template to create a postcard
+
+```
+node create_template.js
+```

@@ -1,3 +1,8 @@
+### 6.5.3 (2022-01-04)
+
+##### Features
+* **templates** add support for HTML templates endpoint ([PR_258](https://github.com/lob/lob-node/pull/258))
+
 ### 6.5.2 (2021-10-18)
 
 ##### Bug Fix
