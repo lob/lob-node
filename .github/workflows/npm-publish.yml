@@ -3,7 +3,9 @@
 name: NPM Publish
 
 # Run the workflow when a new release is published
-on: [release]
+on: 
+  release:
+    types: [published]
       
 
 
