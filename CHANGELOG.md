@@ -1,4 +1,4 @@
-### 6.5.4 (2022-01-14)
+### 6.5.5 (2022-01-14)
 ##### Maintinence
 * Removed Bluebird dependency and replaced with p-map
 * Updated 4 out of date dev dependencies
