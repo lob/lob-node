@@ -1,3 +1,10 @@
+### 6.5.4 (2022-01-14)
+##### Maintinence
+* Removed Bluebird dependency and replaced with p-map
+* Updated 4 out of date dev dependencies
+* Updated min required version of NodeJS to 10
+* Removed package-lock.json from gitignore - it is now included in the repo.
+
 ### 6.5.3 (2022-01-04)
 
 ##### Features
