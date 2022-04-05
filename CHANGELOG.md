@@ -1,3 +1,10 @@
+### 6.6.1 (2022-04-05)
+##### Maintinence
+* **autocomplete** add query param for address casing
+* Update dependency version
+* Updates to CI process
+* Updates to Repo branch naming
+
 ### 6.5.5 (2022-01-14)
 ##### Maintinence
 * Removed Bluebird dependency and replaced with p-map
