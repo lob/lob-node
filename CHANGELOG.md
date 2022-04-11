@@ -1,12 +1,17 @@
+### 6.6.1 (2022-04-11)
+##### Maintenance
+* bump minimist from 1.2.0 to 1.2.6
+* bump moment from 2.29.1 to 2.29.2
+
 ### 6.6.1 (2022-04-05)
-##### Maintinence
+##### Maintenance
 * **autocomplete** add query param for address casing
 * Update dependency version
 * Updates to CI process
 * Updates to Repo branch naming
 
 ### 6.5.5 (2022-01-14)
-##### Maintinence
+##### Maintenance
 * Removed Bluebird dependency and replaced with p-map
 * Updated 4 out of date dev dependencies
 * Updated min required version of NodeJS to 10
