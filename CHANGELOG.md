@@ -1,4 +1,4 @@
-### 6.6.1 (2022-04-11)
+### 6.6.2 (2022-04-11)
 ##### Maintenance
 * bump minimist from 1.2.0 to 1.2.6
 * bump moment from 2.29.1 to 2.29.2
