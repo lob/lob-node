@@ -12,10 +12,7 @@
 
 Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documentation [here](https://lob.com/docs/node).
 
-   <div style="padding: 20px; font-size:small; border-radius: 15px;
-        background-color: #f8d468; /* Red */
-        color: rgb(49, 49, 49);  margin-bottom: 15px; font-family: Arial, Helvetica, sans-serif;">
-    Starting a new project, we recommend using our <a href="https://github.com/lob/lob-typescript-sdk"><strong>TypeScript SDK</strong></a>!
+   <div style="padding: 20px; font-size:small; border-radius: 15px; background-color: #f8d468; color:#000;  margin-bottom: 15px; font-family: Arial, Helvetica, sans-serif;">Starting a new project, we recommend using our <a href="https://github.com/lob/lob-typescript-sdk"><strong>TypeScript SDK</strong></a>!
     <br><br>
     Move your existing project from lob-node to lob-typescript-sdk? <a href="https://github.com/lob/lob-typescript-sdk/blob/main/Migration.md">Checkout this migration guide.</a>    
     </div>
