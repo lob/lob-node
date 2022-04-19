@@ -10,7 +10,15 @@
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]  [![Build Status](https://travis-ci.org/lob/lob-node.svg?branch=master)](https://travis-ci.org/lob/lob-node) [![Dependency Status](https://david-dm.org/lob/lob-node.svg)](https://david-dm.org/lob/lob-node) [![Dev Dependency Status](https://david-dm.org/lob/lob-node/dev-status.svg)](https://david-dm.org/lob/lob-node) [![Coverage Status](https://coveralls.io/repos/lob/lob-node/badge.svg?branch=master)](https://coveralls.io/r/lob/lob-node?branch=master)
 
-Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documentation [here](https://lob.com/docs/node). For best results, be sure that you're using [the latest version](https://lob.com/docs/node#version) of the Lob API and the latest version of the Node wrapper.
+Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documentation [here](https://lob.com/docs/node).
+
+   <div style="padding: 20px; font-size:small; border-radius: 15px;
+        background-color: #f8d468; /* Red */
+        color: rgb(49, 49, 49);  margin-bottom: 15px; font-family: Arial, Helvetica, sans-serif;">
+    Starting a new project, we recommend using our <a href="https://github.com/lob/lob-typescript-sdk"><strong>TypeScript SDK</strong></a>!
+    <br><br>
+    Move your existing project from lob-node to lob-typescript-sdk? <a href="https://github.com/lob/lob-typescript-sdk/blob/main/Migration.md">Checkout this migration guide.</a>    
+    </div>
 
 ## Table of Contents
 
