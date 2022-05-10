@@ -18,7 +18,7 @@ describe('us_autocompletions', () => {
       });
     });
 
-    it.only('returns a list of suggestions with custom case', (done) => {
+    it('returns a list of suggestions with custom case', (done) => {
       Lob.usAutocompletions.autocomplete({
         address_prefix: '185 BER',
         city: 'San Francisco',
