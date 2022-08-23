@@ -13,7 +13,7 @@
 Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documentation [here](https://lob.com/docs/node).
 ******
 Starting a new project, we recommend using our <a href="https://github.com/lob/lob-typescript-sdk"><strong>TypeScript SDK</strong></a>!
-    
+
 Move your existing project from lob-node to lob-typescript-sdk? <a href="https://github.com/lob/lob-typescript-sdk/blob/main/Migration.md">Checkout this migration guide.</a>
 ******
 
@@ -114,7 +114,7 @@ We've provided various examples for you to try out [here](https://github.com/lob
 
 There are simple scripts to demonstrate how to create all the core Lob objects (checks, letters, postcards. etc.) as well as more complex examples that utilize other libraries and external files.
 
-#### Accessing Response Headers
+### Accessing Response Headers
 
 You can access response headers via a hidden `_response` property.
 
