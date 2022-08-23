@@ -17,7 +17,7 @@ jobs:
     - name: Create NYC folder
       run: mkdir .nyc_output
     - name: Install Dependencies
-      run: npm install
+      run: npm install --legacy-peer-deps
     - name: Run tests
       env:
         LOB_API_KEY: ${{ secrets.API_KEY }}
