@@ -1,3 +1,11 @@
+### 6.6.3 (2022-08-24)
+##### Features
+* **campaigns** add support for campaigns endpoint ([PR_275](https://github.com/lob/lob-node/pull/275))
+
+##### Maintenance
+* bump mocha from 9.1.3 to 10.0.0
+* bump eslint-config-lob from 1.0.1 to 5.2.0
+
 ### 6.6.2 (2022-04-11)
 ##### Maintenance
 * bump minimist from 1.2.0 to 1.2.6
