@@ -1,3 +1,7 @@
+### 6.6.4 (2023-11-27)
+##### Maintenance
+* Updates address used in example address
+
 ### 6.6.3 (2022-08-24)
 ##### Features
 * **campaigns** add support for campaigns endpoint ([PR_275](https://github.com/lob/lob-node/pull/275))
