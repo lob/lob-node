@@ -2,7 +2,7 @@
 
 /*
  * Create an international address, then send a postcard with a custom PDF back.
- * Run me! This example works out of the box, 'batteries included'.
+ * Run me! This example works out of the box, "batteries included".
  */
 
 const fs = require('fs');
@@ -32,8 +32,7 @@ async function createPostcard() {
   const from_id = await getFrom();
 
   // Create the address
-  Lob.addresses.create(
-    {
+  Lob.addresses.create({
       name: 'Harry Zhang',
       email: 'harry@lob.com',
       phone: '5555555555',
@@ -71,8 +70,7 @@ async function createPostcard() {
           }
         );
       }
-    }
-  );
+    });
 }
 
 createPostcard();
