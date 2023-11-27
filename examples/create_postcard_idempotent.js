@@ -36,7 +36,7 @@ Lob.addresses.create({
         name: 'Robin'
       }
     },
-    {'Idempotency-Key': '026e7634-24d7-486c-a0bb-4a17fd0eebc5'},
+    { 'Idempotency-Key': '026e7634-24d7-486c-a0bb-4a17fd0eebc5' },
     (err, postcard) => {
       if (err) {
         console.log(err);

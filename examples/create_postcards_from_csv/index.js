@@ -2,7 +2,7 @@
 
 const parse    = require('csv-parse');
 const fs       = require('fs');
-const pMap     = require('p-map')
+const pMap     = require('p-map');
 
 const lobFactory = require('../../lib/index.js');
 const Lob        = new lobFactory('YOUR_API_KEY');

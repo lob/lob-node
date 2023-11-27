@@ -1,5 +1,5 @@
 'use strict';
-var moment = require('moment');
+const moment = require('moment');
 
 /*
  * Create an address, then send a postcard with a custom PDF back.

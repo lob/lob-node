@@ -13,7 +13,7 @@ describe('bulk_intl_verifications', () => {
           }
         ]
       }, (err, res) => {
-        const response = res.addresses[0]
+        const response = res.addresses[0];
         expect(response.primary_line).to.eql('370 WATER ST');
         expect(response.deliverability).to.eql('deliverable');
         return done();

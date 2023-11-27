@@ -2,7 +2,7 @@
 
 /*
   * This script shows how to save an HTML template for later use
-  * as a postcard. 
+  * as a postcard.
 */
 
 const fs = require('fs');
@@ -19,22 +19,22 @@ const ADDRESS = {
   address_state: 'IL',
   address_zip: '60012',
   address_country: 'US'
-}
-Lob.templates.create({html: file, description: 'TestTemplate'})
+};
+Lob.templates.create({ html: file, description: 'TestTemplate' })
   .then((template) => {
     Lob.addresses.create(ADDRESS).then((address) => {
-        Lob.postcards.create({
-          description: 'Template-backed Postcard',
-          to: address.id,
-          front: template.id,
-          back: template.id,
-          merge_variables: {
-            name: 'Robin'
-          }
-        }).then((postcard) => {
-            console.log("The LOB API responded with the following postcard object", postcard)
-        });
+      Lob.postcards.create({
+        description: 'Template-backed Postcard',
+        to: address.id,
+        front: template.id,
+        back: template.id,
+        merge_variables: {
+          name: 'Robin'
+        }
+      }).then((postcard) => {
+        console.log('The LOB API responded with the following postcard object', postcard);
+      });
     });
-}).catch((err) => {
-  console.log(err)
-});
+  }).catch((err) => {
+    console.log(err);
+  });

@@ -1,6 +1,6 @@
 'use strict';
 
-const { expect } = require("chai");
+const { expect } = require('chai');
 
 describe('bulk_us_verifications', () => {
 
@@ -15,7 +15,7 @@ describe('bulk_us_verifications', () => {
           zip_code: '94107'
         }]
       }, (err, res) => {
-        const response = res.addresses[0]
+        const response = res.addresses[0];
         expect(response.primary_line).to.eql('1 TELEGRAPH HILL BLVD');
         expect(response.deliverability).to.eql('deliverable');
         return done();
@@ -34,7 +34,7 @@ describe('bulk_us_verifications', () => {
         case: 'proper'
       }, (err, res) => {
         const addresses = res.addresses;
-        const addr = addresses[0]
+        const addr = addresses[0];
         expect(addr.primary_line).to.eql('1 Telegraph Hill Blvd');
         expect(addr.deliverability).to.eql('deliverable');
         return done();

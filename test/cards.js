@@ -36,7 +36,7 @@ describe('cards', () => {
         description: 'Test Card',
         front: file,
         back: file,
-        size: '2.125x3.375',
+        size: '2.125x3.375'
       }, (err, res) => {
         Lob.cards.retrieve(res.id, () => {
           expect(res.object).to.eql('card');
@@ -50,12 +50,12 @@ describe('cards', () => {
   describe('update', () => {
 
     it('updates a card', (done) => {
-      const params = { description: 'Test Card Updated Desc'}
+      const params = { description: 'Test Card Updated Desc' };
       Lob.cards.create({
         description: 'Test Card',
         front: file,
         back: file,
-        size: '2.125x3.375',
+        size: '2.125x3.375'
       }, (err, res) => {
         Lob.cards.update(res.id, params, (err2, res2) => {
           expect(res2.object).to.eql('card');
@@ -76,7 +76,7 @@ describe('cards', () => {
         description: 'Test Card',
         front: Fs.createReadStream(filePath),
         back: Fs.createReadStream(filePath),
-        size: '2.125x3.375',
+        size: '2.125x3.375'
       }, (err, res) => {
         expect(res.object).to.eql('card');
         done();
@@ -88,7 +88,7 @@ describe('cards', () => {
         description: 'Test Card',
         front: file,
         back: file,
-        size: '2.125x3.375',
+        size: '2.125x3.375'
       }, (err, res) => {
         expect(res.object).to.eql('card');
         done();
@@ -102,7 +102,7 @@ describe('cards', () => {
         description: 'Test Card',
         front: url,
         back: url,
-        size: '2.125x3.375',
+        size: '2.125x3.375'
       }, (err, res) => {
         expect(res.object).to.eql('card');
         done();
@@ -113,18 +113,18 @@ describe('cards', () => {
       Lob.cards.create({
         description: 'Test Card',
         front: file,
-        size: '2.125x3.375',
-      }, (err,res) => {
+        size: '2.125x3.375'
+      }, (err, res) => {
         expect(res.object).to.eql('card');
         done();
       });
     });
-    
+
     it('errors with missing front', (done) => {
       Lob.cards.create({
         description: 'Test Card',
         back: file,
-        size: '2.125x3.375',
+        size: '2.125x3.375'
       }, (err) => {
         expect(err).to.be.an.instanceOf(Object);
         done();
@@ -140,7 +140,7 @@ describe('cards', () => {
         description: 'Test Card',
         front: file,
         back: file,
-        size: '2.125x3.375',
+        size: '2.125x3.375'
       }, (err, res) => {
         Lob.cards.delete(res.id, (err2, res2) => {
           expect(res2.deleted).to.eql(true);

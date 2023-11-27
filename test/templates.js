@@ -1,11 +1,11 @@
 'use strict';
 
-const { expect } = require("chai");
+const { expect } = require('chai');
 
 const EXAMPLE_TEMPLATE = {
-  html: "<html><body><h1>Hello World</h1></body></html>",
-  description: "My New Template"
-}
+  html: '<html><body><h1>Hello World</h1></body></html>',
+  description: 'My New Template'
+};
 describe('templates', () => {
 
   describe('list', () => {
@@ -20,7 +20,7 @@ describe('templates', () => {
     });
 
     it('filters templates', (done) => {
-      Lob.templates.list({limit: 1}, (err, res) => {
+      Lob.templates.list({ limit: 1 }, (err, res) => {
         expect(res.data).to.be.instanceof(Array);
         expect(res.data.length).to.eql(1);
         expect(res.count).to.eql(1);

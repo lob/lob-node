@@ -12,7 +12,7 @@ describe('cardOrders', () => {
         description: 'Test Card',
         front: file,
         back: file,
-        size: '2.125x3.375',
+        size: '2.125x3.375'
       }, (err, res) => {
         Lob.cardOrders.list(res.id, null, (err2, res2) => {
           expect(res2.object).to.eql('list');
@@ -30,11 +30,11 @@ describe('cardOrders', () => {
         description: 'Test Card',
         front: file,
         back: file,
-        size: '2.125x3.375',
+        size: '2.125x3.375'
       }, (err, res) => {
         const cardOrderParams = {
-          'quantity': 10000
-        } 
+          quantity: 10000
+        };
         Lob.cardOrders.create(res.id, cardOrderParams, (err2, res2) => {
           expect(res2.object).to.eql('card_order');
           done();

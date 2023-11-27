@@ -11,10 +11,10 @@ describe('Lob', () => {
     const Lob = require('../lib')(API_KEY);
 
     Lob.addresses.list()
-    .then((result) => {
-      expect(result.data).to.be.instanceof(Array);
-      done();
-    });
+      .then((result) => {
+        expect(result.data).to.be.instanceof(Array);
+        done();
+      });
   });
 
   it('allows options to override defaults (such as host)', () => {
