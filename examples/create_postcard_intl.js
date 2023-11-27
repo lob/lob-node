@@ -18,11 +18,11 @@ async function getFrom() {
     name: 'Harry Zhang',
     email: 'harry@lob.com',
     phone: '5555555555',
-    address_line1: '210 KING ST',
+    address_line1: '2261 MARKET ST',
     address_line2: '',
     address_city: 'SAN FRANCISCO',
     address_state: 'CA',
-    address_zip: '94107'
+    address_zip: '94114'
   });
 
   return from_address.id;
