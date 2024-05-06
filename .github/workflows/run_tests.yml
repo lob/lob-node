@@ -9,9 +9,9 @@ jobs:
       matrix:
         node: ['12', '14', '16', '18']
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Setup
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node }}
     - name: Create NYC folder
