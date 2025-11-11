@@ -3,11 +3,13 @@
 name: NPM Publish
 
 # Run the workflow when a new release is published
-on: 
+on:
   release:
     types: [published]
-      
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: write
 
 jobs:
   publish:
@@ -15,16 +17,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
 
       # use node setup library (more info here https://github.com/actions/setup-node)
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
-          node-version: 12
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Dependencies
+        run: npm install
 
       # publishes to NPM using third party tool (more info here https://github.com/JS-DevTools/npm-publish)
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to NPM
+        id: npm-publish
+        uses: JS-DevTools/npm-publish@v4

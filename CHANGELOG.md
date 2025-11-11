@@ -1,3 +1,8 @@
+## 7.0.0 (2025-11-11)
+##### Breaking Changes
+* **engines** update minimum Node.js version requirement to >= 20.0.0
+* **engines** update minimum npm version requirement to >= 11.5.1
+
 ### 6.6.4 (2023-11-27)
 ##### Maintenance
 * Updates address used in example address

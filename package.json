@@ -10,7 +10,7 @@
     "Lob.com",
     "printing"
   ],
-  "version": "6.6.4",
+  "version": "7.0.0",
   "homepage": "https://github.com/lob/lob-node",
   "author": "Lob <support@lob.com> (https://lob.com/)",
   "dependencies": {
@@ -39,7 +39,8 @@
   "bugs:": "https://github.com/lob/lob-node/issues",
   "main": "./lib/index",
   "engines": {
-    "node": ">= 10.0.0"
+    "node": ">= 20.0.0",
+    "npm": ">= 11.5.1"
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc mocha test --recursive --timeout 30000",
