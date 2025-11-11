@@ -27,7 +27,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install Dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       # publishes to NPM using third party tool (more info here https://github.com/JS-DevTools/npm-publish)
       - name: Publish to NPM
