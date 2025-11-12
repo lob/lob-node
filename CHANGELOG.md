@@ -1,3 +1,5 @@
+#### 7.0.1 (2025-11-12)
+
 ## 7.0.0 (2025-11-11)
 ##### Breaking Changes
 * **engines** update minimum Node.js version requirement to >= 20.0.0
