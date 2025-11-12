@@ -2,10 +2,11 @@
 
 name: NPM Publish
 
-# Run the workflow when a new release is published
+# Run the workflow when a new release is published or manually triggered
 on:
   release:
     types: [published]
+  workflow_dispatch: # This allows manual triggering from the GitHub UI
 
 permissions:
   id-token: write # Required for OIDC
