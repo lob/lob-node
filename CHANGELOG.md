@@ -1,3 +1,9 @@
+## 7.1.0 (2026-01-15)
+
+##### Maintenance
+
+* Replace deprecated `request` package with `axios` and `form-data`
+
 #### 7.0.1 (2025-11-12)
 
 ## 7.0.0 (2025-11-11)
