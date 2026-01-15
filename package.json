@@ -14,8 +14,8 @@
   "homepage": "https://github.com/lob/lob-node",
   "author": "Lob <support@lob.com> (https://lob.com/)",
   "dependencies": {
-    "axios": "^1.7.9",
-    "form-data": "^4.0.1"
+    "axios": "^1.13.2",
+    "form-data": "^4.0.5"
   },
   "devDependencies": {
     "agentkeepalive": "^4.1.0",
