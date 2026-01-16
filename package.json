@@ -46,6 +46,7 @@
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc mocha test",
+    "test:integration": "mocha --config test/integration/.mocharc.json",
     "test-no-cover": "cross-env NODE_ENV=test mocha test",
     "coverage": "nyc report --reporter=text",
     "enforce": "nyc check-coverage --statements 100 --lines 100 --functions 100 --branches 100",

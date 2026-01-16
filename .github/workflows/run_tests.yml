@@ -1,6 +1,6 @@
 name: Run Tests
 
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   node_tests:
@@ -20,6 +20,11 @@ jobs:
         run: npm install --legacy-peer-deps
       - name: Run tests
         run: npm run test
+      - name: Run integration tests
+        env:
+          TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
+          LIVE_API_KEY: ${{ secrets.LIVE_API_KEY }}
+        run: npm run test:integration
       - name: Coverage
         run: npm run test-lcov
       - name: Coveralls

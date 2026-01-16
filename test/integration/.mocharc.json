@@ -1,0 +1,6 @@
+{
+  "recursive": true,
+  "timeout": 30000,
+  "require": ["./test/integration/setup.js"],
+  "spec": "test/integration/**/*.test.js"
+}

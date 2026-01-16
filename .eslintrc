@@ -6,6 +6,9 @@
   "globals": {
     "API_KEY": false,
     "expect": false,
+    "HAS_LIVE_KEY": false,
+    "INTEGRATION_TIMEOUT": false,
+    "LiveLob": false,
     "Lob": false,
     "mocks": false
   }

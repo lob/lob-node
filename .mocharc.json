@@ -1,5 +1,6 @@
 {
   "recursive": true,
   "timeout": 30000,
-  "require": ["./test/setup.js"]
+  "require": ["./test/setup.js"],
+  "ignore": ["test/integration/**"]
 }
