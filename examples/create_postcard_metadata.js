@@ -8,7 +8,7 @@
 const fs = require('fs');
 
 const lobFactory = require('../lib/index.js');
-const lob = new lobFactory('test_efce9e9b96019137d711f4ce642ea11305b');
+const lob = new lobFactory('YOUR_API_KEY');
 
 const file = fs.readFileSync(`${__dirname}/html/card.html`).toString();
 

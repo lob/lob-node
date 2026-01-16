@@ -6,11 +6,8 @@
  */
 
 const lobFactory = require('../lib/index.js');
-// this key is publicly available in the legacy docs, so it's hardcoded
-// since the templates are associated with this dummy account
-// you can replace this key with your own, and the IDs below with any
-// saved templates you have
-const lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
+// Replace with your own API key and template IDs
+const lob = new lobFactory('YOUR_API_KEY');
 
 // Create the address
 lob.addresses.create({
