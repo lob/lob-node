@@ -26,8 +26,10 @@ jobs:
           LIVE_API_KEY: ${{ secrets.LIVE_API_KEY }}
         run: npm run test:integration
       - name: Coverage
+        if: matrix.node == 20
         run: npm run test-lcov
       - name: Coveralls
+        if: matrix.node == 20
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
