@@ -20,7 +20,7 @@ jobs:
         run: npm install --legacy-peer-deps
       - name: Run tests
         env:
-          LOB_API_KEY: ${{ secrets.API_KEY }}
+          LOB_API_KEY: ${{ secrets.LIVE_API_KEY }}
         run: npm run test
       - name: Coverage
         run: npm run test-lcov

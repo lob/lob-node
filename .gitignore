@@ -20,3 +20,4 @@ coverage
 *.sublime-*
 .idea/
 .vscode
+.env
