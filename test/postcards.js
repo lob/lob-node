@@ -1,8 +1,9 @@
 'use strict';
 
-const Fs = require('fs');
+const mockLob = mocks.mockLob;
+const fixtures = mocks.fixtures;
 
-const ADDRESS =  {
+const ADDRESS = {
   name: 'Lob',
   email: 'support@lob.com',
   address_line1: '123 Main Street',
@@ -18,6 +19,11 @@ describe('postcards', () => {
   describe('list', () => {
 
     it('returns a list of postcards', (done) => {
+      mockLob()
+        .get('/v1/postcards')
+        .query(true)
+        .reply(200, fixtures.list([fixtures.POSTCARD], 1));
+
       Lob.postcards.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
@@ -28,6 +34,11 @@ describe('postcards', () => {
     });
 
     it('filters postcards', (done) => {
+      mockLob()
+        .get('/v1/postcards')
+        .query({ limit: 1 })
+        .reply(200, fixtures.list([fixtures.POSTCARD], 1));
+
       Lob.postcards.list({ limit: 1 }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
@@ -39,25 +50,52 @@ describe('postcards', () => {
 
     describe('cursor', () => {
 
-      let token;
+      it('filters postcards by before', (done) => {
+        const listWithNextUrl = fixtures.list([fixtures.POSTCARD], 1);
+        listWithNextUrl.next_url = 'https://api.lob.com/v1/postcards?after=eyJkYXRl';
 
-      beforeEach(async () => {
-        const list = await Lob.postcards.list();
-        token = new URLSearchParams(list.next_url).get('after');
+        mockLob()
+          .get('/v1/postcards')
+          .query(true)
+          .reply(200, listWithNextUrl);
+
+        mockLob()
+          .get('/v1/postcards')
+          .query(true)
+          .reply(200, fixtures.list([fixtures.POSTCARD], 1));
+
+        Lob.postcards.list().then((list) => {
+          const token = new URLSearchParams(list.next_url).get('after');
+          return Lob.postcards.list({ before: token });
+        }).then((res) => {
+          expect(res.object).to.eql('list');
+          expect(res.data).to.be.instanceof(Array);
+          done();
+        });
       });
 
-      it('filters postcards by before', async () => {
-        const res = await Lob.postcards.list({ before: token });
+      it('filters postcards by after', (done) => {
+        const listWithNextUrl = fixtures.list([fixtures.POSTCARD], 1);
+        listWithNextUrl.next_url = 'https://api.lob.com/v1/postcards?after=eyJkYXRl';
 
-        expect(res.object).to.eql('list');
-        expect(res.data).to.be.instanceof(Array);
-      });
+        mockLob()
+          .get('/v1/postcards')
+          .query(true)
+          .reply(200, listWithNextUrl);
 
-      it('filters postcards by after', async () => {
-        const res = await Lob.postcards.list({ after: token });
+        mockLob()
+          .get('/v1/postcards')
+          .query(true)
+          .reply(200, fixtures.list([fixtures.POSTCARD], 1));
 
-        expect(res.object).to.eql('list');
-        expect(res.data).to.be.instanceof(Array);
+        Lob.postcards.list().then((list) => {
+          const token = new URLSearchParams(list.next_url).get('after');
+          return Lob.postcards.list({ after: token });
+        }).then((res) => {
+          expect(res.object).to.eql('list');
+          expect(res.data).to.be.instanceof(Array);
+          done();
+        });
       });
 
     });
@@ -67,6 +105,16 @@ describe('postcards', () => {
   describe('retrieve', () => {
 
     it('retrieves a postcard', (done) => {
+      const postcardId = fixtures.POSTCARD.id;
+
+      mockLob()
+        .post('/v1/postcards')
+        .reply(200, fixtures.POSTCARD);
+
+      mockLob()
+        .get(`/v1/postcards/${  postcardId}`)
+        .reply(200, fixtures.POSTCARD);
+
       Lob.postcards.create({
         to: ADDRESS,
         front: '<h1>Test Postcard Front</h1>',
@@ -84,13 +132,15 @@ describe('postcards', () => {
   describe('create', () => {
 
     it('creates a postcard with a local file', (done) => {
-      const filePath = `${__dirname}/assets/4_25x6_25.pdf`;
+      mockLob()
+        .post('/v1/postcards')
+        .reply(200, fixtures.POSTCARD);
 
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
-        front: Fs.createReadStream(filePath),
-        back: Fs.createReadStream(filePath)
+        front: '<h1>Test Front</h1>',
+        back: '<h1>Test Back</h1>'
       }, (err, res) => {
         expect(res.object).to.eql('postcard');
         done();
@@ -98,13 +148,15 @@ describe('postcards', () => {
     });
 
     it('creates a postcard with a buffer', (done) => {
-      const file = Fs.readFileSync(`${__dirname}/assets/4_25x6_25.pdf`);
+      mockLob()
+        .post('/v1/postcards')
+        .reply(200, fixtures.POSTCARD);
 
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
-        front: file,
-        back: file
+        front: Buffer.from('test'),
+        back: Buffer.from('test')
       }, (err, res) => {
         expect(res.object).to.eql('postcard');
         done();
@@ -112,16 +164,20 @@ describe('postcards', () => {
     });
 
     it('creates a postcard with a merge variable conditional', (done) => {
-      const html = `<html>{{#is_awesome}}You're awesome!{{/is_awesome}}</html>`;
+      const postcardWithMerge = fixtures.clone(fixtures.POSTCARD, {
+        merge_variables: { is_awesome: true }
+      });
+
+      mockLob()
+        .post('/v1/postcards')
+        .reply(200, postcardWithMerge);
 
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
-        front: html,
-        back: html,
-        merge_variables: {
-          is_awesome: true
-        }
+        front: '<html>{{#is_awesome}}Awesome{{/is_awesome}}</html>',
+        back: '<html>Back</html>',
+        merge_variables: { is_awesome: true }
       }, (err, res) => {
         expect(res.object).to.eql('postcard');
         expect(res.merge_variables.is_awesome).to.be.true;
@@ -130,6 +186,10 @@ describe('postcards', () => {
     });
 
     it('errors with missing front', (done) => {
+      mockLob()
+        .post('/v1/postcards')
+        .reply(422, fixtures.error('front is required', 422));
+
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
@@ -142,6 +202,10 @@ describe('postcards', () => {
     });
 
     it('errors with missing back', (done) => {
+      mockLob()
+        .post('/v1/postcards')
+        .reply(422, fixtures.error('back is required', 422));
+
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
@@ -157,13 +221,21 @@ describe('postcards', () => {
   describe('delete', () => {
 
     it('deletes a postcard', (done) => {
-      const file = Fs.readFileSync(`${__dirname}/assets/4_25x6_25.pdf`);
+      const postcardId = fixtures.POSTCARD.id;
+
+      mockLob()
+        .post('/v1/postcards')
+        .reply(200, fixtures.POSTCARD);
+
+      mockLob()
+        .delete(`/v1/postcards/${  postcardId}`)
+        .reply(200, fixtures.deleted(postcardId));
 
       Lob.postcards.create({
         description: 'Test Postcard',
         to: ADDRESS,
-        front: file,
-        back: file
+        front: Buffer.from('test'),
+        back: Buffer.from('test')
       }, (err, res) => {
         Lob.postcards.delete(res.id, (err2, res2) => {
           expect(res2.deleted).to.eql(true);

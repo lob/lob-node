@@ -29,6 +29,7 @@
     "json-2-csv": "^3.15.1",
     "mocha": "^10.0.0",
     "moment": "^2.22.1",
+    "nock": "^14.0.10",
     "nyc": "^15.1.0",
     "p-map": "^2.1.0",
     "uuid": "^3.1.0"
@@ -44,8 +45,8 @@
     "npm": ">= 11.5.1"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc mocha test --recursive --timeout 30000",
-    "test-no-cover": "cross-env NODE_ENV=test mocha test --recursive --timeout 30000",
+    "test": "cross-env NODE_ENV=test nyc mocha test",
+    "test-no-cover": "cross-env NODE_ENV=test mocha test",
     "coverage": "nyc report --reporter=text",
     "enforce": "nyc check-coverage --statements 100 --lines 100 --functions 100 --branches 100",
     "test-lcov": "nyc report --reporter=lcov",

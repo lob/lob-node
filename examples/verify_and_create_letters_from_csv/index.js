@@ -6,7 +6,7 @@ const moment    = require('moment');
 const parse     = require('csv-parse');
 
 const LobFactory = require('../../lib/index.js');
-const Lob        = new LobFactory('YOUR_API_KEY');
+const lob        = new LobFactory('YOUR_API_KEY');
 
 const inputFile = fs.createReadStream(`${__dirname}/input.csv`);
 const successFd = fs.openSync(`${__dirname}/success.csv`, 'w');
@@ -41,49 +41,49 @@ const parser = parse({ columns: true }, (err, data) => {
       zip_code: client.zip_code
     };
 
-    Lob.usVerifications.verify(address)
-    .then((verifiedAddress) => {
-      return Lob.letters.create({
-        description: `Automated Past Due Bill for ${name}`,
-        to: {
-          name: verifiedAddress.recipient,
-          address_line1: verifiedAddress.primary_line,
-          address_line2: verifiedAddress.secondary_line,
-          address_city: verifiedAddress.components.city,
-          address_state: verifiedAddress.components.state,
-          address_zip: verifiedAddress.components.zip_code,
-          address_country: 'US'
-        },
-        from: companyInfo,
-        file: letterTemplate,
-        merge_variables: {
-          date: moment().format('LL'),
-          name,
-          amountDue: amount
-        },
-        color: true
+    lob.usVerifications.verify(address)
+      .then((verifiedAddress) => {
+        return lob.letters.create({
+          description: `Automated Past Due Bill for ${name}`,
+          to: {
+            name: verifiedAddress.recipient,
+            address_line1: verifiedAddress.primary_line,
+            address_line2: verifiedAddress.secondary_line,
+            address_city: verifiedAddress.components.city,
+            address_state: verifiedAddress.components.state,
+            address_zip: verifiedAddress.components.zip_code,
+            address_country: 'US'
+          },
+          from: companyInfo,
+          file: letterTemplate,
+          merge_variables: {
+            date: moment().format('LL'),
+            name,
+            amountDue: amount
+          },
+          color: true
+        });
+      })
+      .then((letter) => {
+        console.log(`Successfully sent a letter to ${client.name}`);
+        client.letter_id = letter.id;
+        client.letter_url = letter.url;
+        converter.json2csv(client, (err2, csv) => {
+          if (err2) {
+            throw err2;
+          }
+          fs.write(successFd, csv);
+        }, { PREPEND_HEADER: false });
+      })
+      .catch(() => {
+        console.log(`Could not send letter to ${client.name}`);
+        converter.json2csv(client, (err2, csv) => {
+          if (err2) {
+            throw err2;
+          }
+          fs.write(errorFd, csv);
+        }, { PREPEND_HEADER: false });
       });
-    })
-    .then((letter) => {
-      console.log(`Successfully sent a letter to ${client.name}`);
-      client.letter_id = letter.id;
-      client.letter_url = letter.url;
-      converter.json2csv(client, (err, csv) => {
-        if (err) {
-          throw err;
-        }
-        fs.write(successFd, csv);
-      }, { PREPEND_HEADER: false });
-    })
-    .catch(() => {
-      console.log(`Could not send letter to ${client.name}`);
-      converter.json2csv(client, (err, csv) => {
-        if (err) {
-          throw err;
-        }
-        fs.write(errorFd, csv);
-      }, { PREPEND_HEADER: false });
-    });
   });
 
 });

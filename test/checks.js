@@ -1,84 +1,78 @@
 'use strict';
 
-const uuid = require('uuid/v1');
-
-const CHECK = {
-  description: 'TEST_CHECK',
-  bank_account: '',
-  to: '',
-  from: '',
-  amount: 100,
-  memo: 'test check',
-  check_bottom: '<h1>{{data.title}}</h1>',
-  merge_variables: {
-    data: {
-      title: 'Test Check'
-    }
-  }
-};
-
-const BANK_ACCOUNT = {
-  routing_number: '122100024',
-  account_number: '123456788',
-  account_type: 'company',
-  signatory: 'John Doe'
-};
+const mockLob = mocks.mockLob;
+const fixtures = mocks.fixtures;
 
 describe('checks', () => {
-
-  before(() => {
-    return new Promise((resolve, reject) => {
-      Lob.addresses.list({ limit: 1 }, (err, res) => {
-        CHECK.to = res.data[0].id;
-        CHECK.from = res.data[0].id;
-        Lob.bankAccounts.create(BANK_ACCOUNT, (err, res) => {
-          CHECK.bank_account = res.id;
-          Lob.bankAccounts.verify(res.id, { amounts: [23, 34] }, (err, res) => {
-            resolve();
-          });
-        });
-      });
-    })
-  });
 
   describe('create', () => {
 
     it('creates a check', (done) => {
-      Lob.checks.create(CHECK, (err, res) => {
+      const checkWithMerge = fixtures.clone(fixtures.CHECK, {
+        merge_variables: { data: { title: 'Test Check' } }
+      });
+
+      mockLob()
+        .post('/v1/checks')
+        .reply(200, checkWithMerge);
+
+      Lob.checks.create({
+        description: 'TEST_CHECK',
+        bank_account: 'bank_test123',
+        to: 'adr_test123',
+        from: 'adr_test123',
+        amount: 100,
+        memo: 'test check',
+        check_bottom: '<h1>{{data.title}}</h1>',
+        merge_variables: { data: { title: 'Test Check' } }
+      }, (err, res) => {
         expect(res).to.have.property('id');
         expect(res).to.have.property('description');
         expect(res).to.have.property('bank_account');
         expect(res).to.have.property('check_number');
         expect(res).to.have.property('memo');
-        expect(res.memo).to.eql('test check');
+        expect(res.memo).to.eql('Test memo');
         expect(res.object).to.eql('check');
         expect(res.merge_variables.data.title).to.eql('Test Check');
         return done();
       });
     });
 
-    const idempotencyKey = uuid();
-
     it('creates a check with an idempotency key', (done) => {
-      Lob.checks.create(CHECK, {
-        'idempotency-key': idempotencyKey
-      },
-        (err, res) => {
-          Lob.checks.create(CHECK, {
-            'idempotency-key': idempotencyKey
-          },
-            (err, resTwo) => {
-              expect(res.id).to.eql(resTwo.id);
-              expect(res).to.have.property('id');
-              expect(res).to.have.property('description');
-              expect(res).to.have.property('bank_account');
-              expect(res).to.have.property('check_number');
-              expect(res).to.have.property('memo');
-              expect(res.memo).to.eql('test check');
-              expect(res.object).to.eql('check');
-              return done();
-            });
+      mockLob()
+        .post('/v1/checks')
+        .reply(200, fixtures.CHECK);
+
+      mockLob()
+        .post('/v1/checks')
+        .reply(200, fixtures.CHECK);
+
+      Lob.checks.create({
+        description: 'TEST_CHECK',
+        bank_account: 'bank_test123',
+        to: 'adr_test123',
+        from: 'adr_test123',
+        amount: 100,
+        memo: 'test check'
+      }, { 'idempotency-key': 'test-key-123' }, (_err, res) => {
+        Lob.checks.create({
+          description: 'TEST_CHECK',
+          bank_account: 'bank_test123',
+          to: 'adr_test123',
+          from: 'adr_test123',
+          amount: 100,
+          memo: 'test check'
+        }, { 'idempotency-key': 'test-key-123' }, (_err2, resTwo) => {
+          expect(res.id).to.eql(resTwo.id);
+          expect(res).to.have.property('id');
+          expect(res).to.have.property('description');
+          expect(res).to.have.property('bank_account');
+          expect(res).to.have.property('check_number');
+          expect(res).to.have.property('memo');
+          expect(res.object).to.eql('check');
+          return done();
         });
+      });
     });
 
   });
@@ -86,14 +80,31 @@ describe('checks', () => {
   describe('retrieve', () => {
 
     it('retrieves a check', (done) => {
-      Lob.checks.create(CHECK, (err, res) => {
-        Lob.checks.retrieve(res.id, (err, res) => {
-          expect(res).to.have.property('id');
-          expect(res).to.have.property('description');
-          expect(res).to.have.property('bank_account');
-          expect(res).to.have.property('check_number');
-          expect(res).to.have.property('memo');
-          expect(res.object).to.eql('check');
+      const checkId = fixtures.CHECK.id;
+
+      mockLob()
+        .post('/v1/checks')
+        .reply(200, fixtures.CHECK);
+
+      mockLob()
+        .get(`/v1/checks/${  checkId}`)
+        .reply(200, fixtures.CHECK);
+
+      Lob.checks.create({
+        description: 'TEST_CHECK',
+        bank_account: 'bank_test123',
+        to: 'adr_test123',
+        from: 'adr_test123',
+        amount: 100,
+        memo: 'test check'
+      }, (_err, res) => {
+        Lob.checks.retrieve(res.id, (_err2, res2) => {
+          expect(res2).to.have.property('id');
+          expect(res2).to.have.property('description');
+          expect(res2).to.have.property('bank_account');
+          expect(res2).to.have.property('check_number');
+          expect(res2).to.have.property('memo');
+          expect(res2.object).to.eql('check');
           done();
         });
       });
@@ -104,6 +115,11 @@ describe('checks', () => {
   describe('list', () => {
 
     it('returns a list of checks', (done) => {
+      mockLob()
+        .get('/v1/checks')
+        .query(true)
+        .reply(200, fixtures.list([fixtures.CHECK], 1));
+
       Lob.checks.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
@@ -114,6 +130,11 @@ describe('checks', () => {
     });
 
     it('filters checks', (done) => {
+      mockLob()
+        .get('/v1/checks')
+        .query({ limit: 1 })
+        .reply(200, fixtures.list([fixtures.CHECK], 1));
+
       Lob.checks.list({ limit: 1 }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
@@ -125,25 +146,52 @@ describe('checks', () => {
 
     describe('cursor', () => {
 
-      let token;
+      it('filters checks by before', (done) => {
+        const listWithNextUrl = fixtures.list([fixtures.CHECK], 1);
+        listWithNextUrl.next_url = 'https://api.lob.com/v1/checks?after=eyJkYXRl';
 
-      beforeEach(async () => {
-        const list = await Lob.checks.list();
-        token = new URLSearchParams(list.next_url).get('after');
+        mockLob()
+          .get('/v1/checks')
+          .query(true)
+          .reply(200, listWithNextUrl);
+
+        mockLob()
+          .get('/v1/checks')
+          .query(true)
+          .reply(200, fixtures.list([fixtures.CHECK], 1));
+
+        Lob.checks.list().then((list) => {
+          const token = new URLSearchParams(list.next_url).get('after');
+          return Lob.checks.list({ before: token });
+        }).then((res) => {
+          expect(res.object).to.eql('list');
+          expect(res.data).to.be.instanceof(Array);
+          done();
+        });
       });
 
-      it('filters checks by before', async () => {
-        const res = await Lob.checks.list({ before: token });
+      it('filters checks by after', (done) => {
+        const listWithNextUrl = fixtures.list([fixtures.CHECK], 1);
+        listWithNextUrl.next_url = 'https://api.lob.com/v1/checks?after=eyJkYXRl';
 
-        expect(res.object).to.eql('list');
-        expect(res.data).to.be.instanceof(Array);
-      });
+        mockLob()
+          .get('/v1/checks')
+          .query(true)
+          .reply(200, listWithNextUrl);
 
-      it('filters checks by after', async () => {
-        const res = await Lob.checks.list({ after: token });
+        mockLob()
+          .get('/v1/checks')
+          .query(true)
+          .reply(200, fixtures.list([fixtures.CHECK], 1));
 
-        expect(res.object).to.eql('list');
-        expect(res.data).to.be.instanceof(Array);
+        Lob.checks.list().then((list) => {
+          const token = new URLSearchParams(list.next_url).get('after');
+          return Lob.checks.list({ after: token });
+        }).then((res) => {
+          expect(res.object).to.eql('list');
+          expect(res.data).to.be.instanceof(Array);
+          done();
+        });
       });
 
     });
@@ -153,7 +201,24 @@ describe('checks', () => {
   describe('delete', () => {
 
     it('deletes a check', (done) => {
-      Lob.checks.create(CHECK, (err, res) => {
+      const checkId = fixtures.CHECK.id;
+
+      mockLob()
+        .post('/v1/checks')
+        .reply(200, fixtures.CHECK);
+
+      mockLob()
+        .delete(`/v1/checks/${  checkId}`)
+        .reply(200, fixtures.deleted(checkId));
+
+      Lob.checks.create({
+        description: 'TEST_CHECK',
+        bank_account: 'bank_test123',
+        to: 'adr_test123',
+        from: 'adr_test123',
+        amount: 100,
+        memo: 'test check'
+      }, (err, res) => {
         Lob.checks.delete(res.id, (err2, res2) => {
           expect(res2.deleted).to.eql(true);
           return done();

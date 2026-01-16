@@ -8,12 +8,12 @@
 const fs = require('fs');
 
 const lobFactory = require('../lib/index.js');
-const Lob = new lobFactory('YOUR_API_KEY');
+const lob = new lobFactory('YOUR_API_KEY');
 
 const file = fs.readFileSync(`${__dirname}/html/card.html`).toString();
 
 // Create the address
-Lob.addresses.create({
+lob.addresses.create({
   name: 'Robin Joseph',
   email: 'test@gmail.com',
   phone: '123456789',
@@ -27,7 +27,7 @@ Lob.addresses.create({
   if (err) {
     console.log(err);
   } else {
-    Lob.postcards.create({
+    lob.postcards.create({
       description: 'My Second Postcard',
       to: address.id,
       front: file,
@@ -36,10 +36,10 @@ Lob.addresses.create({
         name: 'Robin'
       }
     },
-    {'Idempotency-Key': '026e7634-24d7-486c-a0bb-4a17fd0eebc5'},
-    (err, postcard) => {
-      if (err) {
-        console.log(err);
+    { 'Idempotency-Key': '026e7634-24d7-486c-a0bb-4a17fd0eebc5' },
+    (err2, postcard) => {
+      if (err2) {
+        console.log(err2);
       } else {
         console.log('The Lob API responded with this postcard object: ', postcard);
       }

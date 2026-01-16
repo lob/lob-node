@@ -7,10 +7,10 @@
  */
 
 const lobFactory = require('../lib/index.js');
-const Lob = new lobFactory('YOUR_API_KEY');
+const lob = new lobFactory('YOUR_API_KEY');
 
 // Create the address
-Lob.addresses.create({
+lob.addresses.create({
   name: 'Test Person',
   email: 'test@gmail.com',
   phone: '123456789',
@@ -24,20 +24,20 @@ Lob.addresses.create({
   if (err) {
     return console.log(err);
   }
-  Lob.bankAccounts.create({
+  lob.bankAccounts.create({
     routing_number: '122100024',
     account_number: '123456789',
     account_type: 'company',
     signatory: 'John Doe'
-  }, (err, bankAccount) => {
-    if (err) {
-      return console.log(err);
+  }, (err2, bankAccount) => {
+    if (err2) {
+      return console.log(err2);
     }
-    Lob.bankAccounts.verify(bankAccount.id, { amounts: [23, 34] }, (err) => {
-      if (err) {
-        return console.log(err);
+    lob.bankAccounts.verify(bankAccount.id, { amounts: [23, 34] }, (err3) => {
+      if (err3) {
+        return console.log(err3);
       }
-      Lob.checks.create({
+      lob.checks.create({
         description: 'Test Check',
         check_number: '10000',
         bank_account: bankAccount.id,
@@ -54,9 +54,9 @@ Lob.addresses.create({
         memo: 'This is my first Check',
         message: 'This check is for laundry',
         logo: 'https://s3-us-west-2.amazonaws.com/public.lob.com/assets/check_logo.png'
-      }, (err, check) => {
-        if (err) {
-          return console.log(err);
+      }, (err4, check) => {
+        if (err4) {
+          return console.log(err4);
         }
         console.log('The Lob API responded with this check object: ', check);
       });

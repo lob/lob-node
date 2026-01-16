@@ -1,6 +1,9 @@
 'use strict';
 
-const CAMPAIGN = {
+const mockLob = mocks.mockLob;
+const fixtures = mocks.fixtures;
+
+const CAMPAIGN_INPUT = {
   name: 'My test campaign',
   description: 'Created via lob-node SDK',
   schedule_type: 'immediate'
@@ -11,6 +14,11 @@ describe('campaigns', () => {
   describe('list', () => {
 
     it('returns a list of campaigns', (done) => {
+      mockLob()
+        .get('/v1/campaigns')
+        .query(true)
+        .reply(200, fixtures.list([fixtures.CAMPAIGN], 1));
+
       Lob.campaigns.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
@@ -21,6 +29,11 @@ describe('campaigns', () => {
     });
 
     it('filters campaigns', (done) => {
+      mockLob()
+        .get('/v1/campaigns')
+        .query({ limit: 1 })
+        .reply(200, fixtures.list([fixtures.CAMPAIGN], 1));
+
       Lob.campaigns.list({ limit: 1 }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
@@ -34,19 +47,18 @@ describe('campaigns', () => {
 
   describe('create', () => {
 
-    let campaign;
-
-    afterEach(async () => {
-      await Lob.campaigns.delete(campaign.id);
-    });
-
     it('creates a campaign', (done) => {
-      Lob.campaigns.create(CAMPAIGN, (err, res) => {
-        campaign = res;
+      const campaignResponse = fixtures.clone(fixtures.CAMPAIGN, CAMPAIGN_INPUT);
+
+      mockLob()
+        .post('/v1/campaigns')
+        .reply(200, campaignResponse);
+
+      Lob.campaigns.create(CAMPAIGN_INPUT, (err, res) => {
         expect(res).to.have.property('id');
-        expect(res.name).to.eql(CAMPAIGN.name);
-        expect(res.description).to.eql(CAMPAIGN.description);
-        expect(res.schedule_type).to.eql(CAMPAIGN.schedule_type);
+        expect(res.name).to.eql(CAMPAIGN_INPUT.name);
+        expect(res.description).to.eql(CAMPAIGN_INPUT.description);
+        expect(res.schedule_type).to.eql(CAMPAIGN_INPUT.schedule_type);
         return done();
       });
     });
@@ -55,20 +67,25 @@ describe('campaigns', () => {
 
   describe('retrieve', () => {
 
-    let campaign;
-
-    beforeEach(async () => {
-      campaign = await Lob.campaigns.create(CAMPAIGN);
-    });
-
-    afterEach(async () => {
-      await Lob.campaigns.delete(campaign.id);
-    });
-
     it('retrieves a campaign', (done) => {
-      Lob.campaigns.retrieve(campaign.id, (err, res) => {
-        expect(res).to.include(CAMPAIGN);
-        return done();
+      const campaignId = fixtures.CAMPAIGN.id;
+      const campaignResponse = fixtures.clone(fixtures.CAMPAIGN, CAMPAIGN_INPUT);
+
+      mockLob()
+        .post('/v1/campaigns')
+        .reply(200, campaignResponse);
+
+      mockLob()
+        .get(`/v1/campaigns/${  campaignId}`)
+        .reply(200, campaignResponse);
+
+      Lob.campaigns.create(CAMPAIGN_INPUT, (_err, res) => {
+        Lob.campaigns.retrieve(res.id, (_err2, res2) => {
+          expect(res2.name).to.eql(CAMPAIGN_INPUT.name);
+          expect(res2.description).to.eql(CAMPAIGN_INPUT.description);
+          expect(res2.schedule_type).to.eql(CAMPAIGN_INPUT.schedule_type);
+          return done();
+        });
       });
     });
 
@@ -76,16 +93,22 @@ describe('campaigns', () => {
 
   describe('delete', () => {
 
-    let campaign;
-
-    beforeEach(async () => {
-      campaign = await Lob.campaigns.create(CAMPAIGN);
-    });
-
     it('deletes a campaign', (done) => {
-      Lob.campaigns.delete(campaign.id, (err, res) => {
-        expect(res.deleted).to.eql(true);
-        return done();
+      const campaignId = fixtures.CAMPAIGN.id;
+
+      mockLob()
+        .post('/v1/campaigns')
+        .reply(200, fixtures.CAMPAIGN);
+
+      mockLob()
+        .delete(`/v1/campaigns/${  campaignId}`)
+        .reply(200, fixtures.deleted(campaignId));
+
+      Lob.campaigns.create(CAMPAIGN_INPUT, (_err, res) => {
+        Lob.campaigns.delete(res.id, (_err2, res2) => {
+          expect(res2.deleted).to.eql(true);
+          return done();
+        });
       });
     });
 

@@ -8,13 +8,13 @@
 const fs = require('fs');
 
 const lobFactory = require('../lib/index.js');
-const Lob = new lobFactory('YOUR_API_KEY');
+const lob = new lobFactory('YOUR_API_KEY');
 
 const file = fs.readFileSync(`${__dirname}/html/card.html`).toString();
 
 // Create the from address
-async function getFrom() {
-  const from_address = await Lob.addresses.create({
+async function getFrom () {
+  const fromAddress = await lob.addresses.create({
     name: 'Harry Zhang',
     email: 'harry@lob.com',
     phone: '5555555555',
@@ -25,14 +25,14 @@ async function getFrom() {
     address_zip: '94114'
   });
 
-  return from_address.id;
+  return fromAddress.id;
 }
 
-async function createPostcard() {
-  const from_id = await getFrom();
+async function createPostcard () {
+  const fromId = await getFrom();
 
   // Create the address
-  Lob.addresses.create({
+  lob.addresses.create({
     name: 'Harry Zhang',
     email: 'harry@lob.com',
     phone: '5555555555',
@@ -46,24 +46,24 @@ async function createPostcard() {
     if (err) {
       console.log(err);
     } else {
-      Lob.postcards.create({
+      lob.postcards.create({
         description: 'My Second Postcard',
         to: address.id,
-        from: from_id,
+        from: fromId,
         front: file,
         back: file,
         merge_variables: {
           name: 'Robin'
         }
-      }, (err, postcard) => {
-        if (err) {
-          console.log(err);
+      }, (err2, postcard) => {
+        if (err2) {
+          console.log(err2);
         } else {
           console.log('The Lob API responded with this postcard object: ', postcard);
         }
       });
     }
-  }); 
+  });
 }
 
 createPostcard();

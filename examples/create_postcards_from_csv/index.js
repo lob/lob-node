@@ -2,10 +2,10 @@
 
 const parse    = require('csv-parse');
 const fs       = require('fs');
-const pMap     = require('p-map')
+const pMap     = require('p-map');
 
 const lobFactory = require('../../lib/index.js');
-const Lob        = new lobFactory('YOUR_API_KEY');
+const lob        = new lobFactory('YOUR_API_KEY');
 const input      = fs.readFileSync(`${__dirname}/input.csv`, { encoding: 'utf-8' });
 const frontHtml  = fs.readFileSync(`${__dirname}/postcard_front.html`, { encoding: 'utf-8' });
 const backHtml   = fs.readFileSync(`${__dirname}/postcard_back.html`, { encoding: 'utf-8' });
@@ -17,7 +17,7 @@ parse(input, (err, rows) => {
     return console.log(err);
   }
   pMap(rows, (row) => {
-    return Lob.postcards.create({
+    return lob.postcards.create({
       to: {
         name: row[5],
         address_line1: row[6],
@@ -49,9 +49,9 @@ parse(input, (err, rows) => {
         name: row[0],
         campaign_id: 'campaign_234'
       }
-    }, (err, postcard) => {
-      if (err) {
-        return console.log(err);
+    }, (err2, postcard) => {
+      if (err2) {
+        return console.log(err2);
       }
       console.log(`Postcard to ${postcard.to.name} sent! View it here: ${postcard.url}`);
     });

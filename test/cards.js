@@ -1,13 +1,18 @@
 'use strict';
 
-const Fs = require('fs');
-const file = Fs.readFileSync(`${__dirname}/assets/card.pdf`);
+const mockLob = mocks.mockLob;
+const fixtures = mocks.fixtures;
 
 describe('cards', () => {
 
   describe('list', () => {
 
     it('returns a list of cards', (done) => {
+      mockLob()
+        .get('/v1/cards')
+        .query(true)
+        .reply(200, fixtures.list([fixtures.CARD], 1));
+
       Lob.cards.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
@@ -18,6 +23,11 @@ describe('cards', () => {
     });
 
     it('filters cards', (done) => {
+      mockLob()
+        .get('/v1/cards')
+        .query({ limit: 1 })
+        .reply(200, fixtures.list([fixtures.CARD], 1));
+
       Lob.cards.list({ limit: 1 }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
@@ -32,11 +42,21 @@ describe('cards', () => {
   describe('retrieve', () => {
 
     it('retrieves a card', (done) => {
+      const cardId = fixtures.CARD.id;
+
+      mockLob()
+        .post('/v1/cards')
+        .reply(200, fixtures.CARD);
+
+      mockLob()
+        .get(`/v1/cards/${  cardId}`)
+        .reply(200, fixtures.CARD);
+
       Lob.cards.create({
         description: 'Test Card',
-        front: file,
-        back: file,
-        size: '2.125x3.375',
+        front: Buffer.from('test'),
+        back: Buffer.from('test'),
+        size: '2.125x3.375'
       }, (err, res) => {
         Lob.cards.retrieve(res.id, () => {
           expect(res.object).to.eql('card');
@@ -50,14 +70,24 @@ describe('cards', () => {
   describe('update', () => {
 
     it('updates a card', (done) => {
-      const params = { description: 'Test Card Updated Desc'}
+      const cardId = fixtures.CARD.id;
+      const updatedCard = fixtures.clone(fixtures.CARD, { description: 'Test Card Updated Desc' });
+
+      mockLob()
+        .post('/v1/cards')
+        .reply(200, fixtures.CARD);
+
+      mockLob()
+        .post(`/v1/cards/${  cardId}`)
+        .reply(200, updatedCard);
+
       Lob.cards.create({
         description: 'Test Card',
-        front: file,
-        back: file,
-        size: '2.125x3.375',
+        front: Buffer.from('test'),
+        back: Buffer.from('test'),
+        size: '2.125x3.375'
       }, (err, res) => {
-        Lob.cards.update(res.id, params, (err2, res2) => {
+        Lob.cards.update(res.id, { description: 'Test Card Updated Desc' }, (err2, res2) => {
           expect(res2.object).to.eql('card');
           expect(res2.description).to.eql('Test Card Updated Desc');
           done();
@@ -70,13 +100,15 @@ describe('cards', () => {
   describe('create', () => {
 
     it('creates a card with a local file', (done) => {
-      const filePath = `${__dirname}/assets/card.pdf`;
+      mockLob()
+        .post('/v1/cards')
+        .reply(200, fixtures.CARD);
 
       Lob.cards.create({
         description: 'Test Card',
-        front: Fs.createReadStream(filePath),
-        back: Fs.createReadStream(filePath),
-        size: '2.125x3.375',
+        front: '<h1>Test Front</h1>',
+        back: '<h1>Test Back</h1>',
+        size: '2.125x3.375'
       }, (err, res) => {
         expect(res.object).to.eql('card');
         done();
@@ -84,11 +116,15 @@ describe('cards', () => {
     });
 
     it('creates a card with a buffer', (done) => {
+      mockLob()
+        .post('/v1/cards')
+        .reply(200, fixtures.CARD);
+
       Lob.cards.create({
         description: 'Test Card',
-        front: file,
-        back: file,
-        size: '2.125x3.375',
+        front: Buffer.from('test'),
+        back: Buffer.from('test'),
+        size: '2.125x3.375'
       }, (err, res) => {
         expect(res.object).to.eql('card');
         done();
@@ -96,13 +132,15 @@ describe('cards', () => {
     });
 
     it('creates a card with a url', (done) => {
-      const url = 'https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf';
+      mockLob()
+        .post('/v1/cards')
+        .reply(200, fixtures.CARD);
 
       Lob.cards.create({
         description: 'Test Card',
-        front: url,
-        back: url,
-        size: '2.125x3.375',
+        front: 'https://example.com/card.pdf',
+        back: 'https://example.com/card.pdf',
+        size: '2.125x3.375'
       }, (err, res) => {
         expect(res.object).to.eql('card');
         done();
@@ -110,21 +148,29 @@ describe('cards', () => {
     });
 
     it('creates a card with only a front', (done) => {
+      mockLob()
+        .post('/v1/cards')
+        .reply(200, fixtures.CARD);
+
       Lob.cards.create({
         description: 'Test Card',
-        front: file,
-        size: '2.125x3.375',
-      }, (err,res) => {
+        front: Buffer.from('test'),
+        size: '2.125x3.375'
+      }, (err, res) => {
         expect(res.object).to.eql('card');
         done();
       });
     });
-    
+
     it('errors with missing front', (done) => {
+      mockLob()
+        .post('/v1/cards')
+        .reply(422, fixtures.error('front is required', 422));
+
       Lob.cards.create({
         description: 'Test Card',
-        back: file,
-        size: '2.125x3.375',
+        back: Buffer.from('test'),
+        size: '2.125x3.375'
       }, (err) => {
         expect(err).to.be.an.instanceOf(Object);
         done();
@@ -136,11 +182,21 @@ describe('cards', () => {
   describe('delete', () => {
 
     it('deletes a card', (done) => {
+      const cardId = fixtures.CARD.id;
+
+      mockLob()
+        .post('/v1/cards')
+        .reply(200, fixtures.CARD);
+
+      mockLob()
+        .delete(`/v1/cards/${  cardId}`)
+        .reply(200, fixtures.deleted(cardId));
+
       Lob.cards.create({
         description: 'Test Card',
-        front: file,
-        back: file,
-        size: '2.125x3.375',
+        front: Buffer.from('test'),
+        back: Buffer.from('test'),
+        size: '2.125x3.375'
       }, (err, res) => {
         Lob.cards.delete(res.id, (err2, res2) => {
           expect(res2.deleted).to.eql(true);

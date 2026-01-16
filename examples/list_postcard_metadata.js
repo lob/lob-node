@@ -9,13 +9,13 @@ const util = require('util');
 const fs = require('fs');
 
 const lobFactory = require('../lib/index.js');
-const Lob = new lobFactory('YOUR_API_KEY');
+const lob = new lobFactory('YOUR_API_KEY');
 
 const file = fs.readFileSync(`${__dirname}/html/card.html`).toString();
 
-async function create_postcard() {
+async function createPostcard () {
   // Create the postcard
-  Lob.addresses.create({
+  lob.addresses.create({
     name: 'Robin Joseph',
     email: 'test@gmail.com',
     phone: '123456789',
@@ -29,7 +29,7 @@ async function create_postcard() {
     if (err) {
       console.log(err);
     } else {
-      Lob.postcards.create({
+      lob.postcards.create({
         description: 'My Second Postcard',
         to: address.id,
         front: file,
@@ -40,9 +40,9 @@ async function create_postcard() {
         merge_variables: {
           name: 'Robin'
         }
-      }, (err, postcard) => {
-        if (err) {
-          console.log(err);
+      }, (err2) => {
+        if (err2) {
+          console.log(err2);
         } else {
           console.log('The Lob API successfully created a postcard.');
         }
@@ -51,9 +51,9 @@ async function create_postcard() {
   });
 }
 
-async function list_postcards() {
-  await create_postcard();
-  Lob.postcards.list({
+async function listPostcards () {
+  await createPostcard();
+  lob.postcards.list({
     metadata: {
       campaign: 'NEWYORK2015'
     },
@@ -62,9 +62,9 @@ async function list_postcards() {
     if (err) {
       console.log(err);
     } else {
-      console.log('The Lob API responded with this list: ', util.inspect(list, {depth: null}));
+      console.log('The Lob API responded with this list: ', util.inspect(list, { depth: null }));
     }
   });
 }
 
-list_postcards();
+listPostcards();

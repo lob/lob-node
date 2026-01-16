@@ -5,15 +5,11 @@
  * Run me! This example works out of the box, "batteries included".
  */
 
-const fs = require('fs');
-
 const lobFactory = require('../lib/index.js');
-const Lob = new lobFactory('YOUR_API_KEY');
-
-const file = fs.readFileSync(`${__dirname}/html/card.html`).toString();
+const lob = new lobFactory('YOUR_API_KEY');
 
 // Create the address
-Lob.addresses.create({
+lob.addresses.create({
   name: 'Robin Joseph',
   email: 'test@gmail.com',
   phone: '123456789',
@@ -27,7 +23,7 @@ Lob.addresses.create({
   if (err) {
     console.log(err);
   } else {
-    Lob.postcards.create({
+    lob.postcards.create({
       description: 'My Second Postcard',
       to: address.id,
       front: 'https://s3-us-west-2.amazonaws.com/public.lob.com/assets/templates/4x6_pc_template.pdf',
@@ -35,9 +31,9 @@ Lob.addresses.create({
       merge_variables: {
         name: 'Robin'
       }
-    }, (err, postcard) => {
-      if (err) {
-        console.log(err);
+    }, (err2, postcard) => {
+      if (err2) {
+        console.log(err2);
       } else {
         console.log('The Lob API responded with this postcard object: ', postcard);
       }

@@ -1,8 +1,12 @@
 {
   "extends": "eslint-config-lob",
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
   "globals": {
     "API_KEY": false,
     "expect": false,
-    "Lob": false
+    "Lob": false,
+    "mocks": false
   }
 }

@@ -1,10 +1,17 @@
 'use strict';
 
+const mockLob = mocks.mockLob;
+const fixtures = mocks.fixtures;
+
 describe('us_reverse_geocode_lookups', () => {
 
   describe('lookup', () => {
 
     it('reverse geocodes a US Location', (done) => {
+      mockLob()
+        .post('/v1/us_reverse_geocode_lookups')
+        .reply(200, fixtures.US_REVERSE_GEOCODE);
+
       Lob.usReverseGeocodeLookups.lookup({
         latitude: 37.777456,
         longitude: -122.393039

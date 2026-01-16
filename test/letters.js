@@ -1,6 +1,7 @@
 'use strict';
 
-const Fs = require('fs');
+const mockLob = mocks.mockLob;
+const fixtures = mocks.fixtures;
 
 const ADDRESS = {
   name: 'Lob',
@@ -18,6 +19,11 @@ describe('letters', () => {
   describe('list', () => {
 
     it('returns a list of letters', (done) => {
+      mockLob()
+        .get('/v1/letters')
+        .query(true)
+        .reply(200, fixtures.list([fixtures.LETTER], 1));
+
       Lob.letters.list((err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
@@ -28,6 +34,11 @@ describe('letters', () => {
     });
 
     it('filters letters', (done) => {
+      mockLob()
+        .get('/v1/letters')
+        .query({ limit: 1 })
+        .reply(200, fixtures.list([fixtures.LETTER], 1));
+
       Lob.letters.list({ limit: 1 }, (err, res) => {
         expect(res.object).to.eql('list');
         expect(res.data).to.be.instanceof(Array);
@@ -39,35 +50,71 @@ describe('letters', () => {
 
     describe('cursor', () => {
 
-      let token;
+      it('filters letters by before', (done) => {
+        const listWithNextUrl = fixtures.list([fixtures.LETTER], 1);
+        listWithNextUrl.next_url = 'https://api.lob.com/v1/letters?after=eyJkYXRl';
 
-      beforeEach(async () => {
-        const list = await Lob.letters.list();
-        token = new URLSearchParams(list.next_url).get('after');
+        mockLob()
+          .get('/v1/letters')
+          .query(true)
+          .reply(200, listWithNextUrl);
+
+        mockLob()
+          .get('/v1/letters')
+          .query(true)
+          .reply(200, fixtures.list([fixtures.LETTER], 1));
+
+        Lob.letters.list().then((list) => {
+          const token = new URLSearchParams(list.next_url).get('after');
+          return Lob.letters.list({ before: token });
+        }).then((res) => {
+          expect(res.object).to.eql('list');
+          expect(res.data).to.be.instanceof(Array);
+          done();
+        });
       });
 
-      it('filters letters by before', async () => {
-        const res = await Lob.letters.list({ before: token });
+      it('filters letters by after', (done) => {
+        const listWithNextUrl = fixtures.list([fixtures.LETTER], 1);
+        listWithNextUrl.next_url = 'https://api.lob.com/v1/letters?after=eyJkYXRl';
 
-        expect(res.object).to.eql('list');
-        expect(res.data).to.be.instanceof(Array);
-      });
+        mockLob()
+          .get('/v1/letters')
+          .query(true)
+          .reply(200, listWithNextUrl);
 
-      it('filters letters by after', async () => {
-        const res = await Lob.letters.list({ after: token });
+        mockLob()
+          .get('/v1/letters')
+          .query(true)
+          .reply(200, fixtures.list([fixtures.LETTER], 1));
 
-        expect(res.object).to.eql('list');
-        expect(res.data).to.be.instanceof(Array);
+        Lob.letters.list().then((list) => {
+          const token = new URLSearchParams(list.next_url).get('after');
+          return Lob.letters.list({ after: token });
+        }).then((res) => {
+          expect(res.object).to.eql('list');
+          expect(res.data).to.be.instanceof(Array);
+          done();
+        });
       });
 
     });
-
 
   });
 
   describe('retrieve', () => {
 
     it('retrieves a letter', (done) => {
+      const letterId = fixtures.LETTER.id;
+
+      mockLob()
+        .post('/v1/letters')
+        .reply(200, fixtures.LETTER);
+
+      mockLob()
+        .get(`/v1/letters/${  letterId}`)
+        .reply(200, fixtures.LETTER);
+
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
@@ -87,13 +134,15 @@ describe('letters', () => {
   describe('create', () => {
 
     it('creates a letter with a local file', (done) => {
-      const filePath = `${__dirname}/assets/8.5x11.pdf`;
+      mockLob()
+        .post('/v1/letters')
+        .reply(200, fixtures.LETTER);
 
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS,
-        file: Fs.createReadStream(filePath),
+        file: '<h1>Test Letter</h1>',
         color: true
       }, (err, res) => {
         expect(res.object).to.eql('letter');
@@ -102,13 +151,15 @@ describe('letters', () => {
     });
 
     it('creates a letter with a buffer', (done) => {
-      const file = Fs.readFileSync(`${__dirname}/assets/8.5x11.pdf`);
+      mockLob()
+        .post('/v1/letters')
+        .reply(200, fixtures.LETTER);
 
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS,
-        file,
+        file: Buffer.from('test'),
         color: false
       }, (err, res) => {
         expect(res.object).to.eql('letter');
@@ -117,23 +168,34 @@ describe('letters', () => {
     });
 
     it('creates a letter with undefined optional parameters', (done) => {
-      const filePath = `${__dirname}/assets/8.5x11.pdf`;
+      mockLob()
+        .post('/v1/letters')
+        .reply(200, fixtures.LETTER);
 
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS,
-        file: Fs.createReadStream(filePath),
+        file: '<h1>Test Letter</h1>',
         color: false,
         extra_service: undefined
       }, (err, res) => {
         expect(res.object).to.eql('letter');
         done();
       });
-
     });
 
     it('creates a letter with a merge variable list', (done) => {
+      const letterWithMerge = fixtures.clone(fixtures.LETTER, {
+        merge_variables: {
+          list: [{ name: 'Ami' }, { name: 'Nathan' }]
+        }
+      });
+
+      mockLob()
+        .post('/v1/letters')
+        .reply(200, letterWithMerge);
+
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
@@ -141,14 +203,7 @@ describe('letters', () => {
         file: '<html>{{#list}} {{name}} {{/list}}</html>',
         color: false,
         merge_variables: {
-          list: [
-            {
-              name: 'Ami'
-            },
-            {
-              name: 'Nathan'
-            }
-          ]
+          list: [{ name: 'Ami' }, { name: 'Nathan' }]
         }
       }, (err, res) => {
         expect(res.object).to.eql('letter');
@@ -156,10 +211,13 @@ describe('letters', () => {
         expect(res.merge_variables.list[1].name).to.eql('Nathan');
         done();
       });
-
     });
 
     it('errors with a missing file', (done) => {
+      mockLob()
+        .post('/v1/letters')
+        .reply(422, fixtures.error('file is required', 422));
+
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
@@ -175,13 +233,21 @@ describe('letters', () => {
   describe('delete', () => {
 
     it('deletes a letter', (done) => {
-      const filePath = `${__dirname}/assets/8.5x11.pdf`;
+      const letterId = fixtures.LETTER.id;
+
+      mockLob()
+        .post('/v1/letters')
+        .reply(200, fixtures.LETTER);
+
+      mockLob()
+        .delete(`/v1/letters/${  letterId}`)
+        .reply(200, fixtures.deleted(letterId));
 
       Lob.letters.create({
         description: 'Test Letter',
         to: ADDRESS,
         from: ADDRESS,
-        file: Fs.createReadStream(filePath),
+        file: '<h1>Test Letter</h1>',
         color: true
       }, (err, res) => {
         Lob.letters.delete(res.id, (err2, res2) => {

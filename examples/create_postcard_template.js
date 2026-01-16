@@ -5,19 +5,15 @@
  * Run me! This example works out of the box, "batteries included".
  */
 
-const fs = require('fs');
-
 const lobFactory = require('../lib/index.js');
 // this key is publicly available in the legacy docs, so it's hardcoded
 // since the templates are associated with this dummy account
 // you can replace this key with your own, and the IDs below with any
 // saved templates you have
-const Lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
-
-const file = fs.readFileSync(`${__dirname}/html/card.html`).toString();
+const lob = new lobFactory('test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc');
 
 // Create the address
-Lob.addresses.create({
+lob.addresses.create({
   name: 'Robin Joseph',
   email: 'test@gmail.com',
   phone: '123456789',
@@ -31,7 +27,7 @@ Lob.addresses.create({
   if (err) {
     console.log(err);
   } else {
-    Lob.postcards.create({
+    lob.postcards.create({
       description: 'My Second Postcard',
       to: address.id,
       // you can replace these template IDs
@@ -40,9 +36,9 @@ Lob.addresses.create({
       merge_variables: {
         name: 'Robin'
       }
-    }, (err, postcard) => {
-      if (err) {
-        console.log(err);
+    }, (err2, postcard) => {
+      if (err2) {
+        console.log(err2);
       } else {
         console.log('The Lob API responded with this postcard object: ', postcard);
       }

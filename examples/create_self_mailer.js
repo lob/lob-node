@@ -6,10 +6,10 @@
  */
 
 const lobFactory = require('../lib/index.js');
-const Lob = new lobFactory('YOUR_API_KEY');
+const lob = new lobFactory('YOUR_API_KEY');
 
 // Create the address
-Lob.addresses.create({
+lob.addresses.create({
   name: 'John Doe',
   email: 'test@example.com',
   phone: '123456789',
@@ -23,7 +23,7 @@ Lob.addresses.create({
   if (err) {
     console.log(err);
   } else {
-    Lob.selfMailers.create({
+    lob.selfMailers.create({
       description: 'Test Self Mailer',
       to: address.id,
       outside: 'https://s3-us-west-2.amazonaws.com/public.lob.com/assets/templates/self_mailers/6x18_sfm_outside.pdf',
@@ -31,9 +31,9 @@ Lob.addresses.create({
       merge_variables: {
         name: 'Robin'
       }
-    }, (err, selfMailer) => {
-      if (err) {
-        console.log(err);
+    }, (err2, selfMailer) => {
+      if (err2) {
+        console.log(err2);
       } else {
         console.log('The Lob API responded with this self mailer object: ', selfMailer);
       }
