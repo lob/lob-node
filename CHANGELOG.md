@@ -1,8 +1,26 @@
 ## 7.1.0 (2026-01-15)
 
+##### Security
+
+* Replace deprecated `request` package with `axios` and `form-data` to address critical vulnerability (CVE-2023-28155)
+* Add path traversal protection with URI encoding in resource methods
+
+##### Bug Fixes
+
+* Fix bulk verification endpoints (US and International) to send JSON body format instead of form-encoded data
+* Fix object iteration to use `Object.keys()` instead of `for...in` to avoid prototype chain issues
+
+##### Testing
+
+* Add comprehensive unit test suite with HTTP mocking using `nock` (94 tests)
+* Add integration test suite for live API validation (24 tests)
+* Unit tests no longer require API keys - mocked responses enable offline development
+* Integration tests run separately with `npm run test:integration`
+
 ##### Maintenance
 
-* Replace deprecated `request` package with `axios` and `form-data`
+* Update README with current testing instructions
+* Clean up unreachable error handling code in HTTP client
 
 #### 7.0.1 (2025-11-12)
 

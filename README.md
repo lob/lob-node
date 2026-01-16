@@ -146,16 +146,22 @@ To contribute, please see the [CONTRIBUTING.md](https://github.com/lob/lob-node/
 
 ## Testing
 
-To run the tests with coverage:
+To run unit tests with coverage:
 
 ```
-LOB_API_KEY=YOUR_TEST_API_KEY npm test
+npm test
 ```
 
-To run the tests without coverage:
+To run integration tests (requires API keys):
 
 ```
-LOB_API_KEY=YOUR_TEST_API_KEY npm run test-no-cover
+TEST_API_KEY=your_test_key npm run test:integration
+```
+
+Some integration tests require a live API key:
+
+```
+TEST_API_KEY=your_test_key LIVE_API_KEY=your_live_key npm run test:integration
 ```
 
 =======================
