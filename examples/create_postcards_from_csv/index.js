@@ -1,6 +1,6 @@
 'use strict';
 
-const parse    = require('csv-parse');
+const { parse } = require('csv-parse');
 const fs       = require('fs');
 const pMap     = require('p-map');
 

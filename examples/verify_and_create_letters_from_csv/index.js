@@ -3,12 +3,12 @@
 const converter = require('json-2-csv');
 const fs        = require('fs');
 const moment    = require('moment');
-const parse     = require('csv-parse');
+const { parse } = require('csv-parse');
 
 const LobFactory = require('../../lib/index.js');
 const lob        = new LobFactory('YOUR_API_KEY');
 
-const inputFile = fs.createReadStream(`${__dirname}/input.csv`);
+const inputData = fs.readFileSync(`${__dirname}/input.csv`, { encoding: 'utf-8' });
 const successFd = fs.openSync(`${__dirname}/success.csv`, 'w');
 const errorFd = fs.openSync(`${__dirname}/error.csv`, 'w');
 const letterTemplate = fs.readFileSync(`${__dirname}/letter_template.html`).toString();
@@ -23,7 +23,7 @@ const companyInfo = {
   address_country: 'US'
 };
 
-const parser = parse({ columns: true }, (err, data) => {
+parse(inputData, { columns: true }, (err, data) => {
   if (err) {
     return console.log(err);
   }
@@ -68,24 +68,20 @@ const parser = parse({ columns: true }, (err, data) => {
         console.log(`Successfully sent a letter to ${client.name}`);
         client.letter_id = letter.id;
         client.letter_url = letter.url;
-        converter.json2csv(client, (err2, csv) => {
-          if (err2) {
+        converter.json2csv(client, { prependHeader: false })
+          .then((csv) => fs.write(successFd, csv, () => {}))
+          .catch((err2) => {
             throw err2;
-          }
-          fs.write(successFd, csv);
-        }, { PREPEND_HEADER: false });
+          });
       })
       .catch(() => {
         console.log(`Could not send letter to ${client.name}`);
-        converter.json2csv(client, (err2, csv) => {
-          if (err2) {
+        converter.json2csv(client, { prependHeader: false })
+          .then((csv) => fs.write(errorFd, csv, () => {}))
+          .catch((err2) => {
             throw err2;
-          }
-          fs.write(errorFd, csv);
-        }, { PREPEND_HEADER: false });
+          });
       });
   });
 
 });
-
-inputFile.pipe(parser);
