@@ -1,3 +1,36 @@
+## Unreleased
+
+##### Breaking Changes
+
+* **engines** update minimum Node.js version requirement to `>= 24.15.0` (was `>= 20.0.0`)
+
+##### Security
+
+* Reduce npm audit findings from 15 to 0 (1 critical, 6 high, 6 moderate, 1 low → 0)
+* Remove abandoned `coveralls` package and its unfixable transitive chain (`request`, `form-data`, `qs`, `tough-cookie`)
+* Upgrade `axios` ^1.13.2 → ^1.16.1 — fixes 16 CVEs (SSRF, prototype pollution, header injection)
+* Upgrade `mocha` ^10 → ^11.7.5; add `overrides` for `serialize-javascript@^7.0.5` and `diff@^9` to patch vulnerabilities bundled inside mocha 11
+* Upgrade `nock` 14.0.10 → 14.0.15 (memory leak fix)
+
+##### Maintenance
+
+* Migrate ESLint 8 → 10 with flat config (`eslint.config.js`); replace `.eslintrc` and `.eslintignore`
+  * `eslint-config-lob` ^5.2.0 → ^7.0.0
+  * `eslint-plugin-lob` ^3.0.0 → ^3.0.2
+  * Add `@eslint/js`, `@stylistic/eslint-plugin`, `eslint-plugin-jsdoc`, `globals`
+  * Removed rules replaced: `valid-jsdoc` → `jsdoc/*`, `no-negated-in-lhs` → `no-unsafe-negation`, formatting rules → `@stylistic/*`
+* Upgrade `chai` 2.3.0 → 6.2.2 (Node 24 synchronous ESM interop)
+* Upgrade `p-map` 2.1.0 → 7.0.4 (Node 24 synchronous ESM interop)
+* Upgrade `csv-parse` 4 → 6; fix named-export import and data-first argument in examples
+* Upgrade `json-2-csv` 3 → 5; migrate callback API to Promise in examples
+* Upgrade `nyc` 15.1.0 → 18.0.0
+* Upgrade `cross-env` 5.2.1 → 10.1.0
+* Remove unused `uuid` devDependency
+* Pin `.node-version` to 24.15.0
+* GitHub Actions: upgrade `actions/checkout` v2 → v4, `actions/setup-node` v2 → v4
+* GitHub Actions: add Node 24 to CI matrix; pin `npm@11`; pin `coverallsapp/github-action@master` → `@v2`
+* Add macOS entries to `.gitignore`
+
 ## 7.1.0 (2026-01-15)
 
 ##### Security

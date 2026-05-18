@@ -3,12 +3,8 @@
 [downloads-image]: http://img.shields.io/npm/dm/lob.svg
 [npm-url]: https://npmjs.org/package/lob
 [npm-image]: https://badge.fury.io/js/lob.svg
-[travis-url]: https://travis-ci.org/lob/lob-node
-[travis-image]: https://travis-ci.org/lob/lob-node.svg?branch=master
-[depstat-url]: https://david-dm.org/Lob/Lob-node
-[depstat-image]: https://david-dm.org/Lob/Lob-node.svg
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]  [![Build Status](https://travis-ci.org/lob/lob-node.svg?branch=master)](https://travis-ci.org/lob/lob-node) [![Dependency Status](https://david-dm.org/lob/lob-node.svg)](https://david-dm.org/lob/lob-node) [![Dev Dependency Status](https://david-dm.org/lob/lob-node/dev-status.svg)](https://david-dm.org/lob/lob-node) [![Coverage Status](https://coveralls.io/repos/lob/lob-node/badge.svg?branch=master)](https://coveralls.io/r/lob/lob-node?branch=master)
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![CI](https://github.com/lob/lob-node/actions/workflows/run_tests.yml/badge.svg)](https://github.com/lob/lob-node/actions/workflows/run_tests.yml) [![Coverage Status](https://coveralls.io/repos/lob/lob-node/badge.svg?branch=master)](https://coveralls.io/r/lob/lob-node?branch=master)
 
 Node.js wrapper for the [Lob.com](https://lob.com) API. See full Lob.com documentation [here](https://lob.com/docs/node).
 ******
@@ -62,6 +58,8 @@ To build and install from the latest source:
 $ git clone git@github.com:lob/lob-node.git
 $ npm install
 ```
+
+**Requirements:** Node.js >= 24.15.0, npm >= 11.5.1
 
 ### Usage
 ```javascript
@@ -163,6 +161,20 @@ Some integration tests require a live API key:
 ```
 TEST_API_KEY=your_test_key LIVE_API_KEY=your_live_key npm run test:integration
 ```
+
+To run lint:
+
+```
+npm run lint
+```
+
+To check for vulnerabilities:
+
+```
+npm audit
+```
+
+Target: zero `moderate` and zero `high` findings. Current status: **0 vulnerabilities**.
 
 =======================
 
