@@ -6,7 +6,7 @@ module.exports = [
   ...lobConfig,
   {
     languageOptions: {
-      ecmaVersion: 2017,
+      ecmaVersion: 2022,
       globals: {
         API_KEY: false,
         expect: false,

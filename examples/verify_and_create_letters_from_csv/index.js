@@ -8,7 +8,6 @@ const { parse } = require('csv-parse');
 const LobFactory = require('../../lib/index.js');
 const lob        = new LobFactory('YOUR_API_KEY');
 
-const inputData = fs.readFileSync(`${__dirname}/input.csv`, { encoding: 'utf-8' });
 const successFd = fs.openSync(`${__dirname}/success.csv`, 'w');
 const errorFd = fs.openSync(`${__dirname}/error.csv`, 'w');
 const letterTemplate = fs.readFileSync(`${__dirname}/letter_template.html`).toString();
@@ -23,65 +22,64 @@ const companyInfo = {
   address_country: 'US'
 };
 
-parse(inputData, { columns: true }, (err, data) => {
-  if (err) {
-    return console.log(err);
-  }
+const parser = fs.createReadStream(`${__dirname}/input.csv`).pipe(parse({ columns: true }));
 
-  data.forEach((client) => {
+parser.on('data', (client) => {
 
-    const name = client.name;
-    const amount = parseFloat(client.amount).toFixed(2);
-    const address = {
-      recipient: name,
-      primary_line: client.primary_line,
-      secondary_line: client.secondary_line,
-      city: client.city,
-      state: client.state,
-      zip_code: client.zip_code
-    };
+  const name = client.name;
+  const amount = parseFloat(client.amount).toFixed(2);
+  const address = {
+    recipient: name,
+    primary_line: client.primary_line,
+    secondary_line: client.secondary_line,
+    city: client.city,
+    state: client.state,
+    zip_code: client.zip_code
+  };
 
-    lob.usVerifications.verify(address)
-      .then((verifiedAddress) => {
-        return lob.letters.create({
-          description: `Automated Past Due Bill for ${name}`,
-          to: {
-            name: verifiedAddress.recipient,
-            address_line1: verifiedAddress.primary_line,
-            address_line2: verifiedAddress.secondary_line,
-            address_city: verifiedAddress.components.city,
-            address_state: verifiedAddress.components.state,
-            address_zip: verifiedAddress.components.zip_code,
-            address_country: 'US'
-          },
-          from: companyInfo,
-          file: letterTemplate,
-          merge_variables: {
-            date: moment().format('LL'),
-            name,
-            amountDue: amount
-          },
-          color: true
-        });
-      })
-      .then((letter) => {
-        console.log(`Successfully sent a letter to ${client.name}`);
-        client.letter_id = letter.id;
-        client.letter_url = letter.url;
-        converter.json2csv(client, { prependHeader: false })
-          .then((csv) => fs.write(successFd, csv, () => {}))
-          .catch((err2) => {
-            throw err2;
-          });
-      })
-      .catch(() => {
-        console.log(`Could not send letter to ${client.name}`);
-        converter.json2csv(client, { prependHeader: false })
-          .then((csv) => fs.write(errorFd, csv, () => {}))
-          .catch((err2) => {
-            throw err2;
-          });
+  lob.usVerifications.verify(address)
+    .then((verifiedAddress) => {
+      return lob.letters.create({
+        description: `Automated Past Due Bill for ${name}`,
+        to: {
+          name: verifiedAddress.recipient,
+          address_line1: verifiedAddress.primary_line,
+          address_line2: verifiedAddress.secondary_line,
+          address_city: verifiedAddress.components.city,
+          address_state: verifiedAddress.components.state,
+          address_zip: verifiedAddress.components.zip_code,
+          address_country: 'US'
+        },
+        from: companyInfo,
+        file: letterTemplate,
+        merge_variables: {
+          date: moment().format('LL'),
+          name,
+          amountDue: amount
+        },
+        color: true
       });
-  });
+    })
+    .then((letter) => {
+      console.log(`Successfully sent a letter to ${client.name}`);
+      client.letter_id = letter.id;
+      client.letter_url = letter.url;
+      converter.json2csv(client, { prependHeader: false })
+        .then((csv) => fs.writeSync(successFd, `${csv  }\n`))
+        .catch((err2) => {
+          console.error('Error writing to success file:', err2);
+        });
+    })
+    .catch(() => {
+      console.log(`Could not send letter to ${client.name}`);
+      converter.json2csv(client, { prependHeader: false })
+        .then((csv) => fs.writeSync(errorFd, `${csv  }\n`))
+        .catch((err2) => {
+          console.error('Error writing to error file:', err2);
+        });
+    });
+});
 
+parser.on('error', (err) => {
+  console.error('CSV parse error:', err);
 });
