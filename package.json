@@ -21,7 +21,7 @@
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "agentkeepalive": "^4.1.0",
-    "chai": "^4.5.0",
+    "chai": "^6.2.2",
     "cross-env": "^10.1.0",
     "csv-parse": "^6.2.1",
     "eslint": "^10.4.0",
@@ -35,7 +35,7 @@
     "moment": "^2.22.1",
     "nock": "^14.0.15",
     "nyc": "^18.0.0",
-    "p-map": "^4.0.0"
+    "p-map": "^7.0.4"
   },
   "repository": {
     "type": "git",
@@ -44,7 +44,7 @@
   "bugs:": "https://github.com/lob/lob-node/issues",
   "main": "./lib/index",
   "engines": {
-    "node": ">= 20.0.0",
+    "node": ">= 24.15.0",
     "npm": ">= 11.5.1"
   },
   "scripts": {
