@@ -14,8 +14,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - name: Install npm
-        run: npm install -g npm@11 --force
       - name: Create NYC folder
         run: mkdir .nyc_output
       - name: Install Dependencies
