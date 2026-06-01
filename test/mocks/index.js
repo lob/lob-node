@@ -17,7 +17,7 @@ function mockLob () {
  * Mock a list endpoint
  * @param {string} endpoint - API endpoint (e.g., '/v1/addresses')
  * @param {Array} items - Array of items to return
- * @param {Object} query - Optional query parameters to match
+ * @param {object} query - Optional query parameters to match
  * @returns {nock.Scope}
  */
 function mockList (endpoint, items, query) {
@@ -33,7 +33,7 @@ function mockList (endpoint, items, query) {
 /**
  * Mock a create endpoint
  * @param {string} endpoint - API endpoint (e.g., '/v1/addresses')
- * @param {Object} response - Response object to return
+ * @param {object} response - Response object to return
  * @returns {nock.Scope}
  */
 function mockCreate (endpoint, response) {
@@ -46,7 +46,7 @@ function mockCreate (endpoint, response) {
  * Mock a retrieve endpoint
  * @param {string} endpoint - API endpoint (e.g., '/v1/addresses')
  * @param {string} id - Resource ID
- * @param {Object} response - Response object to return
+ * @param {object} response - Response object to return
  * @returns {nock.Scope}
  */
 function mockRetrieve (endpoint, id, response) {

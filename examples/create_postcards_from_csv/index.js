@@ -1,8 +1,8 @@
 'use strict';
 
-const parse    = require('csv-parse');
+const { parse } = require('csv-parse');
 const fs       = require('fs');
-const pMap     = require('p-map');
+const { default: pMap } = require('p-map');
 
 const lobFactory = require('../../lib/index.js');
 const lob        = new lobFactory('YOUR_API_KEY');

@@ -10,29 +10,32 @@
     "Lob.com",
     "printing"
   ],
-  "version": "7.1.0",
+  "version": "8.0.0",
   "homepage": "https://github.com/lob/lob-node",
   "author": "Lob <support@lob.com> (https://lob.com/)",
   "dependencies": {
-    "axios": "^1.13.2",
+    "axios": "^1.16.1",
     "form-data": "^4.0.5"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "agentkeepalive": "^4.1.0",
-    "chai": "^2.2.0",
-    "coveralls": "^3.0.5",
-    "cross-env": "^5.2.0",
-    "csv-parse": "^4.4.6",
-    "eslint": "^8.6.0",
-    "eslint-config-lob": "^5.2.0",
+    "chai": "^6.2.2",
+    "cross-env": "^10.1.0",
+    "csv-parse": "^6.2.1",
+    "eslint": "^10.4.0",
+    "eslint-config-lob": "^7.0.0",
+    "eslint-plugin-jsdoc": "^62.9.0",
+    "eslint-plugin-lob": "^3.0.2",
     "generate-changelog": "^1.0.0",
-    "json-2-csv": "^3.15.1",
-    "mocha": "^10.0.0",
+    "globals": "^17.6.0",
+    "json-2-csv": "^5.5.10",
+    "mocha": "^11.7.5",
     "moment": "^2.22.1",
-    "nock": "^14.0.10",
-    "nyc": "^15.1.0",
-    "p-map": "^2.1.0",
-    "uuid": "^3.1.0"
+    "nock": "^14.0.15",
+    "nyc": "^18.0.0",
+    "p-map": "^7.0.4"
   },
   "repository": {
     "type": "git",
@@ -41,7 +44,7 @@
   "bugs:": "https://github.com/lob/lob-node/issues",
   "main": "./lib/index",
   "engines": {
-    "node": ">= 20.0.0",
+    "node": ">= 24.15.0",
     "npm": ">= 11.5.1"
   },
   "scripts": {
@@ -66,5 +69,9 @@
     "lib",
     "LICENSE.txt"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "overrides": {
+    "serialize-javascript": "^7.0.5",
+    "diff": "^9.0.0"
+  }
 }
