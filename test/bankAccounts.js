@@ -154,8 +154,10 @@ describe('bank accounts', () => {
         .post(`/v1/bank_accounts/${  bankAccountId  }/verify`)
         .reply(200, verifiedBankAccount);
 
-      Lob.bankAccounts.create(BANK_ACCOUNT_INPUT, (_err, res) => {
-        Lob.bankAccounts.verify(res.id, { descriptor_code: 'SM11AA' }, (_err2, res2) => {
+      Lob.bankAccounts.create(BANK_ACCOUNT_INPUT, (err, res) => {
+        if (err) return done(err);
+        Lob.bankAccounts.verify(res.id, { descriptor_code: 'SM11AA' }, (err2, res2) => {
+          if (err2) return done(err2);
           expect(res2).to.have.property('id');
           expect(res2.verified).to.eql(true);
           expect(res2.object).to.eql('bank_account');
@@ -176,6 +178,7 @@ describe('bank accounts', () => {
         .reply(200, fixtures.BANK_ACCOUNT);
 
       Lob.bankAccounts.retrieve(bankAccountId, (err, res) => {
+        if (err) return done(err);
         expect(res).to.have.property('microdeposit_type');
         expect(['amounts', 'descriptor_code']).to.include(res.microdeposit_type);
         return done();
@@ -191,6 +194,7 @@ describe('bank accounts', () => {
         .reply(200, verifiedAccount);
 
       Lob.bankAccounts.retrieve(bankAccountId, (err, res) => {
+        if (err) return done(err);
         expect(res.verified).to.eql(true);
         expect(res.microdeposit_type).to.eql(null);
         return done();
