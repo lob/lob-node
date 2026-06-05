@@ -117,10 +117,10 @@ describe('bank accounts', () => {
 
   describe('verify', () => {
 
-    it('verifies a bank account', (done) => {
+    it('verifies a bank account with amounts', (done) => {
       const bankAccountId = fixtures.BANK_ACCOUNT.id;
       const amounts = [23, 34];
-      const verifiedBankAccount = fixtures.clone(fixtures.BANK_ACCOUNT, { verified: true });
+      const verifiedBankAccount = fixtures.clone(fixtures.BANK_ACCOUNT, { verified: true, microdeposit_type: null });
 
       mockLob()
         .post('/v1/bank_accounts')
@@ -139,6 +139,65 @@ describe('bank accounts', () => {
           expect(res2.object).to.eql('bank_account');
           return done();
         });
+      });
+    });
+
+    it('verifies a bank account with descriptor_code', (done) => {
+      const bankAccountId = fixtures.BANK_ACCOUNT.id;
+      const verifiedBankAccount = fixtures.clone(fixtures.BANK_ACCOUNT, { verified: true, microdeposit_type: null });
+
+      mockLob()
+        .post('/v1/bank_accounts')
+        .reply(200, fixtures.clone(fixtures.BANK_ACCOUNT, { microdeposit_type: 'descriptor_code' }));
+
+      mockLob()
+        .post(`/v1/bank_accounts/${  bankAccountId  }/verify`)
+        .reply(200, verifiedBankAccount);
+
+      Lob.bankAccounts.create(BANK_ACCOUNT_INPUT, (err, res) => {
+        if (err) return done(err);
+        Lob.bankAccounts.verify(res.id, { descriptor_code: 'SM11AA' }, (err2, res2) => {
+          if (err2) return done(err2);
+          expect(res2).to.have.property('id');
+          expect(res2.verified).to.eql(true);
+          expect(res2.object).to.eql('bank_account');
+          return done();
+        });
+      });
+    });
+
+  });
+
+  describe('microdeposit_type', () => {
+
+    it('exposes microdeposit_type on a retrieved bank account', (done) => {
+      const bankAccountId = fixtures.BANK_ACCOUNT.id;
+
+      mockLob()
+        .get(`/v1/bank_accounts/${  bankAccountId}`)
+        .reply(200, fixtures.BANK_ACCOUNT);
+
+      Lob.bankAccounts.retrieve(bankAccountId, (err, res) => {
+        if (err) return done(err);
+        expect(res).to.have.property('microdeposit_type');
+        expect(['amounts', 'descriptor_code']).to.include(res.microdeposit_type);
+        return done();
+      });
+    });
+
+    it('microdeposit_type is null once verified', (done) => {
+      const bankAccountId = fixtures.BANK_ACCOUNT.id;
+      const verifiedAccount = fixtures.clone(fixtures.BANK_ACCOUNT, { verified: true, microdeposit_type: null });
+
+      mockLob()
+        .get(`/v1/bank_accounts/${  bankAccountId}`)
+        .reply(200, verifiedAccount);
+
+      Lob.bankAccounts.retrieve(bankAccountId, (err, res) => {
+        if (err) return done(err);
+        expect(res.verified).to.eql(true);
+        expect(res.microdeposit_type).to.eql(null);
+        return done();
       });
     });
 

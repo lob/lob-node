@@ -26,6 +26,7 @@ const BANK_ACCOUNT = {
   account_type: 'company',
   signatory: 'John Doe',
   verified: false,
+  microdeposit_type: 'amounts',
   date_created: '2024-01-16T12:00:00.000Z',
   date_modified: '2024-01-16T12:00:00.000Z'
 };
