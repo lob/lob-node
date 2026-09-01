@@ -72,6 +72,9 @@
   "license": "MIT",
   "overrides": {
     "serialize-javascript": "^7.0.5",
-    "diff": "^9.0.0"
+    "diff": "^9.0.0",
+    "istanbul-lib-processinfo": {
+      "uuid": "^11.1.1"
+    }
   }
 }
