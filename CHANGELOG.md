@@ -1,3 +1,12 @@
+#### 8.1.1 (2026-09-02)
+
+##### Security
+
+* Reduce npm audit findings from 9 to 0 (5 high, 3 moderate, 1 low → 0) ([#313](https://github.com/lob/lob-node/pull/313))
+* Upgrade `axios` ^1.16.1 → 1.20.0, `js-yaml`, `brace-expansion`, `browserslist`, `json-2-csv`, and `@babel/core` via lockfile-only bumps, all within already-declared semver ranges
+* Upgrade `form-data`'s declared range ^4.0.5 → ^4.0.6, closing a CRLF injection finding (GHSA-hmw2-7cc7-3qxx) for consumers installing fresh, not just this repo's own lockfile
+* Upgrade `istanbul-lib-processinfo` (via `nyc`) to 3.0.1, which drops its `uuid` dependency entirely, clearing that finding with no `package.json` override needed
+
 ## 8.0.0 (2026-05-18)
 
 ##### Breaking Changes
