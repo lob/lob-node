@@ -23,7 +23,7 @@
     "agentkeepalive": "^4.1.0",
     "chai": "^6.2.2",
     "cross-env": "^10.1.0",
-    "csv-parse": "^6.2.1",
+    "csv-parse": "^7.0.2",
     "eslint": "^10.4.0",
     "eslint-config-lob": "^7.0.0",
     "eslint-plugin-jsdoc": "^62.9.0",
